@@ -84,9 +84,6 @@ int read_config (const char *path)
 
 int main(int argc, char const *argv[])
 {
-  //FILE *file;
-  //int file;
-
 
   if (argc == 3) {
     read_config(argv[1]);
@@ -95,6 +92,10 @@ int main(int argc, char const *argv[])
     return ERROR_INVALID_ARGS;
   }
 
+  
+
+  elf_dump(argv[2], &PC, &mem[0], MEMSZ);
   show_status();
+  
   return 0;
-}
+  }
