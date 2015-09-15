@@ -13,19 +13,19 @@
 #define ERROR_UNKNOW_OPCODE 6
 #define ERROR_UNKNOW_FUNCT 7
 
-#define AT regs[0]
-#define V0 regs[1]
-#define V1 regs[2]
-#define T0 regs[3]
-#define T1 regs[4]
-#define T2 regs[5]
-#define T3 regs[6]
-#define T4 regs[7]
-#define T5 regs[8]
-#define T6 regs[9]
-#define T7 regs[10]
-#define SP regs[11]
-#define RA regs[12]
+#define AT regs[1]
+#define V0 regs[2]
+#define V1 regs[3]
+#define T0 regs[4]
+#define T1 regs[5]
+#define T2 regs[6]
+#define T3 regs[7]
+#define T4 regs[8]
+#define T5 regs[9]
+#define T6 regs[10]
+#define T7 regs[11]
+#define SP regs[12]
+#define RA regs[13]
 
 #define MEMSZ 640*1024
 
@@ -64,7 +64,7 @@ int show_status()
    {
     if (fscanf(stream, "%u", &v) != 1)
       return ERROR_READ_CONFIG_STREAM;
-    regs[i + 3] = v;  
+    regs[i + 4] = v;  
    }
   
   return 0;  
@@ -91,9 +91,10 @@ int intep_r(uint32_t inst)
   uint32_t rt = GET_RT(inst);
 //  uint32_t shamt = GET_SHAMT(inst);
   uint32_t funct = GET_FUNCT(inst);
+//  iuint32_t rd = GET_RD(inst);
   uint32_t *rdd = &regs[RA];
 
-  //printf("%x", funct);
+  printf("%x", GET_FUNCT(inst));
 
   switch (funct)
   {
@@ -101,12 +102,19 @@ int intep_r(uint32_t inst)
     PC = rs;
     break;
   case FUNCT_ADDU:
-    printf("IT WORKS!!");
+    printf("ADD\n");
     *rdd = rs + rt;
     break;
   case FUNCT_SUBU:
     *rdd = rs -rt;
     break;
+
+  case FUNCT_AND:
+    *rdd = rs & rt;
+    break;
+  case FUNCT_OR:
+    *rdd = rs | rt;
+    break;  
   case FUNCT_SYSCALL:
     printf("SYSCALL FOUND!\n");
     return 0;
@@ -119,9 +127,11 @@ int intep_r(uint32_t inst)
 
 int interp_inst(uint32_t inst) 
 {
-  switch(GET_OPCODE(inst))
+  printf("%x", GET_OPCODE(inst));
+  switch (GET_OPCODE(inst))
   {
   case OPCODE_R:
+    printf("Do I hit this?\n");
     intep_r(inst);
     break;
   case OPCODE_J:
@@ -176,18 +186,17 @@ int interp()
     value = interp_inst(PC);
 
     if (value == ERROR_UNKNOW_OPCODE)
-      return ERROR_UNKNOW_OPCODE;
-    else if (value == 0)
-      return 0;
-
+      return ERROR_UNKNOW_OPCODE; 
+    
+    if (value == 0)
+      return 0; 
   }
-  return 0;   
 }
 
 
 int main(int argc, char const *argv[])
 {
-
+  show_status();
 
   if (argc == 3) {
     read_config(argv[1]);
@@ -196,7 +205,6 @@ int main(int argc, char const *argv[])
     return ERROR_INVALID_ARGS;
   }
   
-
   if (elf_dump(argv[2], &PC, &mem[0], MEMSZ) != 0)
     return ERROR_ELF_DUMP;
  
