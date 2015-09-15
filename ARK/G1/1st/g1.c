@@ -29,11 +29,10 @@ int read_config (const char *path)
 int main(int argc, char const *argv[])
 {
   //FILE *file;
-  int file;
-
+  //int file;
 
   if (argc == 3) {
-    file = read_config(argv[1]);
+    read_config(argv[1]);
   } else {
     exit(1);
   }
