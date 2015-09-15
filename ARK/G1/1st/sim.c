@@ -1,12 +1,17 @@
-#include <stdio.h>
 #include "mips32.h"
+#include "elf.h"
+
 #include <stdlib.h>
 #include <stdint.h>
-#include "elf.h"
+#include <stdio.h>
 
 #define ERROR_INVALID_ARGS 1
 #define ERROR_IO_ERROR 2
 #define ERROR_READ_CONFIG_STREAM 3
+#define ERROR_ELF_DUMP 4
+#define ERROR_interp 5
+#define ERROR_UNKNOW_OPCODE 6
+#define ERROR_UNKNOW_FUNCT 7
 
 #define AT regs[0]
 #define V0 regs[1]
@@ -80,22 +85,128 @@ int read_config (const char *path)
  return 0;
 }
 
+int intep_r(uint32_t inst)
+{
+  uint32_t rs = GET_RS(inst);
+  uint32_t rt = GET_RT(inst);
+//  uint32_t shamt = GET_SHAMT(inst);
+  uint32_t funct = GET_FUNCT(inst);
+  uint32_t *rdd = &regs[RA];
+
+  //printf("%x", funct);
+
+  switch (funct)
+  {
+  case FUNCT_JR:
+    PC = rs;
+    break;
+  case FUNCT_ADDU:
+    printf("IT WORKS!!");
+    *rdd = rs + rt;
+    break;
+  case FUNCT_SUBU:
+    *rdd = rs -rt;
+    break;
+  case FUNCT_SYSCALL:
+    printf("SYSCALL FOUND!\n");
+    return 0;
+  default:
+    return ERROR_UNKNOW_FUNCT;
+  }
+  return 0;
+}
+
+
+int interp_inst(uint32_t inst) 
+{
+  switch(GET_OPCODE(inst))
+  {
+  case OPCODE_R:
+    intep_r(inst);
+    break;
+  case OPCODE_J:
+    printf("Nope");
+    break;
+  case OPCODE_JAL:
+     printf("Nope");
+   break;
+  case OPCODE_BEQ:
+      printf("Nope");
+  break;
+  case OPCODE_BNE:
+       printf("Nope");
+ break;
+  case OPCODE_ADDIU:
+     printf("Nope");
+   break;
+  case OPCODE_SLTI:
+     printf("Nope");
+   break;
+  case OPCODE_ANDI:
+     printf("Nope");
+   break;
+  case OPCODE_ORI:
+     printf("Nope");
+   break;
+  case OPCODE_LUI:
+     printf("Nope");
+   break;
+  case OPCODE_LW:
+     printf("Nope");
+   break;
+  case OPCODE_SW:
+     printf("Nope");
+   break;
+  default:
+    return ERROR_UNKNOW_OPCODE;
+  }
+  
+  return 0;
+}
+
+int interp()
+{
+  while(1)
+  {
+    instr_cnt++;
+    uint32_t value;
+
+    PC = PC + 4;
+
+    value = interp_inst(PC);
+
+    if (value == ERROR_UNKNOW_OPCODE)
+      return ERROR_UNKNOW_OPCODE;
+    else if (value == 0)
+      return 0;
+
+  }
+  return 0;   
+}
 
 
 int main(int argc, char const *argv[])
 {
 
+
   if (argc == 3) {
     read_config(argv[1]);
-  } else {
+  } else { 
     printf("Moron, more or less arguments!\n");
     return ERROR_INVALID_ARGS;
   }
-
   
 
-  elf_dump(argv[2], &PC, &mem[0], MEMSZ);
+  if (elf_dump(argv[2], &PC, &mem[0], MEMSZ) != 0)
+    return ERROR_ELF_DUMP;
+ 
+  SP = MIPS_RESERVE + (MEMSZ - 4);
+ 
+  if (interp() != 0)
+    return ERROR_ELF_DUMP;
+
+
   show_status();
-  
+
   return 0;
-  }
+}
