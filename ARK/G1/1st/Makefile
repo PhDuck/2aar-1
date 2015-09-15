@@ -3,10 +3,14 @@
 CC=gcc
 CFLAGS=-Werror -Wall -Wextra -pedantic -std=c11
 
-all: sim
+all: sim elf
 
-sim: mips32.h sim.c
-	$(CC) $(CFLAGS) -o sim sim.c
+elf: elf.c elf.h
+	$(CC) $(CFLAGS) -o elf elf.c
+
+sim: mips32.h elf.o sim.c
+	$(CC) $(CFLAGS) -o sim elf.o sim.c
 
 clean:
 	rm -f sim
+	rm -f *.o
