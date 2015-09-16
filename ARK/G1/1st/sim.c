@@ -13,6 +13,9 @@
 #define ERROR_UNKNOW_OPCODE 6
 #define ERROR_UNKNOW_FUNCT 7
 
+#define syscall 8
+#define interp_not_done 9
+
 #define AT regs[1]
 #define V0 regs[2]
 #define V1 regs[3]
@@ -128,7 +131,7 @@ int intep_r(uint32_t inst)
     break;
   case FUNCT_SYSCALL:
     printf("SYSCALL FOUND!\n");
-    return 0;
+    return syscall;
   default:
     return ERROR_UNKNOW_FUNCT;
   }
@@ -143,7 +146,8 @@ int interp_inst(uint32_t inst)
   {
   case OPCODE_R:
     printf("Do I hit this?\n");
-    intep_r(inst);
+    if (intep_r(inst) == syscall)
+      return syscall;
     break;
   case OPCODE_J:
     printf("Nope");
@@ -182,7 +186,7 @@ int interp_inst(uint32_t inst)
     return ERROR_UNKNOW_OPCODE;
   }
   
-  return 0;
+  return interp_not_done;
 }
 
 int interp()
@@ -191,15 +195,19 @@ int interp()
   {
     instr_cnt++;
     uint32_t value;
+    
+    printf("PC = %x\n", PC);
 
     PC = PC + 4;
 
+    printf("PC = %x\n", PC);
+    
     value = interp_inst(PC);
 
     if (value == ERROR_UNKNOW_OPCODE)
       return ERROR_UNKNOW_OPCODE; 
-    
-    if (value == 0)
+
+    if (value == syscall)
       return 0; 
   }
 }
