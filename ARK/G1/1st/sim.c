@@ -97,7 +97,7 @@ int intep_r(uint32_t inst)
   //uint32_t rd = GET_RD(inst);
   uint32_t *rdd = &regs[RA];
 
-  printf("%x", GET_FUNCT(inst));
+  printf("%x\n", GET_FUNCT(inst));
 
   switch (funct)
   {
@@ -142,18 +142,16 @@ int intep_r(uint32_t inst)
 int interp_inst(uint32_t inst) 
 {
    uint32_t result;
-   result = intep_r(inst);
-
+   uint32_t test = GET_BIGWORD(mem, PC);
 
   printf("%x", GET_OPCODE(inst));
   switch (GET_OPCODE(inst))
   {
   case OPCODE_R:
-    printf("Do I hit this?\n");
-    if (result == syscall)     
-      return syscall;
-    if (result == ERROR_UNKNOW_FUNCT)
-      return ERROR_UNKNOW_FUNCT;
+    printf("OPCODE_R\n");
+    result = intep_r(inst);
+    printf("%x\n", result); 
+    printf("%x\n", test);
     break;
   case OPCODE_J:
     printf("Nope");
@@ -201,19 +199,14 @@ int interp()
   {
     instr_cnt++;
     uint32_t value;
+    uint32_t inst = GET_BIGWORD(mem, PC)+4*(instr_cnt-1);
     
-    printf("PC = %x\n", PC);
-
-    PC = PC + 9;
-
-    printf("PC = %x\n", PC);
-    
-    value = interp_inst(PC);
+    value = interp_inst(inst);
 
     if (value == ERROR_UNKNOW_OPCODE)
       return ERROR_UNKNOW_OPCODE; 
 
-    if (value == syscall)
+    if (value != syscall)
       return 0; 
   }
 }
