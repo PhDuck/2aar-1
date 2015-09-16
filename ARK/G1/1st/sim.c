@@ -89,9 +89,9 @@ int intep_r(uint32_t inst)
 {
   uint32_t rs = GET_RS(inst);
   uint32_t rt = GET_RT(inst);
-//  uint32_t shamt = GET_SHAMT(inst);
+  uint32_t shamt = GET_SHAMT(inst);
   uint32_t funct = GET_FUNCT(inst);
-//  iuint32_t rd = GET_RD(inst);
+  //uint32_t rd = GET_RD(inst);
   uint32_t *rdd = &regs[RA];
 
   printf("%x", GET_FUNCT(inst));
@@ -108,7 +108,6 @@ int intep_r(uint32_t inst)
   case FUNCT_SUBU:
     *rdd = rs - rt;
     break;
-
   case FUNCT_AND:
     *rdd = rs & rt;
     break;
@@ -116,16 +115,16 @@ int intep_r(uint32_t inst)
     *rdd = rs | rt;
     break;
   case FUNCT_NOR:
-    *rdd = !(rs | rt)
+    *rdd = !(rs | rt);
     break;
   case FUNCT_SLT:
-    *rdd = (rs < rt) ? 1 : 0
+    *rdd = (rs < rt) ? 1 : 0;
     break;
   case FUNCT_SLL:
-    *rdd = rt << shamt
+    *rdd = rt << shamt;
     break;
   case FUNCT_SRL:
-    *rdd = rt >>> shamt
+    *rdd = rt >> shamt;
     break;
   case FUNCT_SYSCALL:
     printf("SYSCALL FOUND!\n");
