@@ -106,7 +106,7 @@ int intep_r(uint32_t inst)
     *rdd = rs + rt;
     break;
   case FUNCT_SUBU:
-    *rdd = rs -rt;
+    *rdd = rs - rt;
     break;
 
   case FUNCT_AND:
@@ -114,7 +114,19 @@ int intep_r(uint32_t inst)
     break;
   case FUNCT_OR:
     *rdd = rs | rt;
-    break;  
+    break;
+  case FUNCT_NOR:
+    *rdd = !(rs | rt)
+    break;
+  case FUNCT_SLT:
+    *rdd = (rs < rt) ? 1 : 0
+    break;
+  case FUNCT_SLL:
+    *rdd = rt << shamt
+    break;
+  case FUNCT_SRL:
+    *rdd = rt >>> shamt
+    break;
   case FUNCT_SYSCALL:
     printf("SYSCALL FOUND!\n");
     return 0;
