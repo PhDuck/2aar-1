@@ -102,6 +102,7 @@ int intep_r(uint32_t inst)
   switch (funct)
   {
   case FUNCT_JR:
+    printf("JR\n");
     PC = rs;
     break;
   case FUNCT_ADDU:
@@ -109,24 +110,31 @@ int intep_r(uint32_t inst)
     *rdd = rs + rt;
     break;
   case FUNCT_SUBU:
+    printf("SUBU\n");
     *rdd = rs - rt;
     break;
   case FUNCT_AND:
+    printf("AND\n");
     *rdd = rs & rt;
     break;
   case FUNCT_OR:
+    printf("OR\n");
     *rdd = rs | rt;
     break;
   case FUNCT_NOR:
+    printf("NOR\n");
     *rdd = !(rs | rt);
     break;
   case FUNCT_SLT:
+    printf("SLT\n");
     *rdd = (rs < rt) ? 1 : 0;
     break;
   case FUNCT_SLL:
+    printf("SLL\n");
     *rdd = rt << shamt;
     break;
   case FUNCT_SRL:
+    printf("SRL\n");
     *rdd = rt >> shamt;
     break;
   case FUNCT_SYSCALL:
@@ -199,7 +207,7 @@ int interp()
   {
     instr_cnt++;
     uint32_t value;
-    uint32_t inst = GET_BIGWORD(mem, PC)+4*(instr_cnt-1);
+    uint32_t inst = GET_BIGWORD(mem, PC);
     
     value = interp_inst(inst);
 
