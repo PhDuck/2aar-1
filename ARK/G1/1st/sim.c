@@ -141,13 +141,19 @@ int intep_r(uint32_t inst)
 
 int interp_inst(uint32_t inst) 
 {
+   uint32_t result;
+   result = intep_r(inst);
+
+
   printf("%x", GET_OPCODE(inst));
   switch (GET_OPCODE(inst))
   {
   case OPCODE_R:
     printf("Do I hit this?\n");
-    if (intep_r(inst) == syscall)
+    if (result == syscall)     
       return syscall;
+    if (result == ERROR_UNKNOW_FUNCT)
+      return ERROR_UNKNOW_FUNCT;
     break;
   case OPCODE_J:
     printf("Nope");
@@ -198,7 +204,7 @@ int interp()
     
     printf("PC = %x\n", PC);
 
-    PC = PC + 4;
+    PC = PC + 9;
 
     printf("PC = %x\n", PC);
     
