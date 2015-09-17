@@ -148,6 +148,9 @@ int intep_r(uint32_t inst)
 int interp_inst(uint32_t inst) 
 {
    uint32_t result;
+   uint8_t rs = GET_RS(inst);
+   uint8_t rt = GET_RT(inst);
+   uint16_t immediate = GET_IMM(inst);
 
   switch (GET_OPCODE(inst))
   {
@@ -160,35 +163,37 @@ int interp_inst(uint32_t inst)
     printf("Nope");
     break;
   case OPCODE_JAL:
-     printf("Nope");
-   break;
+    regs[RA] = PC;
+    PC = GET_ADDRESS(inst);
+    break;
   case OPCODE_BEQ:
-      printf("Nope");
+    if (rs == rt)
+      PC = PC + 4 + immediate;
   break;
   case OPCODE_BNE:
-       printf("Nope");
- break;
+    if (rs != rt)
+      PC = PC + 4 + immediate; 
+    break;
   case OPCODE_ADDIU:
-     printf("Nope");
-   break;
+    rt = rs + SIGN_EXTEND(immediate);
+    break;
   case OPCODE_SLTI:
-     printf("Nope");
-   break;
+    printf("Nope");
+    break;
   case OPCODE_ANDI:
-     printf("Nope");
-   break;
+    rt = rs & ZERO_EXTEND(immediate);
+    break;
   case OPCODE_ORI:
-     printf("Nope");
-   break;
+    rt = rs | ZERO_EXTEND(immediate);
+    break;
   case OPCODE_LUI:
-     printf("Nope");
-   break;
+    break;
   case OPCODE_LW:
-     printf("Nope");
-   break;
+    printf("Nope");
+    break;
   case OPCODE_SW:
-     printf("Nope");
-   break;
+    printf("Nope");
+    break;
   default:
     return ERROR_UNKNOW_OPCODE;
   }
