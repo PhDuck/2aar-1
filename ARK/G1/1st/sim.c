@@ -156,6 +156,9 @@ int interp_inst(uint32_t inst)
     rt = rs | ZERO_EXTEND(immediate);
     break;
   case OPCODE_LUI:
+    lui $r,target >> 16
+        ori $r,$r,target & 0xFFFF
+        jr $r
     break;
   case OPCODE_LW:
     printf("Nope");
