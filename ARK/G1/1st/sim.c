@@ -1,53 +1,51 @@
 #include "sim.h"
 
-
+// Static variable declarations. 
 static uint32_t PC;
 static size_t instr_cnt;
 static uint32_t regs[32];
 static unsigned char mem[MEMSZ];
 
-
-int show_status() 
+int show_status()
 {
-    printf("Executed %zu instrucitons(s).\n", instr_cnt);
-    printf("pc = 0x%x\n", PC);
-    printf("v0 = 0x%x\n", V0);
-    printf("v1 = 0x%x\n", V1);
-    printf("t0 = 0x%x\n", T0);
-    printf("t1 = 0x%x\n", T1);
-    printf("t2 = 0x%x\n", T2);
-    printf("t3 = 0x%x\n", T3);
-    printf("t4 = 0x%x\n", T4);
-    printf("t5 = 0x%x\n", T5);
-    printf("t6 = 0x%x\n", T6);
-    printf("t7 = 0x%x\n", T7);
-    printf("sp = 0x%x\n", SP);
-    printf("ra = 0x%x\n", RA);
-    
+  printf("Executed %zu instrucitons(s).\n", instr_cnt);
+  printf("pc = 0x%x\n", PC);
+  printf("v0 = 0x%x\n", V0);
+  printf("v1 = 0x%x\n", V1);
+  printf("t0 = 0x%x\n", T0);
+  printf("t1 = 0x%x\n", T1);
+  printf("t2 = 0x%x\n", T2);
+  printf("t3 = 0x%x\n", T3);
+  printf("t4 = 0x%x\n", T4);
+  printf("t5 = 0x%x\n", T5);
+  printf("t6 = 0x%x\n", T6);
+  printf("t7 = 0x%x\n", T7);
+  printf("sp = 0x%x\n", SP);
+  printf("ra = 0x%x\n", RA);
 
   return 0;
 }
 
   
- int read_config_stream(FILE *stream)
+int read_config_stream(FILE *stream)
 {
- uint32_t v;
-
- for (int i=8; i <= 15; ++i)
-   {
-    if (fscanf(stream, "%u", &v) != 1)
+  uint32_t v;
+  // Only input data into the regs from 8 - 15, which are Temp Registers.
+  for (int i =8; i <= 15; ++i)
+    {
+    if (fscanf(stream, "%u", &v) != 1) {
       return ERROR_READ_CONFIG_STREAM;
-    regs[i] = v;  
-   }
-  
-  return 0;  
+    }
+    regs[i] = v;
+    }
+  return 0;
 }
 
 
 int read_config (const char *path)
 {
   FILE *stream = fopen(path, "r");
- 
+
   if (stream == NULL) {
     return ERROR_IO_ERROR;
   } else if (read_config_stream(stream) != 0) {
@@ -56,7 +54,7 @@ int read_config (const char *path)
   if (fclose(stream) != 0) {
     return ERROR_IO_ERROR;
   }
- return 0;
+  return 0;
 }
 
 int intep_r(uint32_t inst)
@@ -115,13 +113,12 @@ int intep_r(uint32_t inst)
   return 0;
 }
 
-
 int interp_inst(uint32_t inst) 
 {
-   uint32_t result;
-   uint8_t rs = GET_RS(inst);
-   uint8_t rt = GET_RT(inst);
-   uint16_t immediate = GET_IMM(inst);
+  uint32_t result;
+  uint8_t rs = GET_RS(inst);
+  uint8_t rt = GET_RT(inst);
+  uint16_t immediate = GET_IMM(inst);
 
   switch (GET_OPCODE(inst))
   {
@@ -142,7 +139,7 @@ int interp_inst(uint32_t inst)
     if (rs == rt) {
       PC = PC + 4 + immediate;
     }
-  break;
+    break;
   case OPCODE_BNE:
     if (rs != rt) {
       PC = PC + 4 + immediate; 
@@ -172,8 +169,6 @@ int interp_inst(uint32_t inst)
   default:
     return ERROR_UNKNOW_OPCODE;
   }
- 
-  
   return interp_not_done;
 }
 
@@ -196,9 +191,7 @@ int interp()
     }
     PC = PC + 4;
   }
-
 }
-
 
 int main(int argc, char const *argv[])
 {
@@ -208,17 +201,14 @@ int main(int argc, char const *argv[])
     printf("Moron, more or less arguments!\n");
     return ERROR_INVALID_ARGS;
   }
-  
   if (elf_dump(argv[2], &PC, &mem[0], MEMSZ) != 0) {
     return ERROR_ELF_DUMP;
   }
- 
   SP = MIPS_RESERVE + (MEMSZ - 4);
- 
+
   if (interp() != 0) {
     return ERROR_ELF_DUMP;
   }
   show_status();
-
   return 0;
 }

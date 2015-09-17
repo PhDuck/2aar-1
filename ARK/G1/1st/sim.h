@@ -1,10 +1,13 @@
+// Local library
 #include "mips32.h"
 #include "elf.h"
 
+// std. library
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdio.h>
 
+// Error definetions
 #define ERROR_INVALID_ARGS 1
 #define ERROR_IO_ERROR 2
 #define ERROR_READ_CONFIG_STREAM 3
@@ -16,7 +19,7 @@
 #define syscall 8
 #define interp_not_done 9
 
-
+// MIPS32 Registers
 #define ZR regs[0]
 #define AT regs[1]
 #define V0 regs[2]
@@ -50,8 +53,7 @@
 
 #define MEMSZ 640*1024
 
-
-
+// Function declarations
 int main(int argc,char const *argv[]);
 int interp();
 int interp_inst(uint32_t inst);
