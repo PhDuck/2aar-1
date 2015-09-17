@@ -46,15 +46,16 @@ int show_status()
 
 int read_config (const char *path)
 {
- FILE *stream = fopen(path, "r");
+  FILE *stream = fopen(path, "r");
  
- if (stream == NULL)
-   return ERROR_IO_ERROR;
- else if (read_config_stream(stream) != 0)
-   return ERROR_READ_CONFIG_STREAM;
- if (fclose(stream) != 0)
-   return ERROR_IO_ERROR;
-   
+  if (stream == NULL) {
+    return ERROR_IO_ERROR;
+  } else if (read_config_stream(stream) != 0) {
+    return ERROR_READ_CONFIG_STREAM;
+  }
+  if (fclose(stream) != 0) {
+    return ERROR_IO_ERROR;
+  }
  return 0;
 }
 
@@ -126,8 +127,9 @@ int interp_inst(uint32_t inst)
   {
   case OPCODE_R:
     result = intep_r(inst);
-    if (result == syscall)
+    if (result == syscall) {
       return syscall;
+    }
     break;
   case OPCODE_J:
     //Mangler
@@ -137,12 +139,14 @@ int interp_inst(uint32_t inst)
     PC = GET_ADDRESS(inst);
     break;
   case OPCODE_BEQ:
-    if (rs == rt)
+    if (rs == rt) {
       PC = PC + 4 + immediate;
+    }
   break;
   case OPCODE_BNE:
-    if (rs != rt)
+    if (rs != rt) {
       PC = PC + 4 + immediate; 
+    }
     break;
   case OPCODE_ADDIU:
     rt = rs + SIGN_EXTEND(immediate);
@@ -160,7 +164,7 @@ int interp_inst(uint32_t inst)
     rt = immediate >> 16;
     break;
   case OPCODE_LW:
-    GET_BIGWORD(mem, rs + SIGN_EXTEND(immediate));
+    rt = GET_BIGWORD(mem, rs + SIGN_EXTEND(immediate));
     break;
   case OPCODE_SW:
     SET_BIGWORD(mem, rs + SIGN_EXTEND(immediate), rt)
@@ -183,12 +187,13 @@ int interp()
    
     value = interp_inst(inst);
 
-    if (value == ERROR_UNKNOW_OPCODE)
-      return ERROR_UNKNOW_OPCODE; 
+    if (value == ERROR_UNKNOW_OPCODE) {
+      return ERROR_UNKNOW_OPCODE;
+    }
 
-    if (value == syscall)
-      return 0; 
-
+    if (value == syscall) {
+      return 0;
+    }
     PC = PC + 4;
   }
 
