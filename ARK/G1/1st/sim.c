@@ -130,7 +130,7 @@ int interp_inst(uint32_t inst)
       return syscall;
     break;
   case OPCODE_J:
-    printf("Nope");
+    //Mangler
     break;
   case OPCODE_JAL:
     regs[RA] = PC;
@@ -148,7 +148,7 @@ int interp_inst(uint32_t inst)
     rt = rs + SIGN_EXTEND(immediate);
     break;
   case OPCODE_SLTI:
-    printf("Nope");
+    rt = (int32_t) rs < SIGN_EXTEND(immediate);
     break;
   case OPCODE_ANDI:
     rt = rs & ZERO_EXTEND(immediate);
@@ -157,19 +157,18 @@ int interp_inst(uint32_t inst)
     rt = rs | ZERO_EXTEND(immediate);
     break;
   case OPCODE_LUI:
-    lui $r,target >> 16
-        ori $r,$r,target & 0xFFFF
-        jr $r
+    rt = immediate >> 16;
     break;
   case OPCODE_LW:
-    printf("Nope");
+    GET_BIGWORD(mem, rs + SIGN_EXTEND(immediate));
     break;
   case OPCODE_SW:
-    printf("Nope");
+    SET_BIGWORD(mem, rs + SIGN_EXTEND(immediate), rt)
     break;
   default:
     return ERROR_UNKNOW_OPCODE;
   }
+ 
   
   return interp_not_done;
 }
