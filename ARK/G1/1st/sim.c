@@ -16,19 +16,37 @@
 #define syscall 8
 #define interp_not_done 9
 
+
+#define ZR regs[0]
 #define AT regs[1]
 #define V0 regs[2]
 #define V1 regs[3]
-#define T0 regs[4]
-#define T1 regs[5]
-#define T2 regs[6]
-#define T3 regs[7]
-#define T4 regs[8]
-#define T5 regs[9]
-#define T6 regs[10]
-#define T7 regs[11]
-#define SP regs[12]
-#define RA regs[13]
+#define A0 regs[4]
+#define A1 regs[5]
+#define A2 regs[6]
+#define A3 regs[7]
+#define T0 regs[8]
+#define T1 regs[9]
+#define T2 regs[10]
+#define T3 regs[11]
+#define T4 regs[12]
+#define T5 regs[13]
+#define T6 regs[14]
+#define T7 regs[15]
+#define S0 regs[16]
+#define S1 regs[17]
+#define S2 regs[18]
+#define S3 regs[19]
+#define S4 regs[20]
+#define S5 regs[21]
+#define S6 regs[22]
+#define S7 regs[23]
+#define K0 regs[26]
+#define K1 regs[27]
+#define GP regs[28]
+#define SP regs[29]
+#define FP regs[30]
+#define RA regs[31]
 
 #define MEMSZ 640*1024
 
@@ -63,11 +81,11 @@ int show_status()
 {
  uint32_t v;
 
- for (int i=0; i <= 7; ++i)
+ for (int i=8; i <= 15; ++i)
    {
     if (fscanf(stream, "%u", &v) != 1)
       return ERROR_READ_CONFIG_STREAM;
-    regs[i + 4] = v;  
+    regs[i] = v;  
    }
   
   return 0;  
