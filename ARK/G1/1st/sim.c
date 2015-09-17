@@ -209,15 +209,15 @@ int main(int argc, char const *argv[])
     return ERROR_INVALID_ARGS;
   }
   
-  if (elf_dump(argv[2], &PC, &mem[0], MEMSZ) != 0)
+  if (elf_dump(argv[2], &PC, &mem[0], MEMSZ) != 0) {
     return ERROR_ELF_DUMP;
+  }
  
   SP = MIPS_RESERVE + (MEMSZ - 4);
  
-  if (interp() != 0)
+  if (interp() != 0) {
     return ERROR_ELF_DUMP;
-
-
+  }
   show_status();
 
   return 0;
