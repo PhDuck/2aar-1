@@ -23,6 +23,7 @@ int show_status()
     printf("t7 = 0x%x\n", T7);
     printf("sp = 0x%x\n", SP);
     printf("ra = 0x%x\n", RA);
+    
 
   return 0;
 }
