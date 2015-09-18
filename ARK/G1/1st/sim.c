@@ -59,8 +59,8 @@ int read_config (const char *path)
 
 int intep_r(uint32_t inst)
 {
-  uint8_t rs    = regs[GET_RS(inst)];
-  uint8_t rt    = regs[GET_RT(inst)];
+  uint32_t rs    = regs[GET_RS(inst)];
+  uint32_t rt    = regs[GET_RT(inst)];
   uint8_t shamt = GET_SHAMT(inst);
   uint8_t funct = GET_FUNCT(inst);
   uint32_t rd   = GET_RD(inst);
@@ -70,6 +70,7 @@ int intep_r(uint32_t inst)
   {
   case FUNCT_JR:
     printf("JR\n");
+    printf("%x\n", PC);
     PC = rs;
     break;
   case FUNCT_ADDU:
@@ -118,6 +119,7 @@ int interp_inst(uint32_t inst)
   uint32_t result;
   uint8_t rs         = regs[GET_RS(inst)];
   uint8_t rt         = regs[GET_RT(inst)];
+  uint32_t *rtt      = &regs[GET_RT(inst)];
   uint16_t immediate = GET_IMM(inst);
   switch (GET_OPCODE(inst))
   {
@@ -128,11 +130,14 @@ int interp_inst(uint32_t inst)
     }
     break;
   case OPCODE_J:
-    //Mangler
+    PC = (MS_4B & (PC + 4)) | (GET_ADDRESS(inst)  << 2); 
     break;
   case OPCODE_JAL:
-    regs[RA] = PC;
+    RA = PC + 8;
+    printf("%x\n", regs[RA]);
+    show_status();
     PC = GET_ADDRESS(inst);
+    show_status();
     break;
   case OPCODE_BEQ:
     if (rs == rt) {
@@ -145,22 +150,22 @@ int interp_inst(uint32_t inst)
     }
     break;
   case OPCODE_ADDIU:
-    rt = rs + SIGN_EXTEND(immediate);
+    *rtt = rs + SIGN_EXTEND(immediate);
     break;
   case OPCODE_SLTI:
-    rt = (int32_t) rs < SIGN_EXTEND(immediate);
+    *rtt =  (rs < SIGN_EXTEND(immediate)) ? 1 : 0;
     break;
   case OPCODE_ANDI:
-    rt = rs & ZERO_EXTEND(immediate);
+    *rtt = rs & ZERO_EXTEND(immediate);
     break;
   case OPCODE_ORI:
-    rt = rs | ZERO_EXTEND(immediate);
+    *rtt = rs | ZERO_EXTEND(immediate);
     break;
   case OPCODE_LUI:
-    rt = immediate >> 16;
+    *rtt = immediate >> 16;
     break;
   case OPCODE_LW:
-    rt = GET_BIGWORD(mem, rs + SIGN_EXTEND(immediate));
+    *rtt = GET_BIGWORD(mem, rs + SIGN_EXTEND(immediate));
     break;
   case OPCODE_SW:
     SET_BIGWORD(mem, rs + SIGN_EXTEND(immediate), rt)

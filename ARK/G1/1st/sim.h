@@ -53,11 +53,3 @@
 
 #define MEMSZ 640*1024
 
-// Function declarations
-int main(int argc,char const *argv[]);
-int interp();
-int interp_inst(uint32_t inst);
-int intep_r(uint32_t inst);
-int read_config(const char *path);
-int read_config_stream(FILE *stream);
-int show_status();
