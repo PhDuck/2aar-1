@@ -31,7 +31,7 @@ int read_config_stream(FILE *stream)
 {
   uint32_t v;
   // Only input data into the regs from 8 - 15, which are Temp Registers.
-  for (int i =8; i <= 15; ++i)
+  for (int i =8; i <= 15; i++)
     {
     if (fscanf(stream, "%u", &v) != 1) {
       return ERROR_READ_CONFIG_STREAM;
@@ -59,12 +59,12 @@ int read_config (const char *path)
 
 int intep_r(uint32_t inst)
 {
-  uint8_t rs = GET_RS(inst);
-  uint8_t rt = GET_RT(inst);
+  uint8_t rs    = regs[GET_RS(inst)];
+  uint8_t rt    = regs[GET_RT(inst)];
   uint8_t shamt = GET_SHAMT(inst);
   uint8_t funct = GET_FUNCT(inst);
-  //uint32_t rd = GET_RD(inst);
-  uint32_t *rdd = &regs[RA];
+  uint32_t rd   = GET_RD(inst);
+  uint32_t *rdd = &regs[rd];
 
   switch (funct)
   {
@@ -116,10 +116,9 @@ int intep_r(uint32_t inst)
 int interp_inst(uint32_t inst) 
 {
   uint32_t result;
-  uint8_t rs = GET_RS(inst);
-  uint8_t rt = GET_RT(inst);
+  uint8_t rs         = regs[GET_RS(inst)];
+  uint8_t rt         = regs[GET_RT(inst)];
   uint16_t immediate = GET_IMM(inst);
-
   switch (GET_OPCODE(inst))
   {
   case OPCODE_R:
@@ -185,7 +184,6 @@ int interp()
     if (value == ERROR_UNKNOW_OPCODE) {
       return ERROR_UNKNOW_OPCODE;
     }
-
     if (value == syscall) {
       return 0;
     }
@@ -198,7 +196,7 @@ int main(int argc, char const *argv[])
   if (argc == 3) {
     read_config(argv[1]);
   } else { 
-    printf("Moron, more or less arguments!\n");
+    printf("Moron, try again with more, or less arguments!\n");
     return ERROR_INVALID_ARGS;
   }
   if (elf_dump(argv[2], &PC, &mem[0], MEMSZ) != 0) {
