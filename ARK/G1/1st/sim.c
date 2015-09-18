@@ -130,18 +130,15 @@ int interp_inst(uint32_t inst)
     }
     break;
   case OPCODE_J:
-    PC = (MS_4B & (PC + 4)) | (GET_ADDRESS(inst)  << 2); 
+    PC = (MS_4B & PC) | (GET_ADDRESS(inst)  << 2); 
     break;
   case OPCODE_JAL:
     RA = PC + 8;
-    printf("%x\n", regs[RA]);
-    show_status();
-    PC = GET_ADDRESS(inst);
-    show_status();
+    PC =(MS_4B & PC) | (GET_ADDRESS(inst)  << 2);
     break;
   case OPCODE_BEQ:
     if (rs == rt) {
-      PC = PC + 4 + immediate;
+      PC = PC + 4 + (SIGN_EXTEND(immediate) << 2);
     }
     break;
   case OPCODE_BNE:
