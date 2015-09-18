@@ -143,7 +143,7 @@ int interp_inst(uint32_t inst)
     break;
   case OPCODE_BNE:
     if (rs != rt) {
-      PC = PC + 4 + immediate; 
+      PC = PC + 4 + (SIGN_EXTEND(immediate) << 2);
     }
     break;
   case OPCODE_ADDIU:
@@ -159,7 +159,7 @@ int interp_inst(uint32_t inst)
     *rtt = rs | ZERO_EXTEND(immediate);
     break;
   case OPCODE_LUI:
-    *rtt = immediate >> 16;
+    *rtt = immediate << 16;
     break;
   case OPCODE_LW:
     *rtt = GET_BIGWORD(mem, rs + SIGN_EXTEND(immediate));
