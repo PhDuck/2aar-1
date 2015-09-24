@@ -136,12 +136,12 @@ int interp_inst(uint32_t inst)
     RA = PC + 8;
     PC =(MS_4B & PC) | (GET_ADDRESS(inst)  << 2);
     break;
-  case OPCODE_BEQ:
+  case OPCODE_BEQ://
     if (rs == rt) {
       PC = PC + 4 + (SIGN_EXTEND(immediate) << 2);
     }
     break;
-  case OPCODE_BNE:
+  case OPCODE_BNE://
     if (rs != rt) {
       PC = PC + 4 + (SIGN_EXTEND(immediate) << 2);
     }
@@ -161,11 +161,13 @@ int interp_inst(uint32_t inst)
   case OPCODE_LUI:
     *rtt = immediate << 16;
     break;
-  case OPCODE_LW:
-    *rtt = GET_BIGWORD(mem, rs + SIGN_EXTEND(immediate));
+  case OPCODE_LW://
+    //show_status();
+    regs[GET_RT(inst)] = GET_BIGWORD(mem, regs[GET_RS(inst)] + SIGN_EXTEND(GET_IMM(inst)));
     break;
-  case OPCODE_SW:
-    SET_BIGWORD(mem, rs + SIGN_EXTEND(immediate), rt)
+  case OPCODE_SW://
+    //show_status();
+    SET_BIGWORD(mem, regs[GET_RS(inst)] + SIGN_EXTEND(GET_IMM(inst)), regs[GET_RT(inst)]);
     break;
   default:
     return ERROR_UNKNOW_OPCODE;
