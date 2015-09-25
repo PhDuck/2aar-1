@@ -62,26 +62,24 @@ int show_status()
 
 int alu()
 {
-
-switch(id_ex.funct)
-{
-  case FUNCT_ADD:
-  printf("ADD\n");
-  ex_mem.alu_res = id_ex.sign_ext_imm + id_ex.rs_value;
-  break;
-  default:
-  return ERROR_UNKNOW_FUNCT;
-}
-
+  switch(id_ex.funct)
+  {
+    case FUNCT_ADD:
+    printf("ADD\n");
+    //ex_mem.alu_res = id_ex.sign_ext_imm + id_ex.rs_value;
+    break;
+    default:
+    return ERROR_UNKNOW_FUNCT;
+  }
   return 0;
 }
 
 int interp_ex()
 {
-  if (alu(); =! 0){
+  if (alu() != 0){
     return ERROR_UNKNOW_FUNCT;
   }
-  return 0
+  return 0;
 }
 
 int read_config_stream(FILE *stream)
