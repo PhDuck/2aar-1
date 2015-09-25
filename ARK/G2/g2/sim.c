@@ -76,10 +76,6 @@ int read_config (const char *path)
   return 0;
 }
 
-int interp_id(){  
-  return 0;
-  }
-
 int inter_ex(){
   
   return 0;
@@ -210,8 +206,9 @@ int interp_inst(uint32_t inst)
 }
 
 int interp_control(){
-  
-  switch (GET_OPCODE(if_id.inst))
+id_ex.funct = FUNCT_ADD;
+
+  switch (GET_OPCODE(if_id.inst)){
   case OPCODE_LW:
     id_ex.mem_read = true;
     id_ex.reg_write = true;
@@ -221,7 +218,17 @@ int interp_control(){
     id_ex.mem_write = true;
     break;
   default:
+    return 400; // Bedre error value
+    break;
+  }
+  return 0;
+}
 
+int interp_id() {
+  
+  // Implement error checking!
+  interp_control(); 
+  return 0;
   }
 
 void interp_if(){
