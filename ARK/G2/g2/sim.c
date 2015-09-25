@@ -3,8 +3,13 @@
 // Static variable declarations.
 static uint32_t PC;
 static size_t instr_cnt;
+static size_t cycles;
 static uint32_t regs[32];
 static unsigned char mem[MEMSZ];
+static struct if_id{};
+static struct id_ex{};
+static struct ex_mem{};
+static struct mem_wb{};
 
 int show_status()
 {
@@ -57,6 +62,28 @@ int read_config (const char *path)
   }
   return 0;
 }
+
+int interp_if(){
+  return 0;
+  }
+
+int interp_id(){
+  
+  return 0;
+  }
+
+int inter_ex(){
+  
+  return 0;
+  }
+
+int interp_mem(){
+  return 0;
+  }
+
+int interp_wb(){
+  return 0;
+  }
 
 int intep_r(uint32_t inst)
 {
@@ -174,10 +201,26 @@ int interp_inst(uint32_t inst)
   return interp_not_done;
 }
 
+int cycle(){
+  return SAW_SYSCALL;
+  }
+
 int interp()
 {
   while(1)
   {
+    int return_cycle;
+    cycles++;
+
+    return_cycle = cycle();
+
+    if (return_cycle == SAW_SYSCALL){
+      return 0;
+      } else if ( return_cycle != 0){
+        break;
+      }
+    
+    /**
     instr_cnt++;
     uint32_t value;
     uint32_t inst = GET_BIGWORD(mem, PC);
@@ -191,6 +234,7 @@ int interp()
       return 0;
     }
     PC = PC + 4;
+    **/
   }
 }
 

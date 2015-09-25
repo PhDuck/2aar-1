@@ -17,6 +17,7 @@
 #define ERROR_UNKNOW_FUNCT 7
 
 #define syscall 8
+#define SAW_SYSCALL 10
 #define interp_not_done 9
 
 
