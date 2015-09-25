@@ -9,6 +9,11 @@ static unsigned char mem[MEMSZ];
 
 struct preg_if_id {
   uint32_t inst;
+  uint8_t rt;
+  uint8_t rs_value;
+  uint8_t rt_value;
+  uint16_t sign_ext_imm;
+ 
 };
 static struct preg_if_id if_id;
 
@@ -16,6 +21,7 @@ struct preg_id_ex {
   bool mem_read;
   bool mem_write;
   bool reg_write;
+  uint8_t funct;
 };
 static struct preg_id_ex id_ex;
 /**
@@ -28,7 +34,7 @@ static struct mem_wb{};
 int show_status()
 {
   printf("Executed %zu instrucitons(s).\n", instr_cnt);
-  //printf("%zu cycle(s) elapses\n", )
+  printf("%zu cycle(s) elapses\n", cycles);
   printf("pc = 0x%x\n", PC);
   printf("v0 = 0x%x\n", V0);
   printf("v1 = 0x%x\n", V1);
@@ -206,7 +212,7 @@ int interp_inst(uint32_t inst)
 }
 
 int interp_control(){
-id_ex.funct = FUNCT_ADD;
+  id_ex.funct = FUNCT_ADD;
 
   switch (GET_OPCODE(if_id.inst)){
   case OPCODE_LW:
@@ -225,6 +231,12 @@ id_ex.funct = FUNCT_ADD;
 }
 
 int interp_id() {
+  uint32_t rs    = regs[GET_RS(if_id.inst)];
+  uint32_t rt    = regs[GET_RT(if_id.inst)];
+  if_id.rt = GET_RT(if_id.inst);
+  if_id.rs_value = regs[rs];
+  if_id.rt_value = regs[rt];
+  if_id.sign_ext_imm = SIGN_EXTEND(GET_IMM(if_id.inst));
   
   // Implement error checking!
   interp_control(); 
