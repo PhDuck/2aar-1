@@ -6,10 +6,24 @@ static size_t instr_cnt;
 static size_t cycles;
 static uint32_t regs[32];
 static unsigned char mem[MEMSZ];
+
+struct preg_if_id {
+  uint32_t inst;
+};
+static struct preg_if_id if_id;
+
+struct preg_id_ex {
+  bool mem_read;
+  bool mem_write;
+  bool reg_write;
+};
+static struct preg_id_ex id_ex;
+/**
 static struct if_id{};
 static struct id_ex{};
 static struct ex_mem{};
 static struct mem_wb{};
+**/
 
 int show_status()
 {
@@ -28,7 +42,6 @@ int show_status()
   printf("t7 = 0x%x\n", T7);
   printf("sp = 0x%x\n", SP);
   printf("ra = 0x%x\n", RA);
-
   return 0;
 }
 
@@ -63,12 +76,7 @@ int read_config (const char *path)
   return 0;
 }
 
-int interp_if(){
-  return 0;
-  }
-
-int interp_id(){
-  
+int interp_id(){  
   return 0;
   }
 
@@ -201,7 +209,31 @@ int interp_inst(uint32_t inst)
   return interp_not_done;
 }
 
+int interp_control(){
+  
+  switch (GET_OPCODE(if_id.inst))
+  case OPCODE_LW:
+    id_ex.mem_read = true;
+    id_ex.reg_write = true;
+    // We don't have to define mem_write to false since it's a static struct, and therefore bool = false
+    break;
+  case OPCODE_SW:
+    id_ex.mem_write = true;
+    break;
+  default:
+
+  }
+
+void interp_if(){
+  if_id.inst =  GET_BIGWORD(mem, PC);
+  PC += 4;
+  instr_cnt++;
+}
+
+
+
 int cycle(){
+  interp_if();
   return SAW_SYSCALL;
   }
 
@@ -236,6 +268,7 @@ int interp()
     PC = PC + 4;
     **/
   }
+  return 404;
 }
 
 int main(int argc, char const *argv[])

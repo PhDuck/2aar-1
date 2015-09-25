@@ -2,6 +2,9 @@
 
 set -e
 
+make clean
+make
+
 cd asm/
 
 make clean
