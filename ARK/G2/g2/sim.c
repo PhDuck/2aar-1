@@ -30,6 +30,15 @@ static struct id_ex{};
 static struct ex_mem{};
 static struct mem_wb{};
 **/
+struct preg_ex_man
+{
+  bool mem_read;
+  bool mem_write;
+  bool reg_write;
+  uint8_t rt;
+  uint8_t rt_value;
+  uint32_t alu_res;
+};
 
 int show_status()
 {
@@ -51,6 +60,11 @@ int show_status()
   return 0;
 }
 
+int alu()
+{
+  
+  return 0;
+}
 
 int read_config_stream(FILE *stream)
 {
@@ -103,6 +117,14 @@ int intep_r(uint32_t inst)
   uint8_t funct = GET_FUNCT(inst);
   uint32_t rd   = GET_RD(inst);
   uint32_t *rdd = &regs[rd];
+  /*
+  uint32_t rs    = regs[GET_RS(if_id.inst)];
+  uint32_t rt    = regs[GET_RT(if_id.inst)];
+  if_id.rt = GET_RT(if_id.inst);
+  if_id.rs_value = regs[rs];
+  if_id.rt_value = regs[rt];
+  if_id.sign_ext_imm = SIGN_EXTEND(GET_IMM(if_id.inst));
+  */
 
   switch (funct)
   {
@@ -212,22 +234,39 @@ int interp_inst(uint32_t inst)
 }
 
 int interp_control(){
-  id_ex.funct = FUNCT_ADD;
+  uint32_t result;
+  if (if_id.inst == 0){
+    return 0;
+  }
 
   switch (GET_OPCODE(if_id.inst)){
+  case OPCODE_R:
+    result = intep_r(if_id.inst);
+    if (result == syscall) {
+      return syscall;
+    }
   case OPCODE_LW:
+    printf("LW!\n");
     id_ex.mem_read = true;
     id_ex.reg_write = true;
+    id_ex.funct = FUNCT_ADD;
     // We don't have to define mem_write to false since it's a static struct, and therefore bool = false
     break;
   case OPCODE_SW:
+    printf("SW\n");
     id_ex.mem_write = true;
+    id_ex.funct = FUNCT_ADD;
     break;
+  case OPCODE_LUI:
+  printf("LUI\n");//Ikke sikker
+  //rt = if_id.sign_ext_imm << 16;
+
   default:
-    return 400; // Bedre error value
+    return ERROR_UNKNOW_OPCODE;
     break;
   }
   return 0;
+
 }
 
 int interp_id() {
@@ -238,13 +277,14 @@ int interp_id() {
   if_id.rt_value = regs[rt];
   if_id.sign_ext_imm = SIGN_EXTEND(GET_IMM(if_id.inst));
   
-  // Implement error checking!
-  interp_control(); 
+  if (interp_control() == ERROR_UNKNOW_OPCODE){
+    return ERROR_INTERP_CONTROL_FAILED;
+  }
   return 0;
   }
 
 void interp_if(){
-  if_id.inst =  GET_BIGWORD(mem, PC);
+  if_id.inst = GET_BIGWORD(mem, PC);
   PC += 4;
   instr_cnt++;
 }
@@ -252,9 +292,15 @@ void interp_if(){
 
 
 int cycle(){
-  interp_if();
-  return SAW_SYSCALL;
+  if (interp_id() == ERROR_UNKNOW_OPCODE){
+    return ERROR_INTERP_ID_FAILED;
   }
+  if(interp_id() == syscall){
+    return SAW_SYSCALL;
+  }
+  interp_if();
+  return 0;
+}
 
 int interp()
 {
@@ -264,7 +310,7 @@ int interp()
     cycles++;
 
     return_cycle = cycle();
-
+    show_status();
     if (return_cycle == SAW_SYSCALL){
       return 0;
       } else if ( return_cycle != 0){
@@ -287,7 +333,7 @@ int interp()
     PC = PC + 4;
     **/
   }
-  return 404;
+  return 0;
 }
 
 int main(int argc, char const *argv[])

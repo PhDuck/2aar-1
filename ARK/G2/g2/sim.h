@@ -16,6 +16,8 @@
 #define ERROR_interp 5
 #define ERROR_UNKNOW_OPCODE 6
 #define ERROR_UNKNOW_FUNCT 7
+#define ERROR_INTERP_CONTROL_FAILED 11
+#define ERROR_INTERP_ID_FAILED 12
 
 #define syscall 8
 #define SAW_SYSCALL 10
