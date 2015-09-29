@@ -22,15 +22,20 @@ struct preg_id_ex {
   bool mem_write;
   bool reg_write;
   uint8_t funct;
+  uint8_t rs;
+  uint8_t rt;
+  uint8_t rt_value;
+  uint8_t rs_value;
+  uint16_t sign_ext_imm;
 };
 static struct preg_id_ex id_ex;
 /**
 static struct if_id{};
 static struct id_ex{};
 static struct ex_mem{};
-static struct mem_wb{};
 **/
-struct preg_ex_man
+
+struct preg_ex_mem
 {
   bool mem_read;
   bool mem_write;
@@ -39,6 +44,16 @@ struct preg_ex_man
   uint8_t rt_value;
   uint32_t alu_res;
 };
+static struct preg_ex_mem ex_mem;
+
+struct preg_mem_wb
+{
+  bool reg_write;
+  uint32_t read_data;
+  uint8_t rt;
+};
+static struct preg_mem_wb mem_wb;
+
 
 int show_status()
 {
@@ -66,7 +81,10 @@ int alu()
   {
     case FUNCT_ADD:
     printf("ADD\n");
-    //ex_mem.alu_res = id_ex.sign_ext_imm + id_ex.rs_value;
+    ex_mem.alu_res = id_ex.sign_ext_imm + id_ex.rs_value;
+    break;
+    case 0:
+    printf("nop\n");
     break;
     default:
     return ERROR_UNKNOWN_FUNCT;
@@ -74,8 +92,36 @@ int alu()
   return 0;
 }
 
+void interp_wb()
+{
+  if (mem_wb.reg_write == true && mem_wb.rt != 0)
+    {
+      regs[mem_wb.rt] = mem_wb.read_data;
+    }
+}
+
+void interp_mem()
+{
+  mem_wb.reg_write = ex_mem.reg_write;
+  mem_wb.rt = ex_mem.rt;
+
+  if (ex_mem.mem_read == true)
+    {
+      mem_wb.read_data = GET_BIGWORD(mem, ex_mem.alu_res); 
+    }
+  if (ex_mem.mem_write == true)
+  {
+    SET_BIGWORD(mem, ex_mem.rt_value, ex_mem.alu_res);  
+  }
+}
+
+
 int interp_ex()
 {
+  ex_mem.rt = id_ex.rt;
+  ex_mem.rt_value = id_ex.rt_value;
+  id_ex.sign_ext_imm = if_id.sign_ext_imm;
+
   if (alu() != 0){
     return ERROR_UNKNOWN_FUNCT;
   }
@@ -86,7 +132,7 @@ int read_config_stream(FILE *stream)
 {
   uint32_t v;
   // Only input data into the regs from 8 - 15, which are Temp Registers.
-  for (int i =8; i <= 15; i++)
+  for (int i = 8; i <= 15; i++)
     {
     if (fscanf(stream, "%u", &v) != 1) {
       return ERROR_READ_CONFIG_STREAM;
@@ -112,11 +158,15 @@ int read_config (const char *path)
   return 0;
 }
 
+<<<<<<< HEAD
 int inter_ex(){
 
   return 0;
   }
 
+=======
+/**
+>>>>>>> origin/master
 int interp_mem(){
   return 0;
   }
@@ -124,6 +174,7 @@ int interp_mem(){
 int interp_wb(){
   return 0;
   }
+**/
 
 int intep_r(uint32_t inst)
 {
@@ -251,6 +302,7 @@ int interp_inst(uint32_t inst)
 
 int interp_control(){
   uint32_t result;
+
   if (if_id.inst == 0){
     return 0;
   }
@@ -289,12 +341,22 @@ int interp_id() {
   uint32_t rs    = regs[GET_RS(if_id.inst)];
   uint32_t rt    = regs[GET_RT(if_id.inst)];
   if_id.rt = GET_RT(if_id.inst);
-  if_id.rs_value = regs[rs];
-  if_id.rt_value = regs[rt];
+  if_id.rs_value = rs;
+  if_id.rt_value = rt;
   if_id.sign_ext_imm = SIGN_EXTEND(GET_IMM(if_id.inst));
+<<<<<<< HEAD
 
   if (interp_control() == ERROR_UNKNOWN_OPCODE){
+=======
+  int result = interp_control();
+
+
+  if (result == ERROR_UNKNOW_OPCODE){
+>>>>>>> origin/master
     return ERROR_INTERP_CONTROL_FAILED;
+  } else if (result == syscall)
+  {
+    return SAW_SYSCALL;
   }
   return 0;
   }
@@ -308,12 +370,29 @@ void interp_if(){
 
 
 int cycle(){
+<<<<<<< HEAD
   if (interp_id() == ERROR_UNKNOWN_OPCODE){
+=======
+  interp_wb();
+  interp_mem();
+  int result;
+
+
+  if (interp_ex() == ERROR_UNKNOW_FUNCT){
+    return ERROR_INTERP_EX_FAILED;
+  }
+
+  result = interp_id();
+
+  if (result == ERROR_UNKNOW_OPCODE){
+>>>>>>> origin/master
     return ERROR_INTERP_ID_FAILED;
   }
-  if(interp_id() == syscall){
+  if(result == SAW_SYSCALL){
     return SAW_SYSCALL;
   }
+
+
   interp_if();
   return 0;
 }
@@ -326,19 +405,27 @@ int interp()
     cycles++;
 
     return_cycle = cycle();
-    show_status();
-    if (return_cycle == SAW_SYSCALL){
+    //show_status();
+    if (return_cycle == SAW_SYSCALL)
+    {
       return 0;
+<<<<<<< HEAD
       } else if ( return_cycle != 0){
         break;
       }
 
+=======
+    } else if ( return_cycle != 0){
+      break;
+    }
+    
+>>>>>>> origin/master
     /**
     instr_cnt++;
     uint32_t value;
     uint32_t inst = GET_BIGWORD(mem, PC);
 
-    value = interp_inst(inst);
+    value = interp_inst(inst)
 
     if (value == ERROR_UNKNOWN_OPCODE) {
       return ERROR_UNKNOWN_OPCODE;
