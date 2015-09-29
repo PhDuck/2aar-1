@@ -13,7 +13,7 @@ struct preg_if_id {
   uint8_t rs_value;
   uint8_t rt_value;
   uint16_t sign_ext_imm;
- 
+
 };
 static struct preg_if_id if_id;
 
@@ -69,7 +69,7 @@ int alu()
     //ex_mem.alu_res = id_ex.sign_ext_imm + id_ex.rs_value;
     break;
     default:
-    return ERROR_UNKNOW_FUNCT;
+    return ERROR_UNKNOWN_FUNCT;
   }
   return 0;
 }
@@ -77,7 +77,7 @@ int alu()
 int interp_ex()
 {
   if (alu() != 0){
-    return ERROR_UNKNOW_FUNCT;
+    return ERROR_UNKNOWN_FUNCT;
   }
   return 0;
 }
@@ -113,7 +113,7 @@ int read_config (const char *path)
 }
 
 int inter_ex(){
-  
+
   return 0;
   }
 
@@ -185,7 +185,7 @@ int intep_r(uint32_t inst)
     printf("SYSCALL FOUND!\n");
     return syscall;
   default:
-    return ERROR_UNKNOW_FUNCT;
+    return ERROR_UNKNOWN_FUNCT;
   }
   return 0;
 }
@@ -244,7 +244,7 @@ int interp_inst(uint32_t inst)
     SET_BIGWORD(mem, rs + SIGN_EXTEND(immediate), rt)
     break;
   default:
-    return ERROR_UNKNOW_OPCODE;
+    return ERROR_UNKNOWN_OPCODE;
   }
   return interp_not_done;
 }
@@ -278,7 +278,7 @@ int interp_control(){
   //rt = if_id.sign_ext_imm << 16;
 
   default:
-    return ERROR_UNKNOW_OPCODE;
+    return ERROR_UNKNOWN_OPCODE;
     break;
   }
   return 0;
@@ -292,8 +292,8 @@ int interp_id() {
   if_id.rs_value = regs[rs];
   if_id.rt_value = regs[rt];
   if_id.sign_ext_imm = SIGN_EXTEND(GET_IMM(if_id.inst));
-  
-  if (interp_control() == ERROR_UNKNOW_OPCODE){
+
+  if (interp_control() == ERROR_UNKNOWN_OPCODE){
     return ERROR_INTERP_CONTROL_FAILED;
   }
   return 0;
@@ -308,7 +308,7 @@ void interp_if(){
 
 
 int cycle(){
-  if (interp_id() == ERROR_UNKNOW_OPCODE){
+  if (interp_id() == ERROR_UNKNOWN_OPCODE){
     return ERROR_INTERP_ID_FAILED;
   }
   if(interp_id() == syscall){
@@ -332,7 +332,7 @@ int interp()
       } else if ( return_cycle != 0){
         break;
       }
-    
+
     /**
     instr_cnt++;
     uint32_t value;
@@ -340,8 +340,8 @@ int interp()
 
     value = interp_inst(inst);
 
-    if (value == ERROR_UNKNOW_OPCODE) {
-      return ERROR_UNKNOW_OPCODE;
+    if (value == ERROR_UNKNOWN_OPCODE) {
+      return ERROR_UNKNOWN_OPCODE;
     }
     if (value == syscall) {
       return 0;
