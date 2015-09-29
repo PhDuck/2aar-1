@@ -107,11 +107,11 @@ void interp_mem()
 
   if (ex_mem.mem_read == true)
     {
-      mem_wb.read_data = GET_BIGWORD(mem, ex_mem.alu_res); 
+      mem_wb.read_data = GET_BIGWORD(mem, ex_mem.alu_res);
     }
   if (ex_mem.mem_write == true)
   {
-    SET_BIGWORD(mem, ex_mem.rt_value, ex_mem.alu_res);  
+    SET_BIGWORD(mem, ex_mem.rt_value, ex_mem.alu_res);
   }
 }
 
@@ -158,19 +158,10 @@ int read_config (const char *path)
   return 0;
 }
 
-<<<<<<< HEAD
-int inter_ex(){
-
-  return 0;
-  }
-
-=======
 /**
->>>>>>> origin/master
 int interp_mem(){
   return 0;
   }
-
 int interp_wb(){
   return 0;
   }
@@ -344,15 +335,10 @@ int interp_id() {
   if_id.rs_value = rs;
   if_id.rt_value = rt;
   if_id.sign_ext_imm = SIGN_EXTEND(GET_IMM(if_id.inst));
-<<<<<<< HEAD
-
-  if (interp_control() == ERROR_UNKNOWN_OPCODE){
-=======
   int result = interp_control();
 
 
-  if (result == ERROR_UNKNOW_OPCODE){
->>>>>>> origin/master
+  if (result == ERROR_UNKNOWN_OPCODE){
     return ERROR_INTERP_CONTROL_FAILED;
   } else if (result == syscall)
   {
@@ -370,22 +356,18 @@ void interp_if(){
 
 
 int cycle(){
-<<<<<<< HEAD
-  if (interp_id() == ERROR_UNKNOWN_OPCODE){
-=======
   interp_wb();
   interp_mem();
   int result;
 
 
-  if (interp_ex() == ERROR_UNKNOW_FUNCT){
+  if (interp_ex() == ERROR_UNKNOWN_FUNCT){
     return ERROR_INTERP_EX_FAILED;
   }
 
   result = interp_id();
 
-  if (result == ERROR_UNKNOW_OPCODE){
->>>>>>> origin/master
+  if (result == ERROR_UNKNOWN_OPCODE){
     return ERROR_INTERP_ID_FAILED;
   }
   if(result == SAW_SYSCALL){
@@ -409,24 +391,15 @@ int interp()
     if (return_cycle == SAW_SYSCALL)
     {
       return 0;
-<<<<<<< HEAD
-      } else if ( return_cycle != 0){
-        break;
-      }
-
-=======
     } else if ( return_cycle != 0){
       break;
     }
-    
->>>>>>> origin/master
+
     /**
     instr_cnt++;
     uint32_t value;
     uint32_t inst = GET_BIGWORD(mem, PC);
-
     value = interp_inst(inst)
-
     if (value == ERROR_UNKNOWN_OPCODE) {
       return ERROR_UNKNOWN_OPCODE;
     }
