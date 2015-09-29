@@ -33,8 +33,8 @@ static struct preg_id_ex id_ex;
 static struct if_id{};
 static struct id_ex{};
 static struct ex_mem{};
-static struct mem_wb{};
 **/
+
 struct preg_ex_mem
 {
   bool mem_read;
@@ -45,6 +45,15 @@ struct preg_ex_mem
   uint32_t alu_res;
 };
 static struct preg_ex_mem ex_mem;
+
+struct preg_mem_wb
+{
+  bool reg_write;
+  uint32_t read_data;
+  uint8_t rt;
+};
+static struct preg_mem_wb mem_wb;
+
 
 int show_status()
 {
@@ -82,6 +91,30 @@ int alu()
   }
   return 0;
 }
+
+void interp_wb()
+{
+  if (mem_wb.reg_write == true && mem_wb.rt != 0)
+    {
+      regs[mem_wb.rt] = mem_wb.read_data;
+    }
+}
+
+void interp_mem()
+{
+  mem_wb.reg_write = ex_mem.reg_write;
+  mem_wb.rt = ex_mem.rt;
+
+  if (ex_mem.mem_read == true)
+    {
+      mem_wb.read_data = GET_BIGWORD(mem, ex_mem.alu_res); 
+    }
+  if (ex_mem.mem_write == true)
+  {
+    SET_BIGWORD(mem, ex_mem.rt_value, ex_mem.alu_res);  
+  }
+}
+
 
 int interp_ex()
 {
@@ -303,9 +336,14 @@ int interp_id() {
   if_id.rs_value = rs;
   if_id.rt_value = rt;
   if_id.sign_ext_imm = SIGN_EXTEND(GET_IMM(if_id.inst));
-  
-  if (interp_control() == ERROR_UNKNOW_OPCODE){
+  int result = interp_control();
+
+
+  if (result == ERROR_UNKNOW_OPCODE){
     return ERROR_INTERP_CONTROL_FAILED;
+  } else if (result == syscall)
+  {
+    return SAW_SYSCALL;
   }
   return 0;
   }
@@ -319,16 +357,25 @@ void interp_if(){
 
 
 int cycle(){
+  interp_wb();
+  interp_mem();
+  int result;
+
+
   if (interp_ex() == ERROR_UNKNOW_FUNCT){
     return ERROR_INTERP_EX_FAILED;
   }
 
-  if (interp_id() == ERROR_UNKNOW_OPCODE){
+  result = interp_id();
+
+  if (result == ERROR_UNKNOW_OPCODE){
     return ERROR_INTERP_ID_FAILED;
   }
-  if(interp_id() == syscall){
+  if(result == SAW_SYSCALL){
     return SAW_SYSCALL;
   }
+
+
   interp_if();
   return 0;
 }
@@ -341,12 +388,13 @@ int interp()
     cycles++;
 
     return_cycle = cycle();
-    show_status();
-    if (return_cycle == SAW_SYSCALL){
+    //show_status();
+    if (return_cycle == SAW_SYSCALL)
+    {
       return 0;
-      } else if ( return_cycle != 0){
-        break;
-      }
+    } else if ( return_cycle != 0){
+      break;
+    }
     
     /**
     instr_cnt++;
