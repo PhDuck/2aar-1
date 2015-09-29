@@ -22,6 +22,11 @@ struct preg_id_ex {
   bool mem_write;
   bool reg_write;
   uint8_t funct;
+  uint8_t rs;
+  uint8_t rt;
+  uint8_t rt_value;
+  uint8_t rs_value;
+  uint16_t sign_ext_imm;
 };
 static struct preg_id_ex id_ex;
 /**
@@ -30,7 +35,7 @@ static struct id_ex{};
 static struct ex_mem{};
 static struct mem_wb{};
 **/
-struct preg_ex_man
+struct preg_ex_mem
 {
   bool mem_read;
   bool mem_write;
@@ -39,6 +44,7 @@ struct preg_ex_man
   uint8_t rt_value;
   uint32_t alu_res;
 };
+static struct preg_ex_mem ex_mem;
 
 int show_status()
 {
@@ -66,7 +72,10 @@ int alu()
   {
     case FUNCT_ADD:
     printf("ADD\n");
-    //ex_mem.alu_res = id_ex.sign_ext_imm + id_ex.rs_value;
+    ex_mem.alu_res = id_ex.sign_ext_imm + id_ex.rs_value;
+    break;
+    case 0:
+    printf("nop\n");
     break;
     default:
     return ERROR_UNKNOW_FUNCT;
@@ -76,6 +85,10 @@ int alu()
 
 int interp_ex()
 {
+  ex_mem.rt = id_ex.rt;
+  ex_mem.rt_value = id_ex.rt_value;
+  id_ex.sign_ext_imm = if_id.sign_ext_imm;
+
   if (alu() != 0){
     return ERROR_UNKNOW_FUNCT;
   }
@@ -86,7 +99,7 @@ int read_config_stream(FILE *stream)
 {
   uint32_t v;
   // Only input data into the regs from 8 - 15, which are Temp Registers.
-  for (int i =8; i <= 15; i++)
+  for (int i = 8; i <= 15; i++)
     {
     if (fscanf(stream, "%u", &v) != 1) {
       return ERROR_READ_CONFIG_STREAM;
@@ -112,11 +125,7 @@ int read_config (const char *path)
   return 0;
 }
 
-int inter_ex(){
-  
-  return 0;
-  }
-
+/**
 int interp_mem(){
   return 0;
   }
@@ -124,6 +133,7 @@ int interp_mem(){
 int interp_wb(){
   return 0;
   }
+**/
 
 int intep_r(uint32_t inst)
 {
@@ -251,6 +261,7 @@ int interp_inst(uint32_t inst)
 
 int interp_control(){
   uint32_t result;
+
   if (if_id.inst == 0){
     return 0;
   }
@@ -289,8 +300,8 @@ int interp_id() {
   uint32_t rs    = regs[GET_RS(if_id.inst)];
   uint32_t rt    = regs[GET_RT(if_id.inst)];
   if_id.rt = GET_RT(if_id.inst);
-  if_id.rs_value = regs[rs];
-  if_id.rt_value = regs[rt];
+  if_id.rs_value = rs;
+  if_id.rt_value = rt;
   if_id.sign_ext_imm = SIGN_EXTEND(GET_IMM(if_id.inst));
   
   if (interp_control() == ERROR_UNKNOW_OPCODE){
@@ -308,6 +319,10 @@ void interp_if(){
 
 
 int cycle(){
+  if (interp_ex() == ERROR_UNKNOW_FUNCT){
+    return ERROR_INTERP_EX_FAILED;
+  }
+
   if (interp_id() == ERROR_UNKNOW_OPCODE){
     return ERROR_INTERP_ID_FAILED;
   }
@@ -338,7 +353,7 @@ int interp()
     uint32_t value;
     uint32_t inst = GET_BIGWORD(mem, PC);
 
-    value = interp_inst(inst);
+    value = interp_inst(inst)
 
     if (value == ERROR_UNKNOW_OPCODE) {
       return ERROR_UNKNOW_OPCODE;
