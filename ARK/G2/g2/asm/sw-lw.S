@@ -1,7 +1,20 @@
 # t1 gets the value of t0 (through memory).
-
+nop
+nop
+nop
+nop
+nop
 sw $t0, -4($sp)
+nop
+nop
+nop
+nop
+nop
 lw $t1, -4($sp)
+nop
+nop
+nop
+nop
 nop # nop the MEM stage to let lw get to WB
 syscall # Detected in EX stage
 nop # nop the ID stage
