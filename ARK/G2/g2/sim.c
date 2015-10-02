@@ -137,7 +137,7 @@ int alu()
       printf("nop\n");
       break;
     default:
-      return ERROR_UNKNOW_FUNCT;
+    return ERROR_UNKNOWN_FUNCT;
   }
   return 0;
 }
@@ -167,7 +167,7 @@ void interp_mem()
   if (ex_mem.mem_write)
   {
     printf("MADS");
-    SET_BIGWORD(mem, ex_mem.alu_res, ex_mem.rt_value);  
+    SET_BIGWORD(mem, ex_mem.alu_res, ex_mem.rt_value);
   }
 }
 
@@ -182,7 +182,7 @@ int interp_ex()
   id_ex.sign_ext_imm = if_id.sign_ext_imm;
 
   if (alu() != 0){
-    return ERROR_UNKNOW_FUNCT;
+    return ERROR_UNKNOWN_FUNCT;
   }
   return 0;
 }
@@ -266,7 +266,7 @@ int interp_control(){
     //rt = if_id.sign_ext_imm << 16;
     break;
   default:
-    return ERROR_UNKNOW_OPCODE;
+    return ERROR_UNKNOWN_OPCODE;
     break;
   }
   return 0;
@@ -281,7 +281,7 @@ int interp_id() {
   int result         = interp_control();
 
 
-  if (result == ERROR_UNKNOW_OPCODE){
+  if (result == ERROR_UNKNOWN_OPCODE){
     return ERROR_INTERP_CONTROL_FAILED;
   } else if (result == syscall)
   {
@@ -302,13 +302,13 @@ int cycle(){
   interp_wb();
   interp_mem();
 
-  if (interp_ex() == ERROR_UNKNOW_FUNCT){
+  if (interp_ex() == ERROR_UNKNOWN_FUNCT){
     return ERROR_INTERP_EX_FAILED;
   }
 
   result = interp_id();
 
-  if (result == ERROR_UNKNOW_OPCODE){
+  if (result == ERROR_UNKNOWN_OPCODE){
     return ERROR_INTERP_ID_FAILED;
   }
   if (result == SAW_SYSCALL){
@@ -373,143 +373,4 @@ int main(int argc, char const *argv[])
   show_status();
   return 0;
 }
-
-
-
-/**
-int interp_mem(){
-  return 0;
-  }
-
-int interp_wb(){
-  return 0;
-  }
-**/
-/**
-int intep_r(uint32_t inst)
-{
-  uint32_t rs    = regs[GET_RS(inst)];
-  uint32_t rt    = regs[GET_RT(inst)];
-  uint8_t shamt = GET_SHAMT(inst);
-  uint8_t funct = GET_FUNCT(inst);
-  uint32_t rd   = GET_RD(inst);
-  uint32_t *rdd = &regs[rd];
-
-  //uint32_t rs    = regs[GET_RS(if_id.inst)];
-  //uint32_t rt    = regs[GET_RT(if_id.inst)];
-  if_id.rt = GET_RT(if_id.inst);
-  if_id.rs_value = regs[rs];
-  if_id.rt_value = regs[rt];
-  if_id.sign_ext_imm = SIGN_EXTEND(GET_IMM(if_id.inst));
-  
-
-  switch (funct)
-  {
-  case FUNCT_JR:
-    printf("JR\n");
-    printf("%x\n", PC);
-    PC = rs;
-    break;
-  case FUNCT_ADDU:
-    printf("ADD\n");
-    *rdd = rs + rt;
-    break;
-  case FUNCT_SUBU:
-    printf("SUBU\n");
-    *rdd = rs - rt;
-    break;
-  case FUNCT_AND:
-    printf("AND\n");
-    *rdd = rs & rt;
-    break;
-  case FUNCT_OR:
-    printf("OR\n");
-    *rdd = rs | rt;
-    break;
-  case FUNCT_NOR:
-    printf("NOR\n");
-    *rdd = !(rs | rt);
-    break;
-  case FUNCT_SLT:
-    printf("SLT\n");
-    *rdd = (rs < rt) ? 1 : 0;
-    break;
-  case FUNCT_SLL:
-    printf("SLL\n");
-    *rdd = rt << shamt;
-    break;
-  case FUNCT_SRL:
-    printf("SRL\n");
-    *rdd = rt >> shamt;
-    break;
-  case FUNCT_SYSCALL:
-    printf("SYSCALL FOUND!\n");
-    return syscall;
-  default:
-    return ERROR_UNKNOW_FUNCT;
-  }
-  return 0;
-}
-
-**/
-/**
-int interp_inst(uint32_t inst)
-{
-  uint32_t result;
-  uint8_t rs         = regs[GET_RS(inst)];
-  uint8_t rt         = regs[GET_RT(inst)];
-  uint32_t *rtt      = &regs[GET_RT(inst)];
-  uint16_t immediate = GET_IMM(inst);
-  switch (GET_OPCODE(inst))
-  {
-  case OPCODE_R:
-    result = intep_r(inst);
-    if (result == syscall) {
-      return syscall;
-    }
-    break;
-  case OPCODE_J:
-    PC = (MS_4B & PC) | (GET_ADDRESS(inst)  << 2);
-    break;
-  case OPCODE_JAL:
-    RA = PC + 8;
-    PC =(MS_4B & PC) | (GET_ADDRESS(inst)  << 2);
-    break;
-  case OPCODE_BEQ:
-    if (rs == rt) {
-      PC = PC + 4 + (SIGN_EXTEND(immediate) << 2);
-    }
-    break;
-  case OPCODE_BNE:
-    if (rs != rt) {
-      PC = PC + 4 + (SIGN_EXTEND(immediate) << 2);
-    }
-    break;
-  case OPCODE_ADDIU:
-    *rtt = rs + SIGN_EXTEND(immediate);
-    break;
-  case OPCODE_SLTI:
-    *rtt =  (rs < SIGN_EXTEND(immediate)) ? 1 : 0;
-    break;
-  case OPCODE_ANDI:
-    *rtt = rs & ZERO_EXTEND(immediate);
-    break;
-  case OPCODE_ORI:
-    *rtt = rs | ZERO_EXTEND(immediate);
-    break;
-  case OPCODE_LUI:
-    *rtt = immediate << 16;
-    break;
-  case OPCODE_LW:
-    *rtt = GET_BIGWORD(mem, rs + SIGN_EXTEND(immediate));
-    break;
-  case OPCODE_SW:
-    SET_BIGWORD(mem, rs + SIGN_EXTEND(immediate), rt)
-    break;
-  default:
-    return ERROR_UNKNOW_OPCODE;
-  }
-  return interp_not_done;
-}
-**/
 
