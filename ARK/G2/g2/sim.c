@@ -106,7 +106,6 @@ int show_status()
 
 void interp_wb()
 {
-  printf("Rammer vi den her logik?");
   if (!mem_wb.reg_write || mem_wb.reg_write == 0)
     {
       if (mem_wb.mem_to_reg)
@@ -125,7 +124,11 @@ int alu()
       printf("ADD\n");
       if (id_ex.alu_src)
       {
+        printf("RS_VALUE: %x\n", id_ex.rs_value);
+        printf("SIGN_EXT_IMM: %x\n", id_ex.sign_ext_imm);
+        printf("STACK POINTER: %x\n", SP);
         ex_mem.alu_res = id_ex.sign_ext_imm + id_ex.rs_value;
+        printf("ex_mem.alu_res = %x\n", ex_mem.alu_res);
       }
       else if (!id_ex.alu_src)
       {
@@ -158,7 +161,7 @@ void interp_mem()
   mem_wb.alu_res   = ex_mem.alu_res;
   mem_wb.rt        = ex_mem.rt;
 
-  printf("%s", ex_mem.mem_write ? "true" : "false");
+  printf("%s\n", ex_mem.mem_write ? "true" : "false");
 
   if (ex_mem.mem_read)
     {
@@ -168,7 +171,7 @@ void interp_mem()
   if (ex_mem.mem_write)
   {
     printf("SET_BIGWORD Value: %x\n", ex_mem.rt_value);
-    printf("SET_BIGWORD Addresses: %x\n", ex_mem.rt_value);
+    printf("SET_BIGWORD Addresses: %x\n", ex_mem.alu_res);
     SET_BIGWORD(mem, ex_mem.alu_res, ex_mem.rt_value);
   }
 }
@@ -181,7 +184,7 @@ int interp_ex()
   ex_mem.mem_read    = id_ex.mem_read;
   ex_mem.mem_write   = id_ex.mem_write;
   ex_mem.reg_write   = id_ex.reg_write;
-  id_ex.sign_ext_imm = if_id.sign_ext_imm;
+  id_ex.sign_ext_imm = id_ex.sign_ext_imm;
 
 
   if (alu() != 0){
@@ -278,10 +281,10 @@ int interp_control(){
 }
 
 int interp_id() {
-  if_id.rs_value     = regs[GET_RS(if_id.inst)];
-  if_id.rt_value     = regs[GET_RT(if_id.inst)];
-  if_id.rt           = GET_RT(if_id.inst);
-  if_id.sign_ext_imm = SIGN_EXTEND(GET_IMM(if_id.inst));
+  id_ex.rs_value     = regs[GET_RS(if_id.inst)];
+  id_ex.rt_value     = regs[GET_RT(if_id.inst)];
+  id_ex.rt           = GET_RT(if_id.inst);
+  id_ex.sign_ext_imm = SIGN_EXTEND(GET_IMM(if_id.inst));
   int result         = interp_control();
 
 
@@ -296,7 +299,9 @@ int interp_id() {
 
 void interp_if(){
   if_id.inst = GET_BIGWORD(mem, PC);
+  printf("if_id.inst: %x\n", if_id.inst);
   PC += 4;
+  printf("NEW PC: %x\n", PC);
   instr_cnt++;
 }
 
@@ -304,8 +309,7 @@ int cycle(){
   //dump_pregs();
   int result;
   interp_wb();
-  interp_mem();
-
+  interp_mem(); 
   if (interp_ex() == ERROR_UNKNOWN_FUNCT){
     return ERROR_INTERP_EX_FAILED;
   }
@@ -331,6 +335,7 @@ int interp()
 
     return_cycle = cycle();
     //show_status();
+    dump_pregs();
     if (return_cycle == SAW_SYSCALL)
     {
       return 0;
@@ -369,7 +374,7 @@ int main(int argc, char const *argv[])
   if (elf_dump(argv[2], &PC, &mem[0], MEMSZ) != 0) {
     return ERROR_ELF_DUMP;
   }
-  SP = MIPS_RESERVE + (MEMSZ + 4);
+  SP = MIPS_RESERVE + (MEMSZ - 1);
 
   if (interp() != 0) {
     return ERROR_ELF_DUMP;
