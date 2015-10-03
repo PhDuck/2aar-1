@@ -59,7 +59,7 @@ static struct preg_mem_wb mem_wb;
 void dump_pregs() {
   printf("if_id:\n");
   printf("inst: %x\n\n", if_id.inst);
- 
+
   printf("id_ex:\n");
   printf("mem_read: %x\n", id_ex.mem_read);
   printf("mem_write: %x\n", id_ex.mem_write);
@@ -69,7 +69,7 @@ void dump_pregs() {
   printf("rt_value: %x\n", id_ex.rt_value);
   printf("sign_ext_imm: %x\n", id_ex.sign_ext_imm);
   printf("funct: %x\n\n", id_ex.funct);
- 
+
   printf("em_mem:\n");
   printf("ex_mem.mem_read: %x\n", ex_mem.mem_read);
   printf("ex_mem.mem_write: %x\n", ex_mem.mem_write);
@@ -77,7 +77,7 @@ void dump_pregs() {
   printf("ex_mem.rt: %x\n", ex_mem.rt);
   printf("ex_mem.rt_value: %x\n", ex_mem.rt_value);
   printf("ex_mem.alu_res: %x\n\n", ex_mem.alu_res);
- 
+
   printf("mem_wb:\n");
   printf("mem_wb.reg_write: %x\n", mem_wb.reg_write);
   printf("mem_wb.rt: %x\n", mem_wb.rt);
@@ -123,10 +123,11 @@ int alu()
   {
     case FUNCT_ADD:
       printf("ADD\n");
-      if (id_ex.alu_src) 
+      if (id_ex.alu_src)
       {
         ex_mem.alu_res = id_ex.sign_ext_imm + id_ex.rs_value;
-      } else if (!id_ex.alu_src) 
+      }
+      else if (!id_ex.alu_src)
       {
         ex_mem.alu_res = id_ex.rt_value + id_ex.rs_value;
       }
@@ -162,11 +163,12 @@ void interp_mem()
   if (ex_mem.mem_read)
     {
       mem_wb.read_data = GET_BIGWORD(mem, ex_mem.alu_res);
-      printf("%x\n", mem_wb.read_data); 
+      printf("read_data: %x\n", mem_wb.read_data);
     }
   if (ex_mem.mem_write)
   {
-    printf("MADS");
+    printf("SET_BIGWORD Value: %x\n", ex_mem.rt_value);
+    printf("SET_BIGWORD Addresses: %x\n", ex_mem.rt_value);
     SET_BIGWORD(mem, ex_mem.alu_res, ex_mem.rt_value);
   }
 }
@@ -180,6 +182,7 @@ int interp_ex()
   ex_mem.mem_write   = id_ex.mem_write;
   ex_mem.reg_write   = id_ex.reg_write;
   id_ex.sign_ext_imm = if_id.sign_ext_imm;
+
 
   if (alu() != 0){
     return ERROR_UNKNOWN_FUNCT;
@@ -231,7 +234,7 @@ int interp_control(){
     id_ex.alu_src    = false;
     id_ex.reg_dst    = GET_RD(if_id.inst);
     id_ex.reg_write  = true;
-    id_ex.funct      = GET_FUNCT(if_id.inst);  
+    id_ex.funct      = GET_FUNCT(if_id.inst);
     //result = intep_r(if_id.inst);
     /**
     if (result == syscall) {
@@ -256,6 +259,7 @@ int interp_control(){
     printf("SW\n");
     id_ex.mem_write  = true;
     id_ex.mem_read   = false;
+    id_ex.reg_write  = false;
     id_ex.alu_src    = true;
     id_ex.mem_to_reg = false;
     id_ex.funct      = FUNCT_ADD;
@@ -297,7 +301,7 @@ void interp_if(){
 }
 
 int cycle(){
-  dump_pregs();
+  //dump_pregs();
   int result;
   interp_wb();
   interp_mem();
@@ -324,7 +328,6 @@ int interp()
   while(1)
   {
     int return_cycle;
-    cycles++;
 
     return_cycle = cycle();
     //show_status();
@@ -335,6 +338,7 @@ int interp()
     {
       break;
     }
+    cycles++;
     /**
     instr_cnt++;
     uint32_t value;
