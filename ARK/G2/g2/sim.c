@@ -1,4 +1,4 @@
-#include "sim.h"
+#include "sim.h" 
 
 // Static variable declarations.
 static uint32_t PC;
@@ -101,34 +101,39 @@ int show_status()
 
 void interp_wb()
 {
-  if (!mem_wb.reg_write || mem_wb.reg_write == 0)
+  if (mem_wb.reg_write || mem_wb.reg_dst == 0)
     {
       if (mem_wb.mem_to_reg)
        {
-          mem_wb.reg_dst = mem_wb.read_data;
+         printf("reg_dst: %x\n", mem_wb.reg_dst);
+         printf("read_data: %x\n",mem_wb.read_data);
+         regs[mem_wb.reg_dst] = mem_wb.read_data;
+         show_status();
+       } else if (!mem_wb.mem_to_reg) 
+       {
+         printf("ALU_RES: %x\n", mem_wb.alu_res); 
+         regs[mem_wb.reg_dst] = mem_wb.alu_res;
        }
-       mem_wb.reg_dst = mem_wb.alu_res;
     }
 }
 
 int alu()
 {
+  uint32_t second_operand;
+
+  if (id_ex.alu_src) 
+  {
+    second_operand = id_ex.rt_value;
+  } else if (!id_ex.alu_src)
+  {
+    second_operand = id_ex.sign_ext_imm;
+  }
+
   switch(id_ex.funct)
   {
     case FUNCT_ADD:
       printf("ADD\n");
-      if (id_ex.alu_src)
-      {
-        printf("RS_VALUE: %x\n", id_ex.rs_value);
-        printf("SIGN_EXT_IMM: %x\n", id_ex.sign_ext_imm);
-        printf("STACK POINTER: %x\n", SP);
-        ex_mem.alu_res = id_ex.sign_ext_imm + id_ex.rs_value;
-        printf("ex_mem.alu_res = %x\n", ex_mem.alu_res);
-      }
-      else if (!id_ex.alu_src)
-      {
-        ex_mem.alu_res = id_ex.rt_value + id_ex.rs_value;
-      }
+      ex_mem.alu_res = second_operand + id_ex.rs_value;
       break;
     case FUNCT_SYSCALL:
       return SAW_SYSCALL;
@@ -136,37 +141,27 @@ int alu()
       printf("nop\n");
       break;
     default:
-    return ERROR_UNKNOWN_FUNCT;
+      return ERROR_UNKNOWN_FUNCT;
   }
   return 0;
 }
-/**
-void interp_wb()
-{
-  if (mem_wb.reg_write && mem_wb.rt != 0)
-    {
-      regs[mem_wb.rt] = mem_wb.read_data;
-    }
-}
-**/
+
 void interp_mem()
 {
-  mem_wb.reg_write = ex_mem.reg_write;
-  mem_wb.reg_dst   = ex_mem.reg_dst;
-  mem_wb.alu_res   = ex_mem.alu_res;
-  mem_wb.rt        = ex_mem.rt;
-
-  printf("%s\n", ex_mem.mem_write ? "true" : "false");
+  mem_wb.reg_write  = ex_mem.reg_write;
+  mem_wb.mem_to_reg = ex_mem.mem_to_reg;
+  mem_wb.reg_dst    = ex_mem.reg_dst;
+  mem_wb.alu_res    = ex_mem.alu_res;
+  mem_wb.rt         = ex_mem.rt;
 
   if (ex_mem.mem_read)
     {
+      printf("interp_mem alu_res: %x\n", ex_mem.alu_res);
       mem_wb.read_data = GET_BIGWORD(mem, ex_mem.alu_res);
-      printf("read_data: %x\n", mem_wb.read_data);
+      printf("interp_mem read_data: %x\n", mem_wb.read_data);
     }
   if (ex_mem.mem_write)
   {
-    printf("SET_BIGWORD Value: %x\n", ex_mem.rt_value);
-    printf("SET_BIGWORD Addresses: %x\n", ex_mem.alu_res);
     SET_BIGWORD(mem, ex_mem.alu_res, ex_mem.rt_value);
   }
 }
@@ -179,8 +174,9 @@ int interp_ex()
   ex_mem.mem_read    = id_ex.mem_read;
   ex_mem.mem_write   = id_ex.mem_write;
   ex_mem.reg_write   = id_ex.reg_write;
+  ex_mem.mem_to_reg  = id_ex.mem_to_reg;
+  ex_mem.reg_dst     = id_ex.reg_dst;
   id_ex.sign_ext_imm = id_ex.sign_ext_imm;
-
 
   if (alu() != 0){
     return ERROR_UNKNOWN_FUNCT;
@@ -226,6 +222,7 @@ int interp_control(){
     id_ex.mem_write = false;
     id_ex.mem_read  = false;
     id_ex.reg_write = false;
+    id_ex.funct     = GET_FUNCT(if_id.inst);
     return 0;
   }
 
@@ -261,9 +258,9 @@ int interp_control(){
   case OPCODE_SW:
     printf("SW\n");
     id_ex.mem_write  = true;
+    id_ex.alu_src    = true;
     id_ex.mem_read   = false;
     id_ex.reg_write  = false;
-    id_ex.alu_src    = true;
     id_ex.mem_to_reg = false;
     id_ex.funct      = FUNCT_ADD;
 
@@ -299,9 +296,7 @@ int interp_id() {
 
 void interp_if(){
   if_id.inst = GET_BIGWORD(mem, PC);
-  printf("if_id.inst: %x\n", if_id.inst);
   PC = PC + 4;
-  printf("NEW PC: %x\n", PC);
   instr_cnt++;
 }
 
@@ -335,7 +330,7 @@ int interp()
 
     return_cycle = cycle();
     //show_status();
-    dump_pregs();
+    //dump_pregs();
     if (return_cycle == SAW_SYSCALL)
     {
       return 0;
