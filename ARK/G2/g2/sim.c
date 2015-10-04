@@ -9,10 +9,6 @@ static unsigned char mem[MEMSZ];
 
 struct preg_if_id {
   uint32_t inst;
-  uint8_t rt;
-  uint8_t rs_value;
-  uint8_t rt_value;
-  uint16_t sign_ext_imm;
 };
 static struct preg_if_id if_id;
 
@@ -22,12 +18,11 @@ struct preg_id_ex {
   bool reg_write;
   bool alu_src;
   bool mem_to_reg;
-  uint8_t funct;
-  uint8_t rs;
-  uint8_t rt;
-  uint8_t rt_value;
-  uint8_t rs_value;
-  uint16_t sign_ext_imm;
+  uint32_t funct;
+  uint32_t rt;
+  uint32_t rt_value;
+  uint32_t rs_value;
+  uint32_t sign_ext_imm;
   uint32_t reg_dst;
 };
 static struct preg_id_ex id_ex;
@@ -38,8 +33,8 @@ struct preg_ex_mem
   bool mem_write;
   bool reg_write;
   bool mem_to_reg;
-  uint8_t rt;
-  uint8_t rt_value;
+  uint32_t rt;
+  uint32_t rt_value;
   uint32_t alu_res;
   uint32_t reg_dst;
 };
@@ -51,7 +46,7 @@ struct preg_mem_wb
   bool mem_to_reg;
   uint32_t alu_res;
   uint32_t read_data;
-  uint8_t rt;
+  uint32_t rt;
   uint32_t reg_dst;
 };
 static struct preg_mem_wb mem_wb;
@@ -228,12 +223,17 @@ int interp_control(){
   //uint32_t result;
 
   if (if_id.inst == 0){
+    id_ex.mem_write = false;
+    id_ex.mem_read  = false;
+    id_ex.reg_write = false;
     return 0;
   }
 
   switch (GET_OPCODE(if_id.inst)){
   case OPCODE_R:
     id_ex.mem_to_reg = false;
+    id_ex.mem_read   = false;
+    id_ex.mem_write  = false;
     id_ex.alu_src    = false;
     id_ex.reg_dst    = GET_RD(if_id.inst);
     id_ex.reg_write  = true;
@@ -300,7 +300,7 @@ int interp_id() {
 void interp_if(){
   if_id.inst = GET_BIGWORD(mem, PC);
   printf("if_id.inst: %x\n", if_id.inst);
-  PC += 4;
+  PC = PC + 4;
   printf("NEW PC: %x\n", PC);
   instr_cnt++;
 }
@@ -374,7 +374,7 @@ int main(int argc, char const *argv[])
   if (elf_dump(argv[2], &PC, &mem[0], MEMSZ) != 0) {
     return ERROR_ELF_DUMP;
   }
-  SP = MIPS_RESERVE + (MEMSZ - 1);
+  SP = MIPS_RESERVE + MEMSZ;
 
   if (interp() != 0) {
     return ERROR_ELF_DUMP;
