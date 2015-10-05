@@ -110,6 +110,8 @@ void interp_wb()
     {
       if (mem_wb.mem_to_reg)
        {
+         printf("mem_wb.read_data: %x\n", mem_wb.read_data);
+         printf("mem_wb.reg_dst: %x\n", mem_wb.reg_dst);
          regs[mem_wb.reg_dst] = mem_wb.read_data;
        } else if (!mem_wb.mem_to_reg) 
        {
@@ -148,7 +150,7 @@ int alu()
       ex_mem.alu_res = ~(id_ex.rs_value | second_operand);
       break;
     case FUNCT_SLT:
-      ex_mem.alu_res = (id_ex.rs_value < second_operand) ? 1 : 0;
+      ex_mem.alu_res = ((int32_t) id_ex.rs_value < (int32_t) second_operand) ? 1 : 0;
       break;
     case FUNCT_SYSCALL:
       return SAW_SYSCALL;
@@ -171,10 +173,12 @@ void interp_mem()
 
   if (ex_mem.mem_read)
     {
+      printf("ex_mem.alu_res: %x\n", mem_wb.alu_res);
       mem_wb.read_data = GET_BIGWORD(mem, ex_mem.alu_res + 1);
     }
   if (ex_mem.mem_write)
   {
+    printf("ex_mem.rt_value: %x\n", ex_mem.rt_value);
     SET_BIGWORD(mem, ex_mem.alu_res, ex_mem.rt_value);
   }
 }
