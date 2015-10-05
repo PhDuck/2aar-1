@@ -136,6 +136,23 @@ int alu()
       printf("ADD\n");
       ex_mem.alu_res = second_operand + id_ex.rs_value;
       break;
+/**
+    case FUNCT_SUB: 
+      ex_mem.alu_res = id_ex.rs_value - second_operand;
+      break;
+    case FUNCT_AND:
+      ex_mem.alu_res = id_ex.rs_value & second_operand;
+      break;
+    case FUNCT_OR:
+      ex_mem.alu_res = id_ex.rs_value | second_operand;
+      break;
+    case FUNCT_NOR:
+      ex_mem.alu_res = !(id_ex.rs_value | second_operand);
+      break;
+    case FUNCT_SLT:
+      ex_mem.alu_res = (id_ex.rs_value < second_operand) ? 1 : 0;
+      break;
+**/
     case FUNCT_SYSCALL:
       return SAW_SYSCALL;
     case 0:
@@ -157,7 +174,9 @@ void interp_mem()
 
   if (ex_mem.mem_read)
     {
+      printf("ALU_RES: %x\n", ex_mem.alu_res);
       mem_wb.read_data = GET_BIGWORD(mem, ex_mem.alu_res + 1);
+      printf("READ_DATA: %x\n ", mem_wb.read_data);
     }
   if (ex_mem.mem_write)
   {
@@ -175,7 +194,7 @@ int interp_ex()
   ex_mem.reg_write     = id_ex.reg_write;
   ex_mem.mem_to_reg    = id_ex.mem_to_reg;
   ex_mem.reg_dst       = id_ex.reg_dst;
-  ex_mem.branch_target = id_ex.next_pc + (id_ex.sign_ext_imm << 2);
+  ex_mem.branch_target = id_ex.next_pc; //+ (id_ex.sign_ext_imm << 2);
   ex_mem.branch        = id_ex.branch;
 
   if (alu() != 0){
@@ -244,15 +263,17 @@ int interp_control(){
     }
     **/
     return 0;
+/**
   case OPCODE_BEQ:
-    id_ex.reg_dst   = true;
     id_ex.branch    = true;
+    id_ex.reg_write = false;
     id_ex.mem_read  = false;
     id_ex.mem_write = false;
     id_ex.alu_src   = false;
     id_ex.funct     = FUNCT_SUB;
 
     break;
+**/
   case OPCODE_LW:
     printf("LW!\n");
     id_ex.alu_src    = true;
@@ -264,8 +285,6 @@ int interp_control(){
     id_ex.funct      = FUNCT_ADD;
     id_ex.reg_dst    = GET_RT(if_id.inst);
 
-
-    // We don't have to define mem_write to false since it's a static struct, and therefore bool = false
     break;
   case OPCODE_SW:
     printf("SW\n");
@@ -310,8 +329,8 @@ int interp_id() {
 
 void interp_if(){
   if_id.inst = GET_BIGWORD(mem, PC);
-  PC =+ 4;
-  if_id.next_pc = PC + 4;
+  PC = PC + 4;
+  //if_id.next_pc = PC + 4;
   instr_cnt++;
 }
 
@@ -332,15 +351,16 @@ int cycle(){
   if (result == SAW_SYSCALL){
     return SAW_SYSCALL;
   }
-
   interp_if();
-
-  if (ex_mem.brance && ex_mem.alu_src == 0) 
+  /**
+  printf("%s\n", ex_mem.branch ? "true" : "false");
+  if (ex_mem.branch && ex_mem.alu_res == 0) 
   {
     PC = ex_mem.branch_target;
     if_id.inst = 0;
     instr_cnt--;
   }
+  **/
   return 0;
 }
 
