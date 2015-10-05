@@ -105,13 +105,9 @@ void interp_wb()
     {
       if (mem_wb.mem_to_reg)
        {
-         printf("reg_dst: %x\n", mem_wb.reg_dst);
-         printf("read_data: %x\n",mem_wb.read_data);
          regs[mem_wb.reg_dst] = mem_wb.read_data;
-         show_status();
        } else if (!mem_wb.mem_to_reg) 
        {
-         printf("ALU_RES: %x\n", mem_wb.alu_res); 
          regs[mem_wb.reg_dst] = mem_wb.alu_res;
        }
     }
@@ -156,9 +152,7 @@ void interp_mem()
 
   if (ex_mem.mem_read)
     {
-      printf("interp_mem alu_res: %x\n", ex_mem.alu_res);
-      mem_wb.read_data = GET_BIGWORD(mem, ex_mem.alu_res);
-      printf("interp_mem read_data: %x\n", mem_wb.read_data);
+      mem_wb.read_data = GET_BIGWORD(mem, ex_mem.alu_res + 1);
     }
   if (ex_mem.mem_write)
   {
