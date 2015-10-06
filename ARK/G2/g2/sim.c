@@ -20,6 +20,7 @@ struct preg_id_ex {
   bool alu_src;
   bool mem_to_reg;
   bool branch;
+  bool jump;
   uint32_t funct;
   uint32_t rt;
   uint32_t rt_value;
@@ -27,6 +28,7 @@ struct preg_id_ex {
   uint32_t sign_ext_imm;
   uint32_t reg_dst;
   uint32_t next_pc;
+  uint32_t jump_target;
 };
 static struct preg_id_ex id_ex;
 
@@ -133,6 +135,8 @@ int alu()
 
   switch(id_ex.funct)
   {
+    case FUNCT_JR:
+    break;
     case FUNCT_ADD:
       printf("ADD\n");
       ex_mem.alu_res = second_operand + id_ex.rs_value;
@@ -242,6 +246,7 @@ int interp_control(){
     id_ex.reg_write = false;
     id_ex.alu_src   = false;
     id_ex.branch    = false;
+    id_ex.jump      = false;
     id_ex.funct     = GET_FUNCT(if_id.inst);
     return 0;
   }
@@ -253,9 +258,19 @@ int interp_control(){
     id_ex.mem_write  = false;
     id_ex.alu_src    = true;
     id_ex.branch     = false;
+    id_ex.jump       = false;
     id_ex.reg_dst    = GET_RD(if_id.inst);
     id_ex.reg_write  = true;
     id_ex.funct      = GET_FUNCT(if_id.inst);
+    if (id_ex.funct == FUNCT_JR)
+      {
+        id_ex.jump        = true;
+        id_ex.mem_write   = false;
+        id_ex.mem_read    = false;
+        id_ex.reg_write   = false;
+        id_ex.branch      = false;
+        id_ex.jump_target = regs[31];
+      }
     //result = intep_r(if_id.inst);
     /**
     if (result == syscall) {
@@ -263,11 +278,34 @@ int interp_control(){
     }
     **/
     return 0;
+  case OPCODE_J:
+    id_ex.jump        = true;
+    id_ex.mem_write   = false;
+    id_ex.mem_read    = false;
+    id_ex.reg_write   = false;
+    id_ex.branch      = false;
+    id_ex.jump_target = (MS_4B & if_id.next_pc) | (GET_ADDRESS(if_id.inst) << 2);
+
+    break;
+  case OPCODE_JAL:
+    id_ex.jump        = true;
+    id_ex.mem_write   = false;
+    id_ex.mem_read    = false;
+    id_ex.reg_write   = true;
+    id_ex.branch      = false;
+    id_ex.funct       = FUNCT_ADD;
+    id_ex.rs_value    = PC;
+    id_ex.rt_value    = 0;
+    id_ex.reg_dst     = 31; // RA register index value
+    id_ex.jump_target = (MS_4B & if_id.next_pc) | (GET_ADDRESS(if_id.inst) << 2);
+
+    break;
   case OPCODE_BEQ:
     id_ex.branch    = true;
     id_ex.reg_write = false;
     id_ex.mem_read  = false;
     id_ex.mem_write = false;
+    id_ex.jump      = false;
     id_ex.alu_src   = true;
     id_ex.funct     = FUNCT_SUB;
 
@@ -279,6 +317,7 @@ int interp_control(){
     id_ex.reg_write  = true;
     id_ex.mem_to_reg = true;
     id_ex.mem_write  = false;
+    id_ex.jump       = false;
     id_ex.branch     = false;
     id_ex.funct      = FUNCT_ADD;
     id_ex.reg_dst    = GET_RT(if_id.inst);
@@ -289,6 +328,7 @@ int interp_control(){
     id_ex.mem_write  = true;
     id_ex.alu_src    = true;
     id_ex.branch     = false;
+    id_ex.jump       = false;
     id_ex.mem_read   = false;
     id_ex.reg_write  = false;
     id_ex.mem_to_reg = false;
@@ -312,13 +352,14 @@ int interp_id() {
   id_ex.rt_value     = regs[GET_RT(if_id.inst)];
   id_ex.rt           = GET_RT(if_id.inst);
   id_ex.sign_ext_imm = SIGN_EXTEND(GET_IMM(if_id.inst));
-  int result         = interp_control();
   id_ex.next_pc      = if_id.next_pc;
 
+  int result         = interp_control();
 
   if (result == ERROR_UNKNOWN_OPCODE){
     return ERROR_INTERP_CONTROL_FAILED;
-  } else if (result == syscall)
+  }
+  if (result == syscall)
   {
     return SAW_SYSCALL;
   }
@@ -357,6 +398,11 @@ int cycle(){
     PC = ex_mem.branch_target;
     if_id.inst = 0;
     instr_cnt--;
+  }
+
+  if (id_ex.jump)
+  {
+    PC = id_ex.jump_target;  
   }
   return 0;
 }
