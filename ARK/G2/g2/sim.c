@@ -60,6 +60,7 @@ static struct preg_mem_wb mem_wb;
 
 void dump_pregs() {
   printf("if_id:\n");
+  printf("PC: %x\n", PC);
   printf("inst: %x\n\n", if_id.inst);
 
   printf("id_ex:\n");
@@ -127,16 +128,16 @@ int alu()
   uint32_t second_operand;
   if (id_ex.alu_src) 
   {
-    second_operand = id_ex.rt_value;
-  } else if (!id_ex.alu_src)
-  {
     second_operand = id_ex.sign_ext_imm;
+  } else
+  {
+    second_operand = id_ex.rt_value;
   }
 
   switch(id_ex.funct)
   {
     case FUNCT_JR:
-    break;
+      break;
     case FUNCT_ADD:
       printf("ADD\n");
       ex_mem.alu_res = second_operand + id_ex.rs_value;
@@ -178,7 +179,7 @@ void interp_mem()
   if (ex_mem.mem_read)
     {
       printf("ex_mem.alu_res: %x\n", mem_wb.alu_res);
-      mem_wb.read_data = GET_BIGWORD(mem, ex_mem.alu_res + 1);
+      mem_wb.read_data = GET_BIGWORD(mem, ex_mem.alu_res);
     }
   if (ex_mem.mem_write)
   {
@@ -256,7 +257,7 @@ int interp_control(){
     id_ex.mem_to_reg = false;
     id_ex.mem_read   = false;
     id_ex.mem_write  = false;
-    id_ex.alu_src    = true;
+    id_ex.alu_src    = false;
     id_ex.branch     = false;
     id_ex.jump       = false;
     id_ex.reg_dst    = GET_RD(if_id.inst);
@@ -269,7 +270,7 @@ int interp_control(){
         id_ex.mem_read    = false;
         id_ex.reg_write   = false;
         id_ex.branch      = false;
-        id_ex.jump_target = regs[31];
+        id_ex.jump_target = id_ex.rs_value;
       }
     //result = intep_r(if_id.inst);
     /**
@@ -306,7 +307,7 @@ int interp_control(){
     id_ex.mem_read  = false;
     id_ex.mem_write = false;
     id_ex.jump      = false;
-    id_ex.alu_src   = true;
+    id_ex.alu_src   = false;
     id_ex.funct     = FUNCT_SUB;
 
     break;
@@ -375,6 +376,7 @@ void interp_if(){
 
 int cycle(){
   //dump_pregs();
+  //getchar();
   int result;
   interp_wb();
   interp_mem(); 
