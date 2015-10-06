@@ -1,4 +1,4 @@
-#include "sim.h" 
+#include "sim.h"
 
 // Static variable declarations.
 static uint32_t PC;
@@ -7,6 +7,7 @@ static size_t cycles;
 static uint32_t regs[32];
 static unsigned char mem[MEMSZ];
 
+// Structure declarations
 struct preg_if_id {
   uint32_t inst;
   uint32_t next_pc;
@@ -58,6 +59,7 @@ struct preg_mem_wb
 };
 static struct preg_mem_wb mem_wb;
 
+// Debug function
 void dump_pregs() {
   printf("if_id:\n");
   printf("PC: %x\n", PC);
@@ -113,10 +115,8 @@ void interp_wb()
     {
       if (mem_wb.mem_to_reg)
        {
-         printf("mem_wb.read_data: %x\n", mem_wb.read_data);
-         printf("mem_wb.reg_dst: %x\n", mem_wb.reg_dst);
          regs[mem_wb.reg_dst] = mem_wb.read_data;
-       } else if (!mem_wb.mem_to_reg) 
+       } else if (!mem_wb.mem_to_reg)
        {
          regs[mem_wb.reg_dst] = mem_wb.alu_res;
        }
@@ -126,7 +126,7 @@ void interp_wb()
 int alu()
 {
   uint32_t second_operand;
-  if (id_ex.alu_src) 
+  if (id_ex.alu_src)
   {
     second_operand = id_ex.sign_ext_imm;
   } else
@@ -139,10 +139,9 @@ int alu()
     case FUNCT_JR:
       break;
     case FUNCT_ADD:
-      printf("ADD\n");
       ex_mem.alu_res = second_operand + id_ex.rs_value;
       break;
-    case FUNCT_SUB: 
+    case FUNCT_SUB:
       ex_mem.alu_res = id_ex.rs_value - second_operand;
       break;
     case FUNCT_AND:
@@ -160,7 +159,6 @@ int alu()
     case FUNCT_SYSCALL:
       return SAW_SYSCALL;
     case 0:
-      printf("nop\n");
       break;
     default:
       return ERROR_UNKNOWN_FUNCT;
@@ -178,12 +176,10 @@ void interp_mem()
 
   if (ex_mem.mem_read)
     {
-      printf("ex_mem.alu_res: %x\n", mem_wb.alu_res);
       mem_wb.read_data = GET_BIGWORD(mem, ex_mem.alu_res);
     }
   if (ex_mem.mem_write)
   {
-    printf("ex_mem.rt_value: %x\n", ex_mem.rt_value);
     SET_BIGWORD(mem, ex_mem.alu_res, ex_mem.rt_value);
   }
 }
@@ -239,7 +235,6 @@ int read_config (const char *path)
 
 
 int interp_control(){
-  //uint32_t result;
 
   if (if_id.inst == 0){
     id_ex.mem_write = false;
@@ -263,7 +258,7 @@ int interp_control(){
     id_ex.reg_dst    = GET_RD(if_id.inst);
     id_ex.reg_write  = true;
     id_ex.funct      = GET_FUNCT(if_id.inst);
-    if (id_ex.funct == FUNCT_JR)
+    if (id_ex.funct == FUNCT_JR) // If we find JR instruction
       {
         id_ex.jump        = true;
         id_ex.mem_write   = false;
@@ -272,12 +267,6 @@ int interp_control(){
         id_ex.branch      = false;
         id_ex.jump_target = id_ex.rs_value;
       }
-    //result = intep_r(if_id.inst);
-    /**
-    if (result == syscall) {
-      return syscall;
-    }
-    **/
     return 0;
   case OPCODE_J:
     id_ex.jump        = true;
@@ -308,7 +297,7 @@ int interp_control(){
     id_ex.mem_write = false;
     id_ex.jump      = false;
     id_ex.alu_src   = false;
-    id_ex.funct     = FUNCT_SUB; 
+    id_ex.funct     = FUNCT_SUB;
     break;
 
   case OPCODE_BNE:
@@ -322,7 +311,6 @@ int interp_control(){
     break;
 
   case OPCODE_LW:
-    printf("LW!\n");
     id_ex.alu_src    = true;
     id_ex.mem_read   = true;
     id_ex.reg_write  = true;
@@ -335,7 +323,6 @@ int interp_control(){
 
     break;
   case OPCODE_SW:
-    printf("SW\n");
     id_ex.mem_write  = true;
     id_ex.alu_src    = true;
     id_ex.branch     = false;
@@ -345,10 +332,6 @@ int interp_control(){
     id_ex.mem_to_reg = false;
     id_ex.funct      = FUNCT_ADD;
 
-    break;
-  case OPCODE_LUI:
-    printf("LUI\n");//Ikke sikker
-    //rt = if_id.sign_ext_imm << 16;
     break;
   default:
     return ERROR_UNKNOWN_OPCODE;
@@ -365,12 +348,12 @@ int interp_id() {
   id_ex.sign_ext_imm = SIGN_EXTEND(GET_IMM(if_id.inst));
   id_ex.next_pc      = if_id.next_pc;
 
-  int result         = interp_control();
+  int result_interp_control = interp_control();
 
-  if (result == ERROR_UNKNOWN_OPCODE){
+  if (result_interp_control == ERROR_UNKNOWN_OPCODE){
     return ERROR_INTERP_CONTROL_FAILED;
   }
-  if (result == syscall)
+  if (result_interp_control == syscall)
   {
     return SAW_SYSCALL;
   }
@@ -385,33 +368,35 @@ void interp_if(){
 }
 
 int cycle(){
+  // If debug is needed, uncomment following, which will allow step-by-step running.
   //dump_pregs();
   //getchar();
-  int result;
+
+  int interp_id_result;
   interp_wb();
-  interp_mem(); 
+  interp_mem();
   if (interp_ex() == ERROR_UNKNOWN_FUNCT){
     return ERROR_INTERP_EX_FAILED;
   }
 
-  result = interp_id();
+  interp_id_result = interp_id();
 
-  if (result == ERROR_UNKNOWN_OPCODE){
+  if (interp_id_result == ERROR_UNKNOWN_OPCODE){
     return ERROR_INTERP_ID_FAILED;
   }
-  if (result == SAW_SYSCALL){
+  if (interp_id_result == SAW_SYSCALL){
     return SAW_SYSCALL;
   }
   interp_if();
 
-  //printf("%s\n", ex_mem.branch ? "true" : "false");
-  if (ex_mem.branch && ex_mem.alu_res == 0) 
+  // Branch detection
+  if (ex_mem.branch && ex_mem.alu_res == 0)
   {
     PC = ex_mem.branch_target;
     if_id.inst = 0;
     instr_cnt--;
   }
-  if (ex_mem.branch && ex_mem.alu_res != 0) 
+  if (ex_mem.branch && ex_mem.alu_res != 0)
    {
      PC = ex_mem.branch_target;
      if_id.inst = 0;
@@ -420,7 +405,7 @@ int cycle(){
 
   if (id_ex.jump)
   {
-    PC = id_ex.jump_target;  
+    PC = id_ex.jump_target;
   }
   return 0;
 }
@@ -432,8 +417,7 @@ int interp()
     int return_cycle;
 
     return_cycle = cycle();
-    //show_status();
-    //dump_pregs();
+
     if (return_cycle == SAW_SYSCALL)
     {
       return 0;
@@ -442,31 +426,23 @@ int interp()
       break;
     }
     cycles++;
-    /**
-    instr_cnt++;
-    uint32_t value;
-    uint32_t inst = GET_BIGWORD(mem, PC);
-
-    value = interp_inst(inst)
-
-    if (value == ERROR_UNKNOW_OPCODE) {
-      return ERROR_UNKNOW_OPCODE;
-    }
-    if (value == syscall) {
-      return 0;
-    }
-    PC = PC + 4;
-    **/
   }
   return 0;
 }
 
 int main(int argc, char const *argv[])
 {
-  if (argc == 3) {
-    read_config(argv[1]);
+  int interp_result;
+  int read_config_result;
+
+  if (argc == 3)
+  {
+    read_config_result = read_config(argv[1]);
+    if (read_config_result != 0){
+      return read_config_result;
+    }
   } else {
-    printf("Moron, try again with more, or less arguments!\n");
+    printf("Three arguments are needed, one file register values and one compiled asm file\n");
     return ERROR_INVALID_ARGS;
   }
   if (elf_dump(argv[2], &PC, &mem[0], MEMSZ) != 0) {
@@ -474,9 +450,12 @@ int main(int argc, char const *argv[])
   }
   SP = MIPS_RESERVE + MEMSZ;
 
-  if (interp() != 0) {
-    return ERROR_ELF_DUMP;
+  interp_result = interp();
+
+  if (interp_result != 0) {
+    return interp_result;
   }
+
   show_status();
   return 0;
 }
