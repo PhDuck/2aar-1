@@ -308,9 +308,19 @@ int interp_control(){
     id_ex.mem_write = false;
     id_ex.jump      = false;
     id_ex.alu_src   = false;
-    id_ex.funct     = FUNCT_SUB;
-
+    id_ex.funct     = FUNCT_SUB; 
     break;
+
+  case OPCODE_BNE:
+    id_ex.branch     = true;
+    id_ex.reg_write  = false;
+    id_ex.mem_write  = false;
+    id_ex.mem_read   = false;
+    id_ex.jump       = false;
+    id_ex.alu_src    = false;
+    id_ex.funct      = FUNCT_SUB;
+    break;
+
   case OPCODE_LW:
     printf("LW!\n");
     id_ex.alu_src    = true;
@@ -401,6 +411,12 @@ int cycle(){
     if_id.inst = 0;
     instr_cnt--;
   }
+  if (ex_mem.branch && ex_mem.alu_res != 0) 
+   {
+     PC = ex_mem.branch_target;
+     if_id.inst = 0;
+     instr_cnt--;
+   }
 
   if (id_ex.jump)
   {
