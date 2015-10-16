@@ -9,20 +9,20 @@
 #include <stdbool.h>
 
 // Error definetions
-#define ERROR_INVALID_ARGS 1
-#define ERROR_IO_ERROR 2
-#define ERROR_READ_CONFIG_STREAM 3
-#define ERROR_ELF_DUMP 4
-#define ERROR_interp 5
-#define ERROR_UNKNOWN_OPCODE 6
-#define ERROR_UNKNOWN_FUNCT 7
-#define ERROR_INTERP_CONTROL_FAILED 11
-#define ERROR_INTERP_ID_FAILED 12
-#define ERROR_INTERP_EX_FAILED 13
+#define ERROR_INVALID_ARGS -1
+#define ERROR_IO_ERROR -2
+#define ERROR_READ_CONFIG_STREAM -3
+#define ERROR_ELF_DUMP -4
+#define ERROR_interp -5
+#define ERROR_UNKNOWN_OPCODE -6
+#define ERROR_UNKNOWN_FUNCT -7
+#define ERROR_INTERP_CONTROL_FAILED -11
+#define ERROR_INTERP_ID_FAILED -12
+#define ERROR_INTERP_EX_FAILED -13
 
-#define syscall 8
-#define SAW_SYSCALL 10
-#define interp_not_done 9
+#define syscall -8
+#define SAW_SYSCALL -10
+#define interp_not_done -9
 
 
 // MIPS32 Registers

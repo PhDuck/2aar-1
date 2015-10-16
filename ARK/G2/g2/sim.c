@@ -24,6 +24,7 @@ struct preg_id_ex {
   bool jump;
   uint32_t funct;
   uint32_t rt;
+  uint32_t rs; //Hazard
   uint32_t rt_value;
   uint32_t rs_value;
   uint32_t sign_ext_imm;
@@ -345,6 +346,7 @@ int interp_id() {
   id_ex.rs_value     = regs[GET_RS(if_id.inst)];
   id_ex.rt_value     = regs[GET_RT(if_id.inst)];
   id_ex.rt           = GET_RT(if_id.inst);
+  id_ex.rs           = GET_RS(if_id.inst); //Hazard
   id_ex.sign_ext_imm = SIGN_EXTEND(GET_IMM(if_id.inst));
   id_ex.next_pc      = if_id.next_pc;
 
@@ -407,6 +409,14 @@ int cycle(){
   {
     PC = id_ex.jump_target;
   }
+
+  return 0;
+}
+
+//Hazard
+int forward() {
+  ex_mem.reg_write = id_ex.rs;
+  if (id_ex.mem_read)
   return 0;
 }
 
