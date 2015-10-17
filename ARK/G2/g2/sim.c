@@ -142,6 +142,20 @@ int alu()
     case FUNCT_ADD:
       ex_mem.alu_res = second_operand + id_ex.rs_value;
       break;
+    case FUNCT_ADDU:
+      ex_mem.alu_res = second_operand + id_ex.rs_value;
+      break;
+    case FUNCT_ADDIU:
+      ex_mem.alu_res = id_ex.zero_ext_imm + id_ex.rs_value;
+      break;
+    case FUNCT_ANDI:
+      ex_mem.alu_res = id_ex.rs_value & id_ex.zero_ext_imm;
+      break;
+    case FUNCT_LUI:
+      ex_mem.alu_res = GET_IMM(if_id.inst) << 16;
+      break;
+    case FUNCT_ORI:
+        ex_mem.alu_res = id_ex.rs_value | id_ex.zero_ext_imm;
     case FUNCT_SUB:
       ex_mem.alu_res = id_ex.rs_value - second_operand;
       break;
@@ -285,8 +299,8 @@ int interp_control(){
     id_ex.reg_write   = true;
     id_ex.branch      = false;
     id_ex.funct       = FUNCT_ADD;
-    id_ex.rs_value    = PC;
-    id_ex.rt_value    = 0;
+    id_ex.rs_value    = if_id.next_pc;
+    id_ex.rt_value    = 4;
     id_ex.reg_dst     = 31; // RA register index value
     id_ex.jump_target = (MS_4B & if_id.next_pc) | (GET_ADDRESS(if_id.inst) << 2);
 
@@ -348,6 +362,7 @@ int interp_id() {
   id_ex.rt           = GET_RT(if_id.inst);
   id_ex.rs           = GET_RS(if_id.inst); //Hazard
   id_ex.sign_ext_imm = SIGN_EXTEND(GET_IMM(if_id.inst));
+  id_ex.zero_ext_imm = ZERO_EXTEND(GET_IMM(if_id.inst));
   id_ex.next_pc      = if_id.next_pc;
 
   int result_interp_control = interp_control();
