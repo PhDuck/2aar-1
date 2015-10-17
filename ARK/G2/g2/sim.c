@@ -28,6 +28,7 @@ struct preg_id_ex {
   uint32_t rt_value;
   uint32_t rs_value;
   uint32_t sign_ext_imm;
+  uint32_t zero_ext_imm;
   uint32_t reg_dst;
   uint32_t next_pc;
   uint32_t jump_target;
@@ -145,17 +146,6 @@ int alu()
     case FUNCT_ADDU:
       ex_mem.alu_res = second_operand + id_ex.rs_value;
       break;
-    case FUNCT_ADDIU:
-      ex_mem.alu_res = id_ex.zero_ext_imm + id_ex.rs_value;
-      break;
-    case FUNCT_ANDI:
-      ex_mem.alu_res = id_ex.rs_value & id_ex.zero_ext_imm;
-      break;
-    case FUNCT_LUI:
-      ex_mem.alu_res = GET_IMM(if_id.inst) << 16;
-      break;
-    case FUNCT_ORI:
-        ex_mem.alu_res = id_ex.rs_value | id_ex.zero_ext_imm;
     case FUNCT_SUB:
       ex_mem.alu_res = id_ex.rs_value - second_operand;
       break;
@@ -178,6 +168,21 @@ int alu()
     default:
       return ERROR_UNKNOWN_FUNCT;
   }
+
+/*
+case FUNCT_ADDIU:
+      ex_mem.alu_res = id_ex.zero_ext_imm + id_ex.rs_value;
+      break;
+    case FUNCT_ANDI:
+      ex_mem.alu_res = id_ex.rs_value & id_ex.zero_ext_imm;
+      break;
+    case FUNCT_LUI:
+      ex_mem.alu_res = GET_IMM(if_id.inst) << 16;
+      break;
+    case FUNCT_ORI:
+        ex_mem.alu_res = id_ex.rs_value | id_ex.zero_ext_imm;
+*/
+
   return 0;
 }
 
