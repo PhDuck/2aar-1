@@ -369,6 +369,19 @@ void interp_if(){
   instr_cnt++;
 }
 
+//Hazard
+void forward() {
+  if (ex_mem.reg_write && (ex_mem.reg_dst != id_ex.rs || ex_mem.reg_dst == id_ex.rt))
+    {
+      if (ex_mem.reg_dst != 0)
+        {
+          id_ex.rs_value = ex_mem.alu_res;  
+          id_ex.rt_value = ex_mem.alu_res;
+        }
+    }
+}
+
+
 int cycle(){
   // If debug is needed, uncomment following, which will allow step-by-step running.
   //dump_pregs();
@@ -409,16 +422,10 @@ int cycle(){
   {
     PC = id_ex.jump_target;
   }
-
+  forward();
   return 0;
 }
 
-//Hazard
-int forward() {
-  ex_mem.reg_write = id_ex.rs;
-  if (id_ex.mem_read)
-  return 0;
-}
 
 int interp()
 {
