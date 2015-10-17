@@ -1,0 +1,131 @@
+
+% Document class: article with font size 11pt
+% ---------------
+\documentclass[11pt,a4paper]{report}
+
+\setlength{\textwidth}{165mm}
+\setlength{\textheight}{240mm}
+\setlength{\parindent}{0mm} % S{\aa} meget rykkes ind efter afsnit
+\setlength{\parskip}{\baselineskip}
+\setlength{\headheight}{0mm}
+\setlength{\headsep}{0mm}
+\setlength{\hoffset}{-2.5mm}
+\setlength{\voffset}{0mm}
+\setlength{\footskip}{15mm}
+\setlength{\oddsidemargin}{0mm}
+\setlength{\topmargin}{0mm}
+\setlength{\evensidemargin}{0mm}
+
+\usepackage[a4paper, hmargin={2.8cm, 2.8cm}, vmargin={2.5cm, 2.5cm}]{geometry}
+\usepackage[super]{nth}
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+\usepackage{eso-pic} % \AddToShipoutPicture
+\usepackage{float} % This will allow precise picture placement, use [H].
+
+
+% Call packages
+% ---------------
+\usepackage{comment} %Possible to comment larger sections
+%http://get-software.net/macros/latex/contrib/comment/comment.pdf
+\usepackage[T1]{fontenc} %oriented to output, that is, what fonts to use for printing characters.
+\usepackage[utf8]{inputenc} %allows the user to input accented characters directly from the keyboard
+%Put fontenc before inputenc
+\usepackage{fourier} %Better typeface
+%http://mirrors.dotsrc.org/ctan/fonts/fourier-GUT/doc/latex/fourier/fourier-doc-en.pdf
+\usepackage[english]{babel}														     % Danish
+\usepackage[protrusion=true,expansion=true]{microtype}				                 % Better typography
+%http://www.khirevich.com/latex/microtype/
+\usepackage{amsmath,amsfonts,amsthm, amssymb}							 % Math packages
+\usepackage[pdftex]{graphicx} %puts to pdf and graphic
+%http://www.kwasan.kyoto-u.ac.jp/solarb6/usinggraphicx.pdf
+\usepackage{xcolor,colortbl}
+%http://mirrors.dotsrc.org/ctan/macros/latex/contrib/xcolor/xcolor.pdf
+%http://texdoc.net/texmf-dist/doc/latex/colortbl/colortbl.pdf
+\usepackage{tikz} %documentation http://www.ctan.org/pkg/pgf
+\usepackage{parskip} %http://www.ctan.org/pkg/parskip
+%http://tex.stackexchange.com/questions/51722/how-to-properly-code-a-tex-file-or-at-least-avoid-badness-10000
+%Never use \\ but instead press "enter" twice. See second website for more info
+
+% MATH -------------------------------------------------------------------
+\newcommand{\Real}{\mathbb R}
+\newcommand{\Complex}{\mathbb C}
+\newcommand{\Field}{\mathbb F}
+\newcommand{\RPlus}{[0,\infty)}
+%
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\essnorm}[1]{\norm{#1}_{\text{\rm\normalshape ess}}}
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\seq}[1]{\left<#1\right>}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\To}{\longrightarrow}
+\newcommand{\RE}{\operatorname{Re}}
+\newcommand{\IM}{\operatorname{Im}}
+\newcommand{\Poly}{{\cal{P}}(E)}
+\newcommand{\EssD}{{\cal{D}}}
+% THEOREMS ----------------------------------------------------------------
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+%
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+%
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}[section]
+%
+\numberwithin{equation}{section}
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+
+\author{
+\Large{
+  Gram, Mads (\href{mailto:mgmadsgram@gmail.com}{mgmadsgram@gmail.com})  - 081293 - wtc324} \\
+\Large{
+  Hasanbasic, Mirza North (\href{mailto:pfl840@alumni.ku.dk}{pfl840@alumni.ku.dk}) - 040491 -pfl840}\\
+\Large{
+  Jørgensen, Mathias Bjørn (\href{mailto:jkf370@alumni.ku.dk}{jkf370@alumni.ku.dk}) - 230690- jkf370
+  }
+}
+\title{
+\vspace{3cm}
+\Large{\nth{2} Group Assignment Report}
+}
+
+\begin{document}
+
+\AddToShipoutPicture*{\put(0,0){\includegraphics*[viewport=0 0 700 600]{include/natbio-farve}}}
+\AddToShipoutPicture*{\put(0,602){\includegraphics*[viewport=0 600 700 1600]{include/natbio-farve}}}
+
+\AddToShipoutPicture*{\put(0,0){\includegraphics*{include/nat-en}}}
+
+\clearpage\maketitle
+\thispagestyle{empty}
+
+\clearpage\newpage
+\thispagestyle{plain}
+\section*{Design}
+Mads sidder og spiser chips hele dagen, dette giver ham energi til at være produktiv og lave kode.
+Samtidig er Bjørn ``syg'' og Mizra er cheerleader!
+
+Mads's designmønster i hvordan man skal opsætte det følger en slavisk tilgang.
+Der er en header fil til definationer af makroer og en fil med koden.
+\section*{What works}
+Vi har lavet til og med Forwarding og Hazards. Dvs, at der ikke skal testes om Forwarding og Hazards virker, da det ikke er implementeret.
+Man kan bruge showstatus til at se om de rigtige værdier bliver printet korrekt.
+\section*{Testing}
+Igennem hele koden, tester vi retur koder for, at finde fejl der ellers ville ødelægge hele eksekveringen, og/eller sørge for, at man håndtere fejl passende.
+
+Der er også en dump\_pregs() som printer værdierne ud, så man kan afluse sin kode. Samtidig med brug af getchar() kan man gå ignnem koden step-by-step og finde fejl.
+
+Vi tester vores kode imod de udleverede test filer, ved brug af et shell script, [se test.sh].
+Dette kan eksekveres med kommandoen ”sh test.sh” eller ./test.sh (dog skal man så huske at gøre den eksekverbar ”chmod +x test.sh”).
+
+
+\nocite{Patterson:2013:COD:2568134}
+
+\bibliography{mybib}
+\bibliographystyle{ieeetr}
+
+\end{document}
