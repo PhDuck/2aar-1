@@ -7,8 +7,8 @@ make
 
 cd asm
 
-make clean
-make
+#make clean
+#make
 
 cd ..
 

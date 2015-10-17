@@ -372,13 +372,49 @@ void interp_if(){
 //Hazard
 void forward() {
   if (ex_mem.reg_write && (ex_mem.reg_dst != id_ex.rs || ex_mem.reg_dst == id_ex.rt))
+  {
+    if (ex_mem.reg_dst != 0)
     {
-      if (ex_mem.reg_dst != 0)
-        {
-          id_ex.rs_value = ex_mem.alu_res;  
-          id_ex.rt_value = ex_mem.alu_res;
-        }
+      id_ex.rs_value = ex_mem.alu_res;  
+      id_ex.rt_value = ex_mem.alu_res;
     }
+  }
+  if (mem_wb.reg_dst == id_ex.rs )
+  {
+    if (!id_ex.jump)
+    {
+      if (mem_wb.mem_to_reg)
+      {
+        id_ex.rs_value = mem_wb.read_data;
+      }
+      else 
+      {
+        id_ex.rs_value = mem_wb.alu_res;
+      }
+    }
+    else 
+    {
+      id_ex.jump_target = mem_wb.alu_res; 
+    }  
+  }
+  if (mem_wb.reg_dst == id_ex.rt )
+  {
+    if (!id_ex.jump)
+    {
+      if (mem_wb.mem_to_reg)
+      {
+        id_ex.rt_value = mem_wb.read_data;
+      }
+      else 
+      {
+        id_ex.rt_value = mem_wb.alu_res;
+      }
+    }
+    else 
+    {
+      id_ex.jump_target = mem_wb.alu_res;
+    }
+  }
 }
 
 
