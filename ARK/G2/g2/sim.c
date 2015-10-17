@@ -364,9 +364,19 @@ int interp_id() {
 
 void interp_if(){
   if_id.inst = GET_BIGWORD(mem, PC);
-  PC += 4;
-  if_id.next_pc = PC;
-  instr_cnt++;
+  if (id_ex.mem_read)
+  {
+    if ((GET_RS(if_id.inst) == id_ex.rt) || (GET_RT(if_id.inst) == id_ex.rt))
+    {
+      if_id.inst = 0;
+    }
+  }
+  else 
+  {  
+    PC += 4;
+    if_id.next_pc = PC;
+    instr_cnt++;
+  }
 }
 
 //Hazard
