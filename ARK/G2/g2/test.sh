@@ -10,13 +10,18 @@ cd asm
 #make clean
 #make
 
-cd ..
+#cd ..
 
-./sim default.cfg asm/sw-lw.elf
-./sim default.cfg asm/add.elf
-./sim default.cfg asm/beq-true-nopsled.elf
-./sim default.cfg asm/beq-false-nopsled.elf
-./sim default.cfg asm/j-nopsled.elf
-./sim default.cfg asm/jal-nopsled.elf
-./sim default.cfg asm/jal-jr-j-nopsled.elf
+#./sim default.cfg asm/sw-lw.elf
+#./sim default.cfg asm/add.elf
+#./sim default.cfg asm/beq-true-nopsled.elf
+#./sim default.cfg asm/beq-false-nopsled.elf
+#./sim default.cfg asm/j-nopsled.elf
+#./sim default.cfg asm/jal-nopsled.elf
+#./sim default.cfg asm/jal-jr-j-nopsled.elf
+
+for i in *.elf; do
+  echo $i 
+  ../sim ../default.cfg $i
+done
 

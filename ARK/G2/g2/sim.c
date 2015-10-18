@@ -21,6 +21,8 @@ struct preg_id_ex {
   bool alu_src;
   bool mem_to_reg;
   bool branch;
+  bool beq;
+  bool bne;
   bool jump;
   uint32_t funct;
   uint32_t rt;
@@ -28,6 +30,7 @@ struct preg_id_ex {
   uint32_t rt_value;
   uint32_t rs_value;
   uint32_t sign_ext_imm;
+  uint32_t zero_ext_imm;
   uint32_t reg_dst;
   uint32_t next_pc;
   uint32_t jump_target;
@@ -41,6 +44,8 @@ struct preg_ex_mem
   bool reg_write;
   bool mem_to_reg;
   bool branch;
+  bool beq;
+  bool bne;
   uint32_t rt;
   uint32_t rt_value;
   uint32_t alu_res;
@@ -142,6 +147,9 @@ int alu()
     case FUNCT_ADD:
       ex_mem.alu_res = second_operand + id_ex.rs_value;
       break;
+    case FUNCT_ADDU:
+      ex_mem.alu_res = second_operand + id_ex.rs_value;
+      break;
     case FUNCT_SUB:
       ex_mem.alu_res = id_ex.rs_value - second_operand;
       break;
@@ -164,6 +172,21 @@ int alu()
     default:
       return ERROR_UNKNOWN_FUNCT;
   }
+
+/*
+case FUNCT_ADDIU:
+      ex_mem.alu_res = id_ex.zero_ext_imm + id_ex.rs_value;
+      break;
+    case FUNCT_ANDI:
+      ex_mem.alu_res = id_ex.rs_value & id_ex.zero_ext_imm;
+      break;
+    case FUNCT_LUI:
+      ex_mem.alu_res = GET_IMM(if_id.inst) << 16;
+      break;
+    case FUNCT_ORI:
+        ex_mem.alu_res = id_ex.rs_value | id_ex.zero_ext_imm;
+*/
+
   return 0;
 }
 
@@ -176,9 +199,9 @@ void interp_mem()
   mem_wb.rt         = ex_mem.rt;
 
   if (ex_mem.mem_read)
-    {
-      mem_wb.read_data = GET_BIGWORD(mem, ex_mem.alu_res);
-    }
+  {
+    mem_wb.read_data = GET_BIGWORD(mem, ex_mem.alu_res);
+  }
   if (ex_mem.mem_write)
   {
     SET_BIGWORD(mem, ex_mem.alu_res, ex_mem.rt_value);
@@ -197,8 +220,11 @@ int interp_ex()
   ex_mem.reg_dst       = id_ex.reg_dst;
   ex_mem.branch_target = id_ex.next_pc + (id_ex.sign_ext_imm << 2);
   ex_mem.branch        = id_ex.branch;
+  ex_mem.bne           = id_ex.bne;
+  ex_mem.beq           = id_ex.beq;
 
-  if (alu() != 0){
+  if (alu() != 0)
+  {
     return ERROR_UNKNOWN_FUNCT;
   }
   return 0;
@@ -209,12 +235,12 @@ int read_config_stream(FILE *stream)
   uint32_t v;
   // Only input data into the regs from 8 - 15, which are Temp Registers.
   for (int i = 8; i <= 15; i++)
-    {
-    if (fscanf(stream, "%u", &v) != 1) {
-      return ERROR_READ_CONFIG_STREAM;
-    }
-    regs[i] = v;
-    }
+  {
+  if (fscanf(stream, "%u", &v) != 1) {
+    return ERROR_READ_CONFIG_STREAM;
+  }
+  regs[i] = v;
+  }
   return 0;
 }
 
@@ -223,12 +249,16 @@ int read_config (const char *path)
 {
   FILE *stream = fopen(path, "r");
 
-  if (stream == NULL) {
+  if (stream == NULL)
+  {
     return ERROR_IO_ERROR;
-  } else if (read_config_stream(stream) != 0) {
+  }
+  else if (read_config_stream(stream) != 0)
+  {
     return ERROR_READ_CONFIG_STREAM;
   }
-  if (fclose(stream) != 0) {
+  if (fclose(stream) != 0) 
+  {
     return ERROR_IO_ERROR;
   }
   return 0;
@@ -237,7 +267,8 @@ int read_config (const char *path)
 
 int interp_control(){
 
-  if (if_id.inst == 0){
+  if (if_id.inst == 0)
+  {
     id_ex.mem_write = false;
     id_ex.mem_read  = false;
     id_ex.reg_write = false;
@@ -260,14 +291,14 @@ int interp_control(){
     id_ex.reg_write  = true;
     id_ex.funct      = GET_FUNCT(if_id.inst);
     if (id_ex.funct == FUNCT_JR) // If we find JR instruction
-      {
-        id_ex.jump        = true;
-        id_ex.mem_write   = false;
-        id_ex.mem_read    = false;
-        id_ex.reg_write   = false;
-        id_ex.branch      = false;
-        id_ex.jump_target = id_ex.rs_value;
-      }
+    {
+      id_ex.jump        = true;
+      //id_ex.mem_write   = false;
+      //id_ex.mem_read    = false;
+      id_ex.reg_write   = false;
+      //id_ex.branch      = false;
+      id_ex.jump_target = id_ex.rs_value;
+    }
     return 0;
   case OPCODE_J:
     id_ex.jump        = true;
@@ -280,19 +311,20 @@ int interp_control(){
     break;
   case OPCODE_JAL:
     id_ex.jump        = true;
+    id_ex.reg_write   = true;
     id_ex.mem_write   = false;
     id_ex.mem_read    = false;
-    id_ex.reg_write   = true;
     id_ex.branch      = false;
     id_ex.funct       = FUNCT_ADD;
-    id_ex.rs_value    = PC;
-    id_ex.rt_value    = 0;
+    id_ex.rs_value    = id_ex.next_pc;
+    id_ex.rt_value    = 4;
     id_ex.reg_dst     = 31; // RA register index value
     id_ex.jump_target = (MS_4B & if_id.next_pc) | (GET_ADDRESS(if_id.inst) << 2);
 
     break;
   case OPCODE_BEQ:
     id_ex.branch    = true;
+    id_ex.beq       = true;
     id_ex.reg_write = false;
     id_ex.mem_read  = false;
     id_ex.mem_write = false;
@@ -303,6 +335,7 @@ int interp_control(){
 
   case OPCODE_BNE:
     id_ex.branch     = true;
+    id_ex.bne        = true;
     id_ex.reg_write  = false;
     id_ex.mem_write  = false;
     id_ex.mem_read   = false;
@@ -348,11 +381,13 @@ int interp_id() {
   id_ex.rt           = GET_RT(if_id.inst);
   id_ex.rs           = GET_RS(if_id.inst); //Hazard
   id_ex.sign_ext_imm = SIGN_EXTEND(GET_IMM(if_id.inst));
+  id_ex.zero_ext_imm = ZERO_EXTEND(GET_IMM(if_id.inst));
   id_ex.next_pc      = if_id.next_pc;
 
   int result_interp_control = interp_control();
 
-  if (result_interp_control == ERROR_UNKNOWN_OPCODE){
+  if (result_interp_control == ERROR_UNKNOWN_OPCODE)
+  {
     return ERROR_INTERP_CONTROL_FAILED;
   }
   if (result_interp_control == syscall)
@@ -436,33 +471,36 @@ int cycle(){
   int interp_id_result;
   interp_wb();
   interp_mem();
-  if (interp_ex() == ERROR_UNKNOWN_FUNCT){
+  if (interp_ex() == ERROR_UNKNOWN_FUNCT)
+  {
     return ERROR_INTERP_EX_FAILED;
   }
 
   interp_id_result = interp_id();
 
-  if (interp_id_result == ERROR_UNKNOWN_OPCODE){
+  if (interp_id_result == ERROR_UNKNOWN_OPCODE)
+  {
     return ERROR_INTERP_ID_FAILED;
   }
-  if (interp_id_result == SAW_SYSCALL){
+  if (interp_id_result == SAW_SYSCALL)
+  {
     return SAW_SYSCALL;
   }
   interp_if();
 
   // Branch detection
-  if (ex_mem.branch && ex_mem.alu_res == 0)
+  if (ex_mem.beq && ex_mem.branch && ex_mem.alu_res == 0)
   {
     PC = ex_mem.branch_target;
     if_id.inst = 0;
     instr_cnt--;
   }
-  if (ex_mem.branch && ex_mem.alu_res != 0)
-   {
-     PC = ex_mem.branch_target;
-     if_id.inst = 0;
-     instr_cnt--;
-   }
+  if (ex_mem.bne && ex_mem.branch && ex_mem.alu_res != 0)
+  {
+    PC = ex_mem.branch_target;
+    if_id.inst = 0;
+    instr_cnt--;
+  }
 
   if (id_ex.jump)
   {
@@ -484,7 +522,8 @@ int interp()
     if (return_cycle == SAW_SYSCALL)
     {
       return 0;
-    } else if ( return_cycle != 0)
+    } 
+    else if ( return_cycle != 0)
     {
       break;
     }
@@ -501,21 +540,26 @@ int main(int argc, char const *argv[])
   if (argc == 3)
   {
     read_config_result = read_config(argv[1]);
-    if (read_config_result != 0){
+    if (read_config_result != 0)
+    {
       return read_config_result;
     }
-  } else {
+  } 
+  else 
+  {
     printf("Three arguments are needed, one file register values and one compiled asm file\n");
     return ERROR_INVALID_ARGS;
   }
-  if (elf_dump(argv[2], &PC, &mem[0], MEMSZ) != 0) {
+  if (elf_dump(argv[2], &PC, &mem[0], MEMSZ) != 0)
+  {
     return ERROR_ELF_DUMP;
   }
   SP = MIPS_RESERVE + MEMSZ;
 
   interp_result = interp();
 
-  if (interp_result != 0) {
+  if (interp_result != 0)
+  {
     return interp_result;
   }
 
