@@ -8,13 +8,15 @@ static uint32_t regs[32];
 static unsigned char mem[MEMSZ];
 
 // Structure declarations
-struct preg_if_id {
+struct preg_if_id 
+{
   uint32_t inst;
   uint32_t next_pc;
 };
 static struct preg_if_id if_id;
 
-struct preg_id_ex {
+struct preg_id_ex 
+{
   bool mem_read;
   bool mem_write;
   bool reg_write;
@@ -67,7 +69,8 @@ struct preg_mem_wb
 static struct preg_mem_wb mem_wb;
 
 // Debug function
-void dump_pregs() {
+void dump_pregs() 
+{
   printf("if_id:\n");
   printf("PC: %x\n", PC);
   printf("inst: %x\n\n", if_id.inst);
@@ -253,7 +256,6 @@ int read_config (const char *path)
 }
 
 int interp_control(){
-
   if (if_id.inst == 0)
   {
     id_ex.mem_write = false;
@@ -425,17 +427,12 @@ int interp_id() {
 
 void interp_if(){
   if_id.inst = GET_BIGWORD(mem, PC);
+
   if (id_ex.mem_read)
   {
     if ((GET_RS(if_id.inst) == id_ex.rt) || (GET_RT(if_id.inst) == id_ex.rt))
     {
       if_id.inst = 0;
-    }
-    else 
-    {
-      PC += 4;
-      if_id.next_pc = PC;
-      instr_cnt++;
     }
   }
   else
