@@ -20,7 +20,7 @@ cd asm
 #./sim default.cfg asm/jal-nopsled.elf
 #./sim default.cfg asm/jal-jr-j-nopsled.elf
 
-for i in *.elf; do
+for i in *-nopsled.elf; do
   echo $i 
   ../sim ../default.cfg $i
 done

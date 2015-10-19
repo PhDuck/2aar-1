@@ -19,6 +19,7 @@ struct preg_id_ex {
   bool mem_write;
   bool reg_write;
   bool alu_src;
+  bool alu_zero;
   bool mem_to_reg;
   bool branch;
   bool beq;
@@ -118,15 +119,16 @@ int show_status()
 void interp_wb()
 {
   if (mem_wb.reg_write || mem_wb.reg_dst == 0)
+  {
+    if (mem_wb.mem_to_reg)
     {
-      if (mem_wb.mem_to_reg)
-       {
-         regs[mem_wb.reg_dst] = mem_wb.read_data;
-       } else if (!mem_wb.mem_to_reg)
-       {
-         regs[mem_wb.reg_dst] = mem_wb.alu_res;
-       }
+      regs[mem_wb.reg_dst] = mem_wb.read_data;
+    } 
+    else if (!mem_wb.mem_to_reg)
+    {
+      regs[mem_wb.reg_dst] = mem_wb.alu_res;
     }
+  }
 }
 
 int alu()
@@ -135,13 +137,18 @@ int alu()
   if (id_ex.alu_src)
   {
     second_operand = id_ex.sign_ext_imm;
-  } else
+  } else if (id_ex.alu_zero)
+  {
+    second_operand = id_ex.zero_ext_imm;
+  }
+  else
   {
     second_operand = id_ex.rt_value;
   }
-
   switch(id_ex.funct)
   {
+    case FUNCT_ORI:
+      ex_mem.alu_res = id_ex.rs_value | second_operand;
     case FUNCT_JR:
       break;
     case FUNCT_ADD:
@@ -172,21 +179,6 @@ int alu()
     default:
       return ERROR_UNKNOWN_FUNCT;
   }
-
-/*
-case FUNCT_ADDIU:
-      ex_mem.alu_res = id_ex.zero_ext_imm + id_ex.rs_value;
-      break;
-    case FUNCT_ANDI:
-      ex_mem.alu_res = id_ex.rs_value & id_ex.zero_ext_imm;
-      break;
-    case FUNCT_LUI:
-      ex_mem.alu_res = GET_IMM(if_id.inst) << 16;
-      break;
-    case FUNCT_ORI:
-        ex_mem.alu_res = id_ex.rs_value | id_ex.zero_ext_imm;
-*/
-
   return 0;
 }
 
@@ -207,7 +199,6 @@ void interp_mem()
     SET_BIGWORD(mem, ex_mem.alu_res, ex_mem.rt_value);
   }
 }
-
 
 int interp_ex()
 {
@@ -236,14 +227,13 @@ int read_config_stream(FILE *stream)
   // Only input data into the regs from 8 - 15, which are Temp Registers.
   for (int i = 8; i <= 15; i++)
   {
-  if (fscanf(stream, "%u", &v) != 1) {
-    return ERROR_READ_CONFIG_STREAM;
-  }
-  regs[i] = v;
+    if (fscanf(stream, "%u", &v) != 1) {
+      return ERROR_READ_CONFIG_STREAM;
+    }
+    regs[i] = v;
   }
   return 0;
 }
-
 
 int read_config (const char *path)
 {
@@ -264,7 +254,6 @@ int read_config (const char *path)
   return 0;
 }
 
-
 int interp_control(){
 
   if (if_id.inst == 0)
@@ -280,99 +269,137 @@ int interp_control(){
   }
 
   switch (GET_OPCODE(if_id.inst)){
-  case OPCODE_R:
-    id_ex.mem_to_reg = false;
-    id_ex.mem_read   = false;
-    id_ex.mem_write  = false;
-    id_ex.alu_src    = false;
-    id_ex.branch     = false;
-    id_ex.jump       = false;
-    id_ex.reg_dst    = GET_RD(if_id.inst);
-    id_ex.reg_write  = true;
-    id_ex.funct      = GET_FUNCT(if_id.inst);
-    if (id_ex.funct == FUNCT_JR) // If we find JR instruction
-    {
+    case OPCODE_R:
+      id_ex.mem_to_reg = false;
+      id_ex.mem_read   = false;
+      id_ex.mem_write  = false;
+      id_ex.alu_src    = false;
+      id_ex.branch     = false;
+      id_ex.jump       = false;
+      id_ex.reg_dst    = GET_RD(if_id.inst);
+      id_ex.reg_write  = true;
+      id_ex.funct      = GET_FUNCT(if_id.inst);
+      if (id_ex.funct == FUNCT_JR) // If we find JR instruction
+      {
+        id_ex.jump        = true;
+        id_ex.mem_write   = false;
+        id_ex.mem_read    = false;
+        id_ex.reg_write   = false;
+        id_ex.branch      = false;
+        id_ex.jump_target = id_ex.rs_value;
+      }
+      return 0;
+    case OPCODE_LUI:
+      break;
+    case OPCODE_ORI:
+      id_ex.mem_read   = false;
+      id_ex.mem_write  = false;
+      id_ex.mem_to_reg = false;
+      id_ex.jump       = false;
+      id_ex.branch     = false;
+      id_ex.alu_src    = false;
+      id_ex.reg_dst    = GET_RD(if_id.inst);
+      id_ex.funct      = FUNCT_OR;
+      id_ex.alu_zero   = true;
+      id_ex.reg_write  = true;
+      break;
+    case OPCODE_ANDI:
+      id_ex.mem_to_reg = false;
+      id_ex.mem_read   = false;
+      id_ex.mem_write  = false;
+      id_ex.alu_src    = false;
+      id_ex.branch     = false;
+      id_ex.jump       = false;
+      id_ex.reg_dst    = GET_RD(if_id.inst);
+      id_ex.funct      = FUNCT_AND;
+      id_ex.reg_write  = true;
+      id_ex.alu_zero   = true;
+      break;
+    case OPCODE_ADDIU:
+      id_ex.mem_to_reg = false;
+      id_ex.mem_read   = false;
+      id_ex.mem_write  = false;
+      id_ex.branch     = false;
+      id_ex.jump       = false;
+      id_ex.alu_src    = false;
+      id_ex.alu_zero   = true;
+      id_ex.reg_write  = true;
+      id_ex.funct      = FUNCT_ADD;
+      id_ex.reg_dst    = GET_RD(if_id.inst);
+      break;
+    case OPCODE_J:
       id_ex.jump        = true;
-      //id_ex.mem_write   = false;
-      //id_ex.mem_read    = false;
+      id_ex.mem_to_reg  = false;
+      id_ex.mem_write   = false;
+      id_ex.mem_read    = false;
       id_ex.reg_write   = false;
-      //id_ex.branch      = false;
-      id_ex.jump_target = id_ex.rs_value;
-    }
-    return 0;
-  case OPCODE_J:
-    id_ex.jump        = true;
-    id_ex.mem_write   = false;
-    id_ex.mem_read    = false;
-    id_ex.reg_write   = false;
-    id_ex.branch      = false;
-    id_ex.jump_target = (MS_4B & if_id.next_pc) | (GET_ADDRESS(if_id.inst) << 2);
+      id_ex.branch      = false;
+      id_ex.jump_target = (MS_4B & if_id.next_pc) | (GET_ADDRESS(if_id.inst) << 2);
 
-    break;
-  case OPCODE_JAL:
-    id_ex.jump        = true;
-    id_ex.reg_write   = true;
-    id_ex.mem_write   = false;
-    id_ex.mem_read    = false;
-    id_ex.branch      = false;
-    id_ex.funct       = FUNCT_ADD;
-    id_ex.rs_value    = id_ex.next_pc;
-    id_ex.rt_value    = 4;
-    id_ex.reg_dst     = 31; // RA register index value
-    id_ex.jump_target = (MS_4B & if_id.next_pc) | (GET_ADDRESS(if_id.inst) << 2);
+      break;
+    case OPCODE_JAL:
+      id_ex.jump        = true;
+      id_ex.reg_write   = true;
+      id_ex.mem_write   = false;
+      id_ex.mem_read    = false;
+      id_ex.branch      = false;
+      id_ex.funct       = FUNCT_ADD;
+      id_ex.rs_value    = id_ex.next_pc;
+      id_ex.rt_value    = 4;
+      id_ex.reg_dst     = 31; // RA register index value
+      id_ex.jump_target = (MS_4B & if_id.next_pc) | (GET_ADDRESS(if_id.inst) << 2);
 
-    break;
-  case OPCODE_BEQ:
-    id_ex.branch    = true;
-    id_ex.beq       = true;
-    id_ex.reg_write = false;
-    id_ex.mem_read  = false;
-    id_ex.mem_write = false;
-    id_ex.jump      = false;
-    id_ex.alu_src   = false;
-    id_ex.funct     = FUNCT_SUB;
-    break;
+      break;
+    case OPCODE_BEQ:
+      id_ex.branch    = true;
+      id_ex.beq       = true;
+      id_ex.reg_write = false;
+      id_ex.mem_read  = false;
+      id_ex.mem_write = false;
+      id_ex.jump      = false;
+      id_ex.alu_src   = false;
+      id_ex.funct     = FUNCT_SUB;
+      break;
 
-  case OPCODE_BNE:
-    id_ex.branch     = true;
-    id_ex.bne        = true;
-    id_ex.reg_write  = false;
-    id_ex.mem_write  = false;
-    id_ex.mem_read   = false;
-    id_ex.jump       = false;
-    id_ex.alu_src    = false;
-    id_ex.funct      = FUNCT_SUB;
-    break;
+    case OPCODE_BNE:
+      id_ex.branch     = true;
+      id_ex.bne        = true;
+      id_ex.reg_write  = false;
+      id_ex.mem_write  = false;
+      id_ex.mem_read   = false;
+      id_ex.jump       = false;
+      id_ex.alu_src    = false;
+      id_ex.funct      = FUNCT_SUB;
+      break;
 
-  case OPCODE_LW:
-    id_ex.alu_src    = true;
-    id_ex.mem_read   = true;
-    id_ex.reg_write  = true;
-    id_ex.mem_to_reg = true;
-    id_ex.mem_write  = false;
-    id_ex.jump       = false;
-    id_ex.branch     = false;
-    id_ex.funct      = FUNCT_ADD;
-    id_ex.reg_dst    = GET_RT(if_id.inst);
+    case OPCODE_LW:
+      id_ex.alu_src    = true;
+      id_ex.mem_read   = true;
+      id_ex.reg_write  = true;
+      id_ex.mem_to_reg = true;
+      id_ex.mem_write  = false;
+      id_ex.jump       = false;
+      id_ex.branch     = false;
+      id_ex.funct      = FUNCT_ADD;
+      id_ex.reg_dst    = GET_RT(if_id.inst);
 
-    break;
-  case OPCODE_SW:
-    id_ex.mem_write  = true;
-    id_ex.alu_src    = true;
-    id_ex.branch     = false;
-    id_ex.jump       = false;
-    id_ex.mem_read   = false;
-    id_ex.reg_write  = false;
-    id_ex.mem_to_reg = false;
-    id_ex.funct      = FUNCT_ADD;
+      break;
+    case OPCODE_SW:
+      id_ex.mem_write  = true;
+      id_ex.alu_src    = true;
+      id_ex.branch     = false;
+      id_ex.jump       = false;
+      id_ex.mem_read   = false;
+      id_ex.reg_write  = false;
+      id_ex.mem_to_reg = false;
+      id_ex.funct      = FUNCT_ADD;
 
-    break;
-  default:
-    return ERROR_UNKNOWN_OPCODE;
-    break;
+      break;
+    default:
+      return ERROR_UNKNOWN_OPCODE;
+      break;
   }
   return 0;
-
 }
 
 int interp_id() {
@@ -395,7 +422,7 @@ int interp_id() {
     return SAW_SYSCALL;
   }
   return 0;
-  }
+}
 
 void interp_if(){
   if_id.inst = GET_BIGWORD(mem, PC);
@@ -405,8 +432,14 @@ void interp_if(){
     {
       if_id.inst = 0;
     }
+    else 
+    {
+      PC += 4;
+      if_id.next_pc = PC;
+      instr_cnt++;
+    }
   }
-  else 
+  else
   {  
     PC += 4;
     if_id.next_pc = PC;
@@ -416,15 +449,15 @@ void interp_if(){
 
 //Hazard
 void forward() {
-  if (ex_mem.reg_write && (ex_mem.reg_dst != id_ex.rs || ex_mem.reg_dst == id_ex.rt))
+  if (ex_mem.reg_write && (ex_mem.reg_dst == id_ex.rs || ex_mem.reg_dst == id_ex.rt))
   {
     if (ex_mem.reg_dst != 0)
     {
       id_ex.rs_value = ex_mem.alu_res;  
       id_ex.rt_value = ex_mem.alu_res;
     }
-  }
-  if (mem_wb.reg_dst == id_ex.rs )
+  }   
+  if (mem_wb.reg_write && mem_wb.reg_dst == id_ex.rs)
   {
     if (!id_ex.jump)
     {
@@ -442,7 +475,7 @@ void forward() {
       id_ex.jump_target = mem_wb.alu_res; 
     }  
   }
-  if (mem_wb.reg_dst == id_ex.rt )
+  if (mem_wb.reg_write && mem_wb.reg_dst == id_ex.rt)
   {
     if (!id_ex.jump)
     {
@@ -461,7 +494,6 @@ void forward() {
     }
   }
 }
-
 
 int cycle(){
   // If debug is needed, uncomment following, which will allow step-by-step running.
@@ -488,6 +520,8 @@ int cycle(){
   }
   interp_if();
 
+  forward();
+
   // Branch detection
   if (ex_mem.beq && ex_mem.branch && ex_mem.alu_res == 0)
   {
@@ -502,14 +536,13 @@ int cycle(){
     instr_cnt--;
   }
 
+  // Jump Detection
   if (id_ex.jump)
   {
-    PC = id_ex.jump_target;
+    PC = id_ex.jump_target; 
   }
-  forward();
   return 0;
 }
-
 
 int interp()
 {
@@ -554,6 +587,7 @@ int main(int argc, char const *argv[])
   {
     return ERROR_ELF_DUMP;
   }
+  printf("%x\n",PC);
   SP = MIPS_RESERVE + MEMSZ;
 
   interp_result = interp();
