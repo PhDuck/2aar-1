@@ -123,7 +123,7 @@ void interp_wb()
     if (mem_wb.mem_to_reg)
     {
       regs[mem_wb.reg_dst] = mem_wb.read_data;
-    } 
+    }
     else if (!mem_wb.mem_to_reg)
     {
       regs[mem_wb.reg_dst] = mem_wb.alu_res;
@@ -147,8 +147,6 @@ int alu()
   }
   switch(id_ex.funct)
   {
-    case FUNCT_ORI:
-      ex_mem.alu_res = id_ex.rs_value | second_operand;
     case FUNCT_JR:
       break;
     case FUNCT_ADD:
@@ -288,9 +286,8 @@ int interp_control(){
         id_ex.branch      = false;
         id_ex.jump_target = id_ex.rs_value;
       }
-      return 0;
-    case OPCODE_LUI:
       break;
+
     case OPCODE_ORI:
       id_ex.mem_read   = false;
       id_ex.mem_write  = false;
@@ -303,6 +300,7 @@ int interp_control(){
       id_ex.alu_zero   = true;
       id_ex.reg_write  = true;
       break;
+
     case OPCODE_ANDI:
       id_ex.mem_to_reg = false;
       id_ex.mem_read   = false;
@@ -315,6 +313,7 @@ int interp_control(){
       id_ex.reg_write  = true;
       id_ex.alu_zero   = true;
       break;
+
     case OPCODE_ADDIU:
       id_ex.mem_to_reg = false;
       id_ex.mem_read   = false;
@@ -327,6 +326,7 @@ int interp_control(){
       id_ex.funct      = FUNCT_ADD;
       id_ex.reg_dst    = GET_RD(if_id.inst);
       break;
+
     case OPCODE_J:
       id_ex.jump        = true;
       id_ex.mem_to_reg  = false;
@@ -335,8 +335,8 @@ int interp_control(){
       id_ex.reg_write   = false;
       id_ex.branch      = false;
       id_ex.jump_target = (MS_4B & if_id.next_pc) | (GET_ADDRESS(if_id.inst) << 2);
-
       break;
+
     case OPCODE_JAL:
       id_ex.jump        = true;
       id_ex.reg_write   = true;
@@ -348,8 +348,8 @@ int interp_control(){
       id_ex.rt_value    = 4;
       id_ex.reg_dst     = 31; // RA register index value
       id_ex.jump_target = (MS_4B & if_id.next_pc) | (GET_ADDRESS(if_id.inst) << 2);
-
       break;
+
     case OPCODE_BEQ:
       id_ex.branch    = true;
       id_ex.beq       = true;
@@ -382,8 +382,8 @@ int interp_control(){
       id_ex.branch     = false;
       id_ex.funct      = FUNCT_ADD;
       id_ex.reg_dst    = GET_RT(if_id.inst);
-
       break;
+
     case OPCODE_SW:
       id_ex.mem_write  = true;
       id_ex.alu_src    = true;
@@ -393,11 +393,10 @@ int interp_control(){
       id_ex.reg_write  = false;
       id_ex.mem_to_reg = false;
       id_ex.funct      = FUNCT_ADD;
-
       break;
+
     default:
       return ERROR_UNKNOWN_OPCODE;
-      break;
   }
   return 0;
 }
@@ -456,7 +455,7 @@ void forward() {
       id_ex.rs_value = ex_mem.alu_res;  
       id_ex.rt_value = ex_mem.alu_res;
     }
-  }   
+  }
   if (mem_wb.reg_write && mem_wb.reg_dst == id_ex.rs)
   {
     if (!id_ex.jump)
@@ -555,7 +554,7 @@ int interp()
     if (return_cycle == SAW_SYSCALL)
     {
       return 0;
-    } 
+    }
     else if ( return_cycle != 0)
     {
       break;
@@ -577,7 +576,7 @@ int main(int argc, char const *argv[])
     {
       return read_config_result;
     }
-  } 
+  }
   else 
   {
     printf("Three arguments are needed, one file register values and one compiled asm file\n");
@@ -587,7 +586,6 @@ int main(int argc, char const *argv[])
   {
     return ERROR_ELF_DUMP;
   }
-  printf("%x\n",PC);
   SP = MIPS_RESERVE + MEMSZ;
 
   interp_result = interp();
