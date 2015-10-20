@@ -107,12 +107,12 @@
 \thispagestyle{plain}
 \section*{Design}
 Mads sidder og spiser chips hele dagen, dette giver ham energi til at være produktiv og lave kode.
-Samtidig er Bjørn ``syg'' og Mizra er cheerleader!
+Samtidig er Bjørn ``syg'' og Mirza er cheerleader!
 
 Mads's designmønster i hvordan man skal opsætte det følger en slavisk tilgang.
 Der er en header fil til definationer af makroer og en fil med koden.
 \section*{What works}
-Vi har lavet til og med Forwarding og Hazards. Dvs, at der ikke skal testes om Forwarding og Hazards virker, da det ikke er implementeret.
+Kravene for at Forwarding og Hazarding skal virke er opfyldt. Test metoderne er beskrevet nedenunder, men vi har også dobbelttjekket med hvad der står i beskrivelserne i .S filerne for at se om vi får det ønskede. Til Finalén, der virker: ORI, ANDI, ADDIU og LUI pga tidspres fik vi ikke indført de resterende.
 Man kan bruge showstatus til at se om de rigtige værdier bliver printet korrekt.
 \section*{Testing}
 Igennem hele koden, tester vi retur koder for, at finde fejl der ellers ville ødelægge hele eksekveringen, og/eller sørge for, at man håndtere fejl passende.
@@ -128,4 +128,4 @@ Dette kan eksekveres med kommandoen ”sh test.sh” eller ./test.sh (dog skal m
 \bibliography{mybib}
 \bibliographystyle{ieeetr}
 
-\end{document}
+\end{document} 
