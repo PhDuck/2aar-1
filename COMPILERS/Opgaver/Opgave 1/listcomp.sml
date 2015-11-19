@@ -63,9 +63,9 @@ fun eval vtable e =
       raise Fail "Less case not handled yet."
 
 fun intConst x = (Const (IntVal x))
-(*
 
-Tests commented out as they would currently raise exceptions.
+(*
+(* Tests commented out as they would currently raise exceptions. *)
 
 (* Python: xs = range(0,9) *)
 val xs = Range (intConst 0, intConst 9)
@@ -114,4 +114,5 @@ val test6 = eval [] (Compr (Compr (Times (Var "x", Var "y"),
                             "y",
                             xs,
                             NONE))
+
 *)
