@@ -46,8 +46,8 @@ fun eval vtable e =
 		NONE => raise Fail ("Unknown variable " ^ k)
 		| SOME k => k)
     | List l => ListVal( map ( fn q => eval vtable q) l)
-    | Compr (e, k, a, p) => (case List k vtable of)
-      raise Fail "Compr case not handled yet."
+    | Compr (e, k, a, p) => 
+     (* raise Fail "Compr case not handled yet."
     | Range (x,y) => Range
       raise Fail "Range case not handled yet."
     | Plus (x,y) => 
@@ -61,7 +61,7 @@ fun eval vtable e =
     | Equal (x,y) => 
       raise Fail "Equal case not handled yet."
     | Less (x,y) => 
-      raise Fail "Less case not handled yet."
+      raise Fail "Less case not handled yet." *)
 
 fun intConst x = (Const (IntVal x))
 
