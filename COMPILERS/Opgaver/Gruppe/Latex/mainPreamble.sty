@@ -1,0 +1,141 @@
+\ProvidesPackage{mainPreamble}
+
+
+% Call packages
+% ---------------
+\usepackage{comment} %Possible to comment larger sections
+%http://get-software.net/macros/latex/contrib/comment/comment.pdf
+\usepackage[T1]{fontenc} %oriented to output, that is, what fonts to use for printing characters.
+\usepackage[utf8]{inputenc} %allows the user to input accented characters directly from the keyboard
+%Put fontenc before inputenc
+\usepackage{fourier} %Better typeface
+%http://mirrors.dotsrc.org/ctan/fonts/fourier-GUT/doc/latex/fourier/fourier-doc-en.pdf
+\usepackage[danish]{babel}														     % Danish
+%\usepackage[protrusion=true,expansion=true]{microtype}				                 % Better typography
+%http://www.khirevich.com/latex/microtype/
+\usepackage{amsmath,amsfonts,amsthm, amssymb}							 % Math packages
+\usepackage[pdftex]{graphicx} %puts to pdf and graphic
+\graphicspath{ {pictures/} } %path til billeder, skal kun bruge navnet på billedet
+\usepackage{epstopdf}
+%http://www.kwasan.kyoto-u.ac.jp/solarb6/usinggraphicx.pdf
+\usepackage{lipsum} %dummy text
+\usepackage[dvipsnames]{xcolor,colortbl}
+%http://mirrors.dotsrc.org/ctan/macros/latex/contrib/xcolor/xcolor.pdf
+%http://texdoc.net/texmf-dist/doc/latex/colortbl/colortbl.pdf
+\usepackage{parskip} %http://www.ctan.org/pkg/parskip
+%http://tex.stackexchange.com/questions/51722/how-to-properly-code-a-tex-file-or-at-least-avoid-badness-10000
+%Never use \\ but instead press "enter" twice. See second website for more info
+\usepackage{natbib}
+
+%%--------------------------------
+%Skal ikke bruges i slut
+\usepackage[draft,danish]{fixme} %Danish latex book
+\usepackage{showkeys} %Brug kun til at holde styr på labels
+
+%%--------------------------------
+%Brug H for figur lige HER!!
+\usepackage{float}
+%\caption{} til tabeller
+\usepackage{caption}
+
+%%--------------------------------
+%Til brug af Landscape
+\usepackage{fancyhdr}
+\usepackage{lscape} %http://tex.stackexchange.com/questions/337/how-to-change-certain-pages-into-landscape-portrait-mode
+\usepackage{pdflscape} %http://texblog.org/2007/11/10/landscape-in-latex/
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\fancypagestyle{lscape}{%
+    \fancyhf{}
+    \fancyfoot[C]{
+    \begin{textblock}{20}(1,5){\rotatebox{90}{}}\end{textblock}
+    \begin{textblock}{1}(13,10.5){\rotatebox{90}{\thepage}}\end{textblock}}
+    \fancyfoot[C] {
+    \begin{textblock}{1}(18.75,3.5){\rotatebox{90}{\thepage}}\end{textblock}
+    \begin{textblock}{20}(1,13.25){\rotatebox{90}{}}\end{textblock}}
+
+    \setlength{\TPHorizModule}{28pt}
+    \setlength{\TPVertModule}{14pt}
+    \renewcommand{\headrulewidth}{0.0pt}
+    \renewcommand{\footrulewidth}{0.0pt}
+    }
+
+
+
+%%--------------------------------
+%Logsystem
+\usepackage[owncaptions]{vhistory}
+\renewcommand{\vhhistoryname}{Log system}
+\renewcommand{\vhversionname}{Version}
+\renewcommand{\vhdatename}{Dato}
+\renewcommand{\vhauthorname}{Forfatter(re)}
+\renewcommand{\vhchangename}{Beskrivelse}
+
+%%--------------------------------
+%Til at vise links i pdf filen så man kan hoppe frem og tilbage
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={blue!35!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+%%--------------------------------
+%index
+\usepackage{imakeidx} %laver indeks med angivent antal kollonner og titel
+\makeindex[columns=2, title=Indeks]
+\usepackage[totoc]{idxlayout} %tilføler indeks til toc
+
+%%--------------------------------
+%glossary
+\usepackage[nonumberlist, toc]{glossaries} %http://en.wikibooks.org/wiki/LaTeX/Glossary#Jump_start
+\makeglossaries
+\AtBeginDocument{\renewcommand\glossaryname{Ordliste}} %renamer glossary til Ordliste
+\usepackage{mainGlossary}
+
+%%--------------------------------
+%appendix
+\usepackage[toc,page]{appendix} %tilføler appendix
+
+%%--------------------------------
+%tikz og pgfplots til legends
+\usepackage{tikz} %documentation http://www.ctan.org/pkg/pgf
+\usetikzlibrary{calc,shadings}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest} %tager nyeste version
+% argument #1: any options
+\newenvironment{customlegend}[1][]{%
+    \begingroup
+    % inits/clears the lists (which might be populated from previous
+    % axes):
+    \csname pgfplots@init@cleared@structures\endcsname
+    \pgfplotsset{#1}%
+}{%
+    % draws the legend:
+    \csname pgfplots@createlegend\endcsname
+    \endgroup
+}%
+
+% makes \addlegendimage available (typically only available within an
+% axis environment):
+\def\addlegendimage{\csname pgfplots@addlegendimage\endcsname}
+
+%%--------------------------------
+% definition to insert numbers
+\pgfkeys{/pgfplots/number in legend/.style={%
+        /pgfplots/legend image code/.code={%
+            \node at (0.125,-0.0225){#1}; % <= changed x value
+        },%
+    },
+}
+\pgfplotsset{
+every legend to name picture/.style={west}
+}
+
+
+%%--------------------------------
