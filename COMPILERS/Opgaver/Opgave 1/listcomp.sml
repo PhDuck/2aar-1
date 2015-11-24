@@ -37,32 +37,35 @@ fun range x y zs = if (x > y) then zs else range x (y - 1) (y::zs)
 fun lookup k0 ((k1,v) :: vtable) = if k0 = k1 then SOME v else lookup k0 vtable
   | lookup _ _ = NONE
 
+
 (* The evaluation function. *)
 fun eval vtable e =
   case e of
       Const v => v
-    | Var k =>
-      raise Fail "Var case not handled yet."
-    | List l =>
+    | Var k => (case lookup k vtable of
+		NONE => raise Fail ("Unknown variable " ^ k)
+		| SOME k => k)
+    | List l => ListVal( map ( fn q => eval vtable q) l)
+    | Compr (e, k, a, p) => (case List k vtable of)
       raise Fail "Compr case not handled yet."
-    | Compr (e, k, a, p) =>
-      raise Fail "Compr case not handled yet."
-    | Range (x,y) =>
+    | Range (x,y) => Range
       raise Fail "Range case not handled yet."
-    | Plus (x,y) =>
+    | Plus (x,y) => 
       raise Fail "Plus case not handled yet."
-    | Minus (x,y) =>
+    | Minus (x,y) => 
       raise Fail "Minus case not handled yet."
     | Times (x,y) =>
       raise Fail "Times case not handled yet."
-    | Modulo (x,y) =>
+    | Modulo (x,y) => 
       raise Fail "Modulo case not handled yet."
-    | Equal (x,y) =>
+    | Equal (x,y) => 
       raise Fail "Equal case not handled yet."
-    | Less (x,y) =>
+    | Less (x,y) => 
       raise Fail "Less case not handled yet."
 
 fun intConst x = (Const (IntVal x))
+
+
 
 (*
 (* Tests commented out as they would currently raise exceptions. *)
@@ -115,4 +118,4 @@ val test6 = eval [] (Compr (Compr (Times (Var "x", Var "y"),
                             xs,
                             NONE))
 
-*)
+*) 

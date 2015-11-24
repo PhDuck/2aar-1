@@ -214,11 +214,11 @@ For at tage det fra slides, så ved jeg at;
   \item[Call by value result] Actual parameters passed in as with call by value. Just before the callee returns, all actual parameters are updated to the value of the formal parameteres in the callee
 \end{description}
 
-Ud fra dette, så vil call-by-value være 3 og 1, da
+Ud fra dette, så vil call-by-value være 13, 3 og 1, fordi værdien er initialieret på x og y.
 
-Call-by-reference, vil være 13
+Call-by-reference, her vil r være $4 + 3 + 8 = 15$, hvor x vil være 8 og y vil være 3, da både variablen a og c ændres i funktionen
 
-Hvor call-by-value-result ender med at være 4, 2, eller 7, da det
+Hvor call-by-value-result ender med at være 4, 2, eller 7, da x er enten 4 eller 7 og y 2 og til slut er r 13.
 
 
 \end{homeworkProblem}
@@ -227,14 +227,19 @@ Hvor call-by-value-result ender med at være 4, 2, eller 7, da det
 
 \begin{description}
   \item[Static scoping] Hvis den globale variabel er blevet givet en værdi, vil dens scope eksistere igennem hele programmets udførsel.
-  \item[Dynamic scoping] Hvor det der i mod, er ligegyldigt hvilke globale værdier der er givet, så gælder de værdier inden for den respektive blok i den dynamiske del.
+  \item[Dynamic scoping] Hvor det der i mod, er ligegyldigt hvilke globale værdier der er givet, så gælder de værdier inden for den respektive blok i den dynamiske del, altså den sidst defineret værdi.
 \end{description}
 
-Derfor, vil det for static scoping være at $f(3)=4$ og $f(5)=4$, hvor det for static scoping vil være $f(3)=4$, da vores g funktion printer x, som er 4. Hvis vi kalder $f(5)$ får man en fejl, da y ikke er defineret
+Derfor, vil det for static scoping være at $f(3)=g()=print(x)=4$ og $f(5)=h(x)=5+2=7$.
+
+Der i mod på dynamic scoping, hvis vi kalder $f(3)=3$  og $f(5)=h(x)=5+2=7$.
 
 \end{homeworkProblem}
 
+\newpage
+
 \begin{homeworkProblem}
+
 
 
 \end{homeworkProblem}
