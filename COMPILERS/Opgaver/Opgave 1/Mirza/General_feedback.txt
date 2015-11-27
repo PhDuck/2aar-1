@@ -1,0 +1,61 @@
+
+
+Task 4:
+
+If you're completely stuck, you should look at simplified examples.
+
+Look at lookup, and check what arguments are given.
+
+We wish to find out if a variable k, 
+is bound to a variable in our vtable.
+lookup returns a value option, which we can match on.
+We can either find the value bound to k, 
+or we reach the conclusion it is not in our vtable. 
+Proper error messages should be raised, 
+if we don't get a value.
+
+| Var k => (case lookup k vtable of
+                SOME value => value
+              | NONE     => raise Fail ("Use proper fail message" ^ k))
+
+We only have 2 values, list and int.
+Here we recursively use our eval function, to find the value of our 2 arguments.
+Once we find that both values are integers, 
+we put the sum of bother arguments in an IntVal.
+
+| Plus (x,y) => (case (eval x, eval y) of
+                     (IntVal x', IntVal y') => IntVal (x' + y')
+                   | _  => raise Fail "Use proper fail message")
+
+
+This case is simple enough, think of high order functions.
+syntax:
+map f() args
+map takes one function, and the arguments for the function.
+The function is working inplace, which means it overwrites the previous value with the result from the function.
+We use recursive calls to evaluate each element, 
+and then we just need map to run through the list.
+Lastly we want to wrap it in a ListVal(), 
+try filling out the line below.
+
+| List l => ListVal(---evaluate l---)
+
+List Comprehension:
+Instead of think of p in one case split it into,
+and start by handling the NONE case.
+
+| Compr (e, k, a, NONE) => 
+| Compr (e, k, a, SOME p) => 
+
+Firstly you want evaluate that e2(a) is a ListVal vs.
+This is a ListVal of expressions.
+The goal is to bind each expression to k, 
+and for each time you evaluate e1(e) with a temporary vtable.
+
+Hint:
+You can use insert to bind values and put them into the vtable.
+
+The change in the case SOME p, is that you construct a different vs.
+Think about it as filtering all elements, 
+that does not uphold p in vs.
+

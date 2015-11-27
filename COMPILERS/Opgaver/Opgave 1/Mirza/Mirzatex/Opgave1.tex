@@ -119,10 +119,10 @@
 %----------------------------------------------------------------------------------------
 
 \newcommand{\hmwkTitle}{Assignment\ \#1} % Assignment title
-\newcommand{\hmwkDueDate}{Sunday,\ November\ 22,\ 2015} % Due date
+\newcommand{\hmwkDueDate}{Sunday,\ November\ 29,\ 2015} % Due date
 \newcommand{\hmwkClass}{Compilers} % Course/class
-\newcommand{\hmwkClassTime}{} % Class/lecture time
-\newcommand{\hmwkClassInstructor}{} % Teacher/lecturer
+\newcommand{\hmwkClassTime}{Task 2, 3} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Resubmit:} % Teacher/lecturer
 \newcommand{\hmwkAuthorName}{Mirza Hasanbasic} % Your name
 
 %----------------------------------------------------------------------------------------
@@ -199,7 +199,7 @@
 
 \begin{homeworkProblem}
 
-Jeg studerer Datalogi. Jeg har det meget fint med SML, skal nok lige tilbage til rytmen, da det er ved at være et stykke tid siden man har sidet med det. MIPS har ikke været min stærke siden, så det er altid rart med en brush up\\
+Jeg studerer Datalogi. Jeg har det meget fint med SML, skal nok lige tilbage til rytmen, da det er ved at være et stykke tid siden man har siddet med det. MIPS har ikke været min stærke side, så det er altid rart med en brush up\\
 Jeg forventer at vi kommer mere i dybden med maskinkode
 
 \end{homeworkProblem}
@@ -218,7 +218,12 @@ Ud fra dette, så vil call-by-value være 13, 3 og 1, fordi værdien er initiali
 
 Call-by-reference, her vil r være $4 + 3 + 8 = 15$, hvor x vil være 8 og y vil være 3, da både variablen a og c ændres i funktionen
 
-Hvor call-by-value-result ender med at være 4, 2, eller 7, da x er enten 4 eller 7 og y 2 og til slut er r 13.
+\textcolor[rgb]{0.76,0.00,0.02}{\textbf{FIX:}}
+
+Call-by-reference. Hvis man tænker på det som f(x, y, x), har vi $8 + 3 + 8=19$
+
+Hvor call-by-value-result har vi at x er enten 4 eller 7 og y 2 og til slut er r 13.
+
 
 
 \end{homeworkProblem}
@@ -233,6 +238,11 @@ Hvor call-by-value-result ender med at være 4, 2, eller 7, da x er enten 4 elle
 Derfor, vil det for static scoping være at $f(3)=g()=print(x)=4$ og $f(5)=h(x)=5+2=7$.
 
 Der i mod på dynamic scoping, hvis vi kalder $f(3)=3$  og $f(5)=h(x)=5+2=7$.
+
+
+\textcolor[rgb]{0.76,0.00,0.02}{\textbf{FIX:}}
+
+Static scoping skulle rettes. Man kan antage at globale variable generelt er statiske variable. Derfor bliver $f(5)=4$ da $x=f()$
 
 \end{homeworkProblem}
 
