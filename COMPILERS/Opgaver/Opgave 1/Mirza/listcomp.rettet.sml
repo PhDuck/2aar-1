@@ -37,33 +37,43 @@ fun range x y zs = if (x > y) then zs else range x (y - 1) (y::zs)
 fun lookup k0 ((k1,v) :: vtable) = if k0 = k1 then SOME v else lookup k0 vtable
   | lookup _ _ = NONE
 
-
 (* The evaluation function. *)
 fun eval vtable e =
   case e of
       Const v => v
     | Var k => (case lookup k vtable of
 		NONE => raise Fail ("Unknown variable " ^ k)
-		| SOME k => k)
+	    | SOME k => k)
     | List l => ListVal( map ( fn q => eval vtable q) l)
-    | Compr (e, k, a, p) => 
-     (* raise Fail "Compr case not handled yet."
-    | Range (x,y) => Range
-      raise Fail "Range case not handled yet."
-    | Plus (x,y) => 
-      raise Fail "Plus case not handled yet."
-    | Minus (x,y) => 
-      raise Fail "Minus case not handled yet."
-    | Times (x,y) =>
-      raise Fail "Times case not handled yet."
-    | Modulo (x,y) => 
-      raise Fail "Modulo case not handled yet."
-    | Equal (x,y) => 
-      raise Fail "Equal case not handled yet."
-    | Less (x,y) => 
-      raise Fail "Less case not handled yet." *)
+    (*| Compr (e, k, a, NONE) => (
+    | _ => raise Fail "Compr case not handled yet." )
+	| Compr (e, k, a, SOME p) => (
+    | _ => raise Fail "Compr case not handled yet." ) *)
+    | Range (x,y) => (case (eval vtable x, eval vtable y) of
+					 (IntVal x, IntVal y) => (ListVal(List.map IntVal (range x y [])))
+    | _ => raise Fail "Range case not handled yet.")
+    | Plus (x,y) => (case (eval vtable x, eval vtable y) of 
+					(IntVal x, IntVal y) => IntVal(x + y)
+    | _ => raise Fail "Plus case not handled yet.")
+    | Minus (x,y) => (case (eval vtable x, eval vtable y) of
+					 (IntVal x, IntVal y) => IntVal(x - y)
+    | _ => raise Fail "Minus case not handled yet." )
+    | Times (x,y) => (case (eval vtable x, eval vtable y) of
+					 (IntVal x, IntVal y) => IntVal(x * y)
+    | _ => raise Fail "Times case not handled yet." )
+    | Modulo (x,y) => (case (eval vtable x, eval vtable y) of
+					  (IntVal x, IntVal y) => IntVal(x mod y)
+    | _ => raise Fail "Modulo case not handled yet.")
+    | Equal (x,y) => (case (eval vtable x, eval vtable y) of
+                     (IntVal x, IntVal y) => if x = y then IntVal 1 else IntVal 0
+    | _ => raise Fail "Equal case not handled yet.")
+    | Less (x,y) => (case (eval vtable x, eval vtable y) of
+                    (IntVal x, IntVal y) => if x < y then IntVal 1 else IntVal 0
+    | _ => raise Fail "Less case not handled yet.") 
 
 fun intConst x = (Const (IntVal x))
+
+
 
 
 
@@ -71,7 +81,7 @@ fun intConst x = (Const (IntVal x))
 (* Tests commented out as they would currently raise exceptions. *)
 
 (* Python: xs = range(0,9) *)
-val xs = Range (intConst 0, intConst 9)
+val xs = Range (intConst 0, intConst 9
 
 (* List the numbers in a range: *)
 (* Python: [ x for x in xs ] *)
