@@ -104,10 +104,16 @@ and checkExp ftab vtab (exp : In.Exp)
          end
 
     | In.Times (e1, e2, pos)
-      => raise Fail "Unimplemented feature multiplication"
+      => let val (_, e1_dec, e2_dec) = checkBinOp ftab vtab (pos, Int, e1, e2)
+         in (Int,
+             Out.Times (e1_dec, e2_dec, pos))
+         end
 
     | In.Divide (e1, e2, pos)
-      => raise Fail "Unimplemented feature division"
+      => let val (_, e1_dec, e2_dec) = checkBinOp ftab vtab (pos, Int, e1, e2)
+         in (Int,
+             Out.Divide (e1_dec, e2_dec, pos))
+         end
 
     | In.And (e1, e2, pos)
       => raise Fail "Unimplemented feature &&"
@@ -201,10 +207,10 @@ and checkExp ftab vtab (exp : In.Exp)
 
     | In.Iota (n_exp, pos)
       => raise Fail "Unimplemented feature iota"
-               
+
     | In.Map (f, arr_exp, _, _, pos)
       => raise Fail "Unimplemented feature map"
-               
+
     | In.Reduce (f, n_exp, arr_exp, _, pos)
       => raise Fail "Unimplemented feature reduce"
 

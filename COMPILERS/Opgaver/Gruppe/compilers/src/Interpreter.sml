@@ -141,7 +141,7 @@ fun evalExp ( Constant (v,_), vtab, ftab ) = v
         let val res1   = evalExp(e1, vtab, ftab)
             val res2   = evalExp(e2, vtab, ftab)
         in  case (res1, res2) of
-              (IntVal n1, IntVal n2) => IntVal (n1+n2)
+              (IntVal n1, IntVal n2) => IntVal (n1 + n2)
             | _ => invalidOperands "Plus on non-integral args: " [(Int, Int)] res1 res2 pos
         end
 
@@ -149,18 +149,30 @@ fun evalExp ( Constant (v,_), vtab, ftab ) = v
         let val res1   = evalExp(e1, vtab, ftab)
             val res2   = evalExp(e2, vtab, ftab)
         in  case (res1, res2) of
-              (IntVal n1, IntVal n2) => IntVal (n1-n2)
+              (IntVal n1, IntVal n2) => IntVal (n1 - n2)
             | _ => invalidOperands "Minus on non-integral args: " [(Int, Int)] res1 res2 pos
         end
 
   | evalExp ( Times(e1, e2, pos), vtab, ftab ) =
-    raise Fail "Unimplemented feature multiplication"    
+        let val res1   = evalExp(e1, vtab, ftab)
+            val res2   = evalExp(e2, vtab, ftab)
+        in  case (res1, res2) of
+              (IntVal n1, IntVal n2) => IntVal (n1 * n2)
+            | _ => invalidOperands "Times on non-integral args: " [(Int, Int)] res1 res2 pos
+        end
 
   | evalExp ( Divide(e1, e2, pos), vtab, ftab ) =
-    raise Fail "Unimplemented feature division"    
+        let val res1   = evalExp(e1, vtab, ftab)
+            val res2   = evalExp(e2, vtab, ftab)
+            if res2 == 0 then raise Fail "Division by zero"
+            else
+        in  case (res1, res2) of
+              (IntVal n1, IntVal n2) => IntVal (n1 / n2)
+            | _ => invalidOperands "Divide on non-integral args: " [(Int, Int)] res1 res2 pos
+        end
 
   | evalExp (And (e1, e2, pos), vtab, ftab) =
-    raise Fail "Unimplemented feature &&"    
+    raise Fail "Unimplemented feature &&"
 
   | evalExp (Or (e1, e2, pos), vtab, ftab) =
     raise Fail "Unimplemented feature ||"
@@ -294,7 +306,7 @@ and rtpFunArg (FunName fid, ftab, callpos) =
 
 (* evalFunArg takes as argument a FunArg, a vtable, an ftable, the
 position where the call is performed, and the list of actual arguments.
-It returns a pair of two values: the result of calling the (lambda) function, 
+It returns a pair of two values: the result of calling the (lambda) function,
 and the return type of the FunArg.
  *)
 and evalFunArg (FunName fid, vtab, ftab, callpos, aargs) =
