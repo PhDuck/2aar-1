@@ -396,9 +396,16 @@ fun compileExp e vtable place =
       end
 
   | And (e1, e2, pos) =>
-    raise Fail "Unimplemented feature &&"
+    let val t1 = newName "and_L"
+        val t2 = newName "and_R"
+        val code1 = compileExp e1 vtable t1
+        val code2 = compileExp e2 vtable t2
+    in  code1 @ code2 @
+        [Mips.BEQ (t1, t2, place)]
+    end
+
   | Or (e1, e2, pos) =>
-    raise Fail "Unimplemented feature ||"
+    (*FUCK THIS SHIT*)
 
   (* Indexing:
      1. generate code to compute the index
