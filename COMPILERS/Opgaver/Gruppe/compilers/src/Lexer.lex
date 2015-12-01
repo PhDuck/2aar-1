@@ -74,6 +74,8 @@ rule Token = parse
 			     getPos lexbuf) }
   | `+`                 { Parser.PLUS   (getPos lexbuf) }
   | `*`                 { Parser.TIMES  (getPos lexbuf) }
+  | `&&`                { Parser.AND    (getPos lexbuf) }
+  | `||`                { Parser.OR     (getPos lexbuf) }
   | `/`                 { Parser.DIVIDE (getPos lexbuf) }
   | `-`                 { Parser.MINUS  (getPos lexbuf) }
   | "=="                { Parser.DEQ    (getPos lexbuf) }

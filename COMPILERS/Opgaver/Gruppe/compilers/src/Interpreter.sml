@@ -172,7 +172,9 @@ fun evalExp ( Constant (v,_), vtab, ftab ) = v
         end
 
   | evalExp (And (e1, e2, pos), vtab, ftab) =
-    raise Fail "Unimplemented feature &&"
+        let val r1 = evalExp(e1, vtab, ftab)
+            val r2 = evalExp(e2, vtab, ftab)
+        in  case (r1, r2) of
 
   | evalExp (Or (e1, e2, pos), vtab, ftab) =
     raise Fail "Unimplemented feature ||"
