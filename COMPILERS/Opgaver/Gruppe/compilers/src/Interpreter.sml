@@ -173,11 +173,19 @@ fun evalExp ( Constant (v,_), vtab, ftab ) = v
 
   | evalExp (And (e1, e2, pos), vtab, ftab) =
         let val r1 = evalExp(e1, vtab, ftab)
-            val r2 = evalExp(e2, vtab, ftab)
-        in  case (r1, r2) of
+        in case r1 of
+               BoolVal true => evalExp(e2, vtab, ftab)
+             | BoolVal false  => BoolVal false
+             | _ => invalidOperands "First operand none boolean"
+        end
 
   | evalExp (Or (e1, e2, pos), vtab, ftab) =
-    raise Fail "Unimplemented feature ||"
+    let val r1 = evalExp(e1, vtab, ftab)
+        in case r1 of
+               BoolVal true => BoolVal true
+             | BoolVal false  => evalExp(e2, vtab, ftab)
+             | _ => invalidOperands "First operand none boolean"
+        end
 
   | evalExp ( Not(e, pos), vtab, ftab ) =
     raise Fail "Unimplemented feature not"
