@@ -1,13 +1,10 @@
 Task 1:
-a)
-Nicely done.
-b)
-You could've saved the last 2 cases by just writing
-T -> aTb
-in the first, but its correct none the less.
+
 c)
+
 (i)
 Try looking at general feedback for this one.
+
 (ii)
 example:
 Exp TIMES Exp
@@ -15,10 +12,14 @@ $ are indicating which number of token in the string.
 Say $1 would refer to the first expression.
 ID
 #1 $1 will give me a string, which is the first thing saved in a tuple. The token ID is defined to contain a string and a position.
+
+
 Task 2:
+
 a)
 Forall alpha should be the first thing.
 Otherwise it is correct.
+
 b)
 and forth check general feedback.
 If i missed something poke me for help.
@@ -28,10 +29,15 @@ to pass:
 Fix Task 1 and 2,
 take a look at the general feedback for task 3.
 It is fairly simple.
+
+
 ::::General feedback::::
 Task 1:
+
 c)
+
 (i)
+
 %left, %right, %nonassoc describes associativity.
 Which side does the function evaluate first, when it comes to recursive evaluation.
 "PLUS" will first check left argument, then right.
@@ -41,7 +47,10 @@ Precedens order:
 %left AND #
 %left DEQ LTH #
 %left PLUS MINUS # strongest binding
+
+
 (ii)
+
 Exp Times Exp
 $ refers to a position.
 $2 will refer to Times.
@@ -50,13 +59,17 @@ ID
 #1 $1 is a string.
 It takes the first argument in the tuple from the first argument.
 
+
 Task 2:
+
 a)
+
 Try looking into the slides about type-checking, 20/48.
 There is something simular under the name Type Rules.
 The example of Map.
 Consider that example and realize that it is sort of the same with filter.
 Only thing is that the function it takes is returning bool, and the list returned is the same type as it takes in.
+
 b)
 Use the sort of notation as on page 111 and 113,
 for initial inspiration.
@@ -72,6 +85,7 @@ Compare input type, with array type.
 If types don't match, raise an error.
 Step 4:
 Return the array and type of elements.
+
 c)
 Here the work from before is partially done already.
 We have
@@ -82,6 +96,7 @@ If that body evaluates to boolean,
 and the return type evaluates to boolean then you win.
 
 Task 3:
+
 The algorithm walkthrough, it is found in slides Type-checking 35/48.
 First step:
 If you find a common constructor(an operator)
