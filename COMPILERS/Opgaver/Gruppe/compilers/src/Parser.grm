@@ -12,7 +12,7 @@ open Fasto.UnknownTypes
 %token <int*(int*int)> NUM
 %token <bool*(int*int)> BOOLLIT (* Tooken for bool *)
 %token <char*(int*int)> CHARLIT
-%token <(int*int)> PLUS MINUS DEQ EQ LTH TIMES DIVIDE OR AND
+%token <(int*int)> PLUS MINUS DEQ EQ LTH TIMES DIVIDE OR AND NOT NEGATE
 %token <(int*int)> LPAR RPAR LBRACKET RBRACKET LCURLY RCURLY
 %token <(int*int)> COMMA
 %token <(int*int)> FUN READ WRITE
