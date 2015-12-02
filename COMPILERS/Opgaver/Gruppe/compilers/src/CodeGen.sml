@@ -241,7 +241,7 @@ fun compileExp e vtable place =
           val t2 = newName "times_R"
           val code1 = compileExp e1 vtable t1
           val code2 = compileExp e2 vtable t2
-      in  code1 @ code2 @ [Mips.MULT (place,t1,t2)]
+      in  code1 @ code2 @ [Mips.MUL (place,t1,t2)]
       end
   | Divide (e1, e2, pos) =>
       let val t1 = newName "divide_L"
@@ -398,14 +398,29 @@ fun compileExp e vtable place =
   | And (e1, e2, pos) =>
     let val t1 = newName "and_L"
         val t2 = newName "and_R"
+        val falseLabel = newName "false"
         val code1 = compileExp e1 vtable t1
         val code2 = compileExp e2 vtable t2
-    in  code1 @ code2 @
-        [Mips.BEQ (t1, t2, place)]
+    in
+      code1 @ [ Mips.LI (t1, "0")
+              , Mips.BEQ (t1, place, falseLabel)
+              , Mips.LI (t2, "0")
+              , Mips.LABEL falseLabel ] @ code2
     end
 
   | Or (e1, e2, pos) =>
-    (*FUCK THIS SHIT*)
+    let val t1 = newName "and_L"
+        val t2 = newName "and_R"
+        val falseLabel = newName "false"
+        val trueLabel = newName "true"
+        val code1 = compileExp e1 vtable t1
+        val code2 = compileExp e2 vtable t2
+    in
+      code1 @ [ Mips.LI (t1, "1")
+              , Mips.BEQ (t1, place, trueLabel)
+              , Mips.LI (t2, "0")
+              , Mips.LABEL falseLabel ] @ code2
+    end
 
   (* Indexing:
      1. generate code to compute the index
