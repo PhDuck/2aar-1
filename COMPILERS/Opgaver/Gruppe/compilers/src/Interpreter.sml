@@ -164,10 +164,10 @@ fun evalExp ( Constant (v,_), vtab, ftab ) = v
   | evalExp ( Divide(e1, e2, pos), vtab, ftab ) =
         let val res1   = evalExp(e1, vtab, ftab)
             val res2   = evalExp(e2, vtab, ftab)
-            if res2 == 0 then raise Fail "Division by zero"
-            else
-        in  case (res1, res2) of
-              (IntVal n1, IntVal n2) => IntVal (n1 / n2)
+
+        in  if res2 = IntVal 0 then raise Fail "Division by zero"
+            else case (res1, res2) of
+              (IntVal n1, IntVal n2) => IntVal (n1 div n2)
             | _ => invalidOperands "Divide on non-integral args: " [(Int, Int)] res1 res2 pos
         end
 
@@ -176,7 +176,7 @@ fun evalExp ( Constant (v,_), vtab, ftab ) = v
         in case r1 of
                BoolVal true => evalExp(e2, vtab, ftab)
              | BoolVal false  => BoolVal false
-             | _ => invalidOperands "First operand none boolean"
+             | _ => raise Fail "First operand none boolean"
         end
 
   | evalExp (Or (e1, e2, pos), vtab, ftab) =
@@ -184,7 +184,7 @@ fun evalExp ( Constant (v,_), vtab, ftab ) = v
         in case r1 of
                BoolVal true => BoolVal true
              | BoolVal false  => evalExp(e2, vtab, ftab)
-             | _ => invalidOperands "First operand none boolean"
+             | _ => raise Fail "First operand none boolean"
         end
 
   | evalExp ( Not(e, pos), vtab, ftab ) =

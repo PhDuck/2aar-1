@@ -116,55 +116,31 @@ and checkExp ftab vtab (exp : In.Exp)
          end
 
     | In.And (e1, e2, pos)
-      => let
-      val (t1, e1') = checkExp ftab vtab e1
+      => let val (_, e1_dec, e2_dec) = checkBinOp ftab vtab (pos, Bool, e1, e2)
+         in (Bool,
+             Out.And (e1_dec, e2_dec, pos))
+         end
 
-      in (if t1 != Bool
-          then
-            raise Fail "t1 not a bool"
-          else
-          let
-            val (t2, e2') = checkExp ftab vtab e2
-          in (
-            if t2 = Bool
-            then
-              (Bool, Out.And (e1', e2', pos))
-            else
-              raise Fail "t2 not a bool")
-            end)
-          end
 
     | In.Or (e1, e2, pos)
-      => let
-      val (t1, e1') = checkExp ftab vtab e1
+      => let val (_, e1_dec, e2_dec) = checkBinOp ftab vtab (pos, Bool, e1, e2)
+         in (Bool,
+             Out.Or (e1_dec, e2_dec, pos))
+         end
 
-      in (if t1 != Bool
-          then
-            raise Fail "t1 not a bool"
-          else
-          let
-            val (t2, e2') = checkExp ftab vtab e2
-          in (
-            if t2 = Bool
-            then
-              (Bool, Out.Or (e1', e2', pos))
-            else
-              raise Fail "t2 not a bool")
-            end)
-          end
 
-    | In.Not (e, pos)
-      => let val (_, e1_dec, e2_dec) = checkBinOp ftab vtab (pos, Int, e1, e2)
-         in (Int,
-             Out.Not (e1_dec, e2_dec, pos))
+(*    | In.Not (e, pos)
+      => let val (_, e1_dec) = checkBinOp ftab vtab (pos, Bool, e1)
+         in (Bool,
+             Out.Not (e1_dec, pos))
          end
 
     | In.Negate (e, pos)
-      => let val (_, e1_dec, e2_dec) = checkBinOp ftab vtab (pos, Int, e1, e2)
+      => let val (_, e1_dec) = checkBinOp ftab vtab (pos, Int, e1)
          in (Int,
-             Out.Negate (e1_dec, e2_dec, pos))
+             Out.Negate (e1_dec, pos))
          end
-
+*)
     (* The types for e1, e2 must be the same. The result is always a Bool. *)
     | In.Equal (e1, e2, pos)
       => let val (t1, e1') = checkExp ftab vtab e1

@@ -37,15 +37,15 @@
        | "bool"         => Parser.BOOL pos
        | "char"         => Parser.CHAR pos
        | "fun"          => Parser.FUN pos
-       | "true"         => Parser.TRUE pos (* Boolean True *)
-       | "false"        => Parser.FALSE pos (* Boolean False *)
-       | "not"          => Parser.NOT pos (* Not*)
-       | "negate"       => Parser.NEGATE pos (* Negate *)
-(* specials: *)
+       | "true"         => Parser.TRUE pos
+       | "false"        => Parser.FALSE pos
+       | "not"          => Parser.NOT pos
+       | "negate"       => Parser.NEGATE pos
        | "read"         => Parser.READ pos
        | "write"        => Parser.WRITE pos
+       | "and"          => Parser.AND pos
+       | "or"           => Parser.OR pos
        | _              => Parser.ID (s, pos)
-
  }
 
 rule Token = parse
@@ -61,7 +61,6 @@ rule Token = parse
   | [`a`-`z` `A`-`Z`] [`a`-`z` `A`-`Z` `0`-`9` `_`]*
                         { keyword (getLexeme lexbuf,getPos lexbuf) }
   | `'` ([` ` `!` `#`-`&` `(`-`[` `]`-`~`] | `\`[` `-`~`]) `'`
-
                         { Parser.CHARLIT
         ((case String.fromCString (getLexeme lexbuf) of
              NONE => lexerError lexbuf "Bad char constant"
@@ -76,11 +75,9 @@ rule Token = parse
 			     getPos lexbuf) }
   | `+`                 { Parser.PLUS   (getPos lexbuf) }
   | `*`                 { Parser.TIMES  (getPos lexbuf) }
-  | `&&`                { Parser.AND    (getPos lexbuf) }
-  | `||`                { Parser.OR     (getPos lexbuf) }
   | `/`                 { Parser.DIVIDE (getPos lexbuf) }
   | `-`                 { Parser.MINUS  (getPos lexbuf) }
-  | `==`                { Parser.DEQ    (getPos lexbuf) }
+  | "=="                { Parser.DEQ    (getPos lexbuf) }
   | `=`                 { Parser.EQ     (getPos lexbuf) }
   | `<`                 { Parser.LTH    (getPos lexbuf) }
   | `(`                 { Parser.LPAR   (getPos lexbuf) }

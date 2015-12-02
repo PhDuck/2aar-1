@@ -163,9 +163,9 @@ fun compileExp e vtable place =
         , Mips.ORI (place, place, makeConst (n mod 65536)) ]
   | Constant (CharVal c, pos) => [ Mips.LI (place, makeConst (ord c)) ]
 
-  | Constant (BoolVal b, pos) => if b == "true" then
+  | Constant (BoolVal b, pos) => if b = true then
         [Mips.LI(place, makeConst(1))]
-          else if b == "false" then
+          else if b = false then
         [Mips.LI(place, makeConst(0))]
           else raise Fail "Not a boolean value given"
   (* Implement it as int from 0 to 1 *)
@@ -406,7 +406,7 @@ fun compileExp e vtable place =
       code1 @
       [ Mips.LI (place,"0")
       , Mips.BEQ (t1, "0", falseLabel) ]
-      @ code2
+      @ code2 @
       [ Mips.BEQ (t2, "0", falseLabel)
       , Mips.LI (place, "1")
       , Mips.LABEL falseLabel ]
@@ -423,9 +423,9 @@ fun compileExp e vtable place =
             code1 @
             [ Mips.LI (place,"0")
             , Mips.BEQ (t1, "1", trueLabel) ]
-            @ code2
+            @ code2 @
             [ Mips.BEQ (t2, "0", falseLabel)
-            , Mips.LI trueLabel
+            , Mips.LABEL trueLabel
             , Mips.LI (place, "1")
             , Mips.LABEL falseLabel ]    end
 

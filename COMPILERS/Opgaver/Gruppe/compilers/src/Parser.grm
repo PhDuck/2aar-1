@@ -10,7 +10,7 @@ open Fasto.UnknownTypes
 %token <(int*int)> IF THEN ELSE LET IN INT BOOL CHAR EOF
 %token <string*(int*int)> ID STRINGLIT
 %token <int*(int*int)> NUM
-%token <bool*(int*int)> BOOLLIT (* Tooken for bool *)
+%token <(int*int)> TRUE FALSE
 %token <char*(int*int)> CHARLIT
 %token <(int*int)> PLUS MINUS DEQ EQ LTH TIMES DIVIDE OR AND NOT NEGATE
 %token <(int*int)> LPAR RPAR LBRACKET RBRACKET LCURLY RCURLY
