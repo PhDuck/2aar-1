@@ -399,13 +399,17 @@ fun compileExp e vtable place =
     let val t1 = newName "and_L"
         val t2 = newName "and_R"
         val falseLabel = newName "false"
+        val trueLabel = newName "true"
         val code1 = compileExp e1 vtable t1
         val code2 = compileExp e2 vtable t2
     in
-      code1 @ [ Mips.LI (t1, "0")
-              , Mips.BEQ (t1, place, falseLabel)
-              , Mips.LI (t2, "0")
-              , Mips.LABEL falseLabel ] @ code2
+      code1 @
+      [ Mips.LI (place,"0")
+      , Mips.BEQ (t1, "0", falseLabel) ]
+      @ code2
+      [ Mips.BEQ (t2, "0", falseLabel)
+      , Mips.LI (place, "1")
+      , Mips.LABEL falseLabel ]
     end
 
   | Or (e1, e2, pos) =>
@@ -416,11 +420,14 @@ fun compileExp e vtable place =
         val code1 = compileExp e1 vtable t1
         val code2 = compileExp e2 vtable t2
     in
-      code1 @ [ Mips.LI (t1, "1")
-              , Mips.BEQ (t1, place, trueLabel)
-              , Mips.LI (t2, "0")
-              , Mips.LABEL falseLabel ] @ code2
-    end
+            code1 @
+            [ Mips.LI (place,"0")
+            , Mips.BEQ (t1, "1", trueLabel) ]
+            @ code2
+            [ Mips.BEQ (t2, "0", falseLabel)
+            , Mips.LI trueLabel
+            , Mips.LI (place, "1")
+            , Mips.LABEL falseLabel ]    end
 
   (* Indexing:
      1. generate code to compute the index
