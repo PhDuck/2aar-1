@@ -129,18 +129,24 @@ and checkExp ftab vtab (exp : In.Exp)
          end
 
 
-(*    | In.Not (e, pos)
-      => let val (_, e1_dec) = checkBinOp ftab vtab (pos, Bool, e1)
-         in (Bool,
-             Out.Not (e1_dec, pos))
-         end
+    | In.Not (e, pos)
+      =>
+      let val (q, e') = checkExp ftab vtab e
+      in
+        case (q, e') of
+         (bool, _) => (Bool, Out.Not (e', pos))
+       | _         => raise Fail "Type Error"
+     end
 
     | In.Negate (e, pos)
-      => let val (_, e1_dec) = checkBinOp ftab vtab (pos, Int, e1)
-         in (Int,
-             Out.Negate (e1_dec, pos))
-         end
-*)
+      =>
+      let val (q, e') = checkExp ftab vtab e
+      in
+        case (q, e') of
+         (Int, _) => (Int, Out.Negate (e', pos))
+        | _       => raise Fail "Type Error"
+      end
+
     (* The types for e1, e2 must be the same. The result is always a Bool. *)
     | In.Equal (e1, e2, pos)
       => let val (t1, e1') = checkExp ftab vtab e1
