@@ -39,8 +39,6 @@
        | "fun"          => Parser.FUN pos
        | "true"         => Parser.TRUE pos
        | "false"        => Parser.FALSE pos
-       | "not"          => Parser.NOT pos
-       | "negate"       => Parser.NEGATE pos
        | "read"         => Parser.READ pos
        | "write"        => Parser.WRITE pos
        | "and"          => Parser.AND pos
@@ -74,6 +72,8 @@ rule Token = parse
 							  String.size s - 2)),
 			     getPos lexbuf) }
   | `+`                 { Parser.PLUS   (getPos lexbuf) }
+  | `~`                 { Parser.NEGATE (getPos lexbuf) }
+  | `!`                 { Parser.NEGATE (getPos lexbuf) }
   | `*`                 { Parser.TIMES  (getPos lexbuf) }
   | `/`                 { Parser.DIVIDE (getPos lexbuf) }
   | `-`                 { Parser.MINUS  (getPos lexbuf) }

@@ -251,9 +251,19 @@ fun compileExp e vtable place =
       in  code1 @ code2 @ [Mips.DIV (place,t1 ,t2)]
       end
   | Not (e', pos) =>
-    raise Fail "Unimplemented feature not"
+      let
+        val t1 = newName "Not"
+        val code = compileExp e' vtable t1
+      in
+        code @ [Mips.XORI (place, "1", t1)]
+      end
   | Negate (e', pos) =>
-    raise Fail "Unimplemented feature negate"
+    let
+      val t1 = newName "Negate"
+      val code = compileExp e' vtable t1
+    in
+      code @ [Mips.XORI (place, "-1", t1)]
+    end
 
   | Let (dec, e1, pos) =>
       let val (code1, vtable1) = compileDec dec vtable

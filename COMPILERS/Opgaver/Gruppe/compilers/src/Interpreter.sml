@@ -138,25 +138,31 @@ fun evalExp ( Constant (v,_), vtab, ftab ) = v
         end
 
   | evalExp ( Plus(e1, e2, pos), vtab, ftab ) =
-        let val res1   = evalExp(e1, vtab, ftab)
-            val res2   = evalExp(e2, vtab, ftab)
-        in  case (res1, res2) of
+        let
+          val res1   = evalExp(e1, vtab, ftab)
+          val res2   = evalExp(e2, vtab, ftab)
+        in
+          case (res1, res2) of
               (IntVal n1, IntVal n2) => IntVal (n1 + n2)
             | _ => invalidOperands "Plus on non-integral args: " [(Int, Int)] res1 res2 pos
         end
 
   | evalExp ( Minus(e1, e2, pos), vtab, ftab ) =
-        let val res1   = evalExp(e1, vtab, ftab)
-            val res2   = evalExp(e2, vtab, ftab)
-        in  case (res1, res2) of
+        let
+          val res1   = evalExp(e1, vtab, ftab)
+          val res2   = evalExp(e2, vtab, ftab)
+        in
+          case (res1, res2) of
               (IntVal n1, IntVal n2) => IntVal (n1 - n2)
             | _ => invalidOperands "Minus on non-integral args: " [(Int, Int)] res1 res2 pos
         end
 
   | evalExp ( Times(e1, e2, pos), vtab, ftab ) =
-        let val res1   = evalExp(e1, vtab, ftab)
-            val res2   = evalExp(e2, vtab, ftab)
-        in  case (res1, res2) of
+        let
+          val res1   = evalExp(e1, vtab, ftab)
+          val res2   = evalExp(e2, vtab, ftab)
+        in
+          case (res1, res2) of
               (IntVal n1, IntVal n2) => IntVal (n1 * n2)
             | _ => invalidOperands "Times on non-integral args: " [(Int, Int)] res1 res2 pos
         end
@@ -180,18 +186,33 @@ fun evalExp ( Constant (v,_), vtab, ftab ) = v
         end
 
   | evalExp (Or (e1, e2, pos), vtab, ftab) =
-    let val r1 = evalExp(e1, vtab, ftab)
-        in case r1 of
+        let
+          val r1 = evalExp(e1, vtab, ftab)
+        in
+          case r1 of
                BoolVal true => BoolVal true
              | BoolVal false  => evalExp(e2, vtab, ftab)
              | _ => raise Fail "First operand none boolean"
         end
 
   | evalExp ( Not(e, pos), vtab, ftab ) =
-    raise Fail "Unimplemented feature not"
+        let
+          val r1 = evalExp(e, vtab, ftab)
+        in
+          case r1 of
+               BoolVal true => BoolVal false
+             | BoolVal false  => BoolVal true
+             | _ => raise Fail "First operand none boolean"
+        end
 
   | evalExp ( Negate(e, pos), vtab, ftab ) =
-    raise Fail "Unimplemented feature negate"
+        let
+          val r1 = evalExp(e, vtab, ftab)
+        in
+          case r1 of
+               IntVal (r1) => IntVal (~r1)
+             | _ => raise Fail "Only defined on Int "
+        end
 
   | evalExp ( Equal(e1, e2, pos), vtab, ftab ) =
         let val r1 = evalExp(e1, vtab, ftab)
