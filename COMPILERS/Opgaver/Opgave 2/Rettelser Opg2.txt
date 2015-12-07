@@ -30,8 +30,10 @@ Fix Task 1 and 2,
 take a look at the general feedback for task 3.
 It is fairly simple.
 
+::::::::::::::::::::::::
+::::GENERAL FEEDBACK::::
+::::::::::::::::::::::::
 
-::::General feedback::::
 Task 1:
 
 c)

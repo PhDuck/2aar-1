@@ -32,6 +32,8 @@
 %\caption{} til tabeller
 \usepackage{caption}
 
+\usepackage{pbox}
+
 %Skal ikke bruges i slut
 \usepackage[draft,danish]{fixme} %Danish latex book
 %\usepackage{showkeys} %Brug kun til at holde styr på labels
@@ -121,8 +123,8 @@
 \newcommand{\hmwkTitle}{Assignment\ \#2} % Assignment title
 \newcommand{\hmwkDueDate}{Sunday,\ November\ 29,\ 2015} % Due date
 \newcommand{\hmwkClass}{Compilers} % Course/class
-\newcommand{\hmwkClassTime}{} % Class/lecture time
-\newcommand{\hmwkClassInstructor}{} % Teacher/lecturer
+\newcommand{\hmwkClassTime}{Task 1, 2} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Resubmit:} % Teacher/lecturer
 \newcommand{\hmwkAuthorName}{Mirza Hasanbasic} % Your name
 
 %----------------------------------------------------------------------------------------
@@ -177,6 +179,15 @@
 %\renewcommand{\theequation}{\thesection.\arabic{equation}}
 
 
+\lstset{
+  frame=single,
+  numbers=left,
+  mathescape,
+  literate={->}{$\rightarrow$}{2}
+           {ε}{$\varepsilon$}{1}
+           {=>}{$\Rightarrow$}{2}
+}
+
 \begin{document}
 
 \maketitle
@@ -210,12 +221,10 @@ Her vil vi have et alfabet, hvor sekvensen af længden er delelig med 2 eller 3.
 \textbf{b)}
 
 \begin{align*}
-  T \rightarrow& A T B \\
+  T \rightarrow& a T b \\
   T \rightarrow& R \\
   R \rightarrow& c \\
   R \rightarrow& c R \\
-  A \rightarrow& a \\
-  B \rightarrow& b
 \end{align*}
 
 Vil producerer en context-free grammer, hvor c er tilladt til at være alene, c vil altid være mellem a og b og der vil, for hvert a være et b.
@@ -224,12 +233,20 @@ Vil producerer en context-free grammer, hvor c er tilladt til at være alene, c 
 
 \textbf{i)}
 
-Det at når man bruger \emph{\% nonassoc} indikerer at den ikke er associativ, hvor man så også bruger \emph{\% prec} til at specificere en regel
+Når man har \emph{\% prec letprec}, så specificerer det en regel, som er associativ med \emph{letprec} i dette tilfælde. I \emph{\% nonassoc} har man indikeret at \emph{letprec} ikke er associativ, altså vores \emph{LET} og \emph{IN}.
 
 \textbf{ii)}
 
+\textcolor[rgb]{0.76,0.00,0.02}{\textbf{FIX:}}
+
 Det som \emph{let} gør, er at, der gives et eller flere udtryk, som deklareres en værdi, hvor disse værdier så udgør et resultet til sidst.
 
+Hvor den første variabel består af en streng, et udtryk og så positionen af angivelsen.
+Altså, hvis så kigger, på \texttt{(Dec (\#1 \$2, \$4, \$3), \$6, \$1)}, så har vi, at \#1 \$2 vil refere til den første parameter og andet symbol, ID, som er en streng der holder navnene på variablene.
+
+\$4 vil så refere til parameteren af det fjerde i udtrykket som det vil blive båndet til. Hvor \$3 så er symbolet EQ, da det er på denne position, og dermed vil det være til et lighedstegn, som den vil blive båndet til.
+
+For at kigge på de sidste to, kigger vi på hele udtrykket, altså \texttt{Let (Dec (\#1 \$2, \$4, \$3), \$6, \$1)}. Her har vi at \$6 referer til hvilken erklæring af variablen, (Dec) vil blive brugt og hvor \$1 referer til positionen af let symbolet
 
 \end{homeworkProblem}
 
@@ -240,8 +257,49 @@ Det som \emph{let} gør, er at, der gives et eller flere udtryk, som deklareres 
 For filter, vil det altså være
 
 \[
-((\alpha\rightarrow\texttt{bool})*[\alpha])\rightarrow [\alpha] \quad \forall\alpha
+\forall\alpha \quad  ((\alpha\rightarrow\texttt{bool})*[\alpha])\rightarrow [\alpha] 
 \]
+
+\textcolor[rgb]{0.76,0.00,0.02}{\textbf{FIX:}}
+
+\textbf{b)}
+
+\begin{lstlisting}
+Check$_{Exp}$(Exp, vtable, ftable) = case Exp of
+
+    filter(p, arr_exp) =>
+        t$_{arr}$ = Check$_{Exp}$(arr$_{exp}$), vtable, ftable)
+        t$_{el}$ = case t$_{arr}$ of
+                   Array(t$_1$) -> t$_1$
+                |  other -> error()
+                
+        t$_{f}$ = lookup(ftable, name(p))
+        case t$_{f}$ of
+             (t$_{in}$ -> t$_{out}$) => if t$_{in}$ = t$_{el}$ and t$_{out}$ = bool
+                                        then t$_{arr}$
+                                        else error()
+           | _ => error()  
+\end{lstlisting}
+
+\textbf{c)}
+
+\begin{lstlisting}
+Check$_{Exp}$(Exp, vtable, ftable) = case Exp of
+
+    filter( Lambda(ret_type, id_type_lst, body), arr_exp) =>
+        t$_{body}$ = Check$_{Exp}$(body, vtable, ftable)
+        t$_{arr}$ = Check$_{Exp}$(arr$_{exp}$), vtable, ftable)
+        t$_{el}$ = case t$_{arr}$ of
+                   Array(t$_1$) -> t$_1$
+                |  other -> error()
+        t$_{in}$ = case id_type_lst of 
+                   [(_,t$_2$)] -> t$_2$
+                |  other -> error()
+        if ret_type = bool and t$_{body}$ = bool and t$_{el}$ = t$_{in}$
+        then t$_{arr}$
+        else error()
+\end{lstlisting}
+
 \end{homeworkProblem}
 
 
