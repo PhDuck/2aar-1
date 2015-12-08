@@ -16,6 +16,7 @@ open Fasto.UnknownTypes
 %token <(int*int)> LPAR RPAR LBRACKET RBRACKET LCURLY RCURLY
 %token <(int*int)> COMMA
 %token <(int*int)> FUN READ WRITE
+%token <(int*int)> IOTA
 
 %nonassoc ifprec letprec
 %left OR
@@ -75,6 +76,8 @@ Exp :     NUM            { Constant (IntVal (#1 $1), #2 $1) }
         | Exp LTH   Exp  { Less ($1, $3, $2) }
         | NOT Exp        { Not ($2, $1)      }
         | NEGATE Exp     { Negate ($2, $1)   }
+        | IOTA LPAR Exp RPAR
+                         { Iota ($3, $1)     }
         | IF Exp THEN Exp ELSE Exp %prec ifprec
                          { If ($2, $4, $6, $1) }
         | ID LPAR Exps RPAR

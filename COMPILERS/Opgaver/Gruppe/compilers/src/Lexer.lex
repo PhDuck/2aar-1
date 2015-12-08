@@ -35,8 +35,10 @@
        | "in"           => Parser.IN pos
        | "int"          => Parser.INT pos
        | "bool"         => Parser.BOOL pos
+       | "negate"       => Parser.NEGATE pos
        | "char"         => Parser.CHAR pos
        | "fun"          => Parser.FUN pos
+       | "iota"         => Parser.IOTA pos
        | "true"         => Parser.TRUE pos
        | "false"        => Parser.FALSE pos
        | "read"         => Parser.READ pos
@@ -72,8 +74,7 @@ rule Token = parse
 							  String.size s - 2)),
 			     getPos lexbuf) }
   | `+`                 { Parser.PLUS   (getPos lexbuf) }
-  | `~`                 { Parser.NEGATE (getPos lexbuf) }
-  | `!`                 { Parser.NEGATE (getPos lexbuf) }
+  | `!`                 { Parser.NOT    (getPos lexbuf) }
   | `*`                 { Parser.TIMES  (getPos lexbuf) }
   | `/`                 { Parser.DIVIDE (getPos lexbuf) }
   | `-`                 { Parser.MINUS  (getPos lexbuf) }
