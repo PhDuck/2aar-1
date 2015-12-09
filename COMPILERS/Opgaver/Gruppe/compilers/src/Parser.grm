@@ -20,10 +20,11 @@ open Fasto.UnknownTypes
 
 %nonassoc ifprec letprec
 %left OR
-%left AND
+%left AND NOT
 %left DEQ LTH
 %left PLUS MINUS
 %left TIMES DIVIDE
+
 
 %start Prog
 %type <Fasto.UnknownTypes.Prog> Prog
@@ -62,6 +63,8 @@ Params : Type ID COMMA Params
 
 Exp :     NUM            { Constant (IntVal (#1 $1), #2 $1) }
         | CHARLIT        { Constant (CharVal (#1 $1), #2 $1) }
+        | TRUE           { Constant (BoolVal true, $1) }
+        | FALSE          { Constant (BoolVal false, $1) }
         | ID             { Var $1 }
         | STRINGLIT      { StringLit $1 }
         | LCURLY Exps RCURLY
