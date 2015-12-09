@@ -45,6 +45,8 @@
        | "write"        => Parser.WRITE pos
        | "and"          => Parser.AND pos
        | "or"           => Parser.OR pos
+       | "map"          => Parser.MAP pos
+       | "fn"           => Parser.FN pos
        | _              => Parser.ID (s, pos)
  }
 
