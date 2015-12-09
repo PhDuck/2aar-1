@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Niels (ngws@metanohi.name)">
+  <title>Feedback on the milestone</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style type="text/css">
+  body {
+    color: #dddddd;
+    background-color: #222222;
+  }
+  
+  h1 {
+    border-style: dotted;
+    border-color: #ffffff;
+    border-width: 0 0 3px 0;
+  }
+  </style>
+  <script type="text/javascript" src="https://raw.githubusercontent.com/scottschiller/Snowstorm/master/snowstorm-min.js"></script>
+</head>
+<body>
+<header>
+<h1 class="title">Feedback on the milestone</h1>
+<h2 class="author">Niels <code>(ngws@metanohi.name)</code></h2>
+</header>
+<p>I have found a bug! You have not provided a precedence rule for <code>NOT</code>. This part in the parser</p>
+<pre><code>%nonassoc ifprec letprec
+%left OR
+%left AND
+%left DEQ LTH
+%left PLUS MINUS
+%left TIMES DIVIDE</code></pre>
+<p>needs to be extended to also have a rule for <code>NOT</code>. Details about this are on page 11 of the group project PDF.</p>
+<p>Your short-circuiting is nice, both in the interpreter and the code generator! However, I cannot automatically verify it with the provided <code>short-circuit.fo</code> test, since your parser doesn’t yet handle <code>true</code> and <code>false</code> literals. Please fix that so that I can run my tests. :(</p>
+<p>I cannot say much more about your code, but keep up the good work!</p>
+<p>What you need to do now, apart from coding the rest, is:</p>
+<ul>
+<li>write a report, and</li>
+<li>write extra tests (we really haven’t handed out that many)</li>
+</ul>
+<p>We’ll hand out a report guide shortly.</p>
+<p>If you don’t think that you can finish both task 2 and task 3, try to complete part of task 2 and part of task 3, and write about your solution attempts in your report.</p>
+</body>
+</html>
