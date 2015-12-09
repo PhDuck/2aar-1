@@ -236,7 +236,10 @@ and checkExp ftab vtab (exp : In.Exp)
       end
 
     | In.Map (f, arr_exp, _, _, pos)
-      => raise Fail "Unimplemented feature map"
+      => let 
+          val ()
+
+          raise Fail "Unimplemented feature map"
 
     | In.Reduce (f, n_exp, arr_exp, _, pos)
       => raise Fail "Unimplemented feature reduce"
