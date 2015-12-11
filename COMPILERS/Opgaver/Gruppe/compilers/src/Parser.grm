@@ -83,7 +83,7 @@ Exp :     NUM            { Constant (IntVal (#1 $1), #2 $1) }
         | NEGATE Exp     { Negate ($2, $1)   }
         | IOTA LPAR Exp RPAR
                          { Iota ($3, $1)     }
-        | MAP FUN EXP    { Map ($3, $2) }
+        | MAP FUN Exp    { Map ($3, $2) }
         | IF Exp THEN Exp ELSE Exp %prec ifprec
                          { If ($2, $4, $6, $1) }
         | ID LPAR Exps RPAR
