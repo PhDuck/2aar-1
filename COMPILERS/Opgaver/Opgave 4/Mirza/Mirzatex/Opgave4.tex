@@ -1,0 +1,439 @@
+
+% Document class: article with font size 11pt
+% ---------------
+\documentclass[11pt,a4paper]{report}
+
+% Call packages
+% ---------------
+\usepackage{comment} %Possible to comment larger sections
+%http://get-software.net/macros/latex/contrib/comment/comment.pdf
+\usepackage[T1]{fontenc} %oriented to output, that is, what fonts to use for printing characters.
+\usepackage[utf8]{inputenc} %allows the user to input accented characters directly from the keyboard
+%Put fontenc before inputenc
+\usepackage{fourier} %Better typeface
+%http://mirrors.dotsrc.org/ctan/fonts/fourier-GUT/doc/latex/fourier/fourier-doc-en.pdf
+\usepackage[danish]{babel}														     % Danish
+\usepackage[protrusion=true,expansion=true]{microtype}				                 % Better typography
+%http://www.khirevich.com/latex/microtype/
+\usepackage{amsmath,amsfonts,amsthm, amssymb}							 % Math packages
+\usepackage[pdftex]{graphicx} %puts to pdf and graphic
+%http://www.kwasan.kyoto-u.ac.jp/solarb6/usinggraphicx.pdf
+\usepackage{xcolor,colortbl}
+%http://mirrors.dotsrc.org/ctan/macros/latex/contrib/xcolor/xcolor.pdf
+%http://texdoc.net/texmf-dist/doc/latex/colortbl/colortbl.pdf
+\usepackage{tikz} %documentation http://www.ctan.org/pkg/pgf
+\usetikzlibrary{matrix}
+\usepackage{parskip} %http://www.ctan.org/pkg/parskip
+%http://tex.stackexchange.com/questions/51722/how-to-properly-code-a-tex-file-or-at-least-avoid-badness-10000
+%Never use \\ but instead press "enter" twice. See second website for more info
+\usepackage{natbib}
+%\usepackage{tablefootnote}
+%Brug H for figur lige HER!!
+\usepackage{float}
+%\caption{} til tabeller
+\usepackage{caption}
+
+\usepackage{pbox}
+
+%Skal ikke bruges i slut
+\usepackage[draft,danish]{fixme} %Danish latex book
+%\usepackage{showkeys} %Brug kun til at holde styr på labels
+
+%%--------------------------------
+%Til at vise links i pdf filen så man kan hoppe frem og tilbage
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={blue!35!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+
+\usepackage[top=1in, bottom=1.25in, left=1.25in, right=1.25in, footskip=0.25in]{geometry}
+
+\linespread{1.15} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkClass\: \hmwkTitle} % Top center head
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \protect\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Task \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Assignment\ \#3} % Assignment title
+\newcommand{\hmwkDueDate}{Sunday,\ December\ 13,\ 2015} % Due date
+\newcommand{\hmwkClass}{Compilers} % Course/class
+\newcommand{\hmwkClassTime}{} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Mirza Hasanbasic} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{} % Insert date here if you want it to appear below your name
+
+
+%----------------------------------------------------------------------------------------
+%	MATH
+%----------------------------------------------------------------------------------------
+%\newcommand{\Real}{\mathbb R}
+%\newcommand{\Complex}{\mathbb C}
+%\newcommand{\Field}{\mathbb F}
+%\newcommand{\RPlus}{[0,\infty)}
+%%
+%\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+%\newcommand{\essnorm}[1]{\norm{#1}_{\text{\rm\normalshape ess}}}
+%\newcommand{\abs}[1]{\left\vert#1\right\vert}
+%\newcommand{\set}[1]{\left\{#1\right\}}
+%\newcommand{\seq}[1]{\left<#1\right>}
+%\newcommand{\eps}{\varepsilon}
+%\newcommand{\To}{\longrightarrow}
+%\newcommand{\RE}{\operatorname{Re}}
+%\newcommand{\IM}{\operatorname{Im}}
+%\newcommand{\Poly}{{\cal{P}}(E)}
+%\newcommand{\EssD}{{\cal{D}}}
+%% THEOREMS ----------------------------------------------------------------
+%\theoremstyle{plain}
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{cor}[thm]{Corollary}
+%\newtheorem{lem}[thm]{Lemma}
+%\newtheorem{prop}[thm]{Proposition}
+%%
+%\theoremstyle{definition}
+%\newtheorem{defn}{Definition}[section]
+%%
+%\theoremstyle{remark}
+%\newtheorem{rem}{Remark}[section]
+%%
+%\numberwithin{equation}{section}
+%\renewcommand{\theequation}{\thesection.\arabic{equation}}
+
+
+\lstset{
+  frame=single,
+  numbers=left,
+  mathescape,
+  literate={->}{$\rightarrow$}{2}
+           {ε}{$\varepsilon$}{1}
+           {=>}{$\Rightarrow$}{2}
+}
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\newpage
+\tableofcontents
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+% To have just one problem per page, simply put a \clearpage after each problem
+
+
+\begin{homeworkProblem}
+Det skal siges, at jeg har vedhæftet en .txt fil, så du lettere kan afprøve koden som er skrevet. Det der står i dokumentet er til det visuelle.
+
+\section*{\textbf{a})}
+
+Vi har
+
+\begin{lstlisting}
+vtable = [a -> v, b -> w];
+
+while (b != 0) && (a/b != 0)
+	if b < a then {a := a - b}
+			 else {b := b - a}
+\end{lstlisting}
+
+Hvor intermediate koden er
+
+\begin{lstlisting}
+t_0 = v
+t_1 = w
+LABEL LoopStart
+IF t_1 != 0 then NEXT0 else END (Brug rigtig syntax i tex filen !=)
+LABEL NEXT0
+t_2 = t_0 mod t_1
+IF t_2 != 0 then NEXT1 else END
+LABEL NEXT1
+t_3 = t_1 - t_0
+IF t_3 < 0 then NEXT2 else NEXT3
+LABEL NEXT2
+t_0 = t_0 - t_1
+GOTO LoopStart
+LABE NEXT3
+t_1 = t_1 - t_0
+GOTO LoopStart
+LABEL END
+\end{lstlisting}
+
+og MIPS koden vil være
+
+\newpage
+\begin{lstlisting}[mathescape=false]
+.data
+	a: .word 8
+	b: .word 33
+.text
+main:
+lw $t0, a			\# load 8
+lw $t1, b			\# load 33
+LoopStart:			\# LABEL
+beq $t1, $0, END	        \# Checking if t1 == 0
+div $t0, $t1			\# dividing to get modulus
+mfhi $t2			\# Getting the remainder, moving to $t2
+beq $t2, $0, END		\# checking if t2 == 0
+sub $t3, $t1, $t0		\# t3 = t1 - t0
+bgez $t3, ELSE			\# t3 >= 0
+sub $t0, $t0, $t1		\# first then statement a = a - b
+j LoopStart			\# jumping to loopstart
+ELSE:				   \# Now else statement
+sub $t1, $t1, $t0		\# b = b - a
+j LoopStart
+END:
+				\# tinyurl.com/neve79o
+li $v0, 1		     \# printer udregnet variable ud.
+add $a0, $t0, $zero		
+syscall					
+
+li $v0, 11				
+li $a0, 10				
+syscall					
+
+li $v0, 1				
+add $a0, $t1, $zero		
+syscall					  			
+\end{lstlisting}
+
+\section*{\textbf{b})}
+
+\begin{lstlisting}
+Li t0, x
+Li t1, y
+Li t2, 1
+Slt t3, t1, t0
+Slt t4, t3, t2
+\end{lstlisting}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\section*{\textbf{a})}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+i  & succ{[}i{]} & gen{[}i{]} & kill{[}i{]} \\ \hline
+1  & 2           &            &             \\ \hline
+2  & 7,3         & a,b        &             \\ \hline
+3  & 4           &            &             \\ \hline
+4  & 5           & a          & t           \\ \hline
+5  & 6           & b          & a           \\ \hline
+6  & 7           & t          & b           \\ \hline
+7  & 8           &            &             \\ \hline
+8  & 9           &            & z           \\ \hline
+9  & 10          & b,a        & b           \\ \hline
+10 & 1,11        & b,z        &             \\ \hline
+11 &             &            &             \\ \hline
+12 &             &            &             \\ \hline
+\end{tabular}
+\end{table}
+
+\section*{\textbf{b})}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l||l|l||l|l||l|l|}
+\hline
+\multicolumn{3}{|c||}{Initial} & \multicolumn{2}{c||}{Iteration 1} & \multicolumn{2}{c|}{Iteration 2} \\ \hline
+i   & out{[}i{]}  & in{[}i{]} & out{[}i{]}      & in{[}in{]}     & out{[}i{]}      & in{[}in{]}     \\ \hline
+1   &             &           &     a,b         &    a,b         &    a,b          &   a,b          \\ \hline
+2   &             &           &     a,b         &    a,b         &    a,b          &   a,b          \\ \hline
+3   &             &           &     a,b         &    a,b         &    a,b          &   a,b          \\ \hline
+4   &             &           &     b,t         &    a,b         &    b,t          &   a,b          \\ \hline
+5   &             &           &     a,t         &    b,t         &    a,t          &   b,t          \\ \hline
+6   &             &           &     a,b         &    a,t         &    a,b          &   a,t          \\ \hline
+7   &             &           &     a,b         &    a,b         &    a,b          &   a,b          \\ \hline
+8   &             &           &     a,b,z       &    a,b         &    a,b,z        &   a,b          \\ \hline
+9   &             &           &     b,z         &    a,b,z       &    a,b,z        &   a,b,z        \\ \hline
+10  &             &           &                 &    b,z         &    a,b          &   a,b,z        \\ \hline
+11  &             &           &                 &                &                 &                \\ \hline
+12  &             &           &     a           &    a           &     a           &    a           \\ \hline
+\end{tabular}
+\end{table}
+
+\section*{\textbf{c})}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  i & left & interferes with \\ \hline 
+  4 & t & a,b \\ \hline
+  5 & a & b,t \\ \hline
+  6 & b & a,t \\ \hline
+  8 & z & a,b \\ \hline
+  9 & b & a,z \\ \hline
+\end{tabular}
+\end{table}
+
+\[
+\begin{tikzpicture}[-, node distance=40mm]
+    \node (start)                           {A};
+    \node (below) [below of = start]        {Z};
+    \node (right) [right of = start]        {B};
+    \node (belowRight) [below of = right]   {T};
+    
+    \path (start) edge node {} (below)
+          (start) edge node {} (belowRight)
+          (start) edge node {} (right)
+          (right) edge node {} (belowRight)
+          (right) edge node {} (below);
+\end{tikzpicture}
+\]
+
+\section*{\textbf{d})}
+
+
+
+\[
+\begin{tikzpicture}[-, node distance=40mm]
+    \node (start)                           {\color{red}A};
+    \node (below) [below of = start]        {\color{blue}Z};
+    \node (right) [right of = start]        {\color{green}B};
+    \node (belowRight) [below of = right]   {\color{blue}T};
+
+    \path (start) edge node {} (below)
+          (start) edge node {} (belowRight)
+          (start) edge node {} (right)
+          (right) edge node {} (belowRight)
+          (right) edge node {} (below);
+\end{tikzpicture}
+\]
+
+\section*{\textbf{e})}
+
+\[
+\begin{tikzpicture}[-, node distance=40mm]
+    \node (start)                           {A};
+    \node (below) [below of = start]        {\color{blue}Z};
+    \node (right) [right of = start]        {\color{green}B};
+    \node (belowRight) [below of = right]   {\color{blue}T};
+
+    \path (start) edge node {} (below)
+          (start) edge node {} (belowRight)
+          (start) edge node {} (right)
+          (right) edge node {} (belowRight)
+          (right) edge node {} (below);
+\end{tikzpicture}
+\]
+
+\begin{lstlisting}
+gcd(a,b) {
+    M[address$_a$] := a
+    LABEL start
+    a$_i$ := M[address$_a$]
+    IF a$_i$ < b THEN next ELSE swap
+    LABEL swap
+    a$_i$ := M[address$_a$]
+    t := a$_i$
+    a$_i$ := b
+    M[address$_a$] = a$_i$
+    b := t
+    LABEL next
+    z := 0
+    a$_i$ = M[address$_a$]
+    b := b mod a$_i$
+    IF b = z THEN end ELSE start
+    LABEL end
+    a := M[address$_a$]
+    RETURN a
+}
+\end{lstlisting}
+  
+\end{homeworkProblem}
+
+
+\end{document} 
