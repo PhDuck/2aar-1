@@ -239,7 +239,7 @@ and checkExp ftab vtab (exp : In.Exp)
       =>
       let
           val (arr_type, arr_dec) = checkExp ftab vtab arr_exp
-          val (f_type, f_dec)     = checkFunArg f ftab vtab pos
+          val (f_type, f_dec)     = checkExp ftab vtab f
       in
           if arr_type = Array f_type
           then (Array f_type, Out.Map(f_dec, arr_dec, arr_type, f_type, pos))
