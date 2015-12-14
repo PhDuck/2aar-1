@@ -236,11 +236,16 @@ and checkExp ftab vtab (exp : In.Exp)
       end
 
     | In.Map (f, arr_exp, _, _, pos)
-      => let 
-          val ()
-
-          raise Fail "Unimplemented feature map"
-
+      =>
+      let
+          val (arr_type, arr_dec) = checkExp ftab vtab arr_exp
+          val (f_type, f_dec)     = checkFunArg f ftab vtab pos
+      in
+          if arr_type = Array f_type
+          then (Array f_type, Out.Map(f_dec, arr_dec, arr_type, f_type, pos))
+          else raise Error ("Map: wrong argument type " ^
+                              ppType arr_type, pos)
+      end
     | In.Reduce (f, n_exp, arr_exp, _, pos)
       => raise Fail "Unimplemented feature reduce"
 
