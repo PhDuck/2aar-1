@@ -287,8 +287,17 @@ fun evalExp ( Constant (v,_), vtab, ftab ) = v
            | _ => raise Error("Iota argument is not a number: "^ppVal 0 sz, pos)
     end
 
-  | evalExp ( Map (farg, arrexp, _, _, pos), vtab, ftab ) =
-    raise Fail "Unimplemented feature map"
+  | evalExp ( Map (FunName farg, arrexp, _, _, pos), vtab, ftab ) =
+    let
+      val evalued_arr = case evalExp(arrexp, vtab, ftab) of
+        ArrayVal(arr, t) => arr
+        | _ => raise Error("Map: Last val in array not array",pos)
+      val fexp = SymTab.lookup farg ftab
+    in
+      case fexp of
+        NONE   => raise Error("Call to known function ", pos)
+      | SOME f => List.map f evalued_arr
+    end
 
   | evalExp ( Reduce (farg, ne, arrexp, tp, pos), vtab, ftab ) =
     raise Fail "Unimplemented feature reduce"
