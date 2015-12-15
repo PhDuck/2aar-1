@@ -22,7 +22,7 @@ open Fasto.UnknownTypes
 %nonassoc ifprec letprec
 %left OR
 %left AND NOT
-%left DEQ LTH
+%left DEQ LTH NEGATE
 %left PLUS MINUS
 %left TIMES DIVIDE
 

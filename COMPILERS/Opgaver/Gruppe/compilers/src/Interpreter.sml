@@ -168,13 +168,15 @@ fun evalExp ( Constant (v,_), vtab, ftab ) = v
         end
 
   | evalExp ( Divide(e1, e2, pos), vtab, ftab ) =
-        let val res1   = evalExp(e1, vtab, ftab)
-            val res2   = evalExp(e2, vtab, ftab)
-
-        in  if res2 = IntVal 0 then raise Fail "Division by zero"
-            else case (res1, res2) of
-              (IntVal n1, IntVal n2) => IntVal (n1 div n2)
-            | _ => invalidOperands "Divide on non-integral args: " [(Int, Int)] res1 res2 pos
+        let
+          val res1   = evalExp(e1, vtab, ftab)
+          val res2   = evalExp(e2, vtab, ftab)
+        in
+          if res2 = IntVal 0 then raise Fail "Division by zero"
+            else
+              case (res1, res2) of
+                (IntVal n1, IntVal n2) => IntVal( Int.quot(n1, n2))
+                | _ => invalidOperands "Divide on non-integral args: " [(Int, Int)] res1 res2 pos
         end
 
   | evalExp (And (e1, e2, pos), vtab, ftab) =
@@ -291,7 +293,7 @@ fun evalExp ( Constant (v,_), vtab, ftab ) = v
     let
       val evalued_arr = case evalExp(arrexp, vtab, ftab) of
         ArrayVal(arr, t) => arr
-        | _ => raise Error("Map: Last val in array not array",pos)
+        | _ => raise Error("Map: Last val in array not array", pos)
       val fexp = SymTab.lookup farg ftab
     in
       case fexp of
