@@ -44,3 +44,4 @@ Temporary Items
 *.xml
 COMPILERS/Opgaver/Gruppe/.idea/Gruppe.iml
 ../bin/fasto
+COMPILERS/Opgaver/Gruppe/compilers/src/Parser.sig
