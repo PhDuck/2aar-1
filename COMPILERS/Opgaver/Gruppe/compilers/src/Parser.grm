@@ -86,7 +86,7 @@ Exp :     NUM            { Constant (IntVal (#1 $1), #2 $1) }
         | MAP LPAR ID COMMA Exp RPAR
                          { Map ( FunName (#1 $3), $5, (), (), $1) }
         | MAP LPAR FN Type LPAR Type ID RPAR FNEQ Exp COMMA Exp RPAR 
-                         { Map ( Lambda ($4, [Param(#1 $7, $6)], $10, $3), $11, (), (), $1) }
+                         { Map ( Lambda ($4, [Param(#1 $7, $6)], $10, $3), $12, (), (), $1) }
         | IF Exp THEN Exp ELSE Exp %prec ifprec
                          { If ($2, $4, $6, $1) }
         | ID LPAR Exps RPAR
