@@ -51,7 +51,7 @@ fun copyConstPropFoldExp vtable e =
             Negate(e2', pos)          (* Multiplication by minus one x * -1 = -x *)
           | (_, Constant (IntVal 1, _))   =>
             e1'                       (* Multiplication by one x * 1 = x *)
-          | (_, Constant (IntVal 1, _))   =>
+          | (_, Constant (IntVal ~1, _))   =>
             Negate(e1', pos)          (* Multiplication by minus one x * -1 = -x *)
           | _                             =>
             Times(e1', e2', pos)
