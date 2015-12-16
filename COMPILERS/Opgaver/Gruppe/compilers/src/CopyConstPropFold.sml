@@ -31,20 +31,8 @@ fun copyConstPropFoldExp vtable e =
       | Let (Dec (name, e, decpos), body, pos) =>
         let val e' = copyConstPropFoldExp vtable e
         in case e' of
-               Var (varname, _) => (case SymTab.lookup varname vtable of
-                      SOME (VarProp newname)  =>  let val vtable1 = SymTab.bind varname newname vtable  (*   (v,vname)::vtable   *)
-                                                      val body' = copyConstPropFoldExp vtable1 body
-                                                  in Let (Dec (newname, e', decpos), body' pos)
-                                                  end
-                    | _                       => Let (Dec (name, e' decpos), body, pos)
-                      )
-             | Constant (value, _) => (case SymTab.lookup varname vtable of
-                      SOME (ConstProp value)  =>  let val vtable1 = SymTab.bind value varname vtable  (*   (v,vname)::vtable   *)
-                                                      val body' = copyConstPropFoldExp vtable1 body
-                                                  in Let (Dec (name, e', decpos), body' pos)
-                                                  end
-                    | _                       => Let (Dec (name, e' decpos), body, pos)
-                      )
+               Var (varname, _) => raise Fail""
+             | Constant (value, _) => raise Fail""
              | Let (Dec bindee, inner_body, inner_pos) =>
                raise Fail "Cannot copy-propagate Let yet"
              | _ => (* Fallthrough - for everything else, do nothing *)
@@ -55,17 +43,17 @@ fun copyConstPropFoldExp vtable e =
       | Times (e1, e2, pos) =>
         let val e1' = copyConstPropFoldExp vtable e1
             val e2' = copyConstPropFoldExp vtable e2
-        in case (e1', e2') of 
-          (Constant (IntVal x, _), Constant (intVal y, _)) => Constant (IntVal (x*y), pos)
-          | (Constant                 (IntVal 1, _), _)   => 
+        in case (e1', e2') of
+          (Constant (IntVal x, _), Constant (IntVal y, _)) => Constant (IntVal (x*y), pos)
+          | (Constant                 (IntVal 1, _), _)   =>
             e2' (* Multiplication by one x * 1 = x *)
-          | (Constant (IntVal 1, _), _)   => 
+          | (Constant (IntVal ~1, _), _)   =>
             Negate(e2', pos)          (* Multiplication by minus one x * -1 = -x *)
-          | (_, Constant (IntVal 1, _))   => 
+          | (_, Constant (IntVal 1, _))   =>
             e1'                       (* Multiplication by one x * 1 = x *)
-          | (_, Constant (IntVal 1, _))   => 
+          | (_, Constant (IntVal 1, _))   =>
             Negate(e1', pos)          (* Multiplication by minus one x * -1 = -x *)
-          | _                             => 
+          | _                             =>
             Times(e1', e2', pos)
         end
       | And (e1, e2, pos) =>
@@ -157,7 +145,7 @@ fun copyConstPropFoldExp vtable e =
                    handle Div => Divide (e1', e2', pos))
               | (_, Constant (IntVal 1, _)) =>
                 e1' (* Division by minus one x / 1 = x *)
-              | (_, Constant (IntVal -1, _)) =>
+              | (_, Constant (IntVal ~1, _)) =>
                 Negate(e1', pos) (* Division by minus one x / -1 = -x *)
               | _ => Divide (e1', e2', pos)
         end
