@@ -31,10 +31,20 @@ fun copyConstPropFoldExp vtable e =
       | Let (Dec (name, e, decpos), body, pos) =>
         let val e' = copyConstPropFoldExp vtable e
         in case e' of
-               Var (varname, _) =>
-               raise Fail "Cannot copy-propagate Var yet" 
-             | Constant (value, _) =>
-               raise Fail "Cannot copy-propagate Constant yet"
+               Var (varname, _) => (case SymTab.lookup varname vtable of
+                      SOME (VarProp newname)  =>  let val vtable1 = SymTab.bind varname newname vtable  (*   (v,vname)::vtable   *)
+                                                      val body' = copyConstPropFoldExp vtable1 body
+                                                  in Let (Dec (newname, e', decpos), body' pos)
+                                                  end
+                    | _                       => Let (Dec (name, e' decpos), body, pos)
+                      )
+             | Constant (value, _) => (case SymTab.lookup varname vtable of
+                      SOME (ConstProp value)  =>  let val vtable1 = SymTab.bind value varname vtable  (*   (v,vname)::vtable   *)
+                                                      val body' = copyConstPropFoldExp vtable1 body
+                                                  in Let (Dec (newname, e', decpos), body' pos)
+                                                  end
+                    | _                       => Let (Dec (name, e' decpos), body, pos)
+                      )
              | Let (Dec bindee, inner_body, inner_pos) =>
                raise Fail "Cannot copy-propagate Let yet"
              | _ => (* Fallthrough - for everything else, do nothing *)
@@ -119,7 +129,7 @@ fun copyConstPropFoldExp vtable e =
         in case e1' of
                Constant (BoolVal b, _) => if b
                                           then copyConstPropFoldExp vtable e2
-                                          else copyConstPropFoldExp vtable e2
+                                          else copyConstPropFoldExp vtable e3
              | _ => If (e1',
                         copyConstPropFoldExp vtable e2,
                         copyConstPropFoldExp vtable e3,
