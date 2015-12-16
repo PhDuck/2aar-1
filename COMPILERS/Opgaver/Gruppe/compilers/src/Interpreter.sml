@@ -288,17 +288,16 @@ fun evalExp ( Constant (v,_), vtab, ftab ) = v
                                  ^ Int.toString(size), pos)
            | _ => raise Error("Iota argument is not a number: "^ppVal 0 sz, pos)
     end
-
-  | evalExp ( Map (FunName farg, arrexp, _, _, pos), vtab, ftab ) =
+(*evalFunArg (FunName fid, vtab, ftab, callpos, aargs) =*)
+  | evalExp ( Map (farg, arrexp, _, _, pos), vtab, ftab ) =
     let
-      val evalued_arr = case evalExp(arrexp, vtab, ftab) of
-        ArrayVal(arr, t) => arr
-        | _ => raise Error("Map: Last val in array not array", pos)
-      val fexp = SymTab.lookup farg ftab
+      val return_type = rtpFunArg(farg, ftab, pos)
+      val evaluated_arr = case evalExp(arrexp, vtab, ftab) of
+        ArrayVal(arr, _) => arr
+        | _ => raise Error("Map: Array expressions does not evaluate to ArrayVal", pos)
+      val map_result = map(fn x => evalFunArg(farg, vtab, ftab, pos, [x])) evaluated_arr
     in
-      case fexp of
-        NONE   => raise Error("Call to known function ", pos)
-      | SOME f => List.map f evalued_arr
+      ArrayVal(map_result, return_type)
     end
 
   | evalExp ( Reduce (farg, ne, arrexp, tp, pos), vtab, ftab ) =
