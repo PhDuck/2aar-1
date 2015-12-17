@@ -40,7 +40,7 @@ i \texttt{Parser.grm} er begge blevet implementeret som tokens og expresseion
         | TRUE           { Constant (BoolVal true, $1) }
         | FALSE          { Constant (BoolVal false, $1) }
 \end{lstlisting}
-ss
+Som vi gjorde med \texttt{TRUE} og \texttt{FALSE}, så skal der også defineres en rule token for \texttt{TIMES} og \texttt{DIVIDE} inde i \texttt{Lexer.lex}, og der laves det samme som med \texttt{TRUE}. Det samme gælder for selve token, hvor det er en \texttt{(int*int)}. Selve precedence level af \texttt{TIMES} og \texttt{DIVIDE} er den højste, dvs. at $4 + 2 \cdot 3$ betyder $4 + (2 \cdot 3)$
 
 
 %HUSK: Laver hjælpe funktion til task 2: Mips load i Codegen linie 80ish
