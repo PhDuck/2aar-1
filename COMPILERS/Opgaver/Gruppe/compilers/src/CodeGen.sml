@@ -552,16 +552,21 @@ fun compileExp e vtable place =
         val loop_beg  = newName "loop_beg"
         val loop_end  = newName "loop_end"
         val tmp_reg   = newName "tmp_reg"
+        val tmp2_reg   = newName "tmp2_reg"
+        val tmp3_reg   = newName "tmp3_reg"
 
         val loop_header = [ Mips.LABEL (loop_beg)
                             , Mips.SUB (tmp_reg, i_reg, size_reg)
                             , Mips.BGEZ (tmp_reg, loop_end) ]
-        val load_arg = [mipsLoad elem_size (tmp_reg, addr_reg, "0")]
-        val loop_map = applyRegs(farg, [tmp_reg], tmp_reg, pos)
-        val save_res = [mipsStore ret_size (result_reg, tmp_reg, "0") ]
+
+        val load_arg = [mipsLoad elem_size (tmp2_reg, addr_reg, "0")]
+
+        val loop_map = applyRegs(farg, [tmp2_reg], tmp3_reg, pos)
+
+        val save_res = [mipsStore ret_size (tmp3_reg, result_reg, "0") ]
         
         val loop_footer = [ Mips.ADDI (addr_reg, addr_reg, makeConst (elemSizeToInt elem_size))
-                            , Mips.ADDI (result_reg, place, makeConst (elemSizeToInt ret_size))
+                            , Mips.ADDI (result_reg, result_reg, makeConst (elemSizeToInt ret_size))
                             , Mips.ADDI (i_reg, i_reg, "1")
                             , Mips.J loop_beg
                             , Mips.LABEL loop_end
