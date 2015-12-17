@@ -77,6 +77,11 @@ fun mipsStore elem_size = case elem_size of
                               One => Mips.SB
                             | Four => Mips.SW
 
+(* Pick the correct store instruction from the element size. *)
+fun mipsLoad elem_size = case elem_size of
+                              One => Mips.LB
+                            | Four => Mips.LW
+
 (* generates the code to check that the array index is within bounds *)
  fun checkBounds(arr_beg, ind_reg, (line,c)) =
       let val size_reg = newName "size_reg"
@@ -262,7 +267,7 @@ fun compileExp e vtable place =
       val t1 = newName "Negate"
       val code = compileExp e' vtable t1
     in
-      code @ [Mips.XORI (place, "-1", t1)]
+      code @ [Mips.SUB (place, "0", t1)]
     end
 
   | Let (dec, e1, pos) =>
@@ -527,9 +532,52 @@ fun compileExp e vtable place =
          @ loop_footer
       end
 
-  | Map (farg, arr_exp, elem_type, ret_type, pos) =>
-    raise Fail "Unimplemented feature map"
+  | Map (FunName farg, arr_exp, elem_type, ret_type, pos) =>
+    let val elem_size = getElemSize elem_type
+        val ret_size = getElemSize ret_type
+        
+        val addr_reg = newName "addr_reg"
+        val addr_code = compileExp arr_exp vtable addr_reg
+        
+        val size_reg = newName "size_reg"
+        val size_code = [Mips.LW(size_reg, addr_reg, "0")]
+        
+        val result_reg = newName "result_reg"
+        
+        val i_reg = newName "i_reg"
+          val init_regs = [ Mips.ADDI (result_reg, place, "4")
+                          , Mips.ADDI (addr_reg, addr_reg, "4")
+                          , Mips.MOVE (i_reg, "0") ]
 
+        val loop_beg  = newName "loop_beg"
+        val loop_end  = newName "loop_end"
+        val tmp_reg   = newName "tmp_reg"
+
+        val loop_header = [ Mips.LABEL (loop_beg)
+                            , Mips.SUB (tmp_reg, i_reg, size_reg)
+                            , Mips.BGEZ (tmp_reg, loop_end) ]
+        val load_arg = [mipsLoad elem_size (tmp_reg, addr_reg, "0")]
+        val loop_map = applyRegs(farg, [tmp_reg], tmp_reg, pos)
+        val save_res = [mipsStore ret_size (result_reg, tmp_reg, "0") ]
+        
+        val loop_footer = [ Mips.ADDI (addr_reg, addr_reg, "elemSizeToInt elem_size")
+                            , Mips.ADDI (result_reg, place, "elemSizeToInt ret_size")
+                            , Mips.ADDI (i_reg, i_reg, "1")
+                            , Mips.J loop_beg
+                            , Mips.LABEL loop_end
+                            ]
+        in addr_code
+          @ size_code
+          @ dynalloc (size_reg, place, ret_type)
+          @ init_regs
+          @ loop_header
+          @ load_arg
+          @ loop_map
+          @ save_res
+          @ loop_footer
+        end
+  | Map (farg, arr_exp, elem_type, ret_type, pos) =>
+    raise Fail "Unimplemented feated lambda map"
   (* reduce(f, acc, {x1, x2, ...}) = f(..., f(x2, f(x1, acc))) *)
   | Reduce (binop, acc_exp, arr_exp, tp, pos) =>
     raise Fail "Unimplemented feature reduce"
