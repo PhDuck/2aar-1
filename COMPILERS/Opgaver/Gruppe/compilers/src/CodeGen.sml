@@ -534,13 +534,13 @@ fun compileExp e vtable place =
 
   | Map (FunName farg, arr_exp, elem_type, ret_type, pos) =>
     let val elem_size = getElemSize elem_type
-        val ret_size = getElemSize ret_type
+        val ret_size  = getElemSize ret_type
         
-        val addr_reg = newName "addr_reg"
+        val addr_reg  = newName "addr_reg"
         val addr_code = compileExp arr_exp vtable addr_reg
         
-        val size_reg = newName "size_reg"
-        val size_code = [Mips.LW(size_reg, addr_reg, "0")]
+        val size_reg  = newName "size_reg"
+        val size_code = [Mips.LW(size_reg, addr_reg, " 0")]
         
         val result_reg = newName "result_reg"
         
@@ -552,8 +552,8 @@ fun compileExp e vtable place =
         val loop_beg  = newName "loop_beg"
         val loop_end  = newName "loop_end"
         val tmp_reg   = newName "tmp_reg"
-        val tmp2_reg   = newName "tmp2_reg"
-        val tmp3_reg   = newName "tmp3_reg"
+        val tmp2_reg  = newName "tmp2_reg"
+        val tmp3_reg  = newName "tmp3_reg"
 
         val loop_header = [ Mips.LABEL (loop_beg)
                             , Mips.SUB (tmp_reg, i_reg, size_reg)
