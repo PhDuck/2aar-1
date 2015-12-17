@@ -7,7 +7,7 @@
 
 \begin{document}
 
-\overfullrule=2cm %Fjern til slut
+%\overfullrule=2cm %Fjern til slut
 
 \setcounter{page}{0}
 \renewcommand\thepage{\roman{page}}
@@ -16,7 +16,7 @@
 
 \tableofcontents
 
-
+\newpage
 
 \setcounter{page}{1}
 \renewcommand\thepage{\arabic{page}}
@@ -25,7 +25,25 @@
 % Tekst her
 %%%---
 
+For at løse opgaver i task 1, kigger vi kun på \texttt{Lexer.lex}, \texttt{Parser.grm}, \texttt{Interpreter.sml}, \texttt{Typerchecker.sml} og \texttt{codegen.sml}.
 
+Hvis vi, tager det slavisk, som i den rækkefølge de skal løses i. Det vil sige, for at implentere \texttt{TRUE} og \texttt{FALSE}, så skal de først defineres i \texttt{Lexer.lex} under keywords, der indsættes
+\begin{lstlisting}[firstnumber=42]
+       | "true"         => Parser.TRUE pos
+       | "false"        => Parser.FALSE pos
+\end{lstlisting}
+i \texttt{Parser.grm} er begge blevet implementeret som tokens og expresseion
+\begin{lstlisting}[firstnumber=13]
+%token <(int*int)> TRUE FALSE
+\end{lstlisting}
+\begin{lstlisting}[mathescape=false,firstnumber=68]
+        | TRUE           { Constant (BoolVal true, $1) }
+        | FALSE          { Constant (BoolVal false, $1) }
+\end{lstlisting}
+
+
+
+%HUSK: Laver hjælpe funktion til task 2: Mips load i Codegen linie 80ish
 
 %%%---
 % Tekst her
