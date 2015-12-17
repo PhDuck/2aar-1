@@ -128,12 +128,70 @@ text her.
       end
 \end{code}
 
+Selve \texttt{AND} og \texttt{OR} følger meget samme fremgangs metode, som \texttt{TRUE, FALSE} i lexeren og parseren, dog vil de to operationer i \texttt{Interpreter.sml}. Hvor vi i \texttt{OR}, kigger på, at hvis den første variabel er \texttt{TRUE}, returneres der \texttt{TRUE}
 
+\begin{code}[firstnumber=190]{Interpreter.sml}
+| evalExp (Or (e1, e2, pos), vtab, ftab) =
+        let
+          val r1 = evalExp(e1, vtab, ftab)
+        in
+          case r1 of
+               BoolVal true => BoolVal true
+             | BoolVal false  => evalExp(e2, vtab, ftab)
+             | _ => raise Fail "First operand none boolean"
+        end
+
+  | evalExp ( Not(e, pos), vtab, ftab ) =
+        let
+          val r1 = evalExp(e, vtab, ftab)
+        in
+          case r1 of
+               BoolVal true => BoolVal false
+             | BoolVal false  => BoolVal true
+             | _ => raise Fail "First operand none boolean"
+        end
+\end{code}
+
+\begin{code}[firstnumber=408]{CodeGen.sml}
+  | And (e1, e2, pos) =>
+    let val t1 = newName "and_L"
+        val t2 = newName "and_R"
+        val falseLabel = newName "false"
+        val trueLabel = newName "true"
+        val code1 = compileExp e1 vtable t1
+        val code2 = compileExp e2 vtable t2
+    in
+      code1 @
+      [ Mips.LI (place,"0")
+      , Mips.BEQ (t1, "0", falseLabel) ]
+      @ code2 @
+      [ Mips.BEQ (t2, "0", falseLabel)
+      , Mips.LI (place, "1")
+      , Mips.LABEL falseLabel ]
+    end
+
+  | Or (e1, e2, pos) =>
+    let val t1 = newName "and_L"
+        val t2 = newName "and_R"
+        val falseLabel = newName "false"
+        val trueLabel = newName "true"
+        val code1 = compileExp e1 vtable t1
+        val code2 = compileExp e2 vtable t2
+    in
+            code1 @
+            [ Mips.LI (place,"0")
+            , Mips.BEQ (t1, "1", trueLabel) ]
+            @ code2 @
+            [ Mips.BEQ (t2, "0", falseLabel)
+            , Mips.LABEL trueLabel
+            , Mips.LI (place, "1")
+            , Mips.LABEL falseLabel ]    end
+\end{code}
 
 
 
 %HUSK: Laver hjælpe funktion til task 2: Mips load i Codegen linie 80ish
-%HUSK: Test Not, And, Or, Times, Divide
+%HUSK: Test laves for: Not, And, Or, Times, Divide
 
 %%%---
 % Tekst her
