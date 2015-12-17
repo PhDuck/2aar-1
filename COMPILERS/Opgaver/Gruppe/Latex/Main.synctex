@@ -1,453 +1,265 @@
 SyncTeX Version:1
-Input:1:C:/Users/Mirza/Google Drev/LaTeX/Latex-Skabelon/Skabeloner/BigBaddy/Skabelon til stor Rapport/Main.tex
-Input:2:C:\Program Files\MiKTeX 2.9\tex\latex\base\report.cls
-Input:3:C:\Program Files\MiKTeX 2.9\tex\latex\base\size11.clo
-Input:4:C:/Users/Mirza/Google Drev/LaTeX/Latex-Skabelon/Skabeloner/BigBaddy/Skabelon til stor Rapport\mainPreamble.sty
-Input:5:C:\Program Files\MiKTeX 2.9\tex\latex\comment\comment.sty
-Input:6:C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty
-Input:7:C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def
-Input:8:C:\Program Files\MiKTeX 2.9\tex\latex\base\inputenc.sty
-Input:9:C:\Program Files\MiKTeX 2.9\tex\latex\base\utf8.def
-Input:10:C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.dfu
-Input:11:C:\Program Files\MiKTeX 2.9\tex\latex\base\ot1enc.dfu
-Input:12:C:\Program Files\MiKTeX 2.9\tex\latex\base\omsenc.dfu
-Input:13:C:\Program Files\MiKTeX 2.9\tex\latex\fourier\fourier.sty
-Input:14:C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty
-Input:15:C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def
-Input:16:C:\Program Files\MiKTeX 2.9\tex\latex\base\textcomp.sty
-Input:17:C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1enc.def
-Input:18:C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1enc.dfu
-Input:19:C:\Program Files\MiKTeX 2.9\tex\latex\fourier\fourier-orns.sty
-Input:20:C:\Program Files\MiKTeX 2.9\tex\generic\babel\babel.sty
-Input:21:C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\bblopts.cfg
-Input:22:C:\Program Files\MiKTeX 2.9\tex\generic\babel\danish.ldf
-Input:23:C:\Program Files\MiKTeX 2.9\tex\generic\babel\babel.def
-Input:24:C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty
-Input:25:C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amstext.sty
-Input:26:C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty
-Input:27:C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty
-Input:28:C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty
-Input:29:C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty
-Input:30:C:\Program Files\MiKTeX 2.9\tex\latex\amscls\amsthm.sty
-Input:31:C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty
-Input:32:C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty
-Input:33:C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty
-Input:34:C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty
-Input:35:C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty
-Input:36:C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg
-Input:37:C:\Program Files\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def
-Input:38:C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty
-Input:39:C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty
-Input:40:C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf.sty
-Input:41:C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty
-Input:42:C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\grfext.sty
-Input:43:C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\kvdefinekeys.sty
-Input:44:C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty
-Input:45:C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\kvsetkeys.sty
-Input:46:C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\etexcmds.sty
-Input:47:C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifluatex.sty
-Input:48:C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty
-Input:49:C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty
-Input:50:C:\Program Files\MiKTeX 2.9\tex\latex\lipsum\lipsum.sty
-Input:51:C:\Program Files\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty
-Input:52:C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\color.cfg
-Input:53:C:\Program Files\MiKTeX 2.9\tex\latex\graphics\dvipsnam.def
-Input:54:C:\Program Files\MiKTeX 2.9\tex\latex\colortbl\colortbl.sty
-Input:55:C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty
-Input:56:C:\Program Files\MiKTeX 2.9\tex\latex\ltxmisc\parskip.sty
-Input:57:C:\Program Files\MiKTeX 2.9\tex\latex\natbib\natbib.sty
-Input:58:C:\Program Files\MiKTeX 2.9\tex\latex\fixme\fixme.sty
-Input:59:C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty
-Input:60:C:\Program Files\MiKTeX 2.9\tex\latex\tools\verbatim.sty
-Input:61:C:\Program Files\MiKTeX 2.9\tex\latex\xkeyval\xkeyval.sty
-Input:62:C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex
-Input:63:C:\Program Files\MiKTeX 2.9\tex\latex\tools\showkeys.sty
-Input:64:C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty
-Input:65:C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption.sty
-Input:66:C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption3.sty
-Input:67:C:\Program Files\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.sty
-Input:68:C:\Program Files\MiKTeX 2.9\tex\latex\graphics\lscape.sty
-Input:69:C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\pdflscape.sty
-Input:70:C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty
-Input:71:C:\Program Files\MiKTeX 2.9\tex\latex\vhistory\vhistory.sty
-Input:72:C:\Program Files\MiKTeX 2.9\tex\latex\carlisle\ltxtable.sty
-Input:73:C:\Program Files\MiKTeX 2.9\tex\latex\tools\tabularx.sty
-Input:74:C:\Program Files\MiKTeX 2.9\tex\latex\tools\longtable.sty
-Input:75:C:\Program Files\MiKTeX 2.9\tex\latex\vhistory\sets.sty
-Input:76:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\Main.hst
-Input:77:C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty
-Input:78:C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty
-Input:79:C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty
-Input:80:C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\auxhook.sty
-Input:81:C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def
-Input:82:C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg
-Input:83:C:\Program Files\MiKTeX 2.9\tex\latex\ltxmisc\url.sty
-Input:84:C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def
-Input:85:C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty
-Input:86:C:\Program Files\MiKTeX 2.9\tex\latex\imakeidx.sty
-Input:87:C:\Program Files\MiKTeX 2.9\tex\latex\xpatch\xpatch.sty
-Input:88:C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\expl3.sty
-Input:89:C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\expl3-code.tex
-Input:90:C:\Program Files\MiKTeX 2.9\tex\latex\misc\etex.sty
-Input:91:C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3unicode-data.def
-Input:92:C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\l3pdfmode.def
-Input:93:C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\xparse\xparse.sty
-Input:94:C:\Program Files\MiKTeX 2.9\tex\latex\etoolbox\etoolbox.sty
-Input:95:C:\Program Files\MiKTeX 2.9\tex\latex\tools\multicol.sty
-Input:96:C:\Program Files\MiKTeX 2.9\tex\latex\idxlayout\idxlayout.sty
-Input:97:C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\base\glossaries.sty
-Input:98:C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\base\mfirstuc.sty
-Input:99:C:\Program Files\MiKTeX 2.9\tex\latex\xfor\xfor.sty
-Input:100:C:\Program Files\MiKTeX 2.9\tex\latex\datatool\datatool-base.sty
-Input:101:C:\Program Files\MiKTeX 2.9\tex\latex\substr\substr.sty
-Input:102:C:\Program Files\MiKTeX 2.9\tex\latex\datatool\datatool-fp.sty
-Input:103:C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp.sty
-Input:104:C:\Program Files\MiKTeX 2.9\tex\latex\fp\defpattern.sty
-Input:105:C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-basic.sty
-Input:106:C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-addons.sty
-Input:107:C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-snap.sty
-Input:108:C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-exp.sty
-Input:109:C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-trigo.sty
-Input:110:C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-pas.sty
-Input:111:C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-random.sty
-Input:112:C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-eqn.sty
-Input:113:C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-upn.sty
-Input:114:C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-eval.sty
-Input:115:C:\Program Files\MiKTeX 2.9\tex\latex\beamer\base\translator\translator.sty
-Input:116:C:\Program Files\MiKTeX 2.9\tex\latex\beamer\base\translator\translator-language-mappings.tex
-Input:117:C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\styles\glossary-hypernav.sty
-Input:118:C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\styles\glossary-list.sty
-Input:119:C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\styles\glossary-long.sty
-Input:120:C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\styles\glossary-super.sty
-Input:121:C:\Program Files\MiKTeX 2.9\tex\latex\supertabular\supertabular.sty
-Input:122:C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\styles\glossary-tree.sty
-Input:123:C:/Users/Mirza/Google Drev/LaTeX/Latex-Skabelon/Skabeloner/BigBaddy/Skabelon til stor Rapport\mainGlossary.sty
-Input:124:C:\Program Files\MiKTeX 2.9\tex\latex\appendix\appendix.sty
-Input:125:C:\Program Files\MiKTeX 2.9\tex\latex\pgf\frontendlayer\tikz.sty
-Input:126:C:\Program Files\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgf.sty
-Input:127:C:\Program Files\MiKTeX 2.9\tex\latex\pgf\utilities\pgfrcs.sty
-Input:128:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common.tex
-Input:129:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-latex.def
-Input:130:C:\Program Files\MiKTeX 2.9\tex\latex\ms\everyshi.sty
-Input:131:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfrcs.code.tex
-Input:132:C:\Program Files\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgfcore.sty
-Input:133:C:\Program Files\MiKTeX 2.9\tex\latex\pgf\systemlayer\pgfsys.sty
-Input:134:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsys.code.tex
-Input:135:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeys.code.tex
-Input:136:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeysfiltered.code.tex
-Input:137:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgf.cfg
-Input:138:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsys-pdftex.def
-Input:139:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsys-common-pdf.def
-Input:140:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsyssoftpath.code.tex
-Input:141:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsysprotocol.code.tex
-Input:142:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcore.code.tex
-Input:143:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmath.code.tex
-Input:144:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathcalc.code.tex
-Input:145:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathutil.code.tex
-Input:146:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathparser.code.tex
-Input:147:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.code.tex
-Input:148:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.basic.code.tex
-Input:149:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.trigonometric.code.tex
-Input:150:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.random.code.tex
-Input:151:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.comparison.code.tex
-Input:152:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.base.code.tex
-Input:153:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.round.code.tex
-Input:154:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.misc.code.tex
-Input:155:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfloat.code.tex
-Input:156:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepoints.code.tex
-Input:157:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepathconstruct.code.tex
-Input:158:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepathusage.code.tex
-Input:159:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorescopes.code.tex
-Input:160:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoregraphicstate.code.tex
-Input:161:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoretransformations.code.tex
-Input:162:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorequick.code.tex
-Input:163:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreobjects.code.tex
-Input:164:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepathprocessing.code.tex
-Input:165:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorearrows.code.tex
-Input:166:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreshade.code.tex
-Input:167:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreimage.code.tex
-Input:168:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreexternal.code.tex
-Input:169:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorelayers.code.tex
-Input:170:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoretransparency.code.tex
-Input:171:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepatterns.code.tex
-Input:172:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\modules\pgfmoduleshapes.code.tex
-Input:173:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\modules\pgfmoduleplot.code.tex
-Input:174:C:\Program Files\MiKTeX 2.9\tex\latex\pgf\compatibility\pgfcomp-version-0-65.sty
-Input:175:C:\Program Files\MiKTeX 2.9\tex\latex\pgf\compatibility\pgfcomp-version-1-18.sty
-Input:176:C:\Program Files\MiKTeX 2.9\tex\latex\pgf\utilities\pgffor.sty
-Input:177:C:\Program Files\MiKTeX 2.9\tex\latex\pgf\utilities\pgfkeys.sty
-Input:178:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeys.code.tex
-Input:179:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgffor.code.tex
-Input:180:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\tikz.code.tex
-Input:181:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryplothandlers.code.tex
-Input:182:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\modules\pgfmodulematrix.code.tex
-Input:183:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarytopaths.code.tex
-Input:184:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarycalc.code.tex
-Input:185:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshadings.code.tex
-Input:186:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryshadings.code.tex
-Input:187:C:\Program Files\MiKTeX 2.9\tex\latex\pgfplots\pgfplots.sty
-Input:188:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplots.revision.tex
-Input:189:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplots.code.tex
-Input:190:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplotscore.code.tex
-Input:191:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\sys\pgfplotssysgeneric.code.tex
-Input:192:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\libs\pgfplotslibrary.code.tex
-Input:193:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\oldpgfcompatib\pgfplotsoldpgfsupp_loader.code.tex
-Input:194:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\oldpgfcompatib\pgfplotsoldpgfsupp_misc.code.tex
-Input:195:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\oldpgfcompatib\pgfplotsoldpgfsupp_pgfkeys.code.tex
-Input:196:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\oldpgfcompatib\pgfplotsoldpgfsupp_pgfkeysfiltered.code.tex
-Input:197:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\oldpgfcompatib\pgfplotsoldpgfsupp_pgfmathfloat.code.tex
-Input:198:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\oldpgfcompatib\pgfplotsoldpgfsupp_pgflibraryplothandlers.code.tex
-Input:199:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\oldpgfcompatib\pgfplotsoldpgfsupp_pgflibraryfpu.code.tex
-Input:200:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\oldpgfcompatib\pgfplotsoldpgfsupp_pgfcorescopes.code.tex
-Input:201:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\oldpgfcompatib\pgfplotsoldpgfsupp_pgfcorelayers.code.tex
-Input:202:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\oldpgfcompatib\pgfplotsoldpgfsupp_pgfutil-common-lists.tex
-Input:203:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\oldpgfcompatib\pgfplotsoldpgfsupp_trig_format.code.tex
-Input:204:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\util\pgfplotsutil.code.tex
-Input:205:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\liststructure\pgfplotsliststructure.code.tex
-Input:206:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\liststructure\pgfplotsliststructureext.code.tex
-Input:207:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\liststructure\pgfplotsarray.code.tex
-Input:208:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\liststructure\pgfplotsmatrix.code.tex
-Input:209:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\numtable\pgfplotstableshared.code.tex
-Input:210:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\liststructure\pgfplotsdeque.code.tex
-Input:211:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\util\pgfplotsbinary.code.tex
-Input:212:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\util\pgfplotsbinary.data.code.tex
-Input:213:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\util\pgfplotsutil.verb.code.tex
-Input:214:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\libs\pgflibrarypgfplots.surfshading.code.tex
-Input:215:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\sys\pgflibrarypgfplots.surfshading.pgfsys-pdftex.def
-Input:216:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\util\pgfplotscolormap.code.tex
-Input:217:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\util\pgfplotscolor.code.tex
-Input:218:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplotsstackedplots.code.tex
-Input:219:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplotsplothandlers.code.tex
-Input:220:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplotsmeshplothandler.code.tex
-Input:221:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplots.scaling.code.tex
-Input:222:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplotscoordprocessing.code.tex
-Input:223:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplots.errorbars.code.tex
-Input:224:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplots.markers.code.tex
-Input:225:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplotsticks.code.tex
-Input:226:C:\Program Files\MiKTeX 2.9\tex\generic\pgfplots\pgfplots.paths.code.tex
-Input:227:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.code.tex
-Input:228:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\modules\pgfmoduledecorations.code.tex
-Input:229:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.pathmorphing.code.tex
-Input:230:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\decorations\pgflibrarydecorations.pathmorphing.code.tex
-Input:231:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.pathreplacing.code.tex
-Input:232:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\decorations\pgflibrarydecorations.pathreplacing.code.tex
-Input:233:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryplotmarks.code.tex
-Input:234:C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryplotmarks.code.tex
-Input:235:C:\Program Files\MiKTeX 2.9\tex\latex\ms\ragged2e.sty
-Input:236:C:\Program Files\MiKTeX 2.9\tex\latex\ms\everysel.sty
-Input:237:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\Main.aux
-Input:238:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\frontpage/titlepage.aux
-Input:239:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\abstract/abstract.aux
-Input:240:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\chapters/Intro/Intro.aux
-Input:241:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\chapters/Spg1.aux
-Input:242:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\chapters/Spg2.aux
-Input:243:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\chapters/Spg3.aux
-Input:244:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\appendix/logsystem.aux
-Input:245:C:\Program Files\MiKTeX 2.9\tex\latex\fourier\fmlfutm.fd
-Input:246:C:\Program Files\MiKTeX 2.9\tex\latex\fourier\fmsfutm.fd
-Input:247:C:\Program Files\MiKTeX 2.9\tex\latex\fourier\fmxfutm.fd
-Input:248:C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd
-Input:249:C:\Program Files\MiKTeX 2.9\tex\latex\fourier\t1futs.fd
-Input:250:C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii
-Input:251:C:\Program Files\MiKTeX 2.9\tex\latex\caption\ltcaption.sty
-Input:252:C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty
-Input:253:C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty
-Input:254:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\Main.out
-Input:255:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\Main.out
-Input:256:C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\dict\glossaries-dictionary-English.dict
-Input:257:C:/Users/Mirza/Google Drev/LaTeX/Latex-Skabelon/Skabeloner/BigBaddy/Skabelon til stor Rapport\frontpage/titlepage.tex
+Input:1:C:/Users/Baby-/Google Drev/KU/Kode/2aar/COMPILERS/Opgaver/Gruppe/Latex/Main.tex
+Input:2:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\report.cls
+Input:3:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\size11.clo
+Input:4:C:\Users\Baby-\Google Drev\KU\Kode\2aar\COMPILERS\Opgaver\Gruppe\Latex\mainPreamble.sty
+Input:5:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\comment\comment.sty
+Input:6:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\fontenc.sty
+Input:7:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1enc.def
+Input:8:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\inputenc.sty
+Input:9:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\utf8.def
+Input:10:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1enc.dfu
+Input:11:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ot1enc.dfu
+Input:12:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omsenc.dfu
+Input:13:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fourier\fourier.sty
+Input:14:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\fontenc.sty
+Input:15:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1enc.def
+Input:16:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\textcomp.sty
+Input:17:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1enc.def
+Input:18:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1enc.dfu
+Input:19:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fourier\fourier-orns.sty
+Input:20:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\babel\babel.sty
+Input:21:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\bblopts.cfg
+Input:22:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\babel-danish\danish.ldf
+Input:23:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\babel\babel.def
+Input:24:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty
+Input:25:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amstext.sty
+Input:26:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty
+Input:27:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty
+Input:28:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty
+Input:29:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty
+Input:30:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amscls\amsthm.sty
+Input:31:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty
+Input:32:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphicx.sty
+Input:33:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\keyval.sty
+Input:34:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphics.sty
+Input:35:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\trig.sty
+Input:36:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg
+Input:37:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def
+Input:38:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty
+Input:39:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty
+Input:40:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\epstopdf.sty
+Input:41:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty
+Input:42:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\grfext.sty
+Input:43:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\kvdefinekeys.sty
+Input:44:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty
+Input:45:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\kvsetkeys.sty
+Input:46:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\etexcmds.sty
+Input:47:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ifluatex.sty
+Input:48:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty
+Input:49:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty
+Input:50:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\lipsum\lipsum.sty
+Input:51:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\xcolor\xcolor.sty
+Input:52:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\color.cfg
+Input:53:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\dvipsnam.def
+Input:54:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\colortbl\colortbl.sty
+Input:55:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\array.sty
+Input:56:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ltxmisc\parskip.sty
+Input:57:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\natbib\natbib.sty
+Input:58:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fixme\fixme.sty
+Input:59:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ifthen.sty
+Input:60:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\verbatim.sty
+Input:61:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\xkeyval\xkeyval.sty
+Input:62:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex
+Input:63:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\showkeys.sty
+Input:64:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\float\float.sty
+Input:65:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption.sty
+Input:66:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption3.sty
+Input:67:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\vhistory\vhistory.sty
+Input:68:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\carlisle\ltxtable.sty
+Input:69:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\tabularx.sty
+Input:70:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\longtable.sty
+Input:71:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\vhistory\sets.sty
+Input:72:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty
+Input:73:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty
+Input:74:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty
+Input:75:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty
+Input:76:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\auxhook.sty
+Input:77:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def
+Input:78:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg
+Input:79:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\url\url.sty
+Input:80:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def
+Input:81:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty
+Input:82:C:\Users\Baby-\Google Drev\KU\Kode\2aar\COMPILERS\Opgaver\Gruppe\Latex\Main.aux
+Input:83:C:\Users\Baby-\Google Drev\KU\Kode\2aar\COMPILERS\Opgaver\Gruppe\Latex\frontpage/titlepage.aux
+Input:84:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fourier\fmlfutm.fd
+Input:85:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fourier\fmsfutm.fd
+Input:86:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fourier\fmxfutm.fd
+Input:87:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmr.fd
+Input:88:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fourier\t1futs.fd
+Input:89:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
+Input:90:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\ltcaption.sty
+Input:91:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty
+Input:92:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty
+Input:93:C:\Users\Baby-\Google Drev\KU\Kode\2aar\COMPILERS\Opgaver\Gruppe\Latex\Main.out
+Input:94:C:\Users\Baby-\Google Drev\KU\Kode\2aar\COMPILERS\Opgaver\Gruppe\Latex\Main.out
+Input:95:C:\Users\Baby-\Google Drev\KU\Kode\2aar\COMPILERS\Opgaver\Gruppe\Latex\frontpage/titlepage.tex
 Output:pdf
 Magnification:1000
 Unit:1
 X Offset:0
 Y Offset:0
 Content:
-!21165
+!7341
 {1
-[257,39:4736286,49353212:26607616,44616926,0
-h257,39:4736286,4736286:0,0,0
-[257,39:4736286,4736286:0,0,0
-(257,39:4736286,5850153:0,0,0
-k257,39:4736286,5850153:-2948875
+[95,39:4736286,49353212:26607616,44616926,0
+h95,39:4736286,4736286:0,0,0
+[95,39:4736286,4736286:0,0,0
+(95,39:4736286,5850153:0,0,0
+k95,39:4736286,5850153:-2948875
 )
 ]
-[257,39:4736286,49353212:26607616,44616926,0
-h257,39:4736286,4736286:0,0,0
-[257,39:7750942,49353212:23592960,43437278,0
-[257,39:7750942,6702366:23592960,786432,0
-(257,39:7750942,6702366:23592960,0,0
-h257,39:7750942,6702366:23592960,0,0
+[95,39:4736286,49353212:26607616,44616926,0
+[95,39:7750942,49353212:23592960,43437278,0
+[95,39:7750942,6702366:23592960,786432,0
+(95,39:7750942,6702366:23592960,0,0
+h95,39:7750942,6702366:23592960,0,0
 )
 ]
-[257,39:7750942,47387132:23592960,39046366,0
-(257,7:7750942,13338066:23592960,1126700,367684
-k257,7:10708290,13338066:2957348
-(257,2:10708290,13338066:0,0,0
-g257,2:10708290,13338066
-g257,2:10708290,13338066
-g257,2:10349480,13338066
-(257,2:10349480,13338066:0,0,0
+[95,39:7750942,47387132:23592960,39046366,0
+(95,7:7750942,13338066:23592960,1126700,367684
+k95,7:10708290,13338066:2957348
+(95,2:10708290,13338066:0,0,0
+g95,2:10708290,13338066
+g95,2:10708290,13338066
+g95,2:10349480,13338066
+(95,2:10349480,13338066:0,0,0
 )
-g257,2:10708290,13338066
+g95,2:10708290,13338066
 )
-x257,2:11874123,13338066
-k257,6:10708290,13338066:-17936
-x257,6:15436843,13338066
-g257,6:15751536,13338066
-x257,6:26742975,13338066
-g257,6:27057668,13338066
-x257,6:28386554,13338066
-k257,6:31343902,13338066:2957348
+x95,2:11874123,13338066
+k95,6:10708290,13338066:-17936
+x95,6:15436843,13338066
+g95,6:15751536,13338066
+x95,6:26742975,13338066
+g95,6:27057668,13338066
+x95,6:28386554,13338066
+k95,6:31343902,13338066:2957348
 )
-(257,7:7750942,15304146:23592960,1126700,367684
-k257,7:13595969,15304146:5845027
-x257,7:14375364,15304146
-k257,6:13595969,15304146:-22828
-x257,6:25498875,15304146
-g257,7:25498875,15304146
-k257,7:31343902,15304146:5845027
+(95,7:7750942,15304146:23592960,1126700,367684
+k95,7:13595969,15304146:5845027
+x95,7:14375364,15304146
+k95,6:13595969,15304146:-22828
+x95,6:25498875,15304146
+g95,7:25498875,15304146
+k95,7:31343902,15304146:5845027
 )
-(257,11:7750942,18123922:23592960,776868,5661
-k257,11:17200398,18123922:9449456
-h257,10:17200398,18123922:0,0,0
-x257,10:20040611,18123922
-x257,10:21894447,18123922
-g257,11:21894447,18123922
-k257,11:31343903,18123922:9449456
+(95,11:7750942,18123922:23592960,776868,5661
+k95,11:17200398,18123922:9449456
+h95,10:17200398,18123922:0,0,0
+x95,10:20040611,18123922
+x95,10:21894447,18123922
+g95,11:21894447,18123922
+k95,11:31343903,18123922:9449456
 )
-(257,14:7750942,22808378:23592960,740063,167038
-k257,14:16022071,22808378:8271129
-h257,14:16022071,22808378:0,0,0
-x257,14:16979001,22808378
-x257,14:17754736,22808378
-x257,14:18844163,22808378
-g257,14:19062727,22808378
-x257,14:19354902,22808378
-g257,14:19573466,22808378
-x257,14:23072774,22808378
-g257,14:23072774,22808378
-k257,14:31343902,22808378:8271128
+(95,14:7750942,22808378:23592960,782531,3396
+k95,14:17597324,22808378:9846382
+h95,14:17597324,22808378:0,0,0
+x95,14:18554254,22808378
+x95,14:21497521,22808378
+g95,14:21497521,22808378
+k95,14:31343903,22808378:9846382
 )
-(257,18:7750942,27047189:23592960,776868,233286
-k257,18:14443419,27047189:6692477
-h257,18:14443419,27047189:0,0,0
-x257,18:15207831,27047189
-x257,18:15607589,27047189
-x257,18:23859834,27047189
-x257,18:24651425,27047189
-g257,18:24651425,27047189
-k257,18:31343902,27047189:6692477
+(95,15:7750942,24250170:23592960,740063,3396
+k95,15:18136376,24250170:10385434
+h95,15:18136376,24250170:0,0,0
+x95,15:19093306,24250170
+x95,15:19869041,24250170
+x95,15:20958468,24250170
+g95,15:20958468,24250170
+k95,15:31343902,24250170:10385434
 )
-(257,22:7750942,29421320:23592960,740063,167038
-k257,22:14406614,29421320:6655672
-h257,22:14406614,29421320:0,0,0
-x257,22:15118932,29421320
-x257,22:18250188,29421320
-g257,22:18468752,29421320
-x257,22:20970358,29421320
-g257,22:21188922,29421320
-x257,22:24688230,29421320
-g257,22:24688230,29421320
-k257,22:31343902,29421320:6655672
+(95,16:7750942,25691962:23592960,782531,3396
+k95,16:18251320,25691962:10500378
+h95,16:18251320,25691962:0,0,0
+x95,16:19208250,25691962
+x95,16:20843524,25691962
+g95,16:20843524,25691962
+k95,16:31343902,25691962:10500378
 )
-(257,24:7750942,30863112:23592960,740063,167038
-k257,24:15070236,30863112:7319294
-h257,23:15070236,30863112:0,0,0
-x257,23:17714533,30863112
-g257,23:17933097,30863112
-x257,23:20306736,30863112
-g257,23:20525300,30863112
-x257,23:24024608,30863112
-g257,24:24024608,30863112
-k257,24:31343902,30863112:7319294
+(95,20:7750942,29930773:23592960,776868,233286
+k95,20:14443419,29930773:6692477
+h95,20:14443419,29930773:0,0,0
+x95,20:15207831,29930773
+x95,20:15607589,29930773
+x95,20:23859834,29930773
+x95,20:24651425,29930773
+g95,20:24651425,29930773
+k95,20:31343902,29930773:6692477
 )
-(257,28:7750942,34093483:23592960,776868,256502
-k257,28:15470562,34093483:7719620
-h257,27:15470562,34093483:0,0,0
-x257,27:16102475,34093483
-x257,27:23094292,34093483
-x257,27:23624283,34093483
-g257,28:23624283,34093483
-k257,28:31343902,34093483:7719619
+(95,29:7750942,35083443:23592960,776868,256502
+k95,29:15470562,35083443:7719620
+h95,28:15470562,35083443:0,0,0
+x95,28:16102475,35083443
+x95,28:23094292,35083443
+x95,28:23624283,35083443
+g95,29:23624283,35083443
+k95,29:31343902,35083443:7719619
 )
-(257,32:7750942,43397826:23592960,7044911,0
-k257,32:14828902,43397826:7077960
-h257,31:14828902,43397826:0,0,0
-(257,31:14828902,43397826:9437040,7044911,0
-(257,31:14828902,43397826:9436841,7044928,0
-(257,31:14828902,43397826:9436841,7044928,0
-(257,31:14828902,43397826:0,24799724,0
-(257,31:14828902,43397826:33219789,24799724,0
+(95,33:7750942,44387786:23592960,7044911,0
+k95,33:14828902,44387786:7077960
+h95,32:14828902,44387786:0,0,0
+(95,32:14828902,44387786:9437040,7044911,0
+(95,32:14828902,44387786:9436841,7044928,0
+(95,32:14828902,44387786:9436841,7044928,0
+(95,32:14828902,44387786:0,24799724,0
+(95,32:14828902,44387786:33219789,24799724,0
 )
-k257,31:14828903,43397826:-33219788
+k95,32:14828903,44387786:-33219788
 )
 )
 )
 )
-g257,32:24265942,43397826
-k257,32:31343902,43397826:7077960
+g95,33:24265942,44387786
+k95,33:31343902,44387786:7077960
 )
-(257,34:7750942,45023119:23592960,647390,213751
-k257,34:15932517,45023119:8181575
-h257,34:15932517,45023119:0,0,0
-x257,34:16609162,45023119
-x257,34:20090533,45023119
-g257,34:20285882,45023119
-x257,34:20588815,45023119
-x257,34:23162328,45023119
-g257,34:23162328,45023119
-k257,34:31343902,45023119:8181574
+(95,35:7750942,46013079:23592960,647390,213751
+k95,35:15932517,46013079:8181575
+h95,35:15932517,46013079:0,0,0
+x95,35:16609162,46013079
+x95,35:20090533,46013079
+g95,35:20285882,46013079
+x95,35:20588815,46013079
+x95,35:23162328,46013079
+g95,35:23162328,46013079
+k95,35:31343902,46013079:8181574
 )
-(257,35:7750942,46202767:23592960,647390,213751
-k257,35:12492668,46202767:4741726
-h257,35:12492668,46202767:0,0,0
-x257,35:13013600,46202767
-x257,35:13341069,46202767
-x257,35:17882234,46202767
-g257,35:18077583,46202767
-x257,35:18547554,46202767
-x257,35:24564691,46202767
-g257,35:24760040,46202767
-x257,35:26602176,46202767
-g257,35:26602176,46202767
-k257,35:31343902,46202767:4741726
-)
-(257,37:7750942,47382415:23592960,581330,4717
-k257,37:17364604,47382415:9613662
-h257,36:17364604,47382415:0,0,0
-x257,36:18626354,47382415
-x257,36:19888104,47382415
-x257,36:21730240,47382415
-g257,37:21730240,47382415
-k257,37:31343902,47382415:9613662
+(95,37:7750942,47192727:23592960,647390,194405
+k95,37:16493082,47192727:8742140
+h95,36:16493082,47192727:0,0,0
+x95,36:17086680,47192727
+x95,36:20564276,47192727
+g95,36:20759625,47192727
+x95,36:22601761,47192727
+g95,37:22601761,47192727
+k95,37:31343901,47192727:8742140
 )
 ]
-(257,39:7750942,49353212:23592960,0,0
-h257,39:7750942,49353212:23592960,0,0
+(95,39:7750942,49353212:23592960,0,0
+h95,39:7750942,49353212:23592960,0,0
 )
 ]
 ]
 ]
-!4373
+!3586
 }1
-Input:258:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\Main.toc
-!127
+Input:96:C:\Users\Baby-\Google Drev\KU\Kode\2aar\COMPILERS\Opgaver\Gruppe\Latex\Main.toc
+!98
 {2
-[1,19:4736286,49353212:26607616,44616926,0
-[1,19:4736286,4736286:0,0,0
-(1,19:4736286,5850153:0,0,0
-k1,19:4736286,5850153:-2948875
+[1,35:4736286,49353212:26607616,44616926,0
+[1,35:4736286,4736286:0,0,0
+(1,35:4736286,5850153:0,0,0
+k1,35:4736286,5850153:-2948875
 )
 ]
-[1,19:4736286,49353212:26607616,44616926,0
-h1,19:4736286,4736286:0,0,0
-[1,19:7750942,49353212:23592960,43437278,0
-[1,19:7750942,6702366:23592960,786432,0
-(1,19:7750942,6702366:23592960,0,0
-h1,19:7750942,6702366:23592960,0,0
+[1,35:4736286,49353212:26607616,44616926,0
+[1,35:7750942,49353212:23592960,43437278,0
+[1,35:7750942,6702366:23592960,786432,0
+(1,35:7750942,6702366:23592960,0,0
+h1,35:7750942,6702366:23592960,0,0
 )
 ]
-[1,19:7750942,47387132:23592960,39046366,0
+[1,35:7750942,47387132:23592960,39046366,0
 (1,17:7750942,14750187:23592960,1126700,4890
 h1,17:7750942,14750187:0,0,0
 x1,17:8326520,14750187
@@ -455,1975 +267,21 @@ x1,17:13359981,14750187
 k1,17:22351941,14750187:8991960
 k1,17:31343901,14750187:8991960
 )
-(258,2:7750942,18894421:23592960,449229,2152
-g258,2:8698198,18894421
-g258,2:7750942,18894421
-x258,2:8004261,18894421
-x258,2:8947928,18894421
-x258,2:9329701,18894421
-k258,2:30365069,18894421:21035368
-(258,2:30365069,18894421:978833,449229,2152
-k258,2:30974328,18894421:609259
-x258,2:31343902,18894421
-)
-g258,2:30365069,18894421
-g258,2:31343902,18894421
-)
-(258,3:7750942,20417215:23592960,495874,161822
-k258,3:8698198,20417215:947256
-h258,3:8698198,20417215:0,0,0
-k258,3:7750942,20417215:-947256
-(258,3:7750942,20417215:947256,449229,0
-x258,3:8120516,20417215
-k258,3:8698198,20417215:577682
-)
-x258,3:9205554,20417215
-x258,3:9824858,20417215
-k258,3:10068219,20417215:243361
-x258,3:10362442,20417215
-x258,3:12214614,20417215
-x258,3:13029828,20417215
-x258,3:13965602,20417215
-x258,3:15445331,20417215
-x258,3:16142138,20417215
-x258,3:16523911,20417215
-x258,3:17486237,20417215
-x258,3:18729151,20417215
-k258,3:18972618,20417215:243467
-x258,3:19731858,20417215
-x258,3:20022493,20417215
-x258,3:20864259,20417215
-x258,3:21896911,20417215
-k258,3:22140272,20417215:243361
-x258,3:23060258,20417215
-x258,3:23419067,20417215
-x258,3:24660546,20417215
-x258,3:25646553,20417215
-k258,3:25889915,20417215:243362
-x258,3:27257695,20417215
-k258,3:27501056,20417215:243361
-x258,3:28191404,20417215
-x258,3:28611928,20417215
-x258,3:29305865,20417215
-x258,3:29596500,20417215
-x258,3:30365069,20417215
-k258,3:31343902,20417215:978833
-)
-(258,3:7750942,21308505:23592960,495874,161822
-g258,3:8698198,21308505
-x258,3:9435910,21308505
-g258,3:9574410,21308505
-x258,3:9933219,21308505
-x258,3:11174698,21308505
-x258,3:12160705,21308505
-g258,3:12299205,21308505
-x258,3:12508032,21308505
-g258,3:12646532,21308505
-x258,3:13343339,21308505
-x258,3:13725112,21308505
-x258,3:14904159,21308505
-x258,3:15546427,21308505
-x258,3:16373123,21308505
-x258,3:17542841,21308505
-k258,3:30365069,21308505:12822228
-(258,3:30365069,21308505:978833,449229,2152
-k258,3:30974328,21308505:609259
-x258,3:31343902,21308505
-)
-g258,3:30365069,21308505
-g258,3:31343902,21308505
-)
-(258,4:7750942,22831299:23592960,495874,161822
-g258,4:8698198,22831299
-h258,4:8698198,22831299:0,0,0
-g258,4:7750942,22831299
-(258,4:7750942,22831299:947256,449229,0
-x258,4:8120516,22831299
-k258,4:8698198,22831299:577682
-)
-x258,4:9211295,22831299
-x258,4:12110472,22831299
-g258,4:12248972,22831299
-x258,4:12833830,22831299
-g258,4:12972330,22831299
-x258,4:13735876,22831299
-g258,4:13874376,22831299
-x258,4:15032611,22831299
-x258,4:16180800,22831299
-g258,4:16319300,22831299
-x258,4:16968744,22831299
-x258,4:18356618,22831299
-g258,4:18495118,22831299
-x258,4:18703945,22831299
-g258,4:18842445,22831299
-x258,4:19745208,22831299
-x258,4:21145281,22831299
-g258,4:21283781,22831299
-x258,4:21940402,22831299
-g258,4:22078902,22831299
-x258,4:27015396,22831299
-x258,4:27766025,22831299
-k258,4:30365069,22831299:2599044
-(258,4:30365069,22831299:978833,449229,2152
-k258,4:30974328,22831299:609259
-x258,4:31343902,22831299
-)
-g258,4:30365069,22831299
-g258,4:31343902,22831299
-)
-(258,5:7750942,24354093:23592960,495874,161822
-g258,5:8698198,24354093
-h258,5:8698198,24354093:0,0,0
-g258,5:7750942,24354093
-x258,5:8230311,24354093
-x258,5:10053778,24354093
-x258,5:10411869,24354093
-k258,5:30365069,24354093:19953200
-(258,5:30365069,24354093:978833,449229,2152
-k258,5:30974328,24354093:609259
-x258,5:31343902,24354093
-)
-g258,5:30365069,24354093
-g258,5:31343902,24354093
-)
-(258,6:7750942,25876887:23592960,495874,148188
-g258,6:8698198,25876887
-h258,6:8698198,25876887:0,0,0
-g258,6:7750942,25876887
-x258,6:8175772,25876887
-x258,6:11310328,25876887
-k258,6:30365068,25876887:19054740
-(258,6:30365068,25876887:978833,449229,2152
-k258,6:30974327,25876887:609259
-x258,6:31343901,25876887
-)
-g258,6:30365068,25876887
-g258,6:31343901,25876887
-)
-(258,7:7750942,27399681:23592960,468963,2152
-g258,7:8698198,27399681
-h258,7:8698198,27399681:0,0,0
-g258,7:7750942,27399681
-x258,7:10775702,27399681
-k258,7:30365070,27399681:19589368
-(258,7:30365070,27399681:978833,449229,2152
-k258,7:30604755,27399681:239685
-x258,7:31343903,27399681
-)
-g258,7:30365070,27399681
-g258,7:31343903,27399681
-)
-(258,8:7750942,28922475:23592960,495874,2152
-g258,8:8698198,28922475
-h258,8:8698198,28922475:0,0,0
-g258,8:7750942,28922475
-x258,8:8004261,28922475
-x258,8:9833469,28922475
-k258,8:30365069,28922475:20531600
-(258,8:30365069,28922475:978833,449229,0
-k258,8:30604754,28922475:239685
-x258,8:31343902,28922475
-)
-g258,8:30365069,28922475
-g258,8:31343902,28922475
-)
-]
-(1,19:7750942,49353212:23592960,467169,0
-(1,19:7750942,49353212:23592960,467169,0
-k1,19:19451262,49353212:11700320
-x1,19:19643583,49353212
-k1,19:31343903,49353212:11700320
-)
-)
-]
-]
-]
-!5203
-}2
-Input:259:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\Main.lox
-Input:260:C:\Program Files\MiKTeX 2.9\tex\latex\fourier\fmlfutmi.fd
-Input:261:C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd
-Input:262:C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd
-!325
-{3
-[1,23:4736286,49353212:26607616,44616926,0
-[1,23:4736286,4736286:0,0,0
-(1,23:4736286,5850153:0,0,0
-k1,23:4736286,5850153:-2948875
-)
-]
-[1,23:4736286,49353212:26607616,44616926,0
-h1,23:4736286,4736286:0,0,0
-[1,23:7750942,49353212:23592960,43437278,0
-[1,23:7750942,6702366:23592960,786432,0
-(1,23:7750942,6702366:23592960,0,0
-h1,23:7750942,6702366:23592960,0,0
-)
-]
-[1,23:7750942,47387132:23592960,39046366,0
-(1,19:7750942,14750187:23592960,1126700,4890
-h1,19:7750942,14750187:0,0,0
-x1,19:8776548,14750187
-x1,19:13982847,14750187
-k1,19:22663375,14750187:8680528
-k1,19:31343903,14750187:8680528
-)
-(259,1:7750942,18262917:23592960,492286,162540
-g259,1:10150659,18262917
-h259,1:10150659,18262917:947256,0,0
-h259,1:11097915,18262917:0,0,0
-g259,1:8698198,18262917
-x259,1:9081406,18262917
-x259,1:10326472,18262917
-g259,1:10475018,18262917
-x259,1:11471789,18262917
-g259,1:11620335,18262917
-x259,1:12216675,18262917
-g259,1:12365221,18262917
-x259,1:14063822,18262917
-g259,1:14212368,18262917
-x259,1:15311758,18262917
-(259,1:15604462,18262917:490845,86114,3587
-$259,1:15604462,18262917
-(259,1:15762335,18262917:175099,86114,3587
-x259,1:15937434,18262917
-)
-$259,1:16095307,18262917
-)
-(259,1:16095307,18262917:490845,86114,3587
-(259,1:16253180,18262917:175099,86114,3587
-x259,1:16428279,18262917
-)
-)
-(259,1:16586152,18262917:490845,86114,3587
-(259,1:16744025,18262917:175099,86114,3587
-x259,1:16919124,18262917
-)
-)
-(259,1:17076997,18262917:490845,86114,3587
-(259,1:17234870,18262917:175099,86114,3587
-x259,1:17409969,18262917
-)
-)
-(259,1:17567842,18262917:490845,86114,3587
-(259,1:17725715,18262917:175099,86114,3587
-x259,1:17900814,18262917
-)
-)
-(259,1:18058687,18262917:490845,86114,3587
-(259,1:18216560,18262917:175099,86114,3587
-x259,1:18391659,18262917
-)
-)
-(259,1:18549532,18262917:490845,86114,3587
-(259,1:18707405,18262917:175099,86114,3587
-x259,1:18882504,18262917
-)
-)
-(259,1:19040377,18262917:490845,86114,3587
-(259,1:19198250,18262917:175099,86114,3587
-x259,1:19373349,18262917
-)
-)
-(259,1:19531222,18262917:490845,86114,3587
-(259,1:19689095,18262917:175099,86114,3587
-x259,1:19864194,18262917
-)
-)
-(259,1:20022067,18262917:490845,86114,3587
-(259,1:20179940,18262917:175099,86114,3587
-x259,1:20355039,18262917
-)
-)
-(259,1:20512912,18262917:490845,86114,3587
-(259,1:20670785,18262917:175099,86114,3587
-x259,1:20845884,18262917
-)
-)
-(259,1:21003757,18262917:490845,86114,3587
-(259,1:21161630,18262917:175099,86114,3587
-x259,1:21336729,18262917
-)
-)
-(259,1:21494602,18262917:490845,86114,3587
-(259,1:21652475,18262917:175099,86114,3587
-x259,1:21827574,18262917
-)
-)
-(259,1:21985447,18262917:490845,86114,3587
-(259,1:22143320,18262917:175099,86114,3587
-x259,1:22318419,18262917
-)
-)
-(259,1:22476292,18262917:490845,86114,3587
-(259,1:22634165,18262917:175099,86114,3587
-x259,1:22809264,18262917
-)
-)
-(259,1:22967137,18262917:490845,86114,3587
-(259,1:23125010,18262917:175099,86114,3587
-x259,1:23300109,18262917
-)
-)
-(259,1:23457982,18262917:490845,86114,3587
-(259,1:23615855,18262917:175099,86114,3587
-x259,1:23790954,18262917
-)
-)
-(259,1:23948827,18262917:490845,86114,3587
-(259,1:24106700,18262917:175099,86114,3587
-x259,1:24281799,18262917
-)
-)
-(259,1:24439672,18262917:490845,86114,3587
-(259,1:24597545,18262917:175099,86114,3587
-x259,1:24772644,18262917
-)
-)
-(259,1:24930517,18262917:490845,86114,3587
-(259,1:25088390,18262917:175099,86114,3587
-x259,1:25263489,18262917
-)
-)
-(259,1:25421362,18262917:490845,86114,3587
-(259,1:25579235,18262917:175099,86114,3587
-x259,1:25754334,18262917
-)
-)
-(259,1:25912207,18262917:490845,86114,3587
-(259,1:26070080,18262917:175099,86114,3587
-x259,1:26245179,18262917
-)
-)
-(259,1:26403052,18262917:490845,86114,3587
-(259,1:26560925,18262917:175099,86114,3587
-x259,1:26736024,18262917
-)
-)
-(259,1:26893897,18262917:490845,86114,3587
-(259,1:27051770,18262917:175099,86114,3587
-x259,1:27226869,18262917
-)
-)
-(259,1:27384742,18262917:490845,86114,3587
-(259,1:27542615,18262917:175099,86114,3587
-x259,1:27717714,18262917
-)
-)
-(259,1:27875587,18262917:490845,86114,3587
-(259,1:28033460,18262917:175099,86114,3587
-x259,1:28208559,18262917
-)
-)
-(259,1:28366432,18262917:490845,86114,3587
-(259,1:28524305,18262917:175099,86114,3587
-x259,1:28699404,18262917
-)
-)
-(259,1:28857277,18262917:490845,86114,3587
-(259,1:29015150,18262917:175099,86114,3587
-x259,1:29190249,18262917
-)
-)
-(259,1:29348122,18262917:490845,86114,3587
-(259,1:29505995,18262917:175099,86114,3587
-x259,1:29681094,18262917
-)
-)
-(259,1:29838967,18262917:490845,86114,3587
-(259,1:29996840,18262917:175099,86114,3587
-x259,1:30171939,18262917
-)
-)
-(259,1:30365069,18262917:978833,442053,3587
-k259,1:30993704,18262917:628635
-x259,1:31343902,18262917
-)
-g259,1:29733565,18262917
-g259,1:31343902,18262917
-)
-(259,2:7750942,19154207:23592960,467169,3587
-g259,2:10150659,19154207
-h259,2:10150659,19154207:947256,0,0
-h259,2:11097915,19154207:0,0,0
-g259,2:8698198,19154207
-x259,2:9213448,19154207
-x259,2:10315708,19154207
-g259,2:10464254,19154207
-x259,2:11212012,19154207
-g259,2:11360558,19154207
-x259,2:12716138,19154207
-(259,2:13150237,19154207:490845,86114,3587
-$259,2:13150237,19154207
-(259,2:13308110,19154207:175099,86114,3587
-x259,2:13483209,19154207
-)
-$259,2:13641082,19154207
-)
-(259,2:13641082,19154207:490845,86114,3587
-(259,2:13798955,19154207:175099,86114,3587
-x259,2:13974054,19154207
-)
-)
-(259,2:14131927,19154207:490845,86114,3587
-(259,2:14289800,19154207:175099,86114,3587
-x259,2:14464899,19154207
-)
-)
-(259,2:14622772,19154207:490845,86114,3587
-(259,2:14780645,19154207:175099,86114,3587
-x259,2:14955744,19154207
-)
-)
-(259,2:15113617,19154207:490845,86114,3587
-(259,2:15271490,19154207:175099,86114,3587
-x259,2:15446589,19154207
-)
-)
-(259,2:15604462,19154207:490845,86114,3587
-(259,2:15762335,19154207:175099,86114,3587
-x259,2:15937434,19154207
-)
-)
-(259,2:16095307,19154207:490845,86114,3587
-(259,2:16253180,19154207:175099,86114,3587
-x259,2:16428279,19154207
-)
-)
-(259,2:16586152,19154207:490845,86114,3587
-(259,2:16744025,19154207:175099,86114,3587
-x259,2:16919124,19154207
-)
-)
-(259,2:17076997,19154207:490845,86114,3587
-(259,2:17234870,19154207:175099,86114,3587
-x259,2:17409969,19154207
-)
-)
-(259,2:17567842,19154207:490845,86114,3587
-(259,2:17725715,19154207:175099,86114,3587
-x259,2:17900814,19154207
-)
-)
-(259,2:18058687,19154207:490845,86114,3587
-(259,2:18216560,19154207:175099,86114,3587
-x259,2:18391659,19154207
-)
-)
-(259,2:18549532,19154207:490845,86114,3587
-(259,2:18707405,19154207:175099,86114,3587
-x259,2:18882504,19154207
-)
-)
-(259,2:19040377,19154207:490845,86114,3587
-(259,2:19198250,19154207:175099,86114,3587
-x259,2:19373349,19154207
-)
-)
-(259,2:19531222,19154207:490845,86114,3587
-(259,2:19689095,19154207:175099,86114,3587
-x259,2:19864194,19154207
-)
-)
-(259,2:20022067,19154207:490845,86114,3587
-(259,2:20179940,19154207:175099,86114,3587
-x259,2:20355039,19154207
-)
-)
-(259,2:20512912,19154207:490845,86114,3587
-(259,2:20670785,19154207:175099,86114,3587
-x259,2:20845884,19154207
-)
-)
-(259,2:21003757,19154207:490845,86114,3587
-(259,2:21161630,19154207:175099,86114,3587
-x259,2:21336729,19154207
-)
-)
-(259,2:21494602,19154207:490845,86114,3587
-(259,2:21652475,19154207:175099,86114,3587
-x259,2:21827574,19154207
-)
-)
-(259,2:21985447,19154207:490845,86114,3587
-(259,2:22143320,19154207:175099,86114,3587
-x259,2:22318419,19154207
-)
-)
-(259,2:22476292,19154207:490845,86114,3587
-(259,2:22634165,19154207:175099,86114,3587
-x259,2:22809264,19154207
-)
-)
-(259,2:22967137,19154207:490845,86114,3587
-(259,2:23125010,19154207:175099,86114,3587
-x259,2:23300109,19154207
-)
-)
-(259,2:23457982,19154207:490845,86114,3587
-(259,2:23615855,19154207:175099,86114,3587
-x259,2:23790954,19154207
-)
-)
-(259,2:23948827,19154207:490845,86114,3587
-(259,2:24106700,19154207:175099,86114,3587
-x259,2:24281799,19154207
-)
-)
-(259,2:24439672,19154207:490845,86114,3587
-(259,2:24597545,19154207:175099,86114,3587
-x259,2:24772644,19154207
-)
-)
-(259,2:24930517,19154207:490845,86114,3587
-(259,2:25088390,19154207:175099,86114,3587
-x259,2:25263489,19154207
-)
-)
-(259,2:25421362,19154207:490845,86114,3587
-(259,2:25579235,19154207:175099,86114,3587
-x259,2:25754334,19154207
-)
-)
-(259,2:25912207,19154207:490845,86114,3587
-(259,2:26070080,19154207:175099,86114,3587
-x259,2:26245179,19154207
-)
-)
-(259,2:26403052,19154207:490845,86114,3587
-(259,2:26560925,19154207:175099,86114,3587
-x259,2:26736024,19154207
-)
-)
-(259,2:26893897,19154207:490845,86114,3587
-(259,2:27051770,19154207:175099,86114,3587
-x259,2:27226869,19154207
-)
-)
-(259,2:27384742,19154207:490845,86114,3587
-(259,2:27542615,19154207:175099,86114,3587
-x259,2:27717714,19154207
-)
-)
-(259,2:27875587,19154207:490845,86114,3587
-(259,2:28033460,19154207:175099,86114,3587
-x259,2:28208559,19154207
-)
-)
-(259,2:28366432,19154207:490845,86114,3587
-(259,2:28524305,19154207:175099,86114,3587
-x259,2:28699404,19154207
-)
-)
-(259,2:28857277,19154207:490845,86114,3587
-(259,2:29015150,19154207:175099,86114,3587
-x259,2:29190249,19154207
-)
-)
-(259,2:29348122,19154207:490845,86114,3587
-(259,2:29505995,19154207:175099,86114,3587
-x259,2:29681094,19154207
-)
-)
-(259,2:29838967,19154207:490845,86114,3587
-(259,2:29996840,19154207:175099,86114,3587
-x259,2:30171939,19154207
-)
-)
-(259,2:30365070,19154207:978833,442053,3587
-k259,2:30993705,19154207:628635
-x259,2:31343903,19154207
-)
-g259,2:29733566,19154207
-g259,2:31343903,19154207
-)
-(259,3:7750942,20045497:23592960,492286,162540
-g259,3:10150659,20045497
-h259,3:10150659,20045497:947256,0,0
-h259,3:11097915,20045497:0,0,0
-g259,3:8698198,20045497
-x259,3:9117287,20045497
-x259,3:9837058,20045497
-x259,3:11421558,20045497
-g259,3:11570104,20045497
-x259,3:12317862,20045497
-g259,3:12466408,20045497
-x259,3:13539247,20045497
-x259,3:14948648,20045497
-g259,3:15097194,20045497
-x259,3:15427298,20045497
-g259,3:15575844,20045497
-x259,3:17274445,20045497
-g259,3:17422991,20045497
-x259,3:18019331,20045497
-g259,3:18167877,20045497
-x259,3:19318936,20045497
-g259,3:19467482,20045497
-x259,3:20315706,20045497
-x259,3:21253632,20045497
-x259,3:21485422,20045497
-(259,3:21494602,20045497:490845,86114,3587
-$259,3:21494602,20045497
-(259,3:21652475,20045497:175099,86114,3587
-x259,3:21827574,20045497
-)
-$259,3:21985447,20045497
-)
-(259,3:21985447,20045497:490845,86114,3587
-(259,3:22143320,20045497:175099,86114,3587
-x259,3:22318419,20045497
-)
-)
-(259,3:22476292,20045497:490845,86114,3587
-(259,3:22634165,20045497:175099,86114,3587
-x259,3:22809264,20045497
-)
-)
-(259,3:22967137,20045497:490845,86114,3587
-(259,3:23125010,20045497:175099,86114,3587
-x259,3:23300109,20045497
-)
-)
-(259,3:23457982,20045497:490845,86114,3587
-(259,3:23615855,20045497:175099,86114,3587
-x259,3:23790954,20045497
-)
-)
-(259,3:23948827,20045497:490845,86114,3587
-(259,3:24106700,20045497:175099,86114,3587
-x259,3:24281799,20045497
-)
-)
-(259,3:24439672,20045497:490845,86114,3587
-(259,3:24597545,20045497:175099,86114,3587
-x259,3:24772644,20045497
-)
-)
-(259,3:24930517,20045497:490845,86114,3587
-(259,3:25088390,20045497:175099,86114,3587
-x259,3:25263489,20045497
-)
-)
-(259,3:25421362,20045497:490845,86114,3587
-(259,3:25579235,20045497:175099,86114,3587
-x259,3:25754334,20045497
-)
-)
-(259,3:25912207,20045497:490845,86114,3587
-(259,3:26070080,20045497:175099,86114,3587
-x259,3:26245179,20045497
-)
-)
-(259,3:26403052,20045497:490845,86114,3587
-(259,3:26560925,20045497:175099,86114,3587
-x259,3:26736024,20045497
-)
-)
-(259,3:26893897,20045497:490845,86114,3587
-(259,3:27051770,20045497:175099,86114,3587
-x259,3:27226869,20045497
-)
-)
-(259,3:27384742,20045497:490845,86114,3587
-(259,3:27542615,20045497:175099,86114,3587
-x259,3:27717714,20045497
-)
-)
-(259,3:27875587,20045497:490845,86114,3587
-(259,3:28033460,20045497:175099,86114,3587
-x259,3:28208559,20045497
-)
-)
-(259,3:28366432,20045497:490845,86114,3587
-(259,3:28524305,20045497:175099,86114,3587
-x259,3:28699404,20045497
-)
-)
-(259,3:28857277,20045497:490845,86114,3587
-(259,3:29015150,20045497:175099,86114,3587
-x259,3:29190249,20045497
-)
-)
-(259,3:29348122,20045497:490845,86114,3587
-(259,3:29505995,20045497:175099,86114,3587
-x259,3:29681094,20045497
-)
-)
-(259,3:29838967,20045497:490845,86114,3587
-(259,3:29996840,20045497:175099,86114,3587
-x259,3:30171939,20045497
-)
-)
-(259,3:30365069,20045497:978833,442053,3587
-k259,3:30993704,20045497:628635
-x259,3:31343902,20045497
-)
-g259,3:29733565,20045497
-g259,3:31343902,20045497
-)
-(259,4:7750942,20936787:23592960,492286,162540
-g259,4:10150659,20936787
-h259,4:10150659,20936787:947256,0,0
-h259,4:11097915,20936787:0,0,0
-g259,4:8698198,20936787
-x259,4:9081406,20936787
-x259,4:9941829,20936787
-g259,4:10090375,20936787
-x259,4:10838133,20936787
-g259,4:10986679,20936787
-x259,4:11905947,20936787
-(259,4:12168547,20936787:490845,86114,3587
-$259,4:12168547,20936787
-(259,4:12326420,20936787:175099,86114,3587
-x259,4:12501519,20936787
-)
-$259,4:12659392,20936787
-)
-(259,4:12659392,20936787:490845,86114,3587
-(259,4:12817265,20936787:175099,86114,3587
-x259,4:12992364,20936787
-)
-)
-(259,4:13150237,20936787:490845,86114,3587
-(259,4:13308110,20936787:175099,86114,3587
-x259,4:13483209,20936787
-)
-)
-(259,4:13641082,20936787:490845,86114,3587
-(259,4:13798955,20936787:175099,86114,3587
-x259,4:13974054,20936787
-)
-)
-(259,4:14131927,20936787:490845,86114,3587
-(259,4:14289800,20936787:175099,86114,3587
-x259,4:14464899,20936787
-)
-)
-(259,4:14622772,20936787:490845,86114,3587
-(259,4:14780645,20936787:175099,86114,3587
-x259,4:14955744,20936787
-)
-)
-(259,4:15113617,20936787:490845,86114,3587
-(259,4:15271490,20936787:175099,86114,3587
-x259,4:15446589,20936787
-)
-)
-(259,4:15604462,20936787:490845,86114,3587
-(259,4:15762335,20936787:175099,86114,3587
-x259,4:15937434,20936787
-)
-)
-(259,4:16095307,20936787:490845,86114,3587
-(259,4:16253180,20936787:175099,86114,3587
-x259,4:16428279,20936787
-)
-)
-(259,4:16586152,20936787:490845,86114,3587
-(259,4:16744025,20936787:175099,86114,3587
-x259,4:16919124,20936787
-)
-)
-(259,4:17076997,20936787:490845,86114,3587
-(259,4:17234870,20936787:175099,86114,3587
-x259,4:17409969,20936787
-)
-)
-(259,4:17567842,20936787:490845,86114,3587
-(259,4:17725715,20936787:175099,86114,3587
-x259,4:17900814,20936787
-)
-)
-(259,4:18058687,20936787:490845,86114,3587
-(259,4:18216560,20936787:175099,86114,3587
-x259,4:18391659,20936787
-)
-)
-(259,4:18549532,20936787:490845,86114,3587
-(259,4:18707405,20936787:175099,86114,3587
-x259,4:18882504,20936787
-)
-)
-(259,4:19040377,20936787:490845,86114,3587
-(259,4:19198250,20936787:175099,86114,3587
-x259,4:19373349,20936787
-)
-)
-(259,4:19531222,20936787:490845,86114,3587
-(259,4:19689095,20936787:175099,86114,3587
-x259,4:19864194,20936787
-)
-)
-(259,4:20022067,20936787:490845,86114,3587
-(259,4:20179940,20936787:175099,86114,3587
-x259,4:20355039,20936787
-)
-)
-(259,4:20512912,20936787:490845,86114,3587
-(259,4:20670785,20936787:175099,86114,3587
-x259,4:20845884,20936787
-)
-)
-(259,4:21003757,20936787:490845,86114,3587
-(259,4:21161630,20936787:175099,86114,3587
-x259,4:21336729,20936787
-)
-)
-(259,4:21494602,20936787:490845,86114,3587
-(259,4:21652475,20936787:175099,86114,3587
-x259,4:21827574,20936787
-)
-)
-(259,4:21985447,20936787:490845,86114,3587
-(259,4:22143320,20936787:175099,86114,3587
-x259,4:22318419,20936787
-)
-)
-(259,4:22476292,20936787:490845,86114,3587
-(259,4:22634165,20936787:175099,86114,3587
-x259,4:22809264,20936787
-)
-)
-(259,4:22967137,20936787:490845,86114,3587
-(259,4:23125010,20936787:175099,86114,3587
-x259,4:23300109,20936787
-)
-)
-(259,4:23457982,20936787:490845,86114,3587
-(259,4:23615855,20936787:175099,86114,3587
-x259,4:23790954,20936787
-)
-)
-(259,4:23948827,20936787:490845,86114,3587
-(259,4:24106700,20936787:175099,86114,3587
-x259,4:24281799,20936787
-)
-)
-(259,4:24439672,20936787:490845,86114,3587
-(259,4:24597545,20936787:175099,86114,3587
-x259,4:24772644,20936787
-)
-)
-(259,4:24930517,20936787:490845,86114,3587
-(259,4:25088390,20936787:175099,86114,3587
-x259,4:25263489,20936787
-)
-)
-(259,4:25421362,20936787:490845,86114,3587
-(259,4:25579235,20936787:175099,86114,3587
-x259,4:25754334,20936787
-)
-)
-(259,4:25912207,20936787:490845,86114,3587
-(259,4:26070080,20936787:175099,86114,3587
-x259,4:26245179,20936787
-)
-)
-(259,4:26403052,20936787:490845,86114,3587
-(259,4:26560925,20936787:175099,86114,3587
-x259,4:26736024,20936787
-)
-)
-(259,4:26893897,20936787:490845,86114,3587
-(259,4:27051770,20936787:175099,86114,3587
-x259,4:27226869,20936787
-)
-)
-(259,4:27384742,20936787:490845,86114,3587
-(259,4:27542615,20936787:175099,86114,3587
-x259,4:27717714,20936787
-)
-)
-(259,4:27875587,20936787:490845,86114,3587
-(259,4:28033460,20936787:175099,86114,3587
-x259,4:28208559,20936787
-)
-)
-(259,4:28366432,20936787:490845,86114,3587
-(259,4:28524305,20936787:175099,86114,3587
-x259,4:28699404,20936787
-)
-)
-(259,4:28857277,20936787:490845,86114,3587
-(259,4:29015150,20936787:175099,86114,3587
-x259,4:29190249,20936787
-)
-)
-(259,4:29348122,20936787:490845,86114,3587
-(259,4:29505995,20936787:175099,86114,3587
-x259,4:29681094,20936787
-)
-)
-(259,4:29838967,20936787:490845,86114,3587
-(259,4:29996840,20936787:175099,86114,3587
-x259,4:30171939,20936787
-)
-)
-(259,4:30365069,20936787:978833,442053,3587
-k259,4:30993704,20936787:628635
-x259,4:31343902,20936787
-)
-g259,4:29733565,20936787
-g259,4:31343902,20936787
-)
-]
-(1,23:7750942,49353212:23592960,442053,0
-(1,23:7750942,49353212:23592960,442053,0
-k1,23:19372323,49353212:11621381
-x1,23:19722521,49353212
-k1,23:31343902,49353212:11621381
-)
-)
-]
-]
-]
-!17098
-}3
-Input:263:C:/Users/Mirza/Google Drev/LaTeX/Latex-Skabelon/Skabeloner/BigBaddy/Skabelon til stor Rapport\abstract/abstract.tex
-!136
-{4
-[1,23:4736286,49353212:26607616,44616926,0
-[1,23:4736286,4736286:0,0,0
-(1,23:4736286,5850153:0,0,0
-k1,23:4736286,5850153:-2948875
-)
-]
-[1,23:4736286,49353212:26607616,44616926,0
-h1,23:4736286,4736286:0,0,0
-[1,23:7750942,49353212:23592960,43437278,0
-[1,23:7750942,6702366:23592960,786432,0
-(1,23:7750942,6702366:23592960,0,0
-h1,23:7750942,6702366:23592960,0,0
-)
-]
-[1,23:7750942,47387132:23592960,39046366,0
-(263,5:7750942,9061662:23592960,330821,2152
-k263,5:18775265,9061662:11024323
-(263,2:18775265,9061662:0,0,0
-g263,2:18775265,9061662
-g263,2:18775265,9061662
-g263,2:18416455,9061662
-(263,2:18416455,9061662:0,0,0
-)
-g263,2:18775265,9061662
-)
-x263,2:20319579,9061662
-k263,4:18775265,9061662:0
-g263,5:20319579,9061662
-k263,5:31343902,9061662:11024323
-)
-(263,8:7750942,12076797:23592960,495874,2152
-k263,8:18260374,12076797:10509432
-h263,7:18260374,12076797:0,0,0
-x263,7:18685204,12076797
-x263,7:20834469,12076797
-g263,8:20834469,12076797
-k263,8:31343901,12076797:10509432
-)
-(1,23:7750942,13413732:23592960,492286,3587
-x1,23:8160702,13413732
-x263,9:8981656,13413732
-g263,9:9130202,13413732
-x263,9:10126973,13413732
-k1,23:31343901,13413732:21216928
-g1,23:31343901,13413732
-)
-]
-(1,23:7750942,49353212:23592960,442053,0
-(1,23:7750942,49353212:23592960,442053,0
-k1,23:19372323,49353212:11621381
-x1,23:19722521,49353212
-k1,23:31343902,49353212:11621381
-)
-)
-]
-]
-]
-!1363
-}4
-Input:264:C:/Users/Mirza/Google Drev/LaTeX/Latex-Skabelon/Skabeloner/BigBaddy/Skabelon til stor Rapport\chapters/Intro/Intro.tex
-Input:265:C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmss.fd
-!201
-{5
-[1,24:4736286,49353212:26607616,44616926,3587
-[1,24:4736286,4736286:0,0,0
-(1,24:4736286,5850153:0,0,0
-k1,24:4736286,5850153:-2948875
-)
-]
-[1,24:4736286,49353212:26607616,44616926,3587
-h1,24:4736286,4736286:0,0,0
-[1,24:7750942,49353212:23592960,43437278,3587
-[1,24:7750942,6702366:23592960,786432,0
-(1,24:7750942,6702366:23592960,0,0
-h1,24:7750942,6702366:23592960,0,0
-)
-]
-[1,24:7750942,47387132:23592960,39046366,0
-(264,2:7750942,14750187:23592960,1020714,4890
-h264,2:7750942,14750187:0,0,0
-x264,2:8326520,14750187
-x264,2:10470672,14750187
-x264,2:11338117,14750187
-k264,2:21341009,14750187:10002892
-k264,2:31343901,14750187:10002892
-)
-(264,4:7750942,18708562:23592960,467169,3587
-x264,4:8265474,18708562
-x264,3:9393568,18708562
-g264,3:9542114,18708562
-x264,3:10138454,18708562
-g264,3:10287000,18708562
-x264,3:11034758,18708562
-g264,3:11183304,18708562
-x264,3:12267624,18708562
-x264,3:12644373,18708562
-g264,3:12792919,18708562
-x264,3:13138093,18708562
-k264,4:31343901,18708562:18205808
-g264,4:31343901,18708562
-)
-(264,7:7750942,19940639:23592960,449576,148438
-h264,6:7750942,19940639:0,0,0
-x264,6:9302177,19940639
-g264,6:9437836,19940639
-x264,6:10740689,19940639
-g264,6:10876348,19940639
-k264,7:31343902,19940639:20467554
-g264,7:31343902,19940639
-)
-(264,7:7750942,19940639:23592960,0,0
-g264,7:31343902,19940639
-g264,7:31999262,19940639
-[264,7:31999262,19940639:3276800,0,0
-[264,6:31999262,19940639:3276800,409500,1575386
-[264,6:31999262,19940639:3276800,409500,1575386
-(264,6:31999262,19940639:3276800,409500,2948
-h264,6:31999262,19940639:0,0,0
-x264,6:33646815,19940639
-g264,6:33768908,19940639
-x264,6:34083874,19940639
-x264,6:35107216,19940639
-k264,6:35276062,19940639:168846
-)
-(264,6:31999262,20661535:3276800,404619,133594
-x264,6:32818525,20661535
-g264,6:32940618,20661535
-x264,6:33430760,20661535
-g264,6:33552853,20661535
-x264,6:34948964,20661535
-k264,6:35276062,20661535:327098
-)
-(264,6:31999262,21382431:3276800,404619,133594
-x264,6:32902870,21382431
-k264,6:34089466,21382431:1186596
-k264,6:35276062,21382431:1186596
-)
-]
-]
-]
-k264,7:31343902,19940639:-3932160
-)
-(264,7:7750942,19940639:0,0,148438
-r264,7:7750942,19940639:0,148438,148438
-)
-(264,9:7750942,21172716:23592960,472485,148438
-h264,8:7750942,21172716:0,0,0
-x264,8:9302177,21172716
-g264,8:9437836,21172716
-x264,8:10538839,21172716
-x264,8:10837027,21172716
-g264,8:10972686,21172716
-x264,8:12275539,21172716
-g264,8:12411198,21172716
-x264,8:14362238,21172716
-g264,8:14488722,21172716
-x264,8:14934367,21172716
-x264,8:15973111,21172716
-g264,8:16099595,21172716
-x264,8:16796897,21172716
-g264,8:16923381,21172716
-x264,8:18196088,21172716
-k264,9:31343902,21172716:13147814
-g264,9:31343902,21172716
-)
-(264,9:7750942,21172716:23592960,0,0
-g264,9:31343902,21172716
-g264,9:31999262,21172716
-[264,9:31999262,21172716:3276800,0,0
-[264,8:31999262,22253205:3276800,409500,723844
-[264,8:31999262,22253205:3276800,409500,723844
-(264,8:31999262,22253205:3276800,409500,2948
-h264,8:31999262,22253205:0,0,0
-x264,8:33646815,22253205
-g264,8:33768908,22253205
-x264,8:34192401,22253205
-x264,8:35098369,22253205
-k264,8:35276062,22253205:177693
-)
-(264,8:31999262,22974101:3276800,334430,2948
-x264,8:32613858,22974101
-g264,8:32735951,22974101
-x264,8:33850127,22974101
-k264,8:34563095,22974101:712968
-k264,8:35276062,22974101:712967
-)
-]
-]
-]
-k264,9:31343902,21172716:-3932160
-)
-(264,9:7750942,21172716:0,0,148438
-r264,9:7750942,21172716:0,148438,148438
-)
-(264,11:7750942,22404793:23592960,449576,3276
-h264,10:7750942,22404793:0,0,0
-x264,10:9532865,22404793
-g264,10:9668524,22404793
-x264,10:10769527,22404793
-x264,10:11067715,22404793
-g264,10:11203374,22404793
-x264,10:12506227,22404793
-g264,10:12641886,22404793
-k264,11:31343902,22404793:18702016
-g264,11:31343902,22404793
-)
-(264,11:7750942,22404793:23592960,0,0
-g264,11:31343902,22404793
-g264,11:31999262,22404793
-[264,11:31999262,22404793:3276800,0,0
-[264,10:31999262,23714229:3276800,409500,2886532
-[264,10:31999262,23714229:3276800,409500,2886532
-(264,10:31999262,23714229:3276800,409500,0
-h264,10:31999262,23714229:0,0,0
-x264,10:33646815,23714229
-k264,10:35276062,23714229:1629247
-)
-(264,10:31999262,24435125:3276800,404619,2948
-x264,10:32343719,24435125
-x264,10:32935312,24435125
-x264,10:34237640,24435125
-g264,10:34359733,24435125
-x264,10:34974329,24435125
-k264,10:35276062,24435125:301733
-)
-(264,10:31999262,25156021:3276800,404619,2948
-x264,10:32881048,25156021
-x264,10:34039459,25156021
-g264,10:34161552,25156021
-x264,10:34432871,25156021
-k264,10:35276062,25156021:843191
-)
-(264,10:31999262,25876917:3276800,404619,133594
-x264,10:33395373,25876917
-g264,10:33517466,25876917
-x264,10:34007608,25876917
-g264,10:34129701,25876917
-x264,10:35075776,25876917
-k264,10:35276062,25876917:200286
-)
-(264,10:31999262,26597813:3276800,404619,2948
-x264,10:32696432,26597813
-x264,10:33467330,26597813
-x264,10:33657842,26597813
-k264,10:34466952,26597813:809110
-k264,10:35276062,26597813:809110
-)
-]
-]
-]
-k264,11:31343902,22404793:-3932160
-)
-(264,11:7750942,22404793:0,0,3276
-r264,11:7750942,22404793:0,3276,3276
-)
-(264,13:7750942,23636870:23592960,472485,148438
-h264,12:7750942,23636870:0,0,0
-x264,12:8412199,23636870
-g264,12:8547858,23636870
-x264,12:9099014,23636870
-g264,12:9234673,23636870
-x264,12:10238682,23636870
-g264,12:10374341,23636870
-x264,12:11475344,23636870
-x264,12:11773532,23636870
-g264,12:11909191,23636870
-x264,12:13212044,23636870
-g264,12:13347703,23636870
-x264,12:15298743,23636870
-g264,12:15425227,23636870
-x264,12:15783053,23636870
-x264,12:16619947,23636870
-g264,12:16746431,23636870
-x264,12:17443733,23636870
-g264,12:17570217,23636870
-x264,12:18466093,23636870
-k264,13:31343902,23636870:12877809
-g264,13:31343902,23636870
-)
-(264,13:7750942,23636870:23592960,0,0
-g264,13:31343902,23636870
-g264,13:31999262,23636870
-[264,13:31999262,23636870:3276800,0,0
-[264,12:31999262,27337941:3276800,409500,854490
-[264,12:31999262,27337941:3276800,409500,854490
-(264,12:31999262,27337941:3276800,409500,133594
-h264,12:31999262,27337941:0,0,0
-x264,12:33646815,27337941
-g264,12:33768908,27337941
-x264,12:34083874,27337941
-x264,12:34791070,27337941
-k264,12:35276062,27337941:484992
-)
-(264,12:31999262,28058837:3276800,404619,133594
-x264,12:32613858,28058837
-g264,12:32735951,28058837
-x264,12:33491513,28058837
-k264,12:34383788,28058837:892275
-k264,12:35276062,28058837:892274
-)
-]
-]
-]
-k264,13:31343902,23636870:-3932160
-)
-(264,13:7750942,23636870:0,0,148438
-r264,13:7750942,23636870:0,148438,148438
-)
-]
-(1,24:7750942,49353212:23592960,442053,3587
-(1,24:7750942,49353212:23592960,442053,3587
-k1,24:19372323,49353212:11621381
-x1,24:19722521,49353212
-k1,24:31343902,49353212:11621381
-)
-)
-]
-]
-]
-!6576
-}5
-Input:266:C:/Users/Mirza/Google Drev/LaTeX/Latex-Skabelon/Skabeloner/BigBaddy/Skabelon til stor Rapport\chapters/Spg1.tex
-!131
-{6
-[1,25:4736286,49353212:26607616,44616926,0
-[1,25:4736286,4736286:0,0,0
-(1,25:4736286,5850153:0,0,0
-k1,25:4736286,5850153:-2948875
-)
-]
-[1,25:4736286,49353212:26607616,44616926,0
-h1,25:4736286,4736286:0,0,0
-[1,25:7750942,49353212:23592960,43437278,0
-[1,25:7750942,6702366:23592960,786432,0
-(1,25:7750942,6702366:23592960,0,0
-h1,25:7750942,6702366:23592960,0,0
-)
-]
-[1,25:7750942,47387132:23592960,39046366,0
-(266,1:7750942,14750187:23592960,1126700,336705
-h266,1:7750942,14750187:0,0,0
-x266,1:9262448,14750187
-x266,1:9686387,14750187
-x266,1:10661446,14750187
-x266,1:11303876,14750187
-x266,1:16182439,14750187
-k266,1:23763171,14750187:7580732
-k266,1:31343902,14750187:7580731
-)
-]
-(1,25:7750942,49353212:23592960,442053,0
-(1,25:7750942,49353212:23592960,442053,0
-k1,25:19372323,49353212:11621381
-x1,25:19722521,49353212
-k1,25:31343902,49353212:11621381
-)
-)
-]
-]
-]
-!866
-}6
-Input:267:C:/Users/Mirza/Google Drev/LaTeX/Latex-Skabelon/Skabeloner/BigBaddy/Skabelon til stor Rapport\chapters/Spg2.tex
-Input:268:C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd
-!193
-{7
-[1,26:4736286,49353212:26607616,44616926,3587
-[1,26:4736286,4736286:0,0,0
-(1,26:4736286,5850153:0,0,0
-k1,26:4736286,5850153:-2948875
-)
-]
-[1,26:4736286,49353212:26607616,44616926,3587
-h1,26:4736286,4736286:0,0,0
-[1,26:7750942,49353212:23592960,43437278,3587
-[1,26:7750942,6702366:23592960,786432,0
-(1,26:7750942,6702366:23592960,0,0
-h1,26:7750942,6702366:23592960,0,0
-)
-]
-[1,26:7750942,47387132:23592960,39046366,0
-(267,1:7750942,14422507:23592960,939218,280678
-h267,1:7750942,14422507:0,0,0
-x267,1:8634432,14422507
-x267,1:11967230,14422507
-g267,1:12229558,14422507
-x267,1:12929555,14422507
-k267,1:22136729,14422507:9207174
-k267,1:31343903,14422507:9207174
-)
-(267,1:7750942,18144952:23592960,1126700,367684
-h267,1:7750942,18144952:0,0,0
-x267,1:8903730,18144952
-x267,1:10310881,18144952
-g267,1:10625574,18144952
-x267,1:24426422,18144952
-x267,1:30304503,18144952
-k267,1:31343902,18144952:1039399
-)
-(267,1:7750942,20111032:23592960,1126700,336705
-x267,1:10136415,20111032
-x267,1:14395373,20111032
-g267,1:14710066,20111032
-x267,1:22676861,20111032
-g267,1:22991554,20111032
-x267,1:26099354,20111032
-k267,1:31343902,20111032:5244548
-)
-(267,1:7750942,22077112:23592960,1126700,367684
-x267,1:9319516,22077112
-x267,1:12512104,22077112
-x267,1:14258407,22077112
-g267,1:14573100,22077112
-x267,1:16249290,22077112
-g267,1:16563983,22077112
-x267,1:22440433,22077112
-g267,1:22755126,22077112
-x267,1:23229612,22077112
-k267,1:31343902,22077112:8114290
-)
-(267,1:7750942,24043192:23592960,1126700,367684
-x267,1:9334191,24043192
-x267,1:14339934,24043192
-x267,1:18876084,24043192
-k267,1:25109993,24043192:6233909
-k267,1:31343902,24043192:6233909
-)
-(267,4:7750942,27993073:23592960,449576,148438
-x267,4:8116632,27993073
-x267,3:8486910,27993073
-g267,3:8622569,27993073
-x267,3:9609539,27993073
-g267,3:9745198,27993073
-x267,3:10252446,27993073
-g267,3:10388105,27993073
-x267,3:11284637,27993073
-g267,3:11420296,27993073
-[267,3:11420296,27993073:0,0,0
-(267,3:11420296,27993073:0,792897,0
-r267,3:11446510,27993073:26214,792897,0
-(267,3:11446510,27560536:2476656,360360,174845
-$267,3:11446510,27560536
-[267,3:11446510,27560536:2476656,360360,174845
-(267,3:11446510,27560536:2476656,360360,0
-(267,3:11446510,27560536:2476656,360360,0
-x267,3:13923166,27560536
-)
-)
-]
-$267,3:13923166,27560536
-)
-k267,3:11420296,27993073:-2502870
-)
-]
-x267,3:11619525,27993073
-(267,3:11619525,27993073:319815,403701,0
-x267,3:11939340,27993073
-)
-x267,3:12138569,27993073
-g267,3:12274228,27993073
-x267,3:12935485,27993073
-g267,3:13071144,27993073
-x267,3:13754029,27993073
-g267,3:13889688,27993073
-x267,3:14876658,27993073
-g267,3:15012317,27993073
-x267,3:15519565,27993073
-g267,3:15655224,27993073
-x267,3:17167138,27993073
-g267,3:17302797,27993073
-x267,3:17964054,27993073
-g267,3:18099713,27993073
-x267,3:20004841,27993073
-x267,3:20321379,27993073
-g267,3:20457038,27993073
-x267,3:23144010,27993073
-g267,3:23279669,27993073
-x267,3:23940926,27993073
-g267,3:24076585,27993073
-x267,3:25851954,27993073
-k267,4:31343902,27993073:5491948
-g267,4:31343902,27993073
-)
-]
-(1,26:7750942,49353212:23592960,442053,3587
-(1,26:7750942,49353212:23592960,442053,3587
-k1,26:19372323,49353212:11621381
-x1,26:19722521,49353212
-k1,26:31343902,49353212:11621381
-)
-)
-]
-]
-]
-!3199
-}7
-Input:269:C:/Users/Mirza/Google Drev/LaTeX/Latex-Skabelon/Skabeloner/BigBaddy/Skabelon til stor Rapport\chapters/Spg3.tex
-!131
-{8
-[1,27:4736286,49353212:26607616,44616926,3587
-[1,27:4736286,4736286:0,0,0
-(1,27:4736286,5850153:0,0,0
-k1,27:4736286,5850153:-2948875
-)
-]
-[1,27:4736286,49353212:26607616,44616926,3587
-h1,27:4736286,4736286:0,0,0
-[1,27:7750942,49353212:23592960,43437278,3587
-[1,27:7750942,6702366:23592960,786432,0
-(1,27:7750942,6702366:23592960,0,0
-h1,27:7750942,6702366:23592960,0,0
-)
-]
-[1,27:7750942,47387132:23592960,39046366,0
-(269,1:7750942,14422507:23592960,939218,280678
-h269,1:7750942,14422507:0,0,0
-x269,1:8634432,14422507
-x269,1:11967230,14422507
-g269,1:12229558,14422507
-x269,1:12929555,14422507
-k269,1:22136729,14422507:9207174
-k269,1:31343903,14422507:9207174
-)
-(269,1:7750942,18144952:23592960,1126700,367684
-h269,1:7750942,18144952:0,0,0
-x269,1:8916775,18144952
-x269,1:15504137,18144952
-g269,1:15818830,18144952
-x269,1:17147716,18144952
-g269,1:17462409,18144952
-x269,1:19197299,18144952
-g269,1:19511992,18144952
-x269,1:22143676,18144952
-x269,1:24752532,18144952
-g269,1:25067225,18144952
-x269,1:26542859,18144952
-x269,1:29696314,18144952
-g269,1:30011007,18144952
-x269,1:30485493,18144952
-k269,1:31343902,18144952:858409
-)
-(269,1:7750942,20111032:23592960,1126700,4890
-x269,1:9802154,20111032
-x269,1:12983328,20111032
-g269,1:13298021,20111032
-x269,1:14789961,20111032
-g269,1:15104654,20111032
-x269,1:26321107,20111032
-x269,1:28026647,20111032
-k269,1:29685275,20111032:1658628
-k269,1:31343902,20111032:1658627
-)
-]
-(1,27:7750942,49353212:23592960,442053,3587
-(1,27:7750942,49353212:23592960,442053,3587
-k1,27:19372323,49353212:11621381
-x1,27:19722521,49353212
-k1,27:31343902,49353212:11621381
-)
-)
-]
-]
-]
-!1605
-}8
-Input:270:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\Main.gls
-!127
-{9
-[1,34:4736286,49353212:26607616,44616926,3587
-[1,34:4736286,4736286:0,0,0
-(1,34:4736286,5850153:0,0,0
-k1,34:4736286,5850153:-2948875
-)
-]
-[1,34:4736286,49353212:26607616,44616926,3587
-h1,34:4736286,4736286:0,0,0
-[1,34:7750942,49353212:23592960,43437278,3587
-[1,34:7750942,6702366:23592960,786432,0
-(1,34:7750942,6702366:23592960,0,0
-h1,34:7750942,6702366:23592960,0,0
-)
-]
-[1,34:7750942,47387132:23592960,39046366,0
-(270,1:7750942,14750187:23592960,1126700,35055
-h270,1:7750942,14750187:0,0,0
-x270,1:8903730,14750187
-x270,1:9549421,14750187
-x270,1:13366504,14750187
-k270,1:22355203,14750187:8988699
-k270,1:31343902,14750187:8988699
-)
-(270,5:9544994,18603704:21798908,449576,3276
-(270,5:9544994,18603704:-1107562,302120,1965
-g270,5:7750942,18603704
-g270,5:7750942,18603704
-g270,5:7392132,18603704
-(270,5:7392132,18603704:686490,302120,1965
-g270,5:7750942,18603704
-(270,5:7750942,18603704:0,302120,0
-(270,5:7750942,18301584:0,0,0
-)
-)
-x270,5:8078622,18603704
-)
-g270,5:8437432,18603704
-)
-x270,5:9320200,18603704
-g270,5:9455859,18603704
-x270,5:10893060,18603704
-g270,5:11028719,18603704
-x270,5:11503855,18603704
-k270,5:31343903,18603704:19840048
-g270,5:31343903,18603704
-)
-(270,8:9544994,20438712:21798908,449576,148438
-(270,8:9544994,20438712:1337581,371589,135331
-g270,8:7750942,20438712
-g270,8:7750942,20438712
-g270,8:7392132,20438712
-(270,8:7392132,20438712:3131633,371589,135331
-g270,8:7750942,20438712
-(270,8:7750942,20438712:0,371589,0
-(270,8:7750942,20067123:0,0,0
-)
-)
-x270,8:10523765,20438712
-)
-g270,8:10882575,20438712
-)
-x270,8:11321010,20438712
-k270,8:11453035,20438712:132025
-x270,8:11768263,20438712
-k270,8:11900288,20438712:132025
-x270,8:12501252,20438712
-x270,8:12845316,20438712
-x270,8:13393195,20438712
-x270,8:14258924,20438712
-x270,8:15491000,20438712
-x270,8:15969412,20438712
-k270,8:16101437,20438712:132025
-x270,8:16973065,20438712
-x270,8:18496120,20438712
-k270,8:18628145,20438712:132025
-x270,8:19723249,20438712
-k270,8:19855274,20438712:132025
-x270,8:20089892,20438712
-x270,8:20388080,20438712
-x270,8:21172545,20438712
-x270,8:21476631,20438712
-x270,8:22046138,20438712
-k270,8:22178163,20438712:132025
-x270,8:22726699,20438712
-x270,8:23825736,20438712
-k270,8:23957765,20438712:132029
-x270,8:24775653,20438712
-x270,8:25010271,20438712
-x270,8:25571258,20438712
-k270,8:25703283,20438712:132025
-x270,8:26751859,20438712
-k270,8:26883884,20438712:132025
-x270,8:27755512,20438712
-x270,8:28304048,20438712
-x270,8:29036084,20438712
-x270,8:29519739,20438712
-x270,8:30299616,20438712
-k270,8:30431641,20438712:132025
-x270,8:31107317,20438712
-x270,8:31343902,20438712
-k270,8:31343902,20438712:0
-)
-(270,8:9544994,21225144:21798908,449576,135003
-x270,8:10227223,21225144
-g270,8:10362882,21225144
-x270,8:11411458,21225144
-g270,8:11547117,21225144
-x270,8:12148081,21225144
-x270,8:12492145,21225144
-x270,8:12953517,21225144
-x270,8:13886749,21225144
-g270,8:14022408,21225144
-x270,8:14943187,21225144
-x270,8:15882316,21225144
-g270,8:16017975,21225144
-x270,8:16566511,21225144
-g270,8:16702170,21225144
-x270,8:17017398,21225144
-g270,8:17153057,21225144
-x270,8:18091531,21225144
-x270,8:18817668,21225144
-g270,8:18953327,21225144
-x270,8:19493343,21225144
-x270,8:19727961,21225144
-x270,8:20971177,21225144
-k270,8:31343902,21225144:10372725
-g270,8:31343902,21225144
-)
-(270,12:9544994,23060152:21798908,452853,148438
-(270,11:9544994,23060152:389278,452853,1965
-g270,11:7750942,23060152
-g270,11:7750942,23060152
-g270,11:7392132,23060152
-(270,11:7392132,23060152:2183330,452853,1965
-g270,11:7750942,23060152
-(270,11:7750942,23060152:0,452853,0
-(270,11:7750942,22607299:0,0,0
-)
-)
-x270,11:9575462,23060152
-)
-g270,11:9934272,23060152
-)
-x270,11:10372707,23060152
-g270,11:10508366,23060152
-x270,11:10823594,23060152
-g270,11:10959253,23060152
-x270,11:12811954,23060152
-g270,11:12947613,23060152
-x270,11:14419549,23060152
-x270,11:15112262,23060152
-g270,11:15247921,23060152
-x270,11:16626141,23060152
-g270,11:16761800,23060152
-x270,11:18826181,23060152
-k270,12:31343902,23060152:12517721
-g270,12:31343902,23060152
-)
-]
-(1,34:7750942,49353212:23592960,442053,3587
-(1,34:7750942,49353212:23592960,442053,3587
-k1,34:19372323,49353212:11621381
-x1,34:19722521,49353212
-k1,34:31343902,49353212:11621381
-)
-)
-]
-]
-]
-!4191
-}9
-!9
-{10
-[1,34:4736286,49353212:26607616,44616926,3587
-[1,34:4736286,4736286:0,0,0
-(1,34:4736286,5850153:0,0,0
-k1,34:4736286,5850153:-2948875
-)
-]
-[1,34:4736286,49353212:26607616,44616926,3587
-h1,34:4736286,4736286:0,0,0
-[1,34:7750942,49353212:23592960,43437278,3587
-[1,34:7750942,6702366:23592960,786432,0
-(1,34:7750942,6702366:23592960,0,0
-h1,34:7750942,6702366:23592960,0,0
-)
-]
-[1,34:7750942,47387132:23592960,39046366,0
-h1,34:7750942,9061662:0,0,0
-(1,34:7750942,23331978:23592960,1126700,336705
-k1,34:15503694,23331978:7752752
-h1,34:15503694,23331978:0,0,0
-x1,34:16468971,23331978
-x1,34:23591150,23331978
-g1,34:23591150,23331978
-k1,34:31343902,23331978:7752752
-)
-]
-(1,34:7750942,49353212:23592960,442053,3587
-(1,34:7750942,49353212:23592960,442053,3587
-k1,34:19372323,49353212:11621381
-x1,34:19722521,49353212
-k1,34:31343902,49353212:11621381
-)
-)
-]
-]
-]
-!854
-}10
-Input:271:C:/Users/Mirza/Google Drev/LaTeX/Latex-Skabelon/Skabeloner/BigBaddy/Skabelon til stor Rapport\appendix/logsystem.tex
-Input:272:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\Main.ver
-Input:273:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\Main.ver
-Input:274:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\Main.ver
-!490
-{11
-[1,35:4736286,49353212:26607616,44616926,3587
-[1,35:4736286,4736286:0,0,0
-(1,35:4736286,5850153:0,0,0
-k1,35:4736286,5850153:-2948875
-)
-]
-[1,35:4736286,49353212:26607616,44616926,3587
-h1,35:4736286,4736286:0,0,0
-[1,35:7750942,49353212:23592960,43437278,3587
-[1,35:7750942,6702366:23592960,786432,0
-(1,35:7750942,6702366:23592960,0,0
-h1,35:7750942,6702366:23592960,0,0
-)
-]
-[1,35:7750942,47387132:23592960,39046366,0
-[274,18:7750942,21723897:23592960,13383131,235932
-(271,1:7750942,14750187:23592960,1020714,367684
-h271,1:7750942,14750187:0,0,0
-x271,1:10304360,14750187
-g271,1:10619053,14750187
-x271,1:15495983,14750187
-k271,1:23419943,14750187:7923960
-k271,1:31343902,14750187:7923959
-)
-(274,5:7750942,19076243:23592960,550500,524290
-k274,2:7750943,19076243:1
-(274,3:7750943,19076243:2514612,550500,524290
-r274,2:7750943,19076243:0,786432,235932
-r274,3:7750943,19076243:0,952567,524290
-x274,3:8139571,19076243
-k274,2:7750943,19076243:-41944
-x274,2:9872339,19076243
-g274,3:9872339,19076243
-g274,3:10265555,19076243
-)
-g274,3:10265555,19076243
-(274,4:10265555,19076243:3025138,550500,524290
-g274,3:10658771,19076243
-r274,4:10658771,19076243:0,934545,524290
-x274,4:11127353,19076243
-k274,3:10658771,19076243:-9175
-x274,3:12021263,19076243
-k274,4:12897477,19076243:876214
-g274,4:13290693,19076243
-)
-g274,4:13290693,19076243
-(274,5:13290693,19076243:5004822,550500,524290
-g274,4:13683909,19076243
-r274,5:13683909,19076243:0,1074790,524290
-[274,5:13683909,19076243:4218390,550500,235932
-(274,5:13683909,19076243:4218390,550500,235932
-h274,4:13683909,19076243:0,0,0
-r274,4:13683909,19076243:0,786432,235932
-x274,4:14041735,19076243
-x274,4:14638111,19076243
-x274,4:16686107,19076243
-x274,4:17207117,19076243
-r274,5:17207117,19076243:0,235932,235932
-k274,5:17902299,19076243:695182
-g274,5:17902299,19076243
-)
-]
-g274,5:17902299,19076243
-g274,5:18295515,19076243
-)
-g274,5:18295515,19076243
-(274,5:18295515,19076243:13048387,550500,524290
-g274,5:18688731,19076243
-r274,5:18688731,19076243:0,1074790,524290
-[274,5:18688731,19076243:12655171,550500,524290
-(274,5:18688731,19076243:12655171,550500,524290
-h274,5:18688731,19076243:0,0,0
-r274,5:18688731,19076243:0,1074790,524290
-x274,5:19100297,19076243
-x274,5:20293705,19076243
-x274,5:20802263,19076243
-x274,5:21873119,19076243
-r274,5:21873119,19076243:0,1074790,524290
-r274,5:21873119,19076243:0,235932,235932
-k274,5:31343902,19076243:9470783
-g274,5:31343902,19076243
-)
-]
-g274,5:31343902,19076243
-)
-k274,5:31343902,19076243:0
-)
-(274,10:7750942,20151033:23592960,550500,235932
-k274,6:7750943,20151033:1
-(274,7:7750943,20151033:2514612,550500,235932
-r274,6:7750943,20151033:0,786432,235932
-r274,7:7750943,20151033:0,639633,235932
-x274,7:8550481,20151033
-k274,7:9872339,20151033:1321858
-g274,7:10265555,20151033
-)
-g274,7:10265555,20151033
-(274,8:10265555,20151033:3025138,550500,235932
-g274,7:10658771,20151033
-r274,8:10658771,20151033:0,639633,235932
-x274,8:12897477,20151033
-g274,8:12897477,20151033
-g274,8:13290693,20151033
-)
-g274,8:13290693,20151033
-(274,9:13290693,20151033:5004822,550500,235932
-g274,8:13683909,20151033
-r274,9:13683909,20151033:0,786432,235932
-[274,9:13683909,20151033:4218390,550500,235932
-(274,9:13683909,20151033:4218390,550500,235932
-h274,8:13683909,20151033:0,0,0
-r274,8:13683909,20151033:0,786432,235932
-x274,8:14733795,20151033
-r274,9:14733795,20151033:0,235932,235932
-k274,9:17902299,20151033:3168504
-g274,9:17902299,20151033
-)
-]
-g274,9:17902299,20151033
-g274,9:18295515,20151033
-)
-g274,9:18295515,20151033
-(274,10:18295515,20151033:13048387,550500,235932
-g274,9:18688731,20151033
-r274,10:18688731,20151033:0,786432,235932
-[274,10:18688731,20151033:12655171,550500,235932
-(274,10:18688731,20151033:12655171,550500,235932
-h274,9:18688731,20151033:0,0,0
-r274,9:18688731,20151033:0,786432,235932
-x274,9:19222193,20151033
-x274,9:20713135,20151033
-r274,10:20713135,20151033:0,235932,235932
-k274,10:31343902,20151033:10630767
-g274,10:31343902,20151033
-)
-]
-g274,10:31343902,20151033
-)
-k274,10:31343902,20151033:0
-)
-(274,14:7750942,20937465:23592960,550500,235932
-k274,10:7750943,20937465:1
-(274,11:7750943,20937465:2514612,550500,235932
-r274,10:7750943,20937465:0,786432,235932
-r274,11:7750943,20937465:0,639633,235932
-x274,11:8550481,20937465
-k274,11:9872339,20937465:1321858
-g274,11:10265555,20937465
-)
-g274,11:10265555,20937465
-(274,12:10265555,20937465:3025138,550500,235932
-g274,11:10658771,20937465
-r274,12:10658771,20937465:0,639633,235932
-x274,12:12897477,20937465
-g274,12:12897477,20937465
-g274,12:13290693,20937465
-)
-g274,12:13290693,20937465
-(274,13:13290693,20937465:5004822,550500,235932
-g274,12:13683909,20937465
-r274,13:13683909,20937465:0,786432,235932
-[274,13:13683909,20937465:4218390,550500,235932
-(274,13:13683909,20937465:4218390,550500,235932
-h274,12:13683909,20937465:0,0,0
-r274,12:13683909,20937465:0,786432,235932
-x274,12:14468374,20937465
-r274,13:14468374,20937465:0,235932,235932
-k274,13:17902299,20937465:3433925
-g274,13:17902299,20937465
-)
-]
-g274,13:17902299,20937465
-g274,13:18295515,20937465
-)
-g274,13:18295515,20937465
-(274,14:18295515,20937465:13048387,550500,235932
-g274,13:18688731,20937465
-r274,14:18688731,20937465:0,786432,235932
-[274,14:18688731,20937465:12655171,550500,235932
-(274,14:18688731,20937465:12655171,550500,235932
-h274,13:18688731,20937465:0,0,0
-r274,13:18688731,20937465:0,786432,235932
-x274,13:19804807,20937465
-x274,13:21505464,20937465
-r274,14:21505464,20937465:0,235932,235932
-k274,14:31343902,20937465:9838438
-g274,14:31343902,20937465
-)
-]
-g274,14:31343902,20937465
-)
-k274,14:31343902,20937465:0
-)
-(274,18:7750942,21723897:23592960,550500,235932
-k274,14:7750943,21723897:1
-(274,15:7750943,21723897:2514612,550500,235932
-r274,14:7750943,21723897:0,786432,235932
-r274,15:7750943,21723897:0,639633,235932
-x274,15:8550481,21723897
-k274,15:9872339,21723897:1321858
-g274,15:10265555,21723897
-)
-g274,15:10265555,21723897
-(274,16:10265555,21723897:3025138,550500,235932
-g274,15:10658771,21723897
-r274,16:10658771,21723897:0,639633,235932
-x274,16:12897477,21723897
-g274,16:12897477,21723897
-g274,16:13290693,21723897
-)
-g274,16:13290693,21723897
-(274,17:13290693,21723897:5004822,550500,235932
-g274,16:13683909,21723897
-r274,17:13683909,21723897:0,786432,235932
-[274,17:13683909,21723897:4218390,550500,235932
-(274,17:13683909,21723897:4218390,550500,235932
-h274,16:13683909,21723897:0,0,0
-r274,16:13683909,21723897:0,786432,235932
-x274,16:14415945,21723897
-x274,16:14564056,21723897
-g274,16:14699715,21723897
-x274,16:15484180,21723897
-r274,17:15484180,21723897:0,235932,235932
-k274,17:17902299,21723897:2418119
-g274,17:17902299,21723897
-)
-]
-g274,17:17902299,21723897
-g274,17:18295515,21723897
-)
-g274,17:18295515,21723897
-(274,18:18295515,21723897:13048387,550500,235932
-g274,17:18688731,21723897
-r274,18:18688731,21723897:0,786432,235932
-[274,18:18688731,21723897:12655171,550500,235932
-(274,18:18688731,21723897:12655171,550500,235932
-h274,17:18688731,21723897:0,0,0
-r274,17:18688731,21723897:0,786432,235932
-x274,17:18923349,21723897
-x274,17:20634491,21723897
-g274,17:20770150,21723897
-x274,17:22029094,21723897
-g274,17:22164753,21723897
-x274,17:22399371,21723897
-x274,17:23950605,21723897
-r274,18:23950605,21723897:0,235932,235932
-k274,18:31343902,21723897:7393297
-g274,18:31343902,21723897
-)
-]
-g274,18:31343902,21723897
-)
-k274,18:31343902,21723897:0
-)
-]
-]
-(1,35:7750942,49353212:23592960,442053,3587
-(1,35:7750942,49353212:23592960,442053,3587
+(96,2:7750942,18894421:23592960,468963,2152
+g96,2:8698198,18894421
+g96,2:7750942,18894421
+x96,2:10775702,18894421
+k96,2:30365070,18894421:19589368
+(96,2:30365070,18894421:978833,449229,0
+k96,2:30974329,18894421:609259
+x96,2:31343903,18894421
+)
+g96,2:30365070,18894421
+g96,2:31343903,18894421
+)
+]
+(1,35:7750942,49353212:23592960,442053,0
+(1,35:7750942,49353212:23592960,442053,0
 k1,35:19372323,49353212:11621381
 x1,35:19722521,49353212
 k1,35:31343902,49353212:11621381
@@ -2432,178 +290,48 @@ k1,35:31343902,49353212:11621381
 ]
 ]
 ]
-!7460
-}11
-Input:275:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\Main.bbl
-!128
-{12
-[1,43:4736286,49353212:26607616,44616926,3587
-[1,43:4736286,4736286:0,0,0
-(1,43:4736286,5850153:0,0,0
-k1,43:4736286,5850153:-2948875
+!1049
+}2
+Input:97:C:\Users\Baby-\Google Drev\KU\Kode\2aar\COMPILERS\Opgaver\Gruppe\Latex\Main.bbl
+!98
+{3
+[1,41:4736286,49353212:26607616,44616926,0
+[1,41:4736286,4736286:0,0,0
+(1,41:4736286,5850153:0,0,0
+k1,41:4736286,5850153:-2948875
 )
 ]
-[1,43:4736286,49353212:26607616,44616926,3587
-h1,43:4736286,4736286:0,0,0
-[1,43:7750942,49353212:23592960,43437278,3587
-[1,43:7750942,6702366:23592960,786432,0
-(1,43:7750942,6702366:23592960,0,0
-h1,43:7750942,6702366:23592960,0,0
+[1,41:4736286,49353212:26607616,44616926,0
+[1,41:7750942,49353212:23592960,43437278,0
+[1,41:7750942,6702366:23592960,786432,0
+(1,41:7750942,6702366:23592960,0,0
+h1,41:7750942,6702366:23592960,0,0
 )
 ]
-[1,43:7750942,47387132:23592960,39046366,0
-(275,1:7750942,14750187:23592960,1065554,4890
-h275,1:7750942,14750187:0,0,0
-x275,1:14623649,14750187
-k275,1:22983776,14750187:8360127
-k275,1:31343902,14750187:8360126
-)
-(275,6:8828025,18158059:22515877,449576,148438
-(275,3:8828025,18158059:0,426639,76349
-(275,3:8828025,18158059:0,0,0
-k275,3:3898098,18158059:-4929927
-(275,3:3898098,18158059:3197484,0,0
-(275,3:3898098,18158059:3197484,623222,368422
-(275,3:3898098,18158059:3197484,623222,368422
-(275,3:3898098,18526481:3197484,991644,0
-[275,3:3898098,18526481:3197484,991644,0
-(275,3:3898098,18500267:3197484,939216,0
-[275,3:3924312,18500267:3145056,939216,0
-(275,3:3924312,18158059:3145056,400400,145600
-x275,3:6872760,18158059
+[1,41:7750942,47387132:23592960,39046366,0
+(97,1:7750942,14750187:23592960,1065554,4890
+h97,1:7750942,14750187:0,0,0
+x97,1:14623649,14750187
+k97,1:22983776,14750187:8360127
+k97,1:31343902,14750187:8360126
 )
 ]
-)
-]
-)
-)
-(275,3:3898098,18158059:3197484,623222,368422
-[275,3:3898098,18526481:3197484,991644,0
-(275,3:3898098,18513374:3197484,965430,0
-r275,3:3924312,18513374:26214,965430,0
-r275,3:7095582,18513374:26214,965430,0
-)
-]
-)
-)
-)
-)
-(275,3:8828025,18158059:0,426639,76349
-g275,3:8828025,18158059
-g275,3:8109752,18158059
-g275,3:7750942,18158059
-(275,3:7750942,18158059:718273,426639,76349
-g275,3:7750942,18158059
-g275,3:7750942,18158059
-(275,3:7750942,18158059:0,0,0
-(275,3:7750942,17371627:0,0,0
-)
-)
-x275,3:8469215,18158059
-)
-g275,3:8828025,18158059
-)
-)
-x275,3:9298573,18158059
-k275,4:8828025,18158059:-18350
-x275,4:11002508,18158059
-g275,4:11138167,18158059
-x275,4:11583810,18158059
-x275,4:11707673,18158059
-g275,4:11843332,18158059
-g275,5:11906771,18158059
-x275,5:12475623,18158059
-x275,5:12766601,18158059
-g275,5:12902260,18158059
-x275,5:13452106,18158059
-x275,5:14616678,18158059
-x275,5:14764789,18158059
-g275,5:14900448,18158059
-x275,5:16339616,18158059
-k275,6:31343902,18158059:15004286
-g275,6:31343902,18158059
-)
-]
-(1,43:7750942,49353212:23592960,442053,3587
-(1,43:7750942,49353212:23592960,442053,3587
-k1,43:19197224,49353212:11446282
-x1,43:19897620,49353212
-k1,43:31343902,49353212:11446282
+(1,41:7750942,49353212:23592960,442053,0
+(1,41:7750942,49353212:23592960,442053,0
+k1,41:19372323,49353212:11621381
+x1,41:19722521,49353212
+k1,41:31343902,49353212:11621381
 )
 )
 ]
 ]
 ]
-!2310
-}12
-Input:276:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\Main.ind
-!128
-{13
-[1,46:4736286,49353212:26607616,44616926,0
-[1,46:4736286,4736286:0,0,0
-(1,46:4736286,5850153:0,0,0
-k1,46:4736286,5850153:-2948875
-)
-]
-[1,46:4736286,49353212:26607616,44616926,0
-h1,46:4736286,4736286:0,0,0
-[1,46:7750942,49353212:23592960,43437278,0
-[1,46:7750942,6702366:23592960,786432,0
-(1,46:7750942,6702366:23592960,0,0
-h1,46:7750942,6702366:23592960,0,0
-)
-]
-[1,46:7750942,47387132:23592960,39046366,0
-(276,1:7750942,14750187:23592960,1126700,4890
-h276,1:7750942,14750187:0,0,0
-x276,1:8326520,14750187
-x276,1:12482753,14750187
-k276,1:21913327,14750187:9430574
-k276,1:31343901,14750187:9430574
-)
-(276,5:7750942,18158059:23592960,720896,135003
-[276,5:7750942,18158059:10649600,720896,84868
-(276,4:7750942,18158059:10649600,449576,84868
-x276,4:9422764,18158059
-g276,3:9558423,18158059
-x276,3:9878238,18158059
-k276,4:18400542,18158059:8522304
-g276,4:18400542,18158059
-)
-]
-k276,5:19547422,18158059:1146880
-r276,5:19547422,18158059:0,855899,135003
-k276,5:20694302,18158059:1146880
-[276,5:20694302,18158059:10649600,720896,0
-]
-(276,5:31343902,18158059:0,302120,135003
-h276,5:31343902,18158059:366346,302120,135003
-k276,5:31343902,18158059:-366346
-)
-)
-]
-(1,46:7750942,49353212:23592960,442053,0
-(1,46:7750942,49353212:23592960,442053,0
-k1,46:19197224,49353212:11446282
-x1,46:19897620,49353212
-k1,46:31343902,49353212:11446282
-)
-)
-]
-]
-]
-!1340
-}13
-Input:277:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\Main.aux
-Input:278:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\frontpage/titlepage.aux
-Input:279:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\abstract/abstract.aux
-Input:280:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\chapters/Intro/Intro.aux
-Input:281:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\chapters/Spg1.aux
-Input:282:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\chapters/Spg2.aux
-Input:283:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\chapters/Spg3.aux
-Input:284:C:\Users\Mirza\Google Drev\LaTeX\Latex-Skabelon\Skabeloner\BigBaddy\Skabelon til stor Rapport\Temp\appendix/logsystem.aux
-!1039
+!732
+}3
+Input:98:C:\Users\Baby-\Google Drev\KU\Kode\2aar\COMPILERS\Opgaver\Gruppe\Latex\Main.aux
+Input:99:C:\Users\Baby-\Google Drev\KU\Kode\2aar\COMPILERS\Opgaver\Gruppe\Latex\frontpage/titlepage.aux
+!201
 Postamble:
-Count:1683
-!28
+Count:173
+!26
 Post scriptum:

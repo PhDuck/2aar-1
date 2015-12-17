@@ -17,12 +17,12 @@ open Fasto.UnknownTypes
 %token <(int*int)> COMMA
 %token <(int*int)> FUN READ WRITE
 %token <(int*int)> IOTA
-%token <(int*int)> MAP FN
+%token <(int*int)> MAP FN FNEQ
 
 %nonassoc ifprec letprec
 %left OR
 %left AND NOT
-%left DEQ LTH
+%left DEQ LTH NEGATE
 %left PLUS MINUS
 %left TIMES DIVIDE
 
@@ -83,7 +83,8 @@ Exp :     NUM            { Constant (IntVal (#1 $1), #2 $1) }
         | NEGATE Exp     { Negate ($2, $1)   }
         | IOTA LPAR Exp RPAR
                          { Iota ($3, $1)     }
-        | MAP FUN Exp    { Map ($3, $2) }
+        | MAP LPAR FunArg COMMA Exp RPAR
+                         { Map ( $3, $5, (), (), $1) }
         | IF Exp THEN Exp ELSE Exp %prec ifprec
                          { If ($2, $4, $6, $1) }
         | ID LPAR Exps RPAR
@@ -102,6 +103,12 @@ Exp :     NUM            { Constant (IntVal (#1 $1), #2 $1) }
         | ID LBRACKET Exp RBRACKET
                         { Index (#1 $1, $3, (), $2) }
 ;
+
+FunArg :  ID {FunName (#1 $1)}
+        | FN Type LPAR RPAR FNEQ Exp
+                        { Lambda ($2, [], $6, $1) }
+        | FN Type LPAR Params RPAR FNEQ Exp
+                        { Lambda ($2, $4, $7, $1) }
 
 Exps : Exp COMMA Exps   { $1 :: $3 }
     |  Exp              { $1 :: [] }

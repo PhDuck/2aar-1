@@ -168,13 +168,15 @@ fun evalExp ( Constant (v,_), vtab, ftab ) = v
         end
 
   | evalExp ( Divide(e1, e2, pos), vtab, ftab ) =
-        let val res1   = evalExp(e1, vtab, ftab)
-            val res2   = evalExp(e2, vtab, ftab)
-
-        in  if res2 = IntVal 0 then raise Fail "Division by zero"
-            else case (res1, res2) of
-              (IntVal n1, IntVal n2) => IntVal (n1 div n2)
-            | _ => invalidOperands "Divide on non-integral args: " [(Int, Int)] res1 res2 pos
+        let
+          val res1   = evalExp(e1, vtab, ftab)
+          val res2   = evalExp(e2, vtab, ftab)
+        in
+          if res2 = IntVal 0 then raise Fail "Division by zero"
+            else
+              case (res1, res2) of
+                (IntVal n1, IntVal n2) => IntVal( Int.quot(n1, n2))
+                | _ => invalidOperands "Divide on non-integral args: " [(Int, Int)] res1 res2 pos
         end
 
   | evalExp (And (e1, e2, pos), vtab, ftab) =
@@ -286,9 +288,17 @@ fun evalExp ( Constant (v,_), vtab, ftab ) = v
                                  ^ Int.toString(size), pos)
            | _ => raise Error("Iota argument is not a number: "^ppVal 0 sz, pos)
     end
-
+(*evalFunArg (FunName fid, vtab, ftab, callpos, aargs) =*)
   | evalExp ( Map (farg, arrexp, _, _, pos), vtab, ftab ) =
-    raise Fail "Unimplemented feature map"
+    let
+      val return_type = rtpFunArg(farg, ftab, pos)
+      val evaluated_arr = case evalExp(arrexp, vtab, ftab) of
+        ArrayVal(arr, _) => arr
+        | _ => raise Error("Map: Array expressions does not evaluate to ArrayVal", pos)
+      val map_result = map(fn x => evalFunArg(farg, vtab, ftab, pos, [x])) evaluated_arr
+    in
+      ArrayVal(map_result, return_type)
+    end
 
   | evalExp ( Reduce (farg, ne, arrexp, tp, pos), vtab, ftab ) =
     raise Fail "Unimplemented feature reduce"

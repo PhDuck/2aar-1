@@ -123,28 +123,29 @@ and checkExp ftab vtab (exp : In.Exp)
 
 
     | In.Or (e1, e2, pos)
-      => let val (_, e1_dec, e2_dec) = checkBinOp ftab vtab (pos, Bool, e1, e2)
+      => let
+            val (_, e1_dec, e2_dec) = checkBinOp ftab vtab (pos, Bool, e1, e2)
          in (Bool,
-             Out.Or (e1_dec, e2_dec, pos))
+            Out.Or (e1_dec, e2_dec, pos))
          end
 
-
     | In.Not (e, pos)
-      =>
-      let val (q, e') = checkExp ftab vtab e
-      in
-        case (q, e') of
-         (bool, _) => (Bool, Out.Not (e', pos))
-       | _         => raise Fail "Type Error"
-     end
+      =>  let
+            val (type_exp, e_dec) = checkExp ftab vtab e
+          in
+            if Bool = type_exp
+            then (type_exp, Out.Not (e_dec, pos))
+            else raise Error ("Not: Not bool", pos)
+          end
 
     | In.Negate (e, pos)
       =>
-      let val (q, e') = checkExp ftab vtab e
+      let
+        val (q, e') = checkExp ftab vtab e
       in
         case (q, e') of
          (Int, _) => (Int, Out.Negate (e', pos))
-        | _       => raise Fail "Type Error"
+        | _       => raise Fail "Negate: Type Error"
       end
 
     (* The types for e1, e2 must be the same. The result is always a Bool. *)
@@ -236,11 +237,16 @@ and checkExp ftab vtab (exp : In.Exp)
       end
 
     | In.Map (f, arr_exp, _, _, pos)
-      => let 
-          val ()
-
-          raise Fail "Unimplemented feature map"
-
+      =>
+      let
+          val (arr_type, arr_dec) = checkExp ftab vtab arr_exp
+          val (fname, result_type, arg_types) = checkFunArg(f, vtab, ftab, pos)
+      in
+          if arr_type = hd arg_types
+          then (Array result_type, Out.Map(fname, arr_dec, arr_type, result_type, pos))
+          else raise Error ("Map: wrong argument type " ^
+                              ppType arr_type, pos)
+      end
     | In.Reduce (f, n_exp, arr_exp, _, pos)
       => raise Fail "Unimplemented feature reduce"
 

@@ -76,6 +76,7 @@ rule Token = parse
 							  String.size s - 2)),
 			     getPos lexbuf) }
   | `+`                 { Parser.PLUS   (getPos lexbuf) }
+  | "=>"                { Parser.FNEQ   (getPos lexbuf) }
   | `!`                 { Parser.NOT    (getPos lexbuf) }
   | `*`                 { Parser.TIMES  (getPos lexbuf) }
   | `/`                 { Parser.DIVIDE (getPos lexbuf) }

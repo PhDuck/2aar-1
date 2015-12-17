@@ -39,31 +39,6 @@
 \usepackage{caption}
 
 %%--------------------------------
-%Til brug af Landscape
-\usepackage{fancyhdr}
-\usepackage{lscape} %http://tex.stackexchange.com/questions/337/how-to-change-certain-pages-into-landscape-portrait-mode
-\usepackage{pdflscape} %http://texblog.org/2007/11/10/landscape-in-latex/
-\pagestyle{fancy}
-\fancyhead{}
-\fancyfoot{}
-\fancyfoot[C]{\thepage}
-\renewcommand{\headrulewidth}{0pt}
-
-\fancypagestyle{lscape}{%
-    \fancyhf{}
-    \fancyfoot[C]{
-    \begin{textblock}{20}(1,5){\rotatebox{90}{}}\end{textblock}
-    \begin{textblock}{1}(13,10.5){\rotatebox{90}{\thepage}}\end{textblock}}
-    \fancyfoot[C] {
-    \begin{textblock}{1}(18.75,3.5){\rotatebox{90}{\thepage}}\end{textblock}
-    \begin{textblock}{20}(1,13.25){\rotatebox{90}{}}\end{textblock}}
-
-    \setlength{\TPHorizModule}{28pt}
-    \setlength{\TPVertModule}{14pt}
-    \renewcommand{\headrulewidth}{0.0pt}
-    \renewcommand{\footrulewidth}{0.0pt}
-    }
-
 
 
 %%--------------------------------
@@ -87,55 +62,15 @@
 
 %%--------------------------------
 %index
-\usepackage{imakeidx} %laver indeks med angivent antal kollonner og titel
-\makeindex[columns=2, title=Indeks]
-\usepackage[totoc]{idxlayout} %tilføler indeks til toc
 
 %%--------------------------------
 %glossary
-\usepackage[nonumberlist, toc]{glossaries} %http://en.wikibooks.org/wiki/LaTeX/Glossary#Jump_start
-\makeglossaries
-\AtBeginDocument{\renewcommand\glossaryname{Ordliste}} %renamer glossary til Ordliste
-\usepackage{mainGlossary}
+
 
 %%--------------------------------
 %appendix
-\usepackage[toc,page]{appendix} %tilføler appendix
+
 
 %%--------------------------------
-%tikz og pgfplots til legends
-\usepackage{tikz} %documentation http://www.ctan.org/pkg/pgf
-\usetikzlibrary{calc,shadings}
-\usepackage{pgfplots}
-\pgfplotsset{compat=newest} %tager nyeste version
-% argument #1: any options
-\newenvironment{customlegend}[1][]{%
-    \begingroup
-    % inits/clears the lists (which might be populated from previous
-    % axes):
-    \csname pgfplots@init@cleared@structures\endcsname
-    \pgfplotsset{#1}%
-}{%
-    % draws the legend:
-    \csname pgfplots@createlegend\endcsname
-    \endgroup
-}%
-
-% makes \addlegendimage available (typically only available within an
-% axis environment):
-\def\addlegendimage{\csname pgfplots@addlegendimage\endcsname}
-
-%%--------------------------------
-% definition to insert numbers
-\pgfkeys{/pgfplots/number in legend/.style={%
-        /pgfplots/legend image code/.code={%
-            \node at (0.125,-0.0225){#1}; % <= changed x value
-        },%
-    },
-}
-\pgfplotsset{
-every legend to name picture/.style={west}
-}
-
 
 %%--------------------------------
