@@ -14,9 +14,7 @@
 \include{frontpage/titlepage}
 
 
-\tableofcontents
 
-\newpage
 
 \setcounter{page}{1}
 \renewcommand\thepage{\arabic{page}}
@@ -27,14 +25,14 @@
 
 For at løse opgaver i task 1, kigger vi kun på \texttt{Lexer.lex}, \texttt{Parser.grm}, \texttt{Interpreter.sml}, \texttt{Typerchecker.sml} og \texttt{codegen.sml}.
 
-Hvis vi, tager det slavisk, som i den rækkefølge de skal løses i. Det vil sige, for at implentere \texttt{TRUE} og \texttt{FALSE}, så skal de først defineres i \texttt{Lexer.lex} under keywords, der indsættes
+Hvis vi, tager det slavisk, som i den rækkefølge de skal løses i. Det vil sige, for at implentere \texttt{TRUE} og \texttt{FALSE}, så skal de først defineres under keywords, der indsættes
 
 \begin{code}[firstnumber=42]{Lexer.lex}
        | "true"         => Parser.TRUE pos
        | "false"        => Parser.FALSE pos
 \end{code}
 
-i \texttt{Parser.grm} er begge blevet implementeret som tokens og expresseion
+her efter skal vi definere dem som tokens og  expresseions
 
 \begin{code}[firstnumber=13]{Parser.grm}
 %token <(int*int)> TRUE FALSE
@@ -44,7 +42,7 @@ i \texttt{Parser.grm} er begge blevet implementeret som tokens og expresseion
         | FALSE          { Constant (BoolVal false, $1) }
 \end{code}
 
-Som vi gjorde med \texttt{TRUE} og \texttt{FALSE}, så skal der også defineres en rule token for \texttt{TIMES} og \texttt{DIVIDE} inde i \texttt{Lexer.lex}, og der laves det samme som med \texttt{TRUE}. Dog, er den lidt anderledes
+Som vi gjorde med \texttt{TRUE} og \texttt{FALSE}, så skal der også defineres en rule token for \texttt{TIMES} og \texttt{DIVIDE}, gøres næsten det samme
 
 \begin{code}[firstnumber=133]{Lexer.lex}
  Parser.DIVIDE (getPos lexbuf) )
@@ -52,16 +50,16 @@ Som vi gjorde med \texttt{TRUE} og \texttt{FALSE}, så skal der også defineres 
  Parser.TIMES  (getPos lexbuf) )
 \end{code}
 
-Det samme gælder for selve token, hvor det er en \texttt{(int*int)}, i \texttt{Parser.grm}. Selve precedence level af \texttt{TIMES} og \texttt{DIVIDE} er den højste, dvs. at $4 + 2 \cdot 3$ betyder $4 + (2 \cdot 3)$
+Det samme gælder for selve token, hvor det er en \texttt{(int*int)}, i \texttt{Parser.grm}. Selve precedence level af \texttt{TIMES} og \texttt{DIVIDE} er den højste, dvs. at $4 + 2 \cdot 3$ betyder $4 + (2 \cdot 3)$.
 
-Dog i \texttt{TIMES, DIVIDE}, skal vi bruge 3 registre, som det ses i
+Dog i \texttt{TIMES, DIVIDE}, skal vi bruge 3 registre, altså
 
 \begin{code}[mathescape=false, firstnumber=76]{Parser.grm}
         | Exp TIMES Exp  { Times($1, $3, $2) }
         | Exp DIVIDE Exp { Divide($1, $3, $2)}
 \end{code}
 
-I \texttt{Interpreter.sml}, så skal man tjekke det abstrakte syntax træ, som skal udføres
+Da vi skal tage højde for det Fasto, skal vi tjekke det abstrakte syntax træ,
 
 \begin{code}[firstnumber=160]{Interpreter.sml}
 | evalExp ( Times(e1, e2, pos), vtab, ftab ) =
@@ -91,7 +89,7 @@ I \texttt{Interpreter.sml}, så skal man tjekke det abstrakte syntax træ, som s
     end
 \end{code}
 
-tekst
+For at kunne tage højde for at alle operationer i Fasto, bliver udført lovligt, så har vi med en type-checker, at det bliver overholdt
 
 \begin{code}[firstnumber=160]{TypeChecker.sml}
 | In.Times (e1, e2, pos)
@@ -108,6 +106,10 @@ tekst
          Out.Divide (e1_dec, e2_dec, pos))
      end
 \end{code}
+
+text her.
+
+\newpage
 
 \begin{code}[firstnumber=133]{CodeGen.sml}
   | Times (e1, e2, pos) =>
@@ -138,10 +140,6 @@ tekst
 %%%---
 
 
-\clearpage
-\addcontentsline{toc}{chapter}{Litteratur}
-\bibliographystyle{plain}
-\bibliography{mainBib}
 
 
 \end{document} 
