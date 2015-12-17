@@ -45,3 +45,5 @@ Temporary Items
 COMPILERS/Opgaver/Gruppe/.idea/Gruppe.iml
 ../bin/fasto
 COMPILERS/Opgaver/Gruppe/compilers/src/Parser.sig
+COMPILERS/Opgaver/Gruppe/compilers/src/Parser.sml
+COMPILERS/Opgaver/Gruppe/compilers/src/Lexer.sml
