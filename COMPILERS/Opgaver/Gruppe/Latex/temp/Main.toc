@@ -1,8 +1,0 @@
-\select@language {danish}
-\contentsline {chapter}{Intro}{3}{chapter*.2}
-\contentsline {chapter}{\numberline {1}Om systemudviklingsprocessen, herunder smarbejdet med brugerne og arbejdet i projektgruppen}{5}{chapter.1}
-\contentsline {chapter}{\numberline {2}Diskussion af en udvalgt artikel i forhold til kursuslitteraturen}{6}{chapter.2}
-\contentsline {chapter}{Glossary}{7}{section*.5}
-\contentsline {chapter}{Appendices}{8}{section*.7}
-\contentsline {chapter}{Litteratur}{10}{table.1..1}
-\contentsline {chapter}{Indeks}{11}{appendix*.10}
