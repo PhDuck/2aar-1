@@ -560,8 +560,8 @@ fun compileExp e vtable place =
         val loop_map = applyRegs(farg, [tmp_reg], tmp_reg, pos)
         val save_res = [mipsStore ret_size (result_reg, tmp_reg, "0") ]
         
-        val loop_footer = [ Mips.ADDI (addr_reg, addr_reg, "elemSizeToInt elem_size")
-                            , Mips.ADDI (result_reg, place, "elemSizeToInt ret_size")
+        val loop_footer = [ Mips.ADDI (addr_reg, addr_reg, makeConst (elemSizeToInt elem_size))
+                            , Mips.ADDI (result_reg, place, makeConst (elemSizeToInt ret_size))
                             , Mips.ADDI (i_reg, i_reg, "1")
                             , Mips.J loop_beg
                             , Mips.LABEL loop_end
