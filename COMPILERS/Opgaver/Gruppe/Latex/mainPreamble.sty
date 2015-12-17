@@ -63,10 +63,14 @@
 %%--------------------------------
 %lstingen code
 \usepackage{listings}
-\lstset{
-  numbers=left,
-  mathescape
-}
+\lstnewenvironment{code}[2][]{%
+  \lstset{%
+    numbers = left,
+    frame = single,
+    title   = #2,
+    #1,
+  }%
+}{}
 
 
 %%--------------------------------
