@@ -47,6 +47,7 @@
        | "or"           => Parser.OR pos
        | "map"          => Parser.MAP pos
        | "fn"           => Parser.FN pos
+       | "not"          => Parser.NOT pos
        | _              => Parser.ID (s, pos)
  }
 
