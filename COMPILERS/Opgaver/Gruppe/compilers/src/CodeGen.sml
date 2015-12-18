@@ -581,6 +581,10 @@ fun compileExp e vtable place =
           @ save_res
           @ loop_footer
         end
+<<<<<<< HEAD
+  | Map (farg, arr_exp, elem_type, ret_type, pos) =>
+    raise Fail "Unimplemented feature map"
+=======
   | Map (Lambda(rettype, params, body, _), arr_exp, elem_type, ret_type, pos) =>
     let val elem_size = getElemSize elem_type
         val ret_size  = getElemSize ret_type
@@ -634,6 +638,7 @@ fun compileExp e vtable place =
           @ save_res
           @ loop_footer
         end
+>>>>>>> refs/remotes/origin/master
   (* reduce(f, acc, {x1, x2, ...}) = f(..., f(x2, f(x1, acc))) *)
   | Reduce (binop, acc_exp, arr_exp, tp, pos) =>
     raise Fail "Unimplemented feature reduce"
