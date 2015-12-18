@@ -437,7 +437,7 @@ fun compileExp e vtable place =
     in
             code1 @
             [ Mips.LI (place,"0")
-            , Mips.BEQ (t1, "1", trueLabel) ]
+            , Mips.BNE (t1, "0", trueLabel) ]
             @ code2 @
             [ Mips.BEQ (t2, "0", falseLabel)
             , Mips.LABEL trueLabel
@@ -581,7 +581,7 @@ fun compileExp e vtable place =
           @ save_res
           @ loop_footer
         end
-  | Map (farg, arr_exp, elem_type, ret_type, pos) =>
+  | Map (Lambda(rettype, params, body, _), arr_exp, elem_type, ret_type, pos) =>
     let val elem_size = getElemSize elem_type
         val ret_size  = getElemSize ret_type
         
@@ -610,8 +610,11 @@ fun compileExp e vtable place =
 
         val load_arg = [mipsLoad elem_size (tmp2_reg, addr_reg, "0")]
 
-        val loop_map = do magic stuff here.
+        val vtable' = case params of 
+                  Param(Pname, Ptype)::[]   => SymTab.bind Pname tmp2_reg vtable
+                | _ => raise Error ("Error no paramater name",pos)
         
+        val loop_map = compileExp body vtable' tmp3_reg
 
         val save_res = [mipsStore ret_size (tmp3_reg, result_reg, "0") ]
         
