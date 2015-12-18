@@ -581,8 +581,64 @@ fun compileExp e vtable place =
           @ save_res
           @ loop_footer
         end
+<<<<<<< HEAD
   | Map (farg, arr_exp, elem_type, ret_type, pos) =>
     raise Fail "Unimplemented feature map"
+=======
+  | Map (Lambda(rettype, params, body, _), arr_exp, elem_type, ret_type, pos) =>
+    let val elem_size = getElemSize elem_type
+        val ret_size  = getElemSize ret_type
+        
+        val addr_reg  = newName "addr_reg"
+        val addr_code = compileExp arr_exp vtable addr_reg
+        
+        val size_reg  = newName "size_reg"
+        val size_code = [Mips.LW(size_reg, addr_reg, " 0")]
+        
+        val result_reg = newName "result_reg"
+        
+        val i_reg = newName "i_reg"
+          val init_regs = [ Mips.ADDI (result_reg, place, "4")
+                          , Mips.ADDI (addr_reg, addr_reg, "4")
+                          , Mips.MOVE (i_reg, "0") ]
+
+        val loop_beg  = newName "loop_beg"
+        val loop_end  = newName "loop_end"
+        val tmp_reg   = newName "tmp_reg"
+        val tmp2_reg  = newName "tmp2_reg"
+        val tmp3_reg  = newName "tmp3_reg"
+
+        val loop_header = [ Mips.LABEL (loop_beg)
+                            , Mips.SUB (tmp_reg, i_reg, size_reg)
+                            , Mips.BGEZ (tmp_reg, loop_end) ]
+
+        val load_arg = [mipsLoad elem_size (tmp2_reg, addr_reg, "0")]
+
+        val vtable' = case params of 
+                  Param(Pname, Ptype)::[]   => SymTab.bind Pname tmp2_reg vtable
+                | _ => raise Error ("Error no paramater name",pos)
+        
+        val loop_map = compileExp body vtable' tmp3_reg
+
+        val save_res = [mipsStore ret_size (tmp3_reg, result_reg, "0") ]
+        
+        val loop_footer = [ Mips.ADDI (addr_reg, addr_reg, makeConst (elemSizeToInt elem_size))
+                            , Mips.ADDI (result_reg, result_reg, makeConst (elemSizeToInt ret_size))
+                            , Mips.ADDI (i_reg, i_reg, "1")
+                            , Mips.J loop_beg
+                            , Mips.LABEL loop_end
+                            ]
+        in addr_code
+          @ size_code
+          @ dynalloc (size_reg, place, ret_type)
+          @ init_regs
+          @ loop_header
+          @ load_arg
+          @ loop_map
+          @ save_res
+          @ loop_footer
+        end
+>>>>>>> refs/remotes/origin/master
   (* reduce(f, acc, {x1, x2, ...}) = f(..., f(x2, f(x1, acc))) *)
   | Reduce (binop, acc_exp, arr_exp, tp, pos) =>
     raise Fail "Unimplemented feature reduce"
