@@ -4,6 +4,6 @@ fun bool main() =
     let to = x = y in
     let be = x = 9 in
     let res = to = be | not to & be = True in
-    let z = write(res)   // prints 0 if the value typed in is 7, otherwise 1 
+    let z = write(res)   // 0 hvis værdi er 7 ellers 1
     in  let w = ~ x + y * x = y * x - x 
-    in  write(w)         // always prints true
+    in  write(w)         // altid true
