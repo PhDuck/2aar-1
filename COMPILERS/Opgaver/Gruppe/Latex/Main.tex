@@ -7,14 +7,12 @@
 
 \begin{document}
 
-\overfullrule=2cm %Fjern til slut
+%\overfullrule=2cm %Fjern til slut
 
 \setcounter{page}{0}
 \renewcommand\thepage{\roman{page}}
 \include{frontpage/titlepage}
 
-
-\tableofcontents
 
 
 
@@ -25,17 +23,181 @@
 % Tekst her
 %%%---
 
+For at løse opgaver i task 1, kigger vi kun på \texttt{Lexer.lex}, \texttt{Parser.grm}, \texttt{Interpreter.sml}, \texttt{Typerchecker.sml} og \texttt{codegen.sml}.
 
+Hvis vi, tager det slavisk, som i den rækkefølge de skal løses i. Det vil sige, for at implentere \texttt{TRUE} og \texttt{FALSE}, så skal de først defineres under keywords, der indsættes
+
+\begin{code}[firstnumber=42]{Lexer.lex}
+       | "true"         => Parser.TRUE pos
+       | "false"        => Parser.FALSE pos
+\end{code}
+
+her efter skal vi definere dem som tokens og  expresseions
+
+\begin{code}[firstnumber=13]{Parser.grm}
+%token <(int*int)> TRUE FALSE
+\end{code}
+\begin{code}[mathescape=false,firstnumber=68]{Parser.grm}
+        | TRUE           { Constant (BoolVal true, $1) }
+        | FALSE          { Constant (BoolVal false, $1) }
+\end{code}
+
+Som vi gjorde med \texttt{TRUE} og \texttt{FALSE}, så skal der også defineres en rule token for \texttt{TIMES} og \texttt{DIVIDE}, gøres næsten det samme
+
+\begin{code}[firstnumber=133]{Lexer.lex}
+ Parser.DIVIDE (getPos lexbuf) )
+ and action_10 lexbuf = (
+ Parser.TIMES  (getPos lexbuf) )
+\end{code}
+
+Det samme gælder for selve token, hvor det er en \texttt{(int*int)}, i \texttt{Parser.grm}. Selve precedence level af \texttt{TIMES} og \texttt{DIVIDE} er den højste, dvs. at $4 + 2 \cdot 3$ betyder $4 + (2 \cdot 3)$.
+
+Dog i \texttt{TIMES, DIVIDE}, skal vi bruge 3 registre, altså
+
+\begin{code}[mathescape=false, firstnumber=76]{Parser.grm}
+        | Exp TIMES Exp  { Times($1, $3, $2) }
+        | Exp DIVIDE Exp { Divide($1, $3, $2)}
+\end{code}
+
+Da vi skal tage højde for det Fasto, skal vi tjekke det abstrakte syntax træ,
+
+\begin{code}[firstnumber=160]{Interpreter.sml}
+| evalExp ( Times(e1, e2, pos), vtab, ftab ) =
+    let
+      val res1   = evalExp(e1, vtab, ftab)
+      val res2   = evalExp(e2, vtab, ftab)
+    in
+      case (res1, res2) of
+          (IntVal n1, IntVal n2) => IntVal (n1 * n2)
+        | _ => invalidOperands 
+            "Times on non-integral args: " 
+                [(Int, Int)] res1 res2 pos
+    end
+
+| evalExp ( Divide(e1, e2, pos), vtab, ftab ) =
+    let
+      val res1   = evalExp(e1, vtab, ftab)
+      val res2   = evalExp(e2, vtab, ftab)
+    in
+      if res2 = IntVal 0 then raise Fail "Division by zero"
+        else
+          case (res1, res2) of
+            (IntVal n1, IntVal n2) => IntVal( Int.quot(n1, n2))
+            | _ => invalidOperands 
+                "Divide on non-integral args: " 
+                    [(Int, Int)] res1 res2 pos
+    end
+\end{code}
+
+For at kunne tage højde for at alle operationer i Fasto, bliver udført lovligt, så har vi med en type-checker, at det bliver overholdt
+
+\begin{code}[firstnumber=160]{TypeChecker.sml}
+| In.Times (e1, e2, pos)
+  => let val (_, e1_dec, e2_dec) = 
+            checkBinOp ftab vtab (pos, Int, e1, e2)
+     in (Int,
+         Out.Times (e1_dec, e2_dec, pos))
+     end
+
+| In.Divide (e1, e2, pos)
+  => let val (_, e1_dec, e2_dec) = 
+            checkBinOp ftab vtab (pos, Int, e1, e2)
+     in (Int,
+         Out.Divide (e1_dec, e2_dec, pos))
+     end
+\end{code}
+
+text her.
+
+\newpage
+
+\begin{code}[firstnumber=133]{CodeGen.sml}
+  | Times (e1, e2, pos) =>
+      let val t1 = newName "times_L"
+          val t2 = newName "times_R"
+          val code1 = compileExp e1 vtable t1
+          val code2 = compileExp e2 vtable t2
+      in  code1 @ code2 @ [Mips.MUL (place,t1,t2)]
+      end
+  | Divide (e1, e2, pos) =>
+      let val t1 = newName "divide_L"
+          val t2 = newName "divide_R"
+          val code1 = compileExp e1 vtable t1
+          val code2 = compileExp e2 vtable t2
+      in  code1 @ code2 @ [Mips.DIV (place,t1 ,t2)]
+      end
+\end{code}
+
+Selve \texttt{AND} og \texttt{OR} følger meget samme fremgangs metode, som \texttt{TRUE, FALSE} i lexeren og parseren, dog vil de to operationer i \texttt{Interpreter.sml}. Hvor vi i \texttt{OR}, kigger på, at hvis den første variabel er \texttt{TRUE}, returneres der \texttt{TRUE}
+
+\begin{code}[firstnumber=190]{Interpreter.sml}
+| evalExp (Or (e1, e2, pos), vtab, ftab) =
+        let
+          val r1 = evalExp(e1, vtab, ftab)
+        in
+          case r1 of
+               BoolVal true => BoolVal true
+             | BoolVal false  => evalExp(e2, vtab, ftab)
+             | _ => raise Fail "First operand none boolean"
+        end
+
+  | evalExp ( Not(e, pos), vtab, ftab ) =
+        let
+          val r1 = evalExp(e, vtab, ftab)
+        in
+          case r1 of
+               BoolVal true => BoolVal false
+             | BoolVal false  => BoolVal true
+             | _ => raise Fail "First operand none boolean"
+        end
+\end{code}
+
+\begin{code}[firstnumber=408]{CodeGen.sml}
+  | And (e1, e2, pos) =>
+    let val t1 = newName "and_L"
+        val t2 = newName "and_R"
+        val falseLabel = newName "false"
+        val trueLabel = newName "true"
+        val code1 = compileExp e1 vtable t1
+        val code2 = compileExp e2 vtable t2
+    in
+      code1 @
+      [ Mips.LI (place,"0")
+      , Mips.BEQ (t1, "0", falseLabel) ]
+      @ code2 @
+      [ Mips.BEQ (t2, "0", falseLabel)
+      , Mips.LI (place, "1")
+      , Mips.LABEL falseLabel ]
+    end
+
+  | Or (e1, e2, pos) =>
+    let val t1 = newName "and_L"
+        val t2 = newName "and_R"
+        val falseLabel = newName "false"
+        val trueLabel = newName "true"
+        val code1 = compileExp e1 vtable t1
+        val code2 = compileExp e2 vtable t2
+    in
+            code1 @
+            [ Mips.LI (place,"0")
+            , Mips.BEQ (t1, "1", trueLabel) ]
+            @ code2 @
+            [ Mips.BEQ (t2, "0", falseLabel)
+            , Mips.LABEL trueLabel
+            , Mips.LI (place, "1")
+            , Mips.LABEL falseLabel ]    end
+\end{code}
+
+
+
+%HUSK: Laver hjælpe funktion til task 2: Mips load i Codegen linie 80ish
+%HUSK: Test laves for: Not, And, Or, Times, Divide
 
 %%%---
 % Tekst her
 %%%---
 
 
-\clearpage
-\addcontentsline{toc}{chapter}{Litteratur}
-\bibliographystyle{plain}
-\bibliography{mainBib}
 
 
 \end{document} 
