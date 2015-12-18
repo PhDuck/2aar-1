@@ -301,7 +301,16 @@ fun evalExp ( Constant (v,_), vtab, ftab ) = v
     end
 
   | evalExp ( Reduce (farg, ne, arrexp, tp, pos), vtab, ftab ) =
-    raise Fail "Unimplemented feature reduce"
+    let
+      val return_type = rtpFunArg(farg, ftab, pos)
+      val eval_n = evalExp (ne, vtab, ftab)
+      val eval_arr = case evalExp(arrexp, vtab, ftab) of
+          ArrayVal (arr, _) => arr
+        | _ => raise Error("Reduce: array exp doesnot eval to ArrayVal", pos)
+      val reduce_result = foldl(fn (x,y) => evalFunArg(farg, vtab, ftab, pos, [x,y])) eval_n eval_arr
+    in
+      reduce_result
+    end
 
   | evalExp ( Read (t,p), vtab, ftab ) =
         let val str =

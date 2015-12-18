@@ -50,6 +50,7 @@ local open Obj Lexing in
        | "map"          => Parser.MAP pos
        | "fn"           => Parser.FN pos
        | "not"          => Parser.NOT pos
+       | "reduce"       => Parser.REDUCE pos
        | _              => Parser.ID (s, pos)
  
 fun action_27 lexbuf = (
