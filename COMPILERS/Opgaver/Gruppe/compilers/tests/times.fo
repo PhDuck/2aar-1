@@ -1,0 +1,5 @@
+fun int main() = 
+    let x = read(int) in
+    let y = read(int) in
+    let w = x * y 
+    in  write(w)         //  printer w
