@@ -84,7 +84,7 @@ Exp :     NUM            { Constant (IntVal (#1 $1), #2 $1) }
         | IOTA LPAR Exp RPAR
                          { Iota ($3, $1)     }
         | MAP LPAR FunArg COMMA Exp RPAR
-                         { Map ( $3, $5, (), (), $1) }
+                         { Map ($3, $5, (), (), $1) }
         | IF Exp THEN Exp ELSE Exp %prec ifprec
                          { If ($2, $4, $6, $1) }
         | ID LPAR Exps RPAR

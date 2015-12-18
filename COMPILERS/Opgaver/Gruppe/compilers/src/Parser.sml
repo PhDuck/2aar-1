@@ -612,7 +612,7 @@ val d__4__ = peekVal 2 : (int*int)
 val d__5__ = peekVal 1 : Fasto.UnknownTypes.Exp
 val d__6__ = peekVal 0 : (int*int)
 in
-( Map ( (d__3__), (d__5__), (), (), (d__1__)) ) end : Fasto.UnknownTypes.Exp))
+( Map ((d__3__), (d__5__), (), (), (d__1__)) ) end : Fasto.UnknownTypes.Exp))
 ;
 (* Rule 31, file Parser.grm, line 89 *)
 val _ = update_ yyact 31

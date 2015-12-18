@@ -1,0 +1,8 @@
+fun bool write_nl(bool b) =
+  let res = write(b) in
+  let tmp = write("\n") in
+  res
+
+fun bool main() =  
+    let x0 = write_nl(!(false)) in
+    write_nl(!(true))

@@ -1,0 +1,34 @@
+#Windows run guide
+
+Download windows installeren ved at trykke [her](https://github.com/kfl/mosml/releases/download/ver-2.10.1/mosml-setup-2.10.1.exe)
+
+Du skal også have mosmllex.exe som skal puttes i `C:\Program Files (x86)\mosml\bin`
+
+Til sidst så skal du prøve at `setx path "%path%;C:\Program Files (x86)\mosml\bin\"`
+
+Så kan du køre `make` fra cmd ved at være i C:\..\src
+
+For at kunne køre test skal du være inde i compiler folderen skal du fra cmd skrive
+
+`bin\fasto.exe -c tests\<testfil>.fo`
+
+og så kan du køre din .asm fil fra mips mars
+
+#linux
+
+This works on Debian-based systems.  Open a terminal and run:
+   sudo add-apt-repository ppa:kflarsen/mosml
+
+Press [ENTER] to continue, then run:
+
+   sudo apt-get update
+   sudo apt-get install mosml
+
+Press [y] + [ENTER] to continue.
+
+Moscow ML should now be installed.
+[Read more about this at ](https://launchpad.net/~kflarsen/+archive/ubuntu/mosml)
+
+#maxosx
+
+On Mac OS X, download and install the binary package from [here](https://github.com/kfl/mosml/releases/download/ver-2.10.1/mosml-2.10.1.pkg), or compile from source like described in the On Linux section.  The binary package might not work on all Mac versions.

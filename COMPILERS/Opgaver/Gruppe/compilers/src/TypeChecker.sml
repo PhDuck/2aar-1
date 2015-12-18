@@ -241,9 +241,12 @@ and checkExp ftab vtab (exp : In.Exp)
       let
           val (arr_type, arr_dec) = checkExp ftab vtab arr_exp
           val (fname, result_type, arg_types) = checkFunArg(f, vtab, ftab, pos)
+          val element_type = case arr_type of
+                                    Array (x) => x
+                                  | _ => raise Error ("Map: input not an array", pos)
       in
-          if arr_type = hd arg_types
-          then (Array result_type, Out.Map(fname, arr_dec, arr_type, result_type, pos))
+          if element_type = hd arg_types
+          then (Array result_type, Out.Map(fname, arr_dec, element_type, result_type, pos))
           else raise Error ("Map: wrong argument type " ^
                               ppType arr_type, pos)
       end

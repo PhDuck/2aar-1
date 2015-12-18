@@ -288,7 +288,7 @@ fun evalExp ( Constant (v,_), vtab, ftab ) = v
                                  ^ Int.toString(size), pos)
            | _ => raise Error("Iota argument is not a number: "^ppVal 0 sz, pos)
     end
-(*evalFunArg (FunName fid, vtab, ftab, callpos, aargs) =*)
+
   | evalExp ( Map (farg, arrexp, _, _, pos), vtab, ftab ) =
     let
       val return_type = rtpFunArg(farg, ftab, pos)

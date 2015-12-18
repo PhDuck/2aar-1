@@ -47,8 +47,10 @@
        | "or"           => Parser.OR pos
        | "map"          => Parser.MAP pos
        | "fn"           => Parser.FN pos
+       | "not"          => Parser.NOT pos
        | _              => Parser.ID (s, pos)
  }
+
 
 rule Token = parse
     [` ` `\t` `\r`]+    { Token lexbuf } (* whitespace *)
@@ -76,6 +78,9 @@ rule Token = parse
 							  String.size s - 2)),
 			     getPos lexbuf) }
   | `+`                 { Parser.PLUS   (getPos lexbuf) }
+  | "&&"                { Parser.AND    (getPos lexbuf) }
+  | "||"                { Parser.OR     (getPos lexbuf) }
+  | `~`                 { Parser.NEGATE (getPos lexbuf) }
   | "=>"                { Parser.FNEQ   (getPos lexbuf) }
   | `!`                 { Parser.NOT    (getPos lexbuf) }
   | `*`                 { Parser.TIMES  (getPos lexbuf) }

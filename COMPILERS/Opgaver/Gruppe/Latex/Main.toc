@@ -1,2 +1,2 @@
 \select@language {danish}
-\contentsline {chapter}{Litteratur}{4}{lstnumber.-8.146}
+\contentsline {chapter}{Litteratur}{2}{chapter*.1}
