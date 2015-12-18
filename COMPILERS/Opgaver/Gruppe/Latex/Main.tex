@@ -69,8 +69,8 @@ Da vi skal tage højde for det Fasto, skal vi tjekke det abstrakte syntax træ,
     in
       case (res1, res2) of
           (IntVal n1, IntVal n2) => IntVal (n1 * n2)
-        | _ => invalidOperands 
-            "Times on non-integral args: " 
+        | _ => invalidOperands
+            "Times on non-integral args: "
                 [(Int, Int)] res1 res2 pos
     end
 
@@ -83,8 +83,8 @@ Da vi skal tage højde for det Fasto, skal vi tjekke det abstrakte syntax træ,
         else
           case (res1, res2) of
             (IntVal n1, IntVal n2) => IntVal( Int.quot(n1, n2))
-            | _ => invalidOperands 
-                "Divide on non-integral args: " 
+            | _ => invalidOperands
+                "Divide on non-integral args: "
                     [(Int, Int)] res1 res2 pos
     end
 \end{code}
@@ -93,14 +93,14 @@ For at kunne tage højde for at alle operationer i Fasto, bliver udført lovligt
 
 \begin{code}[firstnumber=160]{TypeChecker.sml}
 | In.Times (e1, e2, pos)
-  => let val (_, e1_dec, e2_dec) = 
+  => let val (_, e1_dec, e2_dec) =
             checkBinOp ftab vtab (pos, Int, e1, e2)
      in (Int,
          Out.Times (e1_dec, e2_dec, pos))
      end
 
 | In.Divide (e1, e2, pos)
-  => let val (_, e1_dec, e2_dec) = 
+  => let val (_, e1_dec, e2_dec) =
             checkBinOp ftab vtab (pos, Int, e1, e2)
      in (Int,
          Out.Divide (e1_dec, e2_dec, pos))
@@ -191,6 +191,7 @@ Selve \texttt{AND} og \texttt{OR} følger meget samme fremgangs metode, som \tex
 
 
 %HUSK: Laver hjælpe funktion til task 2: Mips load i Codegen linie 80ish
+%HUSK: && and og || or begge virker
 %HUSK: Test laves for: Not, And, Or, Times, Divide
 
 %%%---
