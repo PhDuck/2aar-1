@@ -87,9 +87,9 @@ and action_12 lexbuf = (
 and action_11 lexbuf = (
  Parser.FNEQ   (getPos lexbuf) )
 and action_10 lexbuf = (
- Parser.OR     (getPos lexbuf) )
-and action_9 lexbuf = (
  Parser.NEGATE (getPos lexbuf) )
+and action_9 lexbuf = (
+ Parser.OR     (getPos lexbuf) )
 and action_8 lexbuf = (
  Parser.AND    (getPos lexbuf) )
 and action_7 lexbuf = (
@@ -133,7 +133,7 @@ and state_0 lexbuf = (
  |  #" " => state_3 lexbuf
  |  #"\n" => action_2 lexbuf
  |  #"\f" => action_2 lexbuf
- |  #"~" => action_9 lexbuf
+ |  #"~" => action_10 lexbuf
  |  #"}" => action_24 lexbuf
  |  #"|" => state_23 lexbuf
  |  #"{" => action_23 lexbuf
@@ -246,7 +246,7 @@ and state_23 lexbuf = (
  setLexLastAction lexbuf (magic action_27);
  let val currChar = getNextChar lexbuf in
  case currChar of
-    #"|" => action_10 lexbuf
+    #"|" => action_9 lexbuf
  |  _ => backtrack lexbuf
  end)
 and state_27 lexbuf = (
