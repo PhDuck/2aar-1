@@ -260,7 +260,7 @@ fun compileExp e vtable place =
         val t1 = newName "Not"
         val code = compileExp e' vtable t1
       in
-        code @ [Mips.XORI (place, "1", t1)]
+        code @ [Mips.XORI (place, t1, "1")]
       end
   | Negate (e', pos) =>
     let
