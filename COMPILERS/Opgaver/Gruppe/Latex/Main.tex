@@ -23,6 +23,8 @@
 % Tekst her
 %%%---
 
+\section{Struktur i kode}
+
 For at løse opgaver i task 1, kigger vi kun på \texttt{Lexer.lex}, \texttt{Parser.grm}, \texttt{Interpreter.sml}, \texttt{Typerchecker.sml} og \texttt{codegen.sml}.
 
 Hvis vi, tager det slavisk, som i den rækkefølge de skal løses i. Det vil sige, for at implentere \texttt{TRUE} og \texttt{FALSE}, så skal de først defineres under keywords, der indsættes
@@ -188,11 +190,13 @@ Selve \texttt{AND} og \texttt{OR} følger meget samme fremgangs metode, som \tex
             , Mips.LABEL falseLabel ]    end
 \end{code}
 
+\section{Awesome code}
+Laver hjælpe funktion til task 2: Mips load i Codegen linie 80ish
+
+\section{Testing}
+Not, And, Or, Times, Divide, error_iota, simple_iota
 
 
-%HUSK: Laver hjælpe funktion til task 2: Mips load i Codegen linie 80ish
-%HUSK: && and og || or begge virker
-%HUSK: Test laves for: Not, And, Or, Times, Divide, error_iota, simple_iota
 
 
 %%%---
