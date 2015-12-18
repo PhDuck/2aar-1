@@ -1,2 +1,0 @@
-\select@language {danish}
-\contentsline {chapter}{Litteratur}{2}{chapter*.1}
