@@ -61,7 +61,17 @@
 }
 
 %%--------------------------------
-%index
+%lstlistening
+\usepackage{listings}
+\lstnewenvironment{code}[2][]{%
+  \lstset{%
+    frame = single,
+    numbers = left,
+    title   = #2,
+    #1,
+  }%
+}{}
+
 
 %%--------------------------------
 %glossary

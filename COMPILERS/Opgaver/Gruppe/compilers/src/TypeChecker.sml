@@ -251,7 +251,18 @@ and checkExp ftab vtab (exp : In.Exp)
                               ppType arr_type, pos)
       end
     | In.Reduce (f, n_exp, arr_exp, _, pos)
-      => raise Fail "Unimplemented feature reduce"
+      => 
+      let val (n_type, n_dec) = checkExp ftab vtab n_exp
+          val (arr_type, arr_dec) = checkExp ftab vtab arr_exp
+          val (fname, result_type, arg_types) = checkFunArg(f, vtab, ftab, pos)
+          val arr_type = case arr_type of
+                      Array(x) => x
+                    | _ => raise Error ("Reduce: wrong argument type",pos)
+      in
+          if n_type = arr_type andalso n_type = hd arg_types
+          then (Array result_type, Out.Reduce(fname, n_dec, arr_dec, result_type, pos))
+          else raise Error ("Reduce: wrong argument type", pos)
+      end
 
 and checkFunArg (In.FunName fname, vtab, ftab, pos) =
     (case SymTab.lookup fname ftab of
