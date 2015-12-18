@@ -1,9 +1,9 @@
 SyncTeX Version:1
-Input:1:C:/Users/Baby-/Google Drive/KU/Kode/2aar/COMPILERS/Opgaver/Gruppe/Latex/Main.tex
+Input:1:C:/Users/Baby-/Google Drev/KU/Kode/2aar/COMPILERS/Opgaver/Gruppe/Latex/Main.tex
 Input:2:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\report.cls
 Input:3:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\size11.clo
-Input:4:mainPreamble.sty
-Input:5:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\comment\comment.sty
+Input:4:C:\Users\Baby-\Google Drev\KU\Kode\2aar\COMPILERS\Opgaver\Gruppe\Latex\mainPreamble.sty
+Input:5:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\comment\comment.sty
 Input:6:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\fontenc.sty
 Input:7:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1enc.def
 Input:8:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\inputenc.sty
@@ -11,16 +11,16 @@ Input:9:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\utf8.def
 Input:10:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1enc.dfu
 Input:11:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ot1enc.dfu
 Input:12:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omsenc.dfu
-Input:13:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fourier\fourier.sty
+Input:13:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fourier\fourier.sty
 Input:14:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\fontenc.sty
 Input:15:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1enc.def
 Input:16:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\textcomp.sty
 Input:17:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1enc.def
 Input:18:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1enc.dfu
-Input:19:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fourier\fourier-orns.sty
+Input:19:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fourier\fourier-orns.sty
 Input:20:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\babel\babel.sty
 Input:21:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\bblopts.cfg
-Input:22:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\babel-danish\danish.ldf
+Input:22:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\babel-danish\danish.ldf
 Input:23:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\babel\babel.def
 Input:24:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty
 Input:25:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amstext.sty
@@ -48,209 +48,208 @@ Input:46:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\etexcmds.sty
 Input:47:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ifluatex.sty
 Input:48:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty
 Input:49:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty
-Input:50:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lipsum\lipsum.sty
-Input:51:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty
+Input:50:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\lipsum\lipsum.sty
+Input:51:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\xcolor\xcolor.sty
 Input:52:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\color.cfg
 Input:53:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\dvipsnam.def
-Input:54:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\colortbl\colortbl.sty
+Input:54:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\colortbl\colortbl.sty
 Input:55:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\array.sty
 Input:56:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ltxmisc\parskip.sty
-Input:57:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\natbib\natbib.sty
-Input:58:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fixme\fixme.sty
+Input:57:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\natbib\natbib.sty
+Input:58:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fixme\fixme.sty
 Input:59:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ifthen.sty
 Input:60:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\verbatim.sty
 Input:61:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\xkeyval\xkeyval.sty
 Input:62:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex
-Input:63:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\xkeyval\xkvutils.tex
-Input:64:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\showkeys.sty
-Input:65:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\float\float.sty
-Input:66:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\caption\caption.sty
-Input:67:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\caption\caption3.sty
-Input:68:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\vhistory\vhistory.sty
-Input:69:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\carlisle\ltxtable.sty
-Input:70:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\tabularx.sty
-Input:71:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\longtable.sty
-Input:72:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\vhistory\sets.sty
-Input:73:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty
-Input:74:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty
-Input:75:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty
-Input:76:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty
-Input:77:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\auxhook.sty
-Input:78:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def
-Input:79:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg
-Input:80:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\url\url.sty
-Input:81:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def
-Input:82:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty
-Input:83:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\listings.sty
-Input:84:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\lstmisc.sty
-Input:85:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\listings.cfg
-Input:86:Main.aux
-Input:87:frontpage/titlepage.aux
-Input:88:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fourier\fmlfutm.fd
-Input:89:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fourier\fmsfutm.fd
-Input:90:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fourier\fmxfutm.fd
-Input:91:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmr.fd
-Input:92:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fourier\t1futs.fd
-Input:93:C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii
-Input:94:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\caption\ltcaption.sty
-Input:95:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty
-Input:96:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty
-Input:97:Main.out
-Input:98:Main.out
-Input:99:frontpage/titlepage.tex
+Input:63:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\showkeys.sty
+Input:64:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\float\float.sty
+Input:65:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption.sty
+Input:66:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption3.sty
+Input:67:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\vhistory\vhistory.sty
+Input:68:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\carlisle\ltxtable.sty
+Input:69:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\tabularx.sty
+Input:70:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\longtable.sty
+Input:71:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\vhistory\sets.sty
+Input:72:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty
+Input:73:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty
+Input:74:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty
+Input:75:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty
+Input:76:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\auxhook.sty
+Input:77:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def
+Input:78:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg
+Input:79:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\url\url.sty
+Input:80:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def
+Input:81:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty
+Input:82:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings.sty
+Input:83:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstmisc.sty
+Input:84:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings.cfg
+Input:85:C:\Users\Baby-\Google Drev\KU\Kode\2aar\COMPILERS\Opgaver\Gruppe\Latex\Main.aux
+Input:86:C:\Users\Baby-\Google Drev\KU\Kode\2aar\COMPILERS\Opgaver\Gruppe\Latex\frontpage/titlepage.aux
+Input:87:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fourier\fmlfutm.fd
+Input:88:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fourier\fmsfutm.fd
+Input:89:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fourier\fmxfutm.fd
+Input:90:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmr.fd
+Input:91:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fourier\t1futs.fd
+Input:92:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
+Input:93:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\ltcaption.sty
+Input:94:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty
+Input:95:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty
+Input:96:C:\Users\Baby-\Google Drev\KU\Kode\2aar\COMPILERS\Opgaver\Gruppe\Latex\Main.out
+Input:97:C:\Users\Baby-\Google Drev\KU\Kode\2aar\COMPILERS\Opgaver\Gruppe\Latex\Main.out
+Input:98:C:\Users\Baby-\Google Drev\KU\Kode\2aar\COMPILERS\Opgaver\Gruppe\Latex\frontpage/titlepage.tex
 Output:pdf
 Magnification:1000
 Unit:1
 X Offset:0
 Y Offset:0
 Content:
-!7056
+!7589
 {1
-[99,39:4736286,49353212:26607616,44616926,0
-h99,39:4736286,4736286:0,0,0
-[99,39:4736286,4736286:0,0,0
-(99,39:4736286,5850153:0,0,0
-k99,39:4736286,5850153:-2948875
+[98,39:4736286,49353212:26607616,44616926,0
+h98,39:4736286,4736286:0,0,0
+[98,39:4736286,4736286:0,0,0
+(98,39:4736286,5850153:0,0,0
+k98,39:4736286,5850153:-2948875
 )
 ]
-[99,39:4736286,49353212:26607616,44616926,0
-[99,39:7750942,49353212:23592960,43437278,0
-[99,39:7750942,6702366:23592960,786432,0
-(99,39:7750942,6702366:23592960,0,0
-h99,39:7750942,6702366:23592960,0,0
+[98,39:4736286,49353212:26607616,44616926,0
+[98,39:7750942,49353212:23592960,43437278,0
+[98,39:7750942,6702366:23592960,786432,0
+(98,39:7750942,6702366:23592960,0,0
+h98,39:7750942,6702366:23592960,0,0
 )
 ]
-[99,39:7750942,47387132:23592960,39046366,0
-(99,7:7750942,13338066:23592960,1126700,367684
-k99,7:11490132,13338066:3739190
-(99,2:11490132,13338066:0,0,0
-g99,2:11490132,13338066
-g99,2:11490132,13338066
-g99,2:11131322,13338066
-(99,2:11131322,13338066:0,0,0
+[98,39:7750942,47387132:23592960,39046366,0
+(98,7:7750942,13338066:23592960,1126700,367684
+k98,7:11490132,13338066:3739190
+(98,2:11490132,13338066:0,0,0
+g98,2:11490132,13338066
+g98,2:11490132,13338066
+g98,2:11131322,13338066
+(98,2:11131322,13338066:0,0,0
 )
-g99,2:11490132,13338066
+g98,2:11490132,13338066
 )
-x99,2:14429988,13338066
-g99,6:14744681,13338066
-x99,6:15768658,13338066
-x99,6:17325818,13338066
-g99,6:17640511,13338066
-x99,6:20952129,13338066
-g99,6:21266822,13338066
-x99,6:27604713,13338066
-g99,7:27604713,13338066
-k99,7:31343902,13338066:3739189
+x98,2:14429988,13338066
+g98,6:14744681,13338066
+x98,6:15768658,13338066
+x98,6:17325818,13338066
+g98,6:17640511,13338066
+x98,6:20952129,13338066
+g98,6:21266822,13338066
+x98,6:27604713,13338066
+g98,7:27604713,13338066
+k98,7:31343902,13338066:3739189
 )
-(99,11:7750942,16157842:23592960,776868,5661
-k99,11:17200398,16157842:9449456
-h99,10:17200398,16157842:0,0,0
-x99,10:20040611,16157842
-x99,10:21894447,16157842
-g99,11:21894447,16157842
-k99,11:31343903,16157842:9449456
+(98,11:7750942,16157842:23592960,776868,5661
+k98,11:17200398,16157842:9449456
+h98,10:17200398,16157842:0,0,0
+x98,10:20040611,16157842
+x98,10:21894447,16157842
+g98,11:21894447,16157842
+k98,11:31343903,16157842:9449456
 )
-(99,14:7750942,20842298:23592960,782531,3396
-k99,14:17597324,20842298:9846382
-h99,14:17597324,20842298:0,0,0
-x99,14:18554254,20842298
-x99,14:21497521,20842298
-g99,14:21497521,20842298
-k99,14:31343903,20842298:9846382
+(98,14:7750942,20842298:23592960,782531,3396
+k98,14:17597324,20842298:9846382
+h98,14:17597324,20842298:0,0,0
+x98,14:18554254,20842298
+x98,14:21497521,20842298
+g98,14:21497521,20842298
+k98,14:31343903,20842298:9846382
 )
-(99,15:7750942,22284090:23592960,740063,3396
-k99,15:18136376,22284090:10385434
-h99,15:18136376,22284090:0,0,0
-x99,15:19093306,22284090
-x99,15:19869041,22284090
-x99,15:20958468,22284090
-g99,15:20958468,22284090
-k99,15:31343902,22284090:10385434
+(98,15:7750942,22284090:23592960,740063,3396
+k98,15:18136376,22284090:10385434
+h98,15:18136376,22284090:0,0,0
+x98,15:19093306,22284090
+x98,15:19869041,22284090
+x98,15:20958468,22284090
+g98,15:20958468,22284090
+k98,15:31343902,22284090:10385434
 )
-(99,16:7750942,23725882:23592960,782531,3396
-k99,16:18251320,23725882:10500378
-h99,16:18251320,23725882:0,0,0
-x99,16:19208250,23725882
-x99,16:20843524,23725882
-g99,16:20843524,23725882
-k99,16:31343902,23725882:10500378
+(98,16:7750942,23725882:23592960,782531,3396
+k98,16:18251320,23725882:10500378
+h98,16:18251320,23725882:0,0,0
+x98,16:19208250,23725882
+x98,16:20843524,23725882
+g98,16:20843524,23725882
+k98,16:31343902,23725882:10500378
 )
-(99,20:7750942,27964693:23592960,776868,233286
-k99,20:14443419,27964693:6692477
-h99,20:14443419,27964693:0,0,0
-x99,20:15207831,27964693
-x99,20:15607589,27964693
-x99,20:23859834,27964693
-x99,20:24651425,27964693
-g99,20:24651425,27964693
-k99,20:31343902,27964693:6692477
+(98,20:7750942,27964693:23592960,776868,233286
+k98,20:14443419,27964693:6692477
+h98,20:14443419,27964693:0,0,0
+x98,20:15207831,27964693
+x98,20:15607589,27964693
+x98,20:23859834,27964693
+x98,20:24651425,27964693
+g98,20:24651425,27964693
+k98,20:31343902,27964693:6692477
 )
-(99,29:7750942,35083443:23592960,737232,256502
-k99,29:15846540,35083443:8095598
-h99,28:15846540,35083443:0,0,0
-x99,28:16610952,35083443
-x99,28:17010710,35083443
-x99,28:19452296,35083443
-g99,28:19686715,35083443
-x99,28:20480571,35083443
-x99,28:22718314,35083443
-x99,28:23248305,35083443
-g99,29:23248305,35083443
-k99,29:31343902,35083443:8095597
+(98,29:7750942,35083443:23592960,737232,256502
+k98,29:15846540,35083443:8095598
+h98,28:15846540,35083443:0,0,0
+x98,28:16610952,35083443
+x98,28:17010710,35083443
+x98,28:19452296,35083443
+g98,28:19686715,35083443
+x98,28:20480571,35083443
+x98,28:22718314,35083443
+x98,28:23248305,35083443
+g98,29:23248305,35083443
+k98,29:31343902,35083443:8095597
 )
-(99,33:7750942,44387786:23592960,7044911,0
-k99,33:14828902,44387786:7077960
-h99,32:14828902,44387786:0,0,0
-(99,32:14828902,44387786:9437040,7044911,0
-(99,32:14828902,44387786:9436841,7044928,0
-(99,32:14828902,44387786:9436841,7044928,0
-(99,32:14828902,44387786:0,24799724,0
-(99,32:14828902,44387786:33219789,24799724,0
+(98,33:7750942,44387786:23592960,7044911,0
+k98,33:14828902,44387786:7077960
+h98,32:14828902,44387786:0,0,0
+(98,32:14828902,44387786:9437040,7044911,0
+(98,32:14828902,44387786:9436841,7044928,0
+(98,32:14828902,44387786:9436841,7044928,0
+(98,32:14828902,44387786:0,24799724,0
+(98,32:14828902,44387786:33219789,24799724,0
 )
-k99,32:14828903,44387786:-33219788
-)
-)
+k98,32:14828903,44387786:-33219788
 )
 )
-g99,33:24265942,44387786
-k99,33:31343902,44387786:7077960
 )
-(99,35:7750942,46013079:23592960,647390,213751
-k99,35:15932517,46013079:8181575
-h99,35:15932517,46013079:0,0,0
-x99,35:16609162,46013079
-x99,35:20090533,46013079
-g99,35:20285882,46013079
-x99,35:20588815,46013079
-x99,35:23162328,46013079
-g99,35:23162328,46013079
-k99,35:31343902,46013079:8181574
 )
-(99,37:7750942,47192727:23592960,647390,194405
-k99,37:16493082,47192727:8742140
-h99,36:16493082,47192727:0,0,0
-x99,36:17086680,47192727
-x99,36:20564276,47192727
-g99,36:20759625,47192727
-x99,36:22601761,47192727
-g99,37:22601761,47192727
-k99,37:31343901,47192727:8742140
+g98,33:24265942,44387786
+k98,33:31343902,44387786:7077960
+)
+(98,35:7750942,46013079:23592960,647390,213751
+k98,35:15932517,46013079:8181575
+h98,35:15932517,46013079:0,0,0
+x98,35:16609162,46013079
+x98,35:20090533,46013079
+g98,35:20285882,46013079
+x98,35:20588815,46013079
+x98,35:23162328,46013079
+g98,35:23162328,46013079
+k98,35:31343902,46013079:8181574
+)
+(98,37:7750942,47192727:23592960,647390,194405
+k98,37:16493082,47192727:8742140
+h98,36:16493082,47192727:0,0,0
+x98,36:17086680,47192727
+x98,36:20564276,47192727
+g98,36:20759625,47192727
+x98,36:22601761,47192727
+g98,37:22601761,47192727
+k98,37:31343901,47192727:8742140
 )
 ]
-(99,39:7750942,49353212:23592960,0,0
-h99,39:7750942,49353212:23592960,0,0
+(98,39:7750942,49353212:23592960,0,0
+h98,39:7750942,49353212:23592960,0,0
 )
 ]
 ]
 ]
 !3511
 }1
-Input:100:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1cmtt.fd
-Input:101:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fourier\ts1futs.fd
-Input:102:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fourier\fmlfutmi.fd
-Input:103:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd
-Input:104:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd
-!367
+Input:99:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1cmtt.fd
+Input:100:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fourier\ts1futs.fd
+Input:101:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fourier\fmlfutmi.fd
+Input:102:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd
+Input:103:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd
+!382
 {2
 [1,70:4736286,49353212:26607616,44616926,0
 [1,70:4736286,4736286:0,0,0
@@ -20985,10 +20984,10 @@ k1,203:31343902,49353212:11621381
 ]
 !132250
 }5
-Input:105:Main.aux
-Input:106:frontpage/titlepage.aux
-!64
+Input:104:C:\Users\Baby-\Google Drev\KU\Kode\2aar\COMPILERS\Opgaver\Gruppe\Latex\Main.aux
+Input:105:C:\Users\Baby-\Google Drev\KU\Kode\2aar\COMPILERS\Opgaver\Gruppe\Latex\frontpage/titlepage.aux
+!206
 Postamble:
 Count:18051
-!27
+!28
 Post scriptum:
