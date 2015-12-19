@@ -636,8 +636,53 @@ fun compileExp e vtable place =
         end
   (* reduce(f, acc, {x1, x2, ...}) = f(..., f(x2, f(x1, acc))) *)
   | Reduce (binop, acc_exp, arr_exp, tp, pos) =>
-    raise Fail "Unimplemented feature reduce"
+     let val elem_size = getElemSize tp
+        
+        val addr_reg  = newName "addr_reg"
+        val addr_code = compileExp arr_exp vtable addr_reg
+        
+        val acc_reg = newName "acc_reg"
+        val acc_code = compileExp acc_exp vtable acc_reg
+        
+        val size_reg  = newName "size_reg"
+        val size_code = [Mips.LW(size_reg, addr_reg, " 0")]
 
+        val i_reg = newName "i_reg"
+          val init_regs = [ Mips.ADDI (addr_reg, addr_reg, "4")
+                          , Mips.MOVE (i_reg, "0") ]
+
+        val loop_beg  = newName "loop_beg"
+        val loop_end  = newName "loop_end"
+        val tmp_reg   = newName "tmp_reg"
+        val tmp2_reg  = newName "tmp2_reg"
+
+        val loop_header = [ Mips.LABEL (loop_beg)
+                            , Mips.SUB (tmp_reg, i_reg, size_reg)
+                            , Mips.BGEZ (tmp_reg, loop_end) ]
+        
+        val funArgCodeGen = case binop of
+              FunName f => applyRegs(f, [acc_reg, tmp2_reg], acc_reg, pos)
+            | Lambda (rettype, params, body, _) => (case params of
+                   (Param(xName, xType)::Param(yName, yType)::[]) => 
+                          compileExp body (SymTab.bind yName tmp2_reg (SymTab.bind xName acc_reg vtable)) acc_reg
+                 | _ => raise Error ("Error no paramater name",pos))
+        
+        val loop_reduce = [ mipsLoad elem_size (tmp2_reg, addr_reg, "0") ]
+                          @ funArgCodeGen
+
+        val loop_footer = [ Mips.ADDI (addr_reg, addr_reg, makeConst (elemSizeToInt elem_size))
+                            , Mips.ADDI (i_reg, i_reg, "1")
+                            , Mips.J loop_beg
+                            , Mips.LABEL loop_end
+                            , Mips.MOVE(place, acc_reg) ]
+         in addr_code
+          @ acc_code
+          @ size_code
+          @ init_regs
+          @ loop_header
+          @ loop_reduce
+          @ loop_footer
+        end
 (* compile condition *)
 and compileCond c vtable tlab flab =
   let val t1 = newName "cond"

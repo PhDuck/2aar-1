@@ -260,7 +260,7 @@ and checkExp ftab vtab (exp : In.Exp)
                     | _ => raise Error ("Reduce: wrong argument type",pos)
       in
           if n_type = arr_type andalso n_type = hd arg_types
-          then (Array result_type, Out.Reduce(fname, n_dec, arr_dec, result_type, pos))
+          then (Array result_type, Out.Reduce(fname, n_dec, arr_dec, arr_type, pos))
           else raise Error ("Reduce: wrong argument type", pos)
       end
 
