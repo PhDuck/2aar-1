@@ -1,23 +1,39 @@
 % Document class: article with font size 11pt
 \documentclass[11pt,a4paper,oneside]{report}
+\usepackage[a4paper, hmargin={2.8cm, 2.8cm}, vmargin={2.5cm, 2.5cm}]{geometry}
 
 \listfiles
 \usepackage{mainPreamble}
 
+\author{
+  \Large{
+    Hasanbasic, Mirza , (\href{mailto:pfl840@alumni.ku.dk}{pfl840@alumni.ku.dk}) - 081194 - pfl840
+  }\\
+  \Large{
+    Jørgensen, Mathias Bjørn(\href{mailto:mathiashrytter@mail.com}{mathiashrytter@mail.com}) - 130793 - jkf370}\\
+  \Large{
+    Gram, Mads (\href{mailto:mgmadsgram@gmail.com}{mgmadsgram@gmail.com})  - 081293 - wtc324} \\
+   \\
+}
+\title{
+  \huge{Introduction to Compilers (OV)\\}
+}
+
 
 \begin{document}
 
+\AddToShipoutPicture*{\put(0,0){\includegraphics*[viewport=0 0 700 600]{include/natbio-farve}}}
+\AddToShipoutPicture*{\put(0,602){\includegraphics*[viewport=0 600 700 1600]{include/natbio-farve}}}
+
+\AddToShipoutPicture*{\put(0,0){\includegraphics*{include/nat-en}}}
+
+\clearpage\maketitle
+\thispagestyle{empty}
+
+\clearpage\newpage
+\thispagestyle{plain}
+
 %\overfullrule=2cm %Fjern til slut
-
-\setcounter{page}{0}
-\renewcommand\thepage{\roman{page}}
-\include{frontpage/titlepage}
-
-
-
-
-\setcounter{page}{1}
-\renewcommand\thepage{\arabic{page}}
 
 %%%---
 % Tekst her
@@ -208,4 +224,4 @@ Not, And, Or, Times, Divide, error\_iota, simple\_iota
 
 
 
-\end{document} 
+\end{document}
