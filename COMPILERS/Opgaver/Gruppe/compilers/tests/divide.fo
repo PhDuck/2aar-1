@@ -1,5 +1,10 @@
-fun int main() = 
-    let x = read(int) in
-    let y = read(int) in
-    let w = x / y 
-    in  write(w)         //  printer w
+fun bool write_nl(bool b) =
+  let res = write(b) in
+  let tmp = write("\n") in
+  res
+
+fun bool main() =
+    let x0 = write_nl(4 / 2 == 2) in
+    let x1 = write_nl(2 / 4 == 0) in
+    let x2 = write_nl(0 / 4 == 0) in
+    write(x0 && x1 && x2)         //  printer w

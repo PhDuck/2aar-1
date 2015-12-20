@@ -414,7 +414,6 @@ fun compileExp e vtable place =
     let val t1 = newName "and_L"
         val t2 = newName "and_R"
         val falseLabel = newName "false"
-        val trueLabel = newName "true"
         val code1 = compileExp e1 vtable t1
         val code2 = compileExp e2 vtable t2
     in
@@ -535,15 +534,15 @@ fun compileExp e vtable place =
   | Map (FunName farg, arr_exp, elem_type, ret_type, pos) =>
     let val elem_size = getElemSize elem_type
         val ret_size  = getElemSize ret_type
-        
+
         val addr_reg  = newName "addr_reg"
         val addr_code = compileExp arr_exp vtable addr_reg
-        
+
         val size_reg  = newName "size_reg"
         val size_code = [Mips.LW(size_reg, addr_reg, " 0")]
-        
+
         val result_reg = newName "result_reg"
-        
+
         val i_reg = newName "i_reg"
           val init_regs = [ Mips.ADDI (result_reg, place, "4")
                           , Mips.ADDI (addr_reg, addr_reg, "4")
@@ -564,7 +563,7 @@ fun compileExp e vtable place =
         val loop_map = applyRegs(farg, [tmp2_reg], tmp3_reg, pos)
 
         val save_res = [mipsStore ret_size (tmp3_reg, result_reg, "0") ]
-        
+
         val loop_footer = [ Mips.ADDI (addr_reg, addr_reg, makeConst (elemSizeToInt elem_size))
                             , Mips.ADDI (result_reg, result_reg, makeConst (elemSizeToInt ret_size))
                             , Mips.ADDI (i_reg, i_reg, "1")
@@ -584,15 +583,15 @@ fun compileExp e vtable place =
   | Map (Lambda(rettype, params, body, _), arr_exp, elem_type, ret_type, pos) =>
     let val elem_size = getElemSize elem_type
         val ret_size  = getElemSize ret_type
-        
+
         val addr_reg  = newName "addr_reg"
         val addr_code = compileExp arr_exp vtable addr_reg
-        
+
         val size_reg  = newName "size_reg"
         val size_code = [Mips.LW(size_reg, addr_reg, " 0")]
-        
+
         val result_reg = newName "result_reg"
-        
+
         val i_reg = newName "i_reg"
           val init_regs = [ Mips.ADDI (result_reg, place, "4")
                           , Mips.ADDI (addr_reg, addr_reg, "4")
@@ -610,14 +609,14 @@ fun compileExp e vtable place =
 
         val load_arg = [mipsLoad elem_size (tmp2_reg, addr_reg, "0")]
 
-        val vtable' = case params of 
+        val vtable' = case params of
                   Param(Pname, Ptype)::[]   => SymTab.bind Pname tmp2_reg vtable
                 | _ => raise Error ("Error no paramater name",pos)
-        
+
         val loop_map = compileExp body vtable' tmp3_reg
 
         val save_res = [mipsStore ret_size (tmp3_reg, result_reg, "0") ]
-        
+
         val loop_footer = [ Mips.ADDI (addr_reg, addr_reg, makeConst (elemSizeToInt elem_size))
                             , Mips.ADDI (result_reg, result_reg, makeConst (elemSizeToInt ret_size))
                             , Mips.ADDI (i_reg, i_reg, "1")
@@ -637,13 +636,13 @@ fun compileExp e vtable place =
   (* reduce(f, acc, {x1, x2, ...}) = f(..., f(x2, f(x1, acc))) *)
   | Reduce (binop, acc_exp, arr_exp, tp, pos) =>
      let val elem_size = getElemSize tp
-        
+
         val addr_reg  = newName "addr_reg"
         val addr_code = compileExp arr_exp vtable addr_reg
-        
+
         val acc_reg = newName "acc_reg"
         val acc_code = compileExp acc_exp vtable acc_reg
-        
+
         val size_reg  = newName "size_reg"
         val size_code = [Mips.LW(size_reg, addr_reg, " 0")]
 
@@ -659,14 +658,14 @@ fun compileExp e vtable place =
         val loop_header = [ Mips.LABEL (loop_beg)
                             , Mips.SUB (tmp_reg, i_reg, size_reg)
                             , Mips.BGEZ (tmp_reg, loop_end) ]
-        
+
         val funArgCodeGen = case binop of
               FunName f => applyRegs(f, [acc_reg, tmp2_reg], acc_reg, pos)
             | Lambda (rettype, params, body, _) => (case params of
-                   (Param(xName, xType)::Param(yName, yType)::[]) => 
+                   (Param(xName, xType)::Param(yName, yType)::[]) =>
                           compileExp body (SymTab.bind yName tmp2_reg (SymTab.bind xName acc_reg vtable)) acc_reg
                  | _ => raise Error ("Error no paramater name",pos))
-        
+
         val loop_reduce = [ mipsLoad elem_size (tmp2_reg, addr_reg, "0") ]
                           @ funArgCodeGen
 
@@ -674,7 +673,7 @@ fun compileExp e vtable place =
                             , Mips.ADDI (i_reg, i_reg, "1")
                             , Mips.J loop_beg
                             , Mips.LABEL loop_end
-                            , Mips.MOVE(place, acc_reg) 
+                            , Mips.MOVE(place, acc_reg)
                             ]
          in addr_code
           @ acc_code

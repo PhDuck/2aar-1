@@ -40,58 +40,72 @@
 %%%---
 
 \section{Struktur i kode}
+\subsection*{Implementation of boolean values}
+To solve the exercise given in task one we have made changes to the following files \texttt{Lexer.lex}, \texttt{Parser.grm}, \texttt{Interpreter.sml}, \texttt{Typerchecker.sml}, and \texttt{CodeGen.sml}.
 
-For at løse opgaver i task 1, kigger vi kun på \texttt{Lexer.lex}, \texttt{Parser.grm}, \texttt{Interpreter.sml}, \texttt{Typerchecker.sml} og \texttt{codegen.sml}.
 
-Hvis vi, tager det slavisk, som i den rækkefølge de skal løses i. Det vil sige, for at implentere \texttt{TRUE} og \texttt{FALSE}, så skal de først defineres under keywords, der indsættes
+To start of we implemented boolean values \texttt{true} and \texttt{false}, which are defined as a keyword in the lexer.
 
 \begin{code}[firstnumber=42]{Lexer.lex}
        | "true"         => Parser.TRUE pos
        | "false"        => Parser.FALSE pos
 \end{code}
 
-her efter skal vi definere dem som tokens og  expresseions
+However inorder to interpret those keywords we must extend the parser to define those tokens.
 
 \begin{code}[firstnumber=13]{Parser.grm}
 %token <(int*int)> TRUE FALSE
+
 \end{code}
 \begin{code}[mathescape=false,firstnumber=68]{Parser.grm}
         | TRUE           { Constant (BoolVal true, $1) }
         | FALSE          { Constant (BoolVal false, $1) }
 \end{code}
-
-Som vi gjorde med \texttt{TRUE} og \texttt{FALSE}, så skal der også defineres en rule token for \texttt{TIMES} og \texttt{DIVIDE}, gøres næsten det samme
-
-\begin{code}[firstnumber=133]{Lexer.lex}
- Parser.DIVIDE (getPos lexbuf) )
- and action_10 lexbuf = (
- Parser.TIMES  (getPos lexbuf) )
+Where the second part assigns them to a boolean literal, to enable usage in other expressions.
+Fasto can not use them yet due to MIPS not having a ``boolean type'', so we need to extend \texttt{CodeGen.sml} where we decided to assign \texttt{true} to the value 1 and \texttt{false} as 0. This will later be relevant when we create the \texttt{CodeGen.sml} for the $\&\&$ and $\|\|$ operators.
+\begin{code}[firstnumber=171]{CodeGen.grm}
+  | Constant (BoolVal b, pos) => if b = true then
+        [Mips.LI(place, makeConst(1))]
+          else if b = false then
+        [Mips.LI(place, makeConst(0))]
+          else raise Fail "Not a boolean value given"
 \end{code}
 
-Det samme gælder for selve token, hvor det er en \texttt{(int*int)}, i \texttt{Parser.grm}. Selve precedence level af \texttt{TIMES} og \texttt{DIVIDE} er den højste, dvs. at $4 + 2 \cdot 3$ betyder $4 + (2 \cdot 3)$.
-
-Dog i \texttt{TIMES, DIVIDE}, skal vi bruge 3 registre, altså
-
-\begin{code}[mathescape=false, firstnumber=76]{Parser.grm}
-        | Exp TIMES Exp  { Times($1, $3, $2) }
-        | Exp DIVIDE Exp { Divide($1, $3, $2)}
+\subsection*{Implementation of Times and Divide}
+Due to the similarity in the implementation we will only look at divide.
+The interesting difference in comparison with true and false in the \texttt{Lexer.lex} is that divide is not only represented as Divide but also represented a the symbol $\/$, this is handled with
+\begin{code}[firstnumber=88]{Lexer.lex}
+| `/`                 { Parser.DIVIDE (getPos lexbuf) }
 \end{code}
 
-Da vi skal tage højde for det Fasto, skal vi tjekke det abstrakte syntax træ,
+A divide call takes three elements to call, the dividend, the divide symbol, and the divisor. The parser needs to understand these different elements, thise is done with
+\begin{code}[firstnumber=77]{Parser.grm}
+| Exp DIVIDE Exp { Divide($1, $3, $2)}
+\end{code}
+Where \$1 is the first expression, \$3 is the second expression, and \$2 is the position of divide.
 
-\begin{code}[firstnumber=160]{Interpreter.sml}
-| evalExp ( Times(e1, e2, pos), vtab, ftab ) =
-    let
-      val res1   = evalExp(e1, vtab, ftab)
-      val res2   = evalExp(e2, vtab, ftab)
-    in
-      case (res1, res2) of
-          (IntVal n1, IntVal n2) => IntVal (n1 * n2)
-        | _ => invalidOperands
-            "Times on non-integral args: "
-                [(Int, Int)] res1 res2 pos
-    end
+In the parser we also need to handle the precedence of the call of divide. It needs to bind stronger than for example plus, so we add it to the precedence table in \texttt{Parser.grm}
+\begin{code}[firstnumber=26]{Parser.grm}
+%left PLUS MINUS
+%left DIVIDE
+\end{code}
+This results in $x + y / z$ is interpreted as $x + (y / z)$
 
+We check that the two given expressions are of the correct type, in regards to the operator, in this case it is a divide operation and therefore the expressions should be integers.
+
+As seen we use the predefined function \texttt{CheckBinOp()} which evaluates the desired type against the evaluated types for each expressions.
+\begin{code}[firstnumber=112]{TypeChecker.sml}
+| In.Divide (e1, e2, pos)
+  => let val (_, e1_dec, e2_dec) =
+            checkBinOp ftab vtab (pos, Int, e1, e2)
+     in (Int,
+         Out.Divide (e1_dec, e2_dec, pos))
+     end
+\end{code}
+
+We fist evaluate the two expressions, which then allows us to implement error handling when division by zero. Then the SML function \texttt{Int.quot} is used, the main difference between SML normal divide and \texttt{Int.quot} is that it rounds towards zero. This is done to align the interpreter with the generated MIPS code from \texttt{CodeGen.sml}.
+
+\begin{code}[firstnumber=170]{Interpreter.sml}
 | evalExp ( Divide(e1, e2, pos), vtab, ftab ) =
     let
       val res1   = evalExp(e1, vtab, ftab)
@@ -107,75 +121,55 @@ Da vi skal tage højde for det Fasto, skal vi tjekke det abstrakte syntax træ,
     end
 \end{code}
 
-For at kunne tage højde for at alle operationer i Fasto, bliver udført lovligt, så har vi med en type-checker, at det bliver overholdt
-
-\begin{code}[firstnumber=160]{TypeChecker.sml}
-| In.Times (e1, e2, pos)
-  => let val (_, e1_dec, e2_dec) =
-            checkBinOp ftab vtab (pos, Int, e1, e2)
-     in (Int,
-         Out.Times (e1_dec, e2_dec, pos))
-     end
-
-| In.Divide (e1, e2, pos)
-  => let val (_, e1_dec, e2_dec) =
-            checkBinOp ftab vtab (pos, Int, e1, e2)
-     in (Int,
-         Out.Divide (e1_dec, e2_dec, pos))
-     end
-\end{code}
-
-text her.
-
-\newpage
-
-\begin{code}[firstnumber=133]{CodeGen.sml}
-  | Times (e1, e2, pos) =>
-      let val t1 = newName "times_L"
-          val t2 = newName "times_R"
-          val code1 = compileExp e1 vtable t1
-          val code2 = compileExp e2 vtable t2
-      in  code1 @ code2 @ [Mips.MUL (place,t1,t2)]
-      end
+The last part of implementing is divide, is the \texttt{CodeGen.sml}.
+Here we create the registers and then evaluate the expressions and saves them in the before mentioned registers. With those to registers we can now call Mips.DIV and complete the calculation.
+\begin{code}[firstnumber=251]{CodeGen.sml}
   | Divide (e1, e2, pos) =>
       let val t1 = newName "divide_L"
           val t2 = newName "divide_R"
           val code1 = compileExp e1 vtable t1
           val code2 = compileExp e2 vtable t2
-      in  code1 @ code2 @ [Mips.DIV (place,t1 ,t2)]
+      in  code1 @ code2 @ [Mips.DIV (place, t1 ,t2)]
       end
 \end{code}
+To show this is correct we look towards the tests for divide. Where the results for divide all evaluates to true
+\begin{code}{divide.fo}
+fun bool write_nl(bool b) =
+  let res = write(b) in
+  let tmp = write("\n") in
+  res
 
-Selve \texttt{AND} og \texttt{OR} følger meget samme fremgangs metode, som \texttt{TRUE, FALSE} i lexeren og parseren, dog vil de to operationer i \texttt{Interpreter.sml}. Hvor vi i \texttt{OR}, kigger på, at hvis den første variabel er \texttt{TRUE}, returneres der \texttt{TRUE}
+fun bool main() =
+    let x0 = write_nl(4 / 2 == 2) in
+    let x1 = write_nl(2 / 4 == 0) in
+    let x2 = write_nl(0 / 4 == 0) in
+    write(x0 && x1 && x2)         //  printer w
+\end{code}
+And we get an error when we try to divide by 0, which is tested in \texttt{divideE.fo}
 
-\begin{code}[firstnumber=190]{Interpreter.sml}
-| evalExp (Or (e1, e2, pos), vtab, ftab) =
-        let
-          val r1 = evalExp(e1, vtab, ftab)
-        in
-          case r1 of
-               BoolVal true => BoolVal true
-             | BoolVal false  => evalExp(e2, vtab, ftab)
-             | _ => raise Fail "First operand none boolean"
-        end
+With this done we are now able to use divide.
 
-  | evalExp ( Not(e, pos), vtab, ftab ) =
-        let
-          val r1 = evalExp(e, vtab, ftab)
-        in
-          case r1 of
-               BoolVal true => BoolVal false
-             | BoolVal false  => BoolVal true
+\subsection*{And and Or}
+As done in the previous section we will focus only on \texttt{AND}, as \texttt{OR} only differs slightly in how the short-circuiting is implemented.
+
+In the \texttt{Lexer.lex}, \texttt{Parser.grm}, and \texttt{TypeChecker.sml} in the same fashion as \texttt{Divide}, so instead we look to the interpreter. Here the difference is that the function should be short-circuiting.
+This results in us first evaluating the first expression, if it evaluates to \texttt{false} we are done and \texttt{AND} should return \texttt{false}.
+\begin{code}[firstnumber=182]{Interpreter.sml}
+| evalExp (And (e1, e2, pos), vtab, ftab) =
+        let val r1 = evalExp(e1, vtab, ftab)
+        in case r1 of
+               BoolVal true => evalExp(e2, vtab, ftab)
+             | BoolVal false  => BoolVal false
              | _ => raise Fail "First operand none boolean"
         end
 \end{code}
 
-\begin{code}[firstnumber=408]{CodeGen.sml}
+The short-circuiting should also carry over into the \texttt{CodeGen.sml} where we need to recall that \texttt{true} and \texttt{false} are represented with the integers 1 and 0.
+\begin{code}[firstnumber=413]{CodeGen.sml}
   | And (e1, e2, pos) =>
     let val t1 = newName "and_L"
         val t2 = newName "and_R"
         val falseLabel = newName "false"
-        val trueLabel = newName "true"
         val code1 = compileExp e1 vtable t1
         val code2 = compileExp e2 vtable t2
     in
@@ -187,41 +181,34 @@ Selve \texttt{AND} og \texttt{OR} følger meget samme fremgangs metode, som \tex
       , Mips.LI (place, "1")
       , Mips.LABEL falseLabel ]
     end
+\end{code}
+As we can see in the code excerpt we solve this by creating the falseLabel, meaning if the left expression evaluates to \texttt{false} which is represented by 0, we can with Mips.BEQ jump to the falseLabel bypassing evaluating the second expression. Because we begin the code with loading 0 into our return register we then return \texttt{false} represented by 0. However if the first expression instead evaluates to \texttt{true} we then evaluate the second expression and if it is \texttt{true} we do not jump to the falseLabel and instead loads 1 into our return register.
 
-  | Or (e1, e2, pos) =>
-    let val t1 = newName "and_L"
-        val t2 = newName "and_R"
-        val falseLabel = newName "false"
-        val trueLabel = newName "true"
-        val code1 = compileExp e1 vtable t1
-        val code2 = compileExp e2 vtable t2
-    in
-            code1 @
-            [ Mips.LI (place,"0")
-            , Mips.BEQ (t1, "1", trueLabel) ]
-            @ code2 @
-            [ Mips.BEQ (t2, "0", falseLabel)
-            , Mips.LABEL trueLabel
-            , Mips.LI (place, "1")
-            , Mips.LABEL falseLabel ]    end
+First we run the test to check if \texttt{AND} is implemented correctly, we the test which is shown below. It tests out all possible combinations with two evaluations. Which correctly returns \texttt{true, false, false, false}.
+
+\begin{code}{and.fo}
+fun bool write_nl(bool b) =
+  let res = write(b) in
+  let tmp = write("\n") in
+  res
+
+fun bool main() =
+    let x0 = write_nl(true and true) in
+    let x1 = write_nl(true and false) in
+    let x2 = write_nl(false and true) in
+    write_nl(false and false)
 \end{code}
 
-\section{Awesome code}
-Laver hjælpe funktion til task 2: Mips load i Codegen linie 80ish
+Furthermore we use another test \texttt{short\_circuit.fo} which test if the short-circuiting is correctly implemented. This also test that \texttt{OR} is correctly short-circuited. Our implementation passes this test with grace.
 
-\section{Testing}
+\begin{code}{short\_circuit.fo}
+fun bool no_way() = no_way()
 
-Not, And, Or, Times, Divide, error\_iota, simple\_iota
-
-
-
-
-
-%%%---
-% Tekst her
-%%%---
-
-
+fun bool main() =
+  let a = write(false && no_way()) in
+  let b = write(true || no_way()) in
+  true
+\end{code}
 
 
 \end{document}
