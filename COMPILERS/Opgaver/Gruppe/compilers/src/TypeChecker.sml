@@ -143,9 +143,9 @@ and checkExp ftab vtab (exp : In.Exp)
       let
         val (q, e') = checkExp ftab vtab e
       in
-        case (q, e') of
-         (Int, _) => (Int, Out.Negate (e', pos))
-        | _       => raise Fail "Negate: Type Error"
+        if q = Int
+        then (Int, Out.Negate (e', pos))
+        else raise Fail "Negate: Type Error"
       end
 
     (* The types for e1, e2 must be the same. The result is always a Bool. *)
@@ -251,7 +251,7 @@ and checkExp ftab vtab (exp : In.Exp)
                               ppType arr_type, pos)
       end
     | In.Reduce (f, n_exp, arr_exp, _, pos)
-      => 
+      =>
       let val (n_type, n_dec) = checkExp ftab vtab n_exp
           val (arr_type, arr_dec) = checkExp ftab vtab arr_exp
           val (fname, result_type, arg_types) = checkFunArg(f, vtab, ftab, pos)

@@ -180,9 +180,11 @@ fun evalExp ( Constant (v,_), vtab, ftab ) = v
         end
 
   | evalExp (And (e1, e2, pos), vtab, ftab) =
-        let val r1 = evalExp(e1, vtab, ftab)
-        in case r1 of
-               BoolVal true => evalExp(e2, vtab, ftab)
+        let
+          val r1 = evalExp(e1, vtab, ftab)
+        in
+          case r1 of
+               BoolVal true   => evalExp(e2, vtab, ftab)
              | BoolVal false  => BoolVal false
              | _ => raise Fail "First operand none boolean"
         end
@@ -192,7 +194,7 @@ fun evalExp ( Constant (v,_), vtab, ftab ) = v
           val r1 = evalExp(e1, vtab, ftab)
         in
           case r1 of
-               BoolVal true => BoolVal true
+               BoolVal true   => BoolVal true
              | BoolVal false  => evalExp(e2, vtab, ftab)
              | _ => raise Fail "First operand none boolean"
         end

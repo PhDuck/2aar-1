@@ -210,5 +210,221 @@ fun bool main() =
   true
 \end{code}
 
+\subsection*{Not and Negate}
+
+The \texttt{Lexer.lex} and \texttt{Interpreter.sml} is similar to the previous shown. The interesting comes when we are addressing the precedence level, since we want our program to interpret the different expression in the same order we general do. This means that when we write x * y + z == negate y or x == z we want it to be interpreted as (((x * y) + z) == (negate y)) or (x == z). In words we want it to first multiply x and y then add z, we then want it to negate y and see if it is equal to the previous calculation, afterwards see if x is equal to z, and finally if any of those two expressions are true.
+\begin{code}[firstnumber=22]{Parser.grm}
+%nonassoc ifprec letprec
+%left OR
+%left AND NOT
+%left DEQ LTH NEGATE
+%left PLUS MINUS
+%left TIMES DIVIDE
+\end{code}
+
+For Not and Negate we have two expressions that only works on one type, boolean and integers respectively. This effects the \texttt{TypeChecker.sml} where we instead of using \texttt{checkBinOp} can merely evaluate the expression and check if is is the correct type.
+\begin{code}[firstnumber=132]{code}
+    | In.Not (e, pos)
+      =>  let
+            val (type_exp, e_dec) = checkExp ftab vtab e
+          in
+            if Bool = type_exp
+            then (type_exp, Out.Not (e_dec, pos))
+            else raise Error ("Not: Not bool", pos)
+          end
+\end{code}
+With negate working in a similar fashion.
+
+In the \texttt{CodeGen.sml} for Not we can use a smart Mips instruction to get the right result.
+\begin{code}[firstnumber=258]{CodeGen.sml}
+  | Not (e', pos) =>
+      let
+        val t1 = newName "Not"
+        val code = compileExp e' vtable t1
+      in
+        code @ [Mips.XORI (place, t1, "1")]
+      end
+\end{code}
+The reason this works is because we have two cases, one with \texttt{false} we compare with 1 which is equivalent to \texttt{true} resulting in \texttt{true}. The other scenario \texttt{true} which again is compared with 1, and Mips.XORI returns 0 equivalent to \texttt{false} when it evaluates two 1's.
+
+
+Negate works by subtracting the number from zero, this makes the number negative, for a positive number and for a negative number it leads to a double negation which equals a positive number, for example to negate $42$ we say $0 - 42$ which equals $-42$.
+
+\begin{code}[firstnumber=265]{CodeGen.sml}
+  | Negate (e', pos) =>
+    let
+      val t1 = newName "Negate"
+      val code = compileExp e' vtable t1
+    in
+      code @ [Mips.SUB (place, "0", t1)]
+    end
+\end{code}
+
+\subsection*{Iota}
+This was completely given by the \texttt{Task2.html} handout and will not be expanded on further.
+
+\subsection*{Map}
+In order to handle the anonymously functions call in map (and reduce) the \texttt{Lexer.lex} needed to be expanded with \texttt{fn} and $=>$ which we have denoted \texttt{FNEQ} in the \texttt{Parser.grm} they have been implemented in the same manner as earlier.
+However the expression for map is a little more complicated. Map can be called in more than one way, both with a known function and an anonymous one (there is a third option that we have not implemented we will discuss later). To help with this we introduce FunArg to the parser.
+\begin{code}[firstnumber=109]{code}
+FunArg :  ID {FunName (#1 $1)}
+        | FN Type LPAR RPAR FNEQ Exp
+                        { Lambda ($2, [], $6, $1) }
+        | FN Type LPAR Params RPAR FNEQ Exp
+                        { Lambda ($2, $4, $7, $1) }
+\end{code}
+The first instance in FunArg is FunName which handles a known function, the other two instances are for the anonymous functions. This allow us to write a single version for map in the \texttt{Parser.grm}.
+\begin{code}[firstnumber=86]{code}
+        | MAP LPAR FunArg COMMA Exp RPAR
+                         { Map ($3, $5, (), (), $1) }
+\end{code}
+
+The complexity with map also extends to the \texttt{TypeChecker.sml}. Where we need to check that our input is similar to the arguments that our functions uses.
+\begin{code}[firstnumber=239]{TypeChecker.sml}
+| In.Map (f, arr_exp, _, _, pos)
+      =>
+      let
+          val (arr_type, arr_dec) = checkExp ftab vtab arr_exp
+          val (fname, result_type, arg_types) = checkFunArg(f, vtab, ftab, pos)
+          val element_type = case arr_type of
+                                    Array (x) => x
+                                  | _ => raise Error ("Map: input not an array", pos)
+      in
+          if element_type = hd arg_types
+          then (Array result_type, Out.Map(fname, arr_dec, element_type, result_type, pos))
+          else raise Error ("Map: wrong argument type " ^
+                              ppType arr_type, pos)
+      end
+\end{code}
+
+We are able to use \texttt{head (hd)} since \texttt{arg\_types} is a list of one element which is the type of the argument.
+
+In the interpreter we first get the return type and the extract the array from the expression and use the SML List.map function in conjunction with the evaluated function, to get the result array.
+
+\begin{code}[firstnumber=294]{Interpreter.sml}
+  | evalExp ( Map (farg, arrexp, _, _, pos), vtab, ftab ) =
+    let
+      val return_type = rtpFunArg(farg, ftab, pos)
+      val evaluated_arr = case evalExp(arrexp, vtab, ftab) of
+        ArrayVal(arr, _) => arr
+        | _ => raise Error("Map: Array expressions does not evaluate to ArrayVal", pos)
+      val map_result = map(fn x => evalFunArg(farg, vtab, ftab, pos, [x])) evaluated_arr
+    in
+      ArrayVal(map_result, return_type)
+    end
+\end{code}
+
+In the \texttt{CodeGen.sml} we decided to split the map function into the two cases, of the known function and the anonymous function. This is not a necessary step to take to solve the problem, as it can be seen in reduce where we only have one, however it was decided to take the approach to get a greater understanding of both cases. This does result in the two function being eerily similar, with the loop\_map call being the difference.
+Firstly we focus on the map call with a known function. Map can deal with different kinds of input and output, in fact they are not necessarily the same, this is not problematic in a type checking sense, however when writing Mips code there is a difference in the amount of memory needed to store the different types, with integers taking 4 bytes and chars and booleans only using 1. When we load or store a result we then have to cases which we need to handle. To assist with this we have created a helper function called \texttt{mipsLoad()}, in addition to the existing ones.
+\begin{code}[firstnumber=81]{CodeGen.sml}
+fun mipsLoad elem_size = case elem_size of
+                              One => Mips.LB
+                            | Four => Mips.LW
+\end{code}
+The functions handles the issue of which mips instruction to use depending on type in the load scenario, the existing functions handles the rest of the problem.
+In addition we also have use of several registers, with the most significant ones being addr\_reg, where we load our arguments, and result\_reg where we store our result, in addition to those we have several registers used temporarily to store our values. In mips we can not change the size of our arrays dynamically so we need to know the size for our result\_ reg, which should be identically to our argument array. Here we exploit the fact that when we create our argument array the first argument is the size of the array, which we then store in size\_reg, and with the use of the helper function dynalloc create the result\_reg.
+
+\begin{code}[firstnumber=538]{CodeGen.sml}
+        val addr_reg  = newName "addr_reg"
+        val addr_code = compileExp arr_exp vtable addr_reg
+
+        val size_reg  = newName "size_reg"
+        val size_code = [Mips.LW(size_reg, addr_reg, " 0")]
+
+        val result_reg = newName "result_reg"
+\end{code}
+
+In this instance both our registers addr\_reg and result\_reg both contain the pointers to the size of their arrays and not the fist element of their arrays so we need to initialise our registers to begin our actual calculations.
+\begin{code}[firstnumber=546]{CodeGen.sml}
+        val i_reg = newName "i_reg"
+          val init_regs = [ Mips.ADDI (result_reg, place, "4")
+                          , Mips.ADDI (addr_reg, addr_reg, "4")
+                          , Mips.MOVE (i_reg, "0") ]
+\end{code}
+
+Since the size of arrays are both integers we do not need to concern ourselves with type size here.
+
+Since we can not calculate with pointers we have to load the actual value, which we then use the helper function \texttt{applyRegs()} to call the actual function. The value is then stored in our result\_reg.
+\begin{code}[firstnumber=561]{CodeGen.sml}
+        val load_arg = [mipsLoad elem_size (tmp2_reg, addr_reg, "0")]
+
+        val loop_map = applyRegs(farg, [tmp2_reg], tmp3_reg, pos)
+
+        val save_res = [mipsStore ret_size (tmp3_reg, result_reg, "0") ]
+\end{code}
+Implied by the name loop\_map this only solves one instance of the problem, so we need a loop to run over the entire argument array. This is done in the same manner as \texttt{iota} with the one significant difference. We have to increment our addr\_reg and result\_reg with correct amount, as dictated by the type of variable.
+
+\begin{code}[firstnumber=567]{CodeGen.sml}
+  Mips.ADDI (addr_reg, addr_reg, makeConst (elemSizeToInt elem_size))
+, Mips.ADDI (result_reg, result_reg, makeConst (elemSizeToInt ret_size))
+\end{code}
+Where makeConst (elemSizeToInt ...) refers to
+\begin{code}[firstnumber=535]{CodeGen.sml}
+val elem_size = getElemSize elem_type
+val ret_size  = getElemSize ret_type
+\end{code}
+Which all adds up to
+\begin{code}[firstnumber=573]{CodeGen.sml}
+in addr_code
+          @ size_code
+          @ dynalloc (size_reg, place, ret_type)
+          @ init_regs
+          @ loop_header
+          @ load_arg
+          @ loop_map
+          @ save_res
+          @ loop_footer
+        end
+\end{code}
+
+Which allows us to call map on known functions, however for anonymous functions we can not call the \texttt{applyRegs()} function. Instead we have to extend our vtable with the parameters given in the anonymous function to be able to evaluate the body of the function.
+\begin{code}[firstnumber=612]{CodeGen.sml}
+  val vtable' = case params of
+                  Param(Pname, Ptype)::[]   => SymTab.bind Pname tmp2_reg vtable
+                | _ => raise Error ("Error no paramater name",pos)
+
+  val loop_map = compileExp body vtable' tmp3_reg
+\end{code}
+
+This then allows us to call map with anonymous functions as well as known functions. However we have not handled the \texttt{op+(-,*,/)} version. We have not implemented this due to poor time management.
+In order to implement it would be necessary to add the four cases to the \texttt{Lexer.lex}, or just add op as a keyword and use it in combination with the existing tokens.
+\begin{code}{Code Example}
+       | "op"         => Parser.OP pos
+\end{code}
+In the \texttt{Parser.grm} it would be needed to expand the FunArg to handle this
+\begin{code}{Code Example}
+FunArg :  ID {FunName (#1 $1)}
+        | OP Exp
+             { OP( \$2 ) }
+\end{code}
+For the type checker and interpreter we would need to determine if the case can be handled by the helper functions or additional has to be written. Whereas for the \texttt{CodeGen.sml} we would create an additional map to handle the case of \texttt{op+(-,*,/)}.
+
+
+To show that our solution works for known and anonymous function we can run the \texttt{anonymous map.fo} and \texttt{inline\_map.fo} tests, which returns the desired results.
+
+
+\subsection*{Reduce}
+While reduce is slighter different than map, it is insignificantly for both the \texttt{Lexer.lex} and \texttt{Parser.grm} however in the \texttt{TypeChecker.sml} we have a major chance in comparison to \texttt{map}. Where map can chance type during the function call \texttt{reduce} need to return the same type as the argument it takes. It also takes an additional argument than the list its evaluating, which should be the same as well.
+\begin{code}[firstnumber=253]{TypeChecker.sml}
+| In.Reduce (f, n_exp, arr_exp, _, pos)
+      =>
+      let val (n_type, n_dec) = checkExp ftab vtab n_exp
+          val (arr_type, arr_dec) = checkExp ftab vtab arr_exp
+          val (fname, result_type, arg_types) = checkFunArg(f, vtab, ftab, pos)
+          val arr_type = case arr_type of
+                      Array(x) => x
+                    | _ => raise Error ("Reduce: wrong argument type",pos)
+      in
+          if (n_type = arr_type andalso n_type = hd arg_types)
+          then (result_type, Out.Reduce(fname, n_dec, arr_dec, n_type, pos))
+          else raise Error ("Reduce: wrong argument type", pos)
+      end
+\end{code}
+
+
+
+
+
+
 
 \end{document}
