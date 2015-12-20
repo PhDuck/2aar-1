@@ -674,7 +674,8 @@ fun compileExp e vtable place =
                             , Mips.ADDI (i_reg, i_reg, "1")
                             , Mips.J loop_beg
                             , Mips.LABEL loop_end
-                            , Mips.MOVE(place, acc_reg) ]
+                            , Mips.MOVE(place, acc_reg) 
+                            ]
          in addr_code
           @ acc_code
           @ size_code

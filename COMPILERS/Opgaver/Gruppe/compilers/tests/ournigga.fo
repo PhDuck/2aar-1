@@ -1,4 +1,4 @@
 fun int main() = 
     let x = read(int) in
-    in  let w = negate x 
+    in  let w = ~x + 3 
     in  write(w)         // negater x værdien
