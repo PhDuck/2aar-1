@@ -421,10 +421,121 @@ While reduce is slighter different than map, it is insignificantly for both the 
       end
 \end{code}
 
+In the \texttt{Interpreter.sml} is very similar to \texttt{map}, however to evaluate the function we instead use the SML function foldl, and it evaluates to a single value.
+\begin{code}[firstnumber=305]{Interpreter.sml}
+  | evalExp ( Reduce (farg, ne, arrexp, tp, pos), vtab, ftab ) =
+    let
+      val return_type = rtpFunArg(farg, ftab, pos)
+      val eval_n = evalExp (ne, vtab, ftab)
+      val eval_arr = case evalExp(arrexp, vtab, ftab) of
+          ArrayVal (arr, _) => arr
+        | _ => raise Error("Reduce: array exp doesnot eval to ArrayVal", pos)
+      val reduce_result = foldl(fn (x,y) => evalFunArg(farg, vtab, ftab, pos, [x,y])) eval_n eval_arr
+    in
+      reduce_result
+    end
+\end{code}
+
+The fact that it evaluates to a single value, can also be exploited in the \texttt{CodeGen.sml}. Which means we do not need to store after each iteration of our loop, we can instead carry the value over in a temp reg and only load the new value from the argument array. We just have to remember to move our result from the temporary register after the loop has completed.
+\begin{code}[firstnumber=662]{CodeGen.sml}
+val funArgCodeGen = case binop of
+              FunName f => applyRegs(f, [acc_reg, tmp2_reg], acc_reg, pos)
+            | Lambda (rettype, params, body, _) => (case params of
+                   (Param(xName, xType)::Param(yName, yType)::[]) =>
+                          compileExp body (SymTab.bind yName tmp2_reg (SymTab.bind xName acc_reg vtable)) acc_reg
+                 | _ => raise Error ("Error no paramater name",pos))
+
+val loop_reduce = [ mipsLoad elem_size (tmp2_reg, addr_reg, "0") ]
+                  @ funArgCodeGen
+\end{code}
+
+This does leave one problem compared to map, when we have completed the iteration our value is saved in the wrong place, so we need to alter our loop\_footer.
+\begin{code}[firstnumber=672]{CodeGen.sml}
+        val loop_footer = [ Mips.ADDI (addr_reg, addr_reg, makeConst (elemSizeToInt elem_size))
+                            , Mips.ADDI (i_reg, i_reg, "1")
+                            , Mips.J loop_beg
+                            , Mips.LABEL loop_end
+                            , Mips.MOVE(place, acc_reg)
+                            ]
+\end{code}
+Also worth noting is there is no result\_reg to increment since we keep updating acc\_reg. When the loop has terminated we simply move our value and the code terminates.
+\begin{code}[firstnumber=678]{CodeGen.sml}
+        in addr_code
+          @ acc_code
+          @ size_code
+          @ init_regs
+          @ loop_header
+          @ loop_reduce
+          @ loop_footer
+        end
+\end{code}
+
+Unlike \texttt{map} we only have a single \texttt{reduce} function, which means we handle the difference known and anonymous functions in a case in the loop. Where we for known functions simply use \texttt{applyRegs()} as in maps. For the anonymous functions we need instead need to extend the vtable with two variables, since \texttt{reduce} takes two arguments. After which we proceed as in maps and evaluate the body of the function over the new vtable.
+
+Running the test \texttt{reduce.fo} we confirm it works for a known function, and for the anonymous functions we use anon\_reduce.fo to show the correctness.
+
+\subsection*{Constant Folding}
+In \texttt{Times} we made the following rules
+\begin{code}[firstnumber=43]{CopyConstPropFold.sml}
+      | Times (e1, e2, pos) =>
+        let val e1' = copyConstPropFoldExp vtable e1
+            val e2' = copyConstPropFoldExp vtable e2
+        in case (e1', e2') of
+          (Constant (IntVal x, _), Constant (IntVal y, _)) => Constant (IntVal (x*y), pos)
+          | (Constant                 (IntVal 1, _), _)   =>
+            e2' (* Multiplication by one x * 1 = x *)
+          | (Constant (IntVal ~1, _), _)   =>
+            Negate(e2', pos)          (* Multiplication by minus one x * -1 = -x *)
+          | (_, Constant (IntVal 1, _))   =>
+            e1'                       (* Multiplication by one x * 1 = x *)
+          | (_, Constant (IntVal ~1, _))   =>
+            Negate(e1', pos)          (* Multiplication by minus one x * -1 = -x *)
+          | _                             =>
+            Times(e1', e2', pos)
+        end
+\end{code}
+Which equates to the two following multiplications rules
+\begin{center}
+  \begin{verbatim}
+    x * 1 = x
+    x * (-1) = -x
+    \end{verbatim}
+\end{center}
+
+In \texttt{AND} we wrote
+\begin{code}[firstnumber=59]{CopyConstPropFold.sml}
+      | And (e1, e2, pos) =>
+        let val e1' = copyConstPropFoldExp vtable e1
+            val e2' = copyConstPropFoldExp vtable e2
+        in case (e1', e2') of
+               (Constant (BoolVal a, _), Constant (BoolVal b, _)) =>
+               Constant (BoolVal (a andalso b), pos)
+             | _ => And (e1', e2', pos)
+        end
+\end{code}
+Which in case of both expressions being BoolVals it reduces it to a single expression.
+
+In \texttt{Divide} we added
+\begin{code}[firstnumber=139]{CopyConstPropFold.sml}
+      | Divide (e1, e2, pos) =>
+        let val e1' = copyConstPropFoldExp vtable e1
+            val e2' = copyConstPropFoldExp vtable e2
+        in case (e1', e2') of
+               (Constant (IntVal x, _), Constant (IntVal y, _)) =>
+                 (Constant (IntVal (Int.quot (x,y)), pos)
+                   handle Div => Divide (e1', e2', pos))
+              | (_, Constant (IntVal 1, _)) =>
+                e1' (* Division by minus one x / 1 = x *)
+              | (_, Constant (IntVal ~1, _)) =>
+                Negate(e1', pos) (* Division by minus one x / -1 = -x *)
+              | _ => Divide (e1', e2', pos)
+        end
+\end{code}
+We added division by 1 being irrelevant, and division by negative on simply negates the expression.
 
 
+\subsection*{Copy/Constant Propagation}
 
-
-
+We were not able to complete this part of the exercise, since we were uncertain of what precisely was meant to be done in this part.
 
 \end{document}
