@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.12.13)  2 JAN 2016 14:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.12.13)  2 JAN 2016 15:56
 entering extended mode
-**"C:/Users/Baby-/Google Drive/KU/Kode/2aar/COMPILERS/Opgaver/Opgave 3/Mirza/Mi
-rzatex/Opgave3.tex"
+**"C:/Users/Baby-/Google Drive/KU/Kode/2aar/COMPILERS/Opgaver/Opgave 4/Mirza/Mi
+rzatex/Opgave4.tex"
 
-("C:/Users/Baby-/Google Drive/KU/Kode/2aar/COMPILERS/Opgaver/Opgave 3/Mirza/Mir
-zatex/Opgave3.tex"
+("C:/Users/Baby-/Google Drive/KU/Kode/2aar/COMPILERS/Opgaver/Opgave 4/Mirza/Mir
+zatex/Opgave4.tex"
 LaTeX2e <2015/01/01> patch level 2
 Babel <3.9m> and hyphenation patterns for 69 languages loaded.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\report.cls"
@@ -1013,8 +1013,17 @@ s\tikzlibrarytopaths.code.tex"
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 )))
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\librarie
-s\tikzlibrarymatrix.code.tex"
-File: tikzlibrarymatrix.code.tex 2013/07/12 v3.0.1a (rcs-revision 1.4)
+s\tikzlibraryarrows.code.tex"
+File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryarrows.
+code.tex"
+File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
+\arrowsize=\dimen164
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\librarie
+s\tikzlibrarypositioning.code.tex"
+File: tikzlibrarypositioning.code.tex 2008/10/06 v3.0.1a (rcs-revision 1.7)
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ltxmisc\parskip.sty"
 Package: parskip 2001/04/09 non-zero parskip adjustments
@@ -1040,13 +1049,13 @@ Package: caption 2015/09/17 v3.3-111 Customizing captions (AR)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\caption\caption3.sty"
 Package: caption3 2015/09/20 v1.7-115 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 57.
-\captionmargin=\dimen164
-\captionmargin@=\dimen165
-\captionwidth=\dimen166
-\caption@tempdima=\dimen167
-\caption@indent=\dimen168
-\caption@parindent=\dimen169
-\caption@hangindent=\dimen170
+\captionmargin=\dimen165
+\captionmargin@=\dimen166
+\captionwidth=\dimen167
+\caption@tempdima=\dimen168
+\caption@indent=\dimen169
+\caption@parindent=\dimen170
+\caption@hangindent=\dimen171
 )
 \c@ContinuedFloat=\count125
 Package caption Info: float package is loaded.
@@ -1058,8 +1067,8 @@ Package: pbox 2011/12/07 v1.2 Dynamic parboxes
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count126
 \calc@Bcount=\count127
-\calc@Adimen=\dimen171
-\calc@Bdimen=\dimen172
+\calc@Adimen=\dimen172
+\calc@Bdimen=\dimen173
 \calc@Askip=\skip55
 \calc@Bskip=\skip56
 LaTeX Info: Redefining \setlength on input line 80.
@@ -1155,7 +1164,7 @@ Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
-\@linkdim=\dimen173
+\@linkdim=\dimen174
 \Hy@linkcounter=\count135
 \Hy@pagecounter=\count136
 
@@ -1183,10 +1192,10 @@ Package hyperref Info: Bookmarks ON on input line 4688.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5041.
-\XeTeXLinkMargin=\dimen174
+\XeTeXLinkMargin=\dimen175
 \Fld@menulength=\count139
-\Field@Width=\dimen175
-\Fld@charsize=\dimen176
+\Field@Width=\dimen176
+\Fld@charsize=\dimen177
 Package hyperref Info: Hyper figures OFF on input line 6295.
 Package hyperref Info: Link nesting OFF on input line 6300.
 Package hyperref Info: Hyper index ON on input line 6303.
@@ -1215,7 +1224,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip59
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 50.
+Package hyperref Info: Option `colorlinks' set `true' on input line 60.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.sty"
 \fancy@headwidth=\skip60
@@ -1239,14 +1248,14 @@ Package: lastpage 2015/03/29 v1.2m Refers to last page's name (HMM; JPG)
 \lst@gtempboxa=\box41
 \lst@token=\toks50
 \lst@length=\count146
-\lst@currlwidth=\dimen177
+\lst@currlwidth=\dimen178
 \lst@column=\count147
 \lst@pos=\count148
-\lst@lostspace=\dimen178
-\lst@width=\dimen179
+\lst@lostspace=\dimen179
+\lst@width=\dimen180
 \lst@newlines=\count149
 \lst@lineno=\count150
-\lst@maxwidth=\dimen180
+\lst@maxwidth=\dimen181
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
@@ -1271,71 +1280,71 @@ Package: geometry 2010/09/12 v5.6 Page Geometry
 \Gm@cnth=\count154
 \Gm@cntv=\count155
 \c@Gm@tempcnt=\count156
-\Gm@bindingoffset=\dimen181
-\Gm@wd@mp=\dimen182
-\Gm@odd@mp=\dimen183
-\Gm@even@mp=\dimen184
-\Gm@layoutwidth=\dimen185
-\Gm@layoutheight=\dimen186
-\Gm@layouthoffset=\dimen187
-\Gm@layoutvoffset=\dimen188
+\Gm@bindingoffset=\dimen182
+\Gm@wd@mp=\dimen183
+\Gm@odd@mp=\dimen184
+\Gm@even@mp=\dimen185
+\Gm@layoutwidth=\dimen186
+\Gm@layoutheight=\dimen187
+\Gm@layouthoffset=\dimen188
+\Gm@layoutvoffset=\dimen189
 \Gm@dimlist=\toks51
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
 \c@homeworkProblemCounter=\count157
 
-(Opgave3.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 192.
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 192.
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 192.
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 192.
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 192.
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 192.
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Font Info:    Checking defaults for FML/futm/m/it on input line 192.
-LaTeX Font Info:    Try loading font information for FML+futm on input line 192
+(Opgave4.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for FML/futm/m/it on input line 202.
+LaTeX Font Info:    Try loading font information for FML+futm on input line 202
 .
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fourier\fmlfutm.fd"
 File: fmlfutm.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futm.
 )
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Font Info:    Checking defaults for FMS/futm/m/n on input line 192.
-LaTeX Font Info:    Try loading font information for FMS+futm on input line 192
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for FMS/futm/m/n on input line 202.
+LaTeX Font Info:    Try loading font information for FMS+futm on input line 202
 .
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fourier\fmsfutm.fd"
 File: fmsfutm.fd 2004/10/30 Fontinst v1.926 font definitions for FMS/futm.
 )
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Font Info:    Checking defaults for FMX/futm/m/n on input line 192.
-LaTeX Font Info:    Try loading font information for FMX+futm on input line 192
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for FMX/futm/m/n on input line 202.
+LaTeX Font Info:    Try loading font information for FMX+futm on input line 202
 .
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fourier\fmxfutm.fd"
 File: fmxfutm.fd futm-extension
 )
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 192.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 192.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 202.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 202.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 192.
-LaTeX Font Info:    ... okay on input line 192.
-LaTeX Font Info:    Try loading font information for T1+futs on input line 192.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 202.
+LaTeX Font Info:    ... okay on input line 202.
+LaTeX Font Info:    Try loading font information for T1+futs on input line 202.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fourier\t1futs.fd"
 File: t1futs.fd 2004/03/02 Fontinst v1.926 font definitions for T1/futs.
 )
-LaTeX Info: Redefining \microtypecontext on input line 192.
+LaTeX Info: Redefining \microtypecontext on input line 202.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1353,13 +1362,13 @@ Package microtype Info: Loading generic settings for font family
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count158
-\scratchdimen=\dimen189
+\scratchdimen=\dimen190
 \scratchbox=\box43
 \nofMPsegments=\count159
 \nofMParguments=\count160
 \everyMPshowfont=\toks52
 \MPscratchCnt=\count161
-\MPscratchDim=\dimen190
+\MPscratchDim=\dimen191
 \MPnumerator=\count162
 \makeMPintoPDFobject=\count163
 \everyMPtoPDFconversion=\toks53
@@ -1369,7 +1378,7 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box44
-Package hyperref Info: Link coloring ON on input line 192.
+Package hyperref Info: Link coloring ON on input line 202.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1379,15 +1388,15 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count164
 )
-LaTeX Info: Redefining \ref on input line 192.
-LaTeX Info: Redefining \pageref on input line 192.
-LaTeX Info: Redefining \nameref on input line 192.
+LaTeX Info: Redefining \ref on input line 202.
+LaTeX Info: Redefining \pageref on input line 202.
+LaTeX Info: Redefining \nameref on input line 202.
 
-(Opgave3.out) (Opgave3.out)
+(Opgave4.out) (Opgave4.out)
 \@outlinefile=\write5
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 192.
+(lastpage)             ! on input line 202.
 \c@lstlisting=\count165
 
 *geometry* driver: auto-detecting
@@ -1425,25 +1434,25 @@ Package lastpage Info: Please have a look at the pageslts package at
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/futs/b/n' tried instead on input line 195.
-LaTeX Font Info:    Try loading font information for FML+futmi on input line 19
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 205.
+LaTeX Font Info:    Try loading font information for FML+futmi on input line 20
 5.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fourier\fmlfutmi.fd"
 File: fmlfutmi.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futmi.
 )
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 11.03998pt on input line 195.
+(Font)              scaled to size 11.03998pt on input line 205.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 8.27998pt on input line 195.
+(Font)              scaled to size 8.27998pt on input line 205.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 6.43999pt on input line 195.
+(Font)              scaled to size 6.43999pt on input line 205.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 11.03998pt on input line 195.
+(Font)              scaled to size 11.03998pt on input line 205.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 8.27998pt on input line 195.
+(Font)              scaled to size 8.27998pt on input line 205.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 6.43999pt on input line 195.
-LaTeX Font Info:    Try loading font information for U+msa on input line 195.
+(Font)              scaled to size 6.43999pt on input line 205.
+LaTeX Font Info:    Try loading font information for U+msa on input line 205.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -1451,7 +1460,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\microtype\mt-msa.cfg"
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 195.
+LaTeX Font Info:    Try loading font information for U+msb on input line 205.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1460,21 +1469,21 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <12> not available
-(Font)              Font shape `T1/futs/b/n' tried instead on input line 195.
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 205.
 Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 195.
+(babel)             in language  on input line 205.
 Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 195.
+(babel)             in language  on input line 205.
 Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 195.
+(babel)             in language  on input line 205.
 Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 195.
+(babel)             in language  on input line 205.
  [1
 
 {C:/Users/Baby-/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
 LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/futs/b/n' tried instead on input line 203.
- (Opgave3.toc
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 213.
+ (Opgave4.toc
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
 (Font)              scaled to size 10.07397pt on input line 2.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
@@ -1490,27 +1499,35 @@ LaTeX Font Info:    Font shape `U/futm/m/n' will be
 )
 \tf@toc=\write6
 Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 204.
+(babel)             in language  on input line 214.
 Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 204.
+(babel)             in language  on input line 214.
 Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 204.
+(babel)             in language  on input line 214.
 Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 204.
+(babel)             in language  on input line 214.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.204 \newpage
+l.214 \newpage
                [1
 
 ]
 LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/futs/b/n' tried instead on input line 214.
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 224.
 Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 214.
+(babel)             in language  on input line 224.
 Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 214.
+(babel)             in language  on input line 224.
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 7.35999pt on input line 280.
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 6.25598pt on input line 280.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 7.35999pt on input line 280.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 6.25598pt on input line 280.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1519,18 +1536,18 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 252.
+(babel)             in language  on input line 302.
 Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 252.
+(babel)             in language  on input line 302.
 Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 252.
+(babel)             in language  on input line 302.
 Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 252.
+(babel)             in language  on input line 302.
 [2]
 Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 301.
+(babel)             in language  on input line 306.
 Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 301.
+(babel)             in language  on input line 306.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1539,62 +1556,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 322.
+(babel)             in language  on input line 371.
 Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 322.
+(babel)             in language  on input line 371.
 Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 322.
+(babel)             in language  on input line 371.
 Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 322.
+(babel)             in language  on input line 371.
 [3]
-LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/futs/b/n' tried instead on input line 325.
-
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 363.
-Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 363.
-Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 363.
-Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 363.
-[4]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 428.
-Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 428.
-Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 428.
-Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 428.
-[5]
-
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 13.59999pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 470.
-Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 470.
-Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 470.
-Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 470.
-[6]
 
 FiXme Summary: Number of notes: 0,
 (FiXme)        Number of warnings: 0,
@@ -1611,43 +1580,44 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 475.
+(babel)             in language  on input line 374.
 Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 475.
+(babel)             in language  on input line 374.
 Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 475.
+(babel)             in language  on input line 374.
 Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 475.
-[7]
+(babel)             in language  on input line 374.
+[4]
 Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 475.
+(babel)             in language  on input line 374.
 Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 475.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 475.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 475.
- (Opgave3.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 475.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 475.
-Package rerunfilecheck Info: File `Opgave3.out' has not changed.
-(rerunfilecheck)             Checksum: 56A43F490E2D80A1ABB27C216ECA31FB;86.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 475.
+(babel)             in language  on input line 374.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 374.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 374.
+ (Opgave4.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 374.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 374.
+Package rerunfilecheck Info: File `Opgave4.out' has not changed.
+(rerunfilecheck)             Checksum: 9E5F7824F9B4F42F564DD9EEF44FB192;86.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 374.
  ) 
 Here is how much of TeX's memory you used:
- 23620 strings out of 493673
- 415192 string characters out of 3141529
- 640987 words of memory out of 3000000
- 26355 multiletter control sequences out of 15000+200000
- 99877 words of font info for 121 fonts, out of 3000000 for 9000
+ 23912 strings out of 493673
+ 428217 string characters out of 3141529
+ 627597 words of memory out of 3000000
+ 26724 multiletter control sequences out of 15000+200000
+ 112862 words of font info for 146 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 55i,12n,78p,497b,1147s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 55i,11n,78p,587b,961s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
+m Files (x86)/MiKTeX 2.9/fonts/type1/public/fourier/fourier-mlit.pfb><C:/Progra
 m Files (x86)/MiKTeX 2.9/fonts/type1/public/fourier/fourier-ms.pfb><C:/Program 
 Files (x86)/MiKTeX 2.9/fonts/type1/adobe/utopia/putb8a.pfb><C:/Program Files (x
 86)/MiKTeX 2.9/fonts/type1/adobe/utopia/putr8a.pfb><C:/Program Files (x86)/MiKT
 eX 2.9/fonts/type1/adobe/utopia/putri8a.pfb>
-Output written on Opgave3.pdf (8 pages, 83020 bytes).
+Output written on Opgave4.pdf (5 pages, 63659 bytes).
 PDF statistics:
- 194 PDF objects out of 1000 (max. 8388607)
- 106 named destinations out of 1000 (max. 500000)
- 28189 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 75 PDF objects out of 1000 (max. 8388607)
+ 15 named destinations out of 1000 (max. 500000)
+ 24605 words of extra memory for PDF output out of 24883 (max. 10000000)
 

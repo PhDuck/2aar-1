@@ -22,7 +22,17 @@
 %http://mirrors.dotsrc.org/ctan/macros/latex/contrib/xcolor/xcolor.pdf
 %http://texdoc.net/texmf-dist/doc/latex/colortbl/colortbl.pdf
 \usepackage{tikz} %documentation http://www.ctan.org/pkg/pgf
-\usetikzlibrary{matrix}
+\usetikzlibrary{arrows,positioning} %http://tex.stackexchange.com/questions/141842/tikz-self-loops-style-question
+\tikzset{
+    >=stealth,
+    %auto,
+    %node distance=3.5cm,
+    font=\scriptsize,
+    single world/.style={circle,draw,thick,align=center},
+    double world/.style={double,circle,draw,thick,align=center},
+    minimum size=40pt
+}
+%\usetikzlibrary{matrix}
 \usepackage{parskip} %http://www.ctan.org/pkg/parskip
 %http://tex.stackexchange.com/questions/51722/how-to-properly-code-a-tex-file-or-at-least-avoid-badness-10000
 %Never use \\ but instead press "enter" twice. See second website for more info
@@ -121,8 +131,8 @@
 %	NAME AND CLASS SECTION
 %----------------------------------------------------------------------------------------
 
-\newcommand{\hmwkTitle}{Assignment\ \#3} % Assignment title
-\newcommand{\hmwkDueDate}{Sunday,\ December\ 13,\ 2015} % Due date
+\newcommand{\hmwkTitle}{Assignment\ \#4} % Assignment title
+\newcommand{\hmwkDueDate}{Sunday,\ January\ 3,\ 2016} % Due date
 \newcommand{\hmwkClass}{Compilers} % Course/class
 \newcommand{\hmwkClassTime}{} % Class/lecture time
 \newcommand{\hmwkClassInstructor}{} % Teacher/lecturer
@@ -211,229 +221,188 @@
 
 
 \begin{homeworkProblem}
-Det skal siges, at jeg har vedhæftet en .txt fil, så du lettere kan afprøve koden som er skrevet. Det der står i dokumentet er til det visuelle.
 
-\section*{\textbf{a})}
+Nogen veje der er acceptable ville være
 
-Vi har
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|}
+    \hline
+    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+    a \\
+    ab \\
+    abb \\
+    b \\
+    bab \\
+    baab \\
+    \hline
+  \end{tabular}
+\end{table}
 
-\begin{lstlisting}
-vtable = [a -> v, b -> w];
+Nu kigger på hvor vi kan komme fra et punkt til et andet i de forskellige states, dette ses i tabellen nedenunder
 
-while (b != 0) && (a/b != 0)
-	if b < a then {a := a - b}
-			 else {b := b - a}
-\end{lstlisting}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+     & a & b & $\epsilon^{*}$ \\ \hline
+    1 & 3 & 5 & 1,2,4 \\ \hline
+    2 & 3 & - & 2 \\ \hline
+    3 & - & 3 & 3,6 \\ \hline
+    4 & 4 & 5 & 4 \\ \hline
+    5 & - & - & 4,5,6 \\ \hline
+    6 & - & - & 6 \\ \hline
+  \end{tabular}
+  \caption{"1" er start state, "6" er ending state. Veje for en state fra et punkt til et andet. Hvor $\epsilon^{*}$ betyder nul eller flere. }
+\end{table}
 
-Hvor intermediate koden er
+Da, vi har epsilons, skal vi, skal vi kigge på hvad der sker hvis vi er i en bestemt state og hvis vi derved følger en vej, hvad der sker hvis jeg følger en eller flere veje.
 
-\begin{lstlisting}
-t_0 = v
-t_1 = w
-LABEL LoopStart
-IF t_1 != 0 then NEXT0 else END (Brug rigtig syntax i tex filen !=)
-LABEL NEXT0
-t_2 = t_0 mod t_1
-IF t_2 != 0 then NEXT1 else END
-LABEL NEXT1
-t_3 = t_1 - t_0
-IF t_3 < 0 then NEXT2 else NEXT3
-LABEL NEXT2
-t_0 = t_0 - t_1
-GOTO LoopStart
-LABE NEXT3
-t_1 = t_1 - t_0
-GOTO LoopStart
-LABEL END
-\end{lstlisting}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+     & a$\epsilon^{*}$ & b$\epsilon^{*}$ \\
+    1 & 3,6 & 4,5,6 \\
+    3,6 & - & 3,6 \\
+    4,5,6 & 4 & 4,5,6 \\
+    4 & 4 & 4,5,6 \\
+    \hline
+  \end{tabular}
+  \caption{"1" er start state, hvor "3,6" og "4,5,6" er ending state.}
+\end{table}
 
-og MIPS koden vil være
-
-\newpage
-\begin{lstlisting}[mathescape=false]
-.data
-	a: .word 8
-	b: .word 33
-.text
-main:
-lw $t0, a			\# load 8
-lw $t1, b			\# load 33
-LoopStart:			\# LABEL
-beq $t1, $0, END	        \# Checking if t1 == 0
-div $t0, $t1			\# dividing to get modulus
-mfhi $t2			\# Getting the remainder, moving to $t2
-beq $t2, $0, END		\# checking if t2 == 0
-sub $t3, $t1, $t0		\# t3 = t1 - t0
-bgez $t3, ELSE			\# t3 >= 0
-sub $t0, $t0, $t1		\# first then statement a = a - b
-j LoopStart			\# jumping to loopstart
-ELSE:				   \# Now else statement
-sub $t1, $t1, $t0		\# b = b - a
-j LoopStart
-END:
-				\# tinyurl.com/neve79o
-li $v0, 1		     \# printer udregnet variable ud.
-add $a0, $t0, $zero		
-syscall					
-
-li $v0, 11				
-li $a0, 10				
-syscall					
-
-li $v0, 1				
-add $a0, $t1, $zero		
-syscall					  			
-\end{lstlisting}
-
-\section*{\textbf{b})}
-
-\begin{lstlisting}
-Li t0, x
-Li t1, y
-Li t2, 1
-Slt t3, t1, t0
-Slt t4, t3, t2
-\end{lstlisting}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+    \node[single world] (1) {$1$};
+    \node[double world] (2) [right = 5cm of 1] {$6,3$};
+    \node[above = .1ex of 2, inner sep = 0pt, outer sep = 0pt, minimum size = 25pt] (2a) {$b$};
+    \node[double world] (3) [below = 2cm of 1] {$4,5,6$};
+    \node[below = .1ex of 3, inner sep = 0pt, outer sep = 0pt, minimum size = 25pt] (3a) {$b$};
+    \node[single world] (4) [right = 5cm of 3] {$4$};
+    \node[below = .1ex of 4, inner sep = 0pt, outer sep = 0pt, minimum size = 25pt] (4a) {$a$};
+    \path[]
+        (2) edge [in=180, out=130, thick] (2a)
+        (2a) edge [->,in=50, out=0,thick] (2)
+        (3) edge [in=180, out=230, thick] (3a)
+        (3a) edge [->,in=310, out=0,thick] (3)
+        (4) edge [in=180, out=230, thick] (4a)
+        (4a) edge [->,in=310, out=0,thick] (4)
+        (1) [->, thick] edge node [above, minimum size=0pt] {$a$} (2)
+        (1) [->, thick] edge node [left, minimum size=0pt] {$b$} (3)
+        (3) [->, thick, bend right=10] edge node [below, minimum size=0pt] {$a$} (4)
+        (3) [<-, thick, bend left=10] edge node [below, minimum size=0pt] {$b$} (4)
+        ;
+\end{tikzpicture}
+\caption{DFA repræsentationen}
+\end{figure}
 
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
-\section*{\textbf{a})}
 
-\begin{table}[H]
+Først oprettes en tabel, for at kunne se hvilke states der er forbundet. Hvor der står $3^{*}$, betyder blot at det er ending state.
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{|c|c|c|}
+    \hline
+    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+     & 0 & 1 \\ \hline
+    1 & 2 & 6 \\ \hline
+    2 & 7 & 3$^{*}$ \\ \hline
+    3$^{*}$ & 1 & 3$^{*}$ \\ \hline
+    4 & 3$^{*}$ & 7 \\ \hline
+    5 & 8 & 6 \\ \hline
+    6 & 3$^{*}$ & 7 \\ \hline
+    7 & 7 & 5 \\ \hline
+    8 & 7 & 3$^{*}$ \\ \hline
+  \end{tabular}
+\end{figure}
+
+Nu sammenlignes der for hvilke indgange der kommer i andre grupper. Mange sammenligner $(q_i,q_j)$ mod hinanden og ser om de er i samme eller anden gruppe iterativt. Vi starter med 0-equal, hvor ending state vil være G2 og alle andre vil være G1.
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+            & G1 & G2 & G3 & G4 & G5 \\ \hline
+    0-equal & 1,2,4,5,6,7,8 & 3 &  &  &  \\ \hline
+    1-equal & 1,5,7 & 3 & 2,8 & 4,6 &  \\ \hline
+    2-equal & 1,5 & 3 & 2,8 & 4,6 & 7 \\ \hline
+    3-equal & 1,5 & 3 & 2,8 & 4,6 & 7 \\ \hline
+  \end{tabular}
+\end{figure}
+
+Altså er DFA minimeret og ser ud som følger
+
+\begin{figure}[H]
 \centering
-\begin{tabular}{|l|l|l|l|}
-\hline
-i  & succ{[}i{]} & gen{[}i{]} & kill{[}i{]} \\ \hline
-1  & 2           &            &             \\ \hline
-2  & 7,3         & a,b        &             \\ \hline
-3  & 4           &            &             \\ \hline
-4  & 5           & a          & t           \\ \hline
-5  & 6           & b          & a           \\ \hline
-6  & 7           & t          & b           \\ \hline
-7  & 8           &            &             \\ \hline
-8  & 9           &            & z           \\ \hline
-9  & 10          & b,a        & b           \\ \hline
-10 & 1,11        & b,z        &             \\ \hline
-11 &             &            &             \\ \hline
-12 &             &            &             \\ \hline
-\end{tabular}
-\end{table}
-
-\section*{\textbf{b})}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|l||l|l||l|l||l|l|}
-\hline
-\multicolumn{3}{|c||}{Initial} & \multicolumn{2}{c||}{Iteration 1} & \multicolumn{2}{c|}{Iteration 2} \\ \hline
-i   & out{[}i{]}  & in{[}i{]} & out{[}i{]}      & in{[}in{]}     & out{[}i{]}      & in{[}in{]}     \\ \hline
-1   &             &           &     a,b         &    a,b         &    a,b          &   a,b          \\ \hline
-2   &             &           &     a,b         &    a,b         &    a,b          &   a,b          \\ \hline
-3   &             &           &     a,b         &    a,b         &    a,b          &   a,b          \\ \hline
-4   &             &           &     b,t         &    a,b         &    b,t          &   a,b          \\ \hline
-5   &             &           &     a,t         &    b,t         &    a,t          &   b,t          \\ \hline
-6   &             &           &     a,b         &    a,t         &    a,b          &   a,t          \\ \hline
-7   &             &           &     a,b         &    a,b         &    a,b          &   a,b          \\ \hline
-8   &             &           &     a,b,z       &    a,b         &    a,b,z        &   a,b          \\ \hline
-9   &             &           &     b,z         &    a,b,z       &    a,b,z        &   a,b,z        \\ \hline
-10  &             &           &                 &    b,z         &    a,b          &   a,b,z        \\ \hline
-11  &             &           &                 &                &                 &                \\ \hline
-12  &             &           &     a           &    a           &     a           &    a           \\ \hline
-\end{tabular}
-\end{table}
-
-\section*{\textbf{c})}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|}
-  \hline
-  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-  i & left & interferes with \\ \hline 
-  4 & t & a,b \\ \hline
-  5 & a & b,t \\ \hline
-  6 & b & a,t \\ \hline
-  8 & z & a,b \\ \hline
-  9 & b & a,z \\ \hline
-\end{tabular}
-\end{table}
-
-\[
-\begin{tikzpicture}[-, node distance=40mm]
-    \node (start)                           {A};
-    \node (below) [below of = start]        {Z};
-    \node (right) [right of = start]        {B};
-    \node (belowRight) [below of = right]   {T};
-    
-    \path (start) edge node {} (below)
-          (start) edge node {} (belowRight)
-          (start) edge node {} (right)
-          (right) edge node {} (belowRight)
-          (right) edge node {} (below);
+\begin{tikzpicture}
+    \node[single world] (1) {$1,5$};
+    \node[single world] (2) [below = 5.4cm of 1] {$7$};
+    \node[below = .1ex of 2, inner sep = 0pt, outer sep = 0pt, minimum size = 25pt] (2a) {$0$};
+    \node[single world] (3) [right = 5cm of 1] {$2,8$};
+    \node[right = .1ex of 3, inner sep = 0pt, outer sep = 0pt, minimum size = 25pt] (3a) {$1$};
+    \node[single world] (4) [below = 2cm of 3] {$3$};
+    \node[single world] (5) [below = 2cm of 4] {$4,6$};
+    \path[]
+        (2) edge [in=180, out=230, thick] (2a)
+        (2a) edge [->,in=310, out=0,thick] (2)
+        (3) edge [in=70, out=55, thick] (3a)
+        (3a) edge [->,in=310, out=285,thick] (3)
+        (2) [->, thick] edge node [left, minimum size=0pt] {$1$} (1)
+        (1) [->, thick] edge node [above, minimum size=0pt] {$0$} (3)
+        (3) [->, thick] edge node [right, minimum size=0pt] {$1$} (4)
+        (5) [->, thick] edge node [right, minimum size=0pt] {$0$} (4)
+        (5) [->, thick] edge node [right, minimum size=0pt] {$1$} (2)
+        (1) [->, thick, bend right=10] edge node [below, minimum size=0pt] {$1$} (5)
+        (3) [->, thick, bend left=10] edge node [below right, minimum size=0pt] {$0$} (2)
+        (4) [->, thick, bend right=10] edge node [below, minimum size=0pt] {$0$} (1)
+        ;
 \end{tikzpicture}
-\]
+\caption{Text here}
+\label{fig:multi-modal-strongbox:peek-2-successor}
+\end{figure}
+\end{homeworkProblem}
 
-\section*{\textbf{d})}
-
-
-
-\[
-\begin{tikzpicture}[-, node distance=40mm]
-    \node (start)                           {\color{red}A};
-    \node (below) [below of = start]        {\color{blue}Z};
-    \node (right) [right of = start]        {\color{green}B};
-    \node (belowRight) [below of = right]   {\color{blue}T};
-
-    \path (start) edge node {} (below)
-          (start) edge node {} (belowRight)
-          (start) edge node {} (right)
-          (right) edge node {} (belowRight)
-          (right) edge node {} (below);
-\end{tikzpicture}
-\]
-
-\section*{\textbf{e})}
-
-\[
-\begin{tikzpicture}[-, node distance=40mm]
-    \node (start)                           {A};
-    \node (below) [below of = start]        {\color{blue}Z};
-    \node (right) [right of = start]        {\color{green}B};
-    \node (belowRight) [below of = right]   {\color{blue}T};
-
-    \path (start) edge node {} (below)
-          (start) edge node {} (belowRight)
-          (start) edge node {} (right)
-          (right) edge node {} (belowRight)
-          (right) edge node {} (below);
-\end{tikzpicture}
-\]
-
-\begin{lstlisting}
-gcd(a,b) {
-    M[address$_a$] := a
-    LABEL start
-    a$_i$ := M[address$_a$]
-    IF a$_i$ < b THEN next ELSE swap
-    LABEL swap
-    a$_i$ := M[address$_a$]
-    t := a$_i$
-    a$_i$ := b
-    M[address$_a$] = a$_i$
-    b := t
-    LABEL next
-    z := 0
-    a$_i$ = M[address$_a$]
-    b := b mod a$_i$
-    IF b = z THEN end ELSE start
-    LABEL end
-    a := M[address$_a$]
-    RETURN a
-}
-\end{lstlisting}
+\begin{homeworkProblem}
   
 \end{homeworkProblem}
 
+\end{document}
 
-\end{document} 
+%\begin{figure}
+%\centering
+%\begin{tikzpicture}
+%\node[real world] (1) {$World_{1}$ \\ $H,L$};
+%\node[above = .1ex of 1,inner sep = 0pt,outer sep=0pt,minimum size=25pt] (1a) {$A,B,C$};
+%\node[possible world] (2) [right = 5cm of 1] {$World_{2}$ \\ $\neg{H},L$};
+%\node[above = .1ex of 2,inner sep = 0pt,outer sep=0pt,minimum size=25pt] (2a) {$A,B,C$};
+%\node[possible world] (3) [below = 2cm of 1] {$World_{3}$ \\ $\neg{H},L$};
+%\node[below = .1ex of 3,inner sep = 0pt,outer sep=0pt,minimum size=25pt] (3a) {$A,B,C$};
+%\node[possible world] (4) [right = 5cm of 3] {$World_{4}$ \\ $\neg{H},L$};
+%\node[below = .1ex of 4,inner sep = 0pt,outer sep=0pt,minimum size=25pt] (4a) {$A,B,C$};
+%\path[]
+%    (1) edge [in=180, out=130,thick] (1a)
+%    (1a) edge [->,in=50, out=0,thick] (1)
+%    (2) edge [in=180, out=130,thick] (2a)
+%    (2a) edge [->,in=50, out=0,thick]  (2)
+%    (3) edge [in=180, out=230,thick] (3a)
+%    (3a) edge [->,in=310, out=0,thick]  (3)
+%    (4) edge [in=180, out=230,thick] (4a)
+%    (4a) edge [->,in=310, out=0,thick]  (4)
+%    (1) [<->,thick] edge node[above,minimum size=0pt] {$B$} (2)
+%    (3) [<->,thick] edge node[below,minimum size=0pt] {$A,B,C$} (4)
+%    (1) [->,thick] edge node[left,minimum size=0pt] {$C$} (3)
+%    (1) [->,thick] edge node[right] {$C$} (4)
+%    (2) [->,thick] edge node[left] {$C$} (3)
+%    (2) [->,thick] edge node[right,minimum size=0pt] {$C$} (4);
+%\end{tikzpicture}
+%\caption{Successor state, $State_{2}$, obtained after $A$ peeks into the strongbox and learns that the coin is facing heads up without the knowledge of his fellow agents.}
+%\label{fig:multi-modal-strongbox:peek-2-successor}
+%\end{figure}
