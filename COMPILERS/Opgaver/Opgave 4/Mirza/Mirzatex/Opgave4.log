@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.12.13)  2 JAN 2016 15:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.12.13)  3 JAN 2016 18:48
 entering extended mode
 **"C:/Users/Baby-/Google Drive/KU/Kode/2aar/COMPILERS/Opgaver/Opgave 4/Mirza/Mi
 rzatex/Opgave4.tex"
@@ -1564,6 +1564,11 @@ Package babel Info: Redefining danish shorthand "|
 Package babel Info: Redefining danish shorthand "~
 (babel)             in language  on input line 371.
 [3]
+Package babel Info: Redefining danish shorthand "|
+(babel)             in language  on input line 374.
+Package babel Info: Redefining danish shorthand "~
+(babel)             in language  on input line 374.
+
 
 FiXme Summary: Number of notes: 0,
 (FiXme)        Number of warnings: 0,
@@ -1580,32 +1585,32 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 374.
+(babel)             in language  on input line 377.
 Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 374.
+(babel)             in language  on input line 377.
 Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 374.
+(babel)             in language  on input line 377.
 Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 374.
+(babel)             in language  on input line 377.
 [4]
 Package babel Info: Redefining danish shorthand "|
-(babel)             in language  on input line 374.
+(babel)             in language  on input line 377.
 Package babel Info: Redefining danish shorthand "~
-(babel)             in language  on input line 374.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 374.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 374.
+(babel)             in language  on input line 377.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 377.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 377.
  (Opgave4.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 374.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 374.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 377.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 377.
 Package rerunfilecheck Info: File `Opgave4.out' has not changed.
-(rerunfilecheck)             Checksum: 9E5F7824F9B4F42F564DD9EEF44FB192;86.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 374.
+(rerunfilecheck)             Checksum: 4ECF120E5421C6AE0A8D4053D23017FD;130.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 377.
  ) 
 Here is how much of TeX's memory you used:
- 23912 strings out of 493673
- 428217 string characters out of 3141529
+ 23914 strings out of 493673
+ 428241 string characters out of 3141529
  627597 words of memory out of 3000000
- 26724 multiletter control sequences out of 15000+200000
+ 26725 multiletter control sequences out of 15000+200000
  112862 words of font info for 146 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  55i,11n,78p,587b,961s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1615,9 +1620,9 @@ m Files (x86)/MiKTeX 2.9/fonts/type1/public/fourier/fourier-ms.pfb><C:/Program
 Files (x86)/MiKTeX 2.9/fonts/type1/adobe/utopia/putb8a.pfb><C:/Program Files (x
 86)/MiKTeX 2.9/fonts/type1/adobe/utopia/putr8a.pfb><C:/Program Files (x86)/MiKT
 eX 2.9/fonts/type1/adobe/utopia/putri8a.pfb>
-Output written on Opgave4.pdf (5 pages, 63659 bytes).
+Output written on Opgave4.pdf (5 pages, 64418 bytes).
 PDF statistics:
- 75 PDF objects out of 1000 (max. 8388607)
- 15 named destinations out of 1000 (max. 500000)
- 24605 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 80 PDF objects out of 1000 (max. 8388607)
+ 16 named destinations out of 1000 (max. 500000)
+ 24613 words of extra memory for PDF output out of 24883 (max. 10000000)
 
