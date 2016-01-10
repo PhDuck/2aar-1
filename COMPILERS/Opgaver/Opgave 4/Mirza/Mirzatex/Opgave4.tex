@@ -28,10 +28,12 @@
     %auto,
     %node distance=3.5cm,
     font=\scriptsize,
+    empty world/.style={align=center},
     single world/.style={circle,draw,thick,align=center},
     double world/.style={double,circle,draw,thick,align=center},
     minimum size=40pt
 }
+
 %\usetikzlibrary{matrix}
 \usepackage{parskip} %http://www.ctan.org/pkg/parskip
 %http://tex.stackexchange.com/questions/51722/how-to-properly-code-a-tex-file-or-at-least-avoid-badness-10000
@@ -132,10 +134,10 @@
 %----------------------------------------------------------------------------------------
 
 \newcommand{\hmwkTitle}{Assignment\ \#4} % Assignment title
-\newcommand{\hmwkDueDate}{Sunday,\ January\ 3,\ 2016} % Due date
+\newcommand{\hmwkDueDate}{Sunday,\ January\ 10,\ 2016} % Due date
 \newcommand{\hmwkClass}{Compilers} % Course/class
-\newcommand{\hmwkClassTime}{} % Class/lecture time
-\newcommand{\hmwkClassInstructor}{} % Teacher/lecturer
+\newcommand{\hmwkClassTime}{Task 2 and as much as possible Task3} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Resubmit:} % Teacher/lecturer
 \newcommand{\hmwkAuthorName}{Mirza Hasanbasic} % Your name
 
 %----------------------------------------------------------------------------------------
@@ -189,11 +191,11 @@
 %\numberwithin{equation}{section}
 %\renewcommand{\theequation}{\thesection.\arabic{equation}}
 
-
+\usepackage{listings}
 \lstset{
   frame=single,
   numbers=left,
-  mathescape,
+  mathescape=false,
   literate={->}{$\rightarrow$}{2}
            {ε}{$\varepsilon$}{1}
            {=>}{$\Rightarrow$}{2}
@@ -265,7 +267,7 @@ Da, vi har epsilons, skal vi, skal vi kigge på hvad der sker hvis vi er i en be
     \hline
     % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
      & a$\epsilon^{*}$ & b$\epsilon^{*}$ \\
-    1 & 3,6 & 4,5,6 \\
+    1 & 3 ,6 & 4,5,6 \\
     3,6 & - & 3,6 \\
     4,5,6 & 4 & 4,5,6 \\
     4 & 4 & 4,5,6 \\
@@ -278,6 +280,7 @@ Da, vi har epsilons, skal vi, skal vi kigge på hvad der sker hvis vi er i en be
 \centering
 \begin{tikzpicture}
     \node[single world] (1) {$1$};
+    \node[empty world] (start) [left = 0.5cm of 1] {$start$};
     \node[double world] (2) [right = 5cm of 1] {$6,3$};
     \node[above = .1ex of 2, inner sep = 0pt, outer sep = 0pt, minimum size = 25pt] (2a) {$b$};
     \node[double world] (3) [below = 2cm of 1] {$4,5,6$};
@@ -291,6 +294,7 @@ Da, vi har epsilons, skal vi, skal vi kigge på hvad der sker hvis vi er i en be
         (3a) edge [->,in=310, out=0,thick] (3)
         (4) edge [in=180, out=230, thick] (4a)
         (4a) edge [->,in=310, out=0,thick] (4)
+        (start) [->, thick] edge node [] {$$} (1)
         (1) [->, thick] edge node [above, minimum size=0pt] {$a$} (2)
         (1) [->, thick] edge node [left, minimum size=0pt] {$b$} (3)
         (3) [->, thick, bend right=10] edge node [below, minimum size=0pt] {$a$} (4)
@@ -340,37 +344,62 @@ Nu sammenlignes der for hvilke indgange der kommer i andre grupper. Mange sammen
 
 Altså er DFA minimeret og ser ud som følger
 
+\textcolor[rgb]{0.76,0.00,0.02}{\textbf{FIX:}}
+
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
     \node[single world] (1) {$1,5$};
+    \node[empty world] (start) [left = 0.5cm of 1] {$start$};
     \node[single world] (2) [below = 5.4cm of 1] {$7$};
     \node[below = .1ex of 2, inner sep = 0pt, outer sep = 0pt, minimum size = 25pt] (2a) {$0$};
     \node[single world] (3) [right = 5cm of 1] {$2,8$};
-    \node[right = .1ex of 3, inner sep = 0pt, outer sep = 0pt, minimum size = 25pt] (3a) {$1$};
-    \node[single world] (4) [below = 2cm of 3] {$3$};
+    \node[double world] (4) [below = 2cm of 3] {$3$};
+    \node[right = .1ex of 4, inner sep = 0pt, outer sep = 0pt, minimum size = 25pt] (4a) {$1$};
     \node[single world] (5) [below = 2cm of 4] {$4,6$};
     \path[]
         (2) edge [in=180, out=230, thick] (2a)
         (2a) edge [->,in=310, out=0,thick] (2)
-        (3) edge [in=70, out=55, thick] (3a)
-        (3a) edge [->,in=310, out=285,thick] (3)
+        (4) edge [in=70, out=55, thick] (4a)
+        (4a) edge [->,in=310, out=285,thick] (4)
+        (start) [->, thick] edge node [] {$$} (1)
         (2) [->, thick] edge node [left, minimum size=0pt] {$1$} (1)
         (1) [->, thick] edge node [above, minimum size=0pt] {$0$} (3)
         (3) [->, thick] edge node [right, minimum size=0pt] {$1$} (4)
         (5) [->, thick] edge node [right, minimum size=0pt] {$0$} (4)
-        (5) [->, thick] edge node [right, minimum size=0pt] {$1$} (2)
+        (5) [->, thick] edge node [below , minimum size=0pt] {$1$} (2)
         (1) [->, thick, bend right=10] edge node [below, minimum size=0pt] {$1$} (5)
         (3) [->, thick, bend left=10] edge node [below right, minimum size=0pt] {$0$} (2)
         (4) [->, thick, bend right=10] edge node [below, minimum size=0pt] {$0$} (1)
         ;
 \end{tikzpicture}
-\caption{Text here}
-\label{fig:multi-modal-strongbox:peek-2-successor}
+\caption{Hvor start noden bliver angivet og slutnoden er dobbelcirkel}
 \end{figure}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
+
+\textcolor[rgb]{0.76,0.00,0.02}{\textbf{FIX:}}
+
+\textbf{a)}\\
+
+
+\textbf{i)}\\
+\begin{lstlisting}
+[0-4 6-9][0-9]*(0|5)
+\end{lstlisting}
+\textbf{ii)}\\
+
+
+
+\begin{lstlisting}
+^[^\D5]*5[^\D5]*5[^\D5]*5[^\D5]*$
+
+// ^              from start
+// [^\D5]*        not a non-digit or 5
+// 5              the first '5' digit
+// $              till the end
+\end{lstlisting}
 
 \end{homeworkProblem}
 
