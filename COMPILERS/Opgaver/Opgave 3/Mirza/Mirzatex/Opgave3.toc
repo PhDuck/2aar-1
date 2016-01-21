@@ -1,3 +1,4 @@
 \select@language {danish}
 \contentsline {section}{Task 1}{2}{section*.2}
 \contentsline {section}{Task 2}{4}{section*.5}
+\contentsline {section}{Task 3}{7}{section*.15}

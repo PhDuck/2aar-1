@@ -221,10 +221,9 @@ Her vil vi have et alfabet, hvor sekvensen af længden er delelig med 2 eller 3.
 \textbf{b)}
 
 \begin{align*}
+  T \rightarrow& c \\
+  R \rightarrow& c T \\
   T \rightarrow& a T b \\
-  T \rightarrow& R \\
-  R \rightarrow& c \\
-  R \rightarrow& c R \\
 \end{align*}
 
 Vil producerer en context-free grammer, hvor c er tilladt til at være alene, c vil altid være mellem a og b og der vil, for hvert a være et b.
@@ -257,7 +256,7 @@ For at kigge på de sidste to, kigger vi på hele udtrykket, altså \texttt{Let 
 For filter, vil det altså være
 
 \[
-\forall\alpha \quad  ((\alpha\rightarrow\texttt{bool})*[\alpha])\rightarrow [\alpha] 
+\forall\alpha \quad  ((\alpha\rightarrow\texttt{bool})*[\alpha])\rightarrow [\alpha]
 \]
 
 \textcolor[rgb]{0.76,0.00,0.02}{\textbf{FIX:}}
@@ -272,13 +271,13 @@ Check$_{Exp}$(Exp, vtable, ftable) = case Exp of
         t$_{el}$ = case t$_{arr}$ of
                    Array(t$_1$) -> t$_1$
                 |  other -> error()
-                
+
         t$_{f}$ = lookup(ftable, name(p))
         case t$_{f}$ of
              (t$_{in}$ -> t$_{out}$) => if t$_{in}$ = t$_{el}$ and t$_{out}$ = bool
                                         then t$_{arr}$
                                         else error()
-           | _ => error()  
+           | _ => error()
 \end{lstlisting}
 
 \textbf{c)}
@@ -292,13 +291,27 @@ Check$_{Exp}$(Exp, vtable, ftable) = case Exp of
         t$_{el}$ = case t$_{arr}$ of
                    Array(t$_1$) -> t$_1$
                 |  other -> error()
-        t$_{in}$ = case id_type_lst of 
+        t$_{in}$ = case id_type_lst of
                    [(_,t$_2$)] -> t$_2$
                 |  other -> error()
         if ret_type = bool and t$_{body}$ = bool and t$_{el}$ = t$_{in}$
         then t$_{arr}$
         else error()
 \end{lstlisting}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Figuren under er et eksempel på hvordan man kan bruge MGU algoritmen 
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.7]{MGU.jpg}
+\end{figure}
+
+list(int) * list(list(int))
+
+
 
 \end{homeworkProblem}
 

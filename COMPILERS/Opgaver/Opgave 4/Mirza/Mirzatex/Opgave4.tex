@@ -224,81 +224,63 @@
 
 \begin{homeworkProblem}
 
-Nogen veje der er acceptable ville være
+Først defineres $s^{'}_0 = \hat{\epsilon}(s_0)=\{1,2,4\}$
 
-\begin{table}[H]
-  \centering
-  \begin{tabular}{|c|}
-    \hline
-    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-    a \\
-    ab \\
-    abb \\
-    b \\
-    bab \\
-    baab \\
-    \hline
-  \end{tabular}
-\end{table}
+Det vil sige, at når vi kigger på move fra start gennem enten a eller b, kan vi benytte at vi er i punkt 1, 2 eller 4
 
-Nu kigger på hvor vi kan komme fra et punkt til et andet i de forskellige states, dette ses i tabellen nedenunder
+\begin{align*}
+  move(\{s^{'}_0,a\}) = \{3,4\} = \{3,4,6\} = s^{'}_1 \\
+  move(\{s^{'}_0,b\}) = \{5\} = \{5,4,6\} = s^{'}_2
+\end{align*}
 
-\begin{table}[H]
-  \centering
-  \begin{tabular}{|c|c|c|c|}
-    \hline
-    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-     & a & b & $\epsilon^{*}$ \\ \hline
-    1 & 3 & 5 & 1,2,4 \\ \hline
-    2 & 3 & - & 2 \\ \hline
-    3 & - & 3 & 3,6 \\ \hline
-    4 & 4 & 5 & 4 \\ \hline
-    5 & - & - & 4,5,6 \\ \hline
-    6 & - & - & 6 \\ \hline
-  \end{tabular}
-  \caption{"1" er start state, "6" er ending state. Veje for en state fra et punkt til et andet. Hvor $\epsilon^{*}$ betyder nul eller flere. }
-\end{table}
+Da vi nu har fået to punkter og tjekket s0, kan vi går videre til s1 og s2.
 
-Da, vi har epsilons, skal vi, skal vi kigge på hvad der sker hvis vi er i en bestemt state og hvis vi derved følger en vej, hvad der sker hvis jeg følger en eller flere veje.
+\begin{align*}
+  move(\{s^{'}_1,a\}) = \{4\} = s^{'}_3 \\
+  move(\{s^{'}_1,b\}) = \{3,5\} = \{3,5,4,6\} = s^{'}_4 \\
+  move(\{s^{'}_2,a\}) = \{4\} = s^{'}_3 \\
+  move(\{s^{'}_2,b\}) = \{5\} = \{5,4,6\} = s^{'}_2
+\end{align*}
 
-\begin{table}[H]
-  \centering
-  \begin{tabular}{|c|c|c|c|}
-    \hline
-    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-     & a$\epsilon^{*}$ & b$\epsilon^{*}$ \\
-    1 & 3 ,6 & 4,5,6 \\
-    3,6 & - & 3,6 \\
-    4,5,6 & 4 & 4,5,6 \\
-    4 & 4 & 4,5,6 \\
-    \hline
-  \end{tabular}
-  \caption{"1" er start state, hvor "3,6" og "4,5,6" er ending state.}
-\end{table}
+Vi tjekker de sidste 2, nemlig s3 og s4
+
+\begin{align*}
+  move(\{s^{'}_3,a\}) = \{4\} = s^{'}_3 \\
+  move(\{s^{'}_3,b\}) = \{5\} = \{5,4,6\} = s^{'}_2 \\
+  move(\{s^{'}_4,a\}) = \{4\} = s^{'}_3 \\
+  move(\{s^{'}_4,b\}) = \{3,5\} = \{3,5,4,6\} = s^{'}_4
+\end{align*}
+
+Da $\{s_1,s_2,s_4\}$ inderholder ending state 6, vil det derfor være at $F{'}=\{s_1,s_2,s_4\}$
+
 
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
-    \node[single world] (1) {$1$};
+    \node[single world] (1) {$s_0^{'}$};
     \node[empty world] (start) [left = 0.5cm of 1] {$start$};
-    \node[double world] (2) [right = 5cm of 1] {$6,3$};
-    \node[above = .1ex of 2, inner sep = 0pt, outer sep = 0pt, minimum size = 25pt] (2a) {$b$};
-    \node[double world] (3) [below = 2cm of 1] {$4,5,6$};
-    \node[below = .1ex of 3, inner sep = 0pt, outer sep = 0pt, minimum size = 25pt] (3a) {$b$};
-    \node[single world] (4) [right = 5cm of 3] {$4$};
+    \node[double world] (2) [right = 5cm of 1] {$s_1$};
+    \node[double world] (3) [below = 4cm of 1] {$s_2^{'}$};
+    \node[left = .1ex of 3, inner sep = 0pt, outer sep = 0pt, minimum size = 25pt] (3a) {$b$};
+    \node[single world] (4) [below = 4cm of 3] {$s_3^{'}$};
     \node[below = .1ex of 4, inner sep = 0pt, outer sep = 0pt, minimum size = 25pt] (4a) {$a$};
+    \node[double world] (5) [below = 6cm of 2] {$s_4^{'}$};
+    \node[right = .1ex of 5, inner sep = 0pt, outer sep = 0pt, minimum size = 25pt] (5a) {$b$};
     \path[]
-        (2) edge [in=180, out=130, thick] (2a)
-        (2a) edge [->,in=50, out=0,thick] (2)
-        (3) edge [in=180, out=230, thick] (3a)
-        (3a) edge [->,in=310, out=0,thick] (3)
+        (3) edge [in=270, out=225, thick] (3a)
+        (3a) edge [in=135, out=90, thick] (3)
         (4) edge [in=180, out=230, thick] (4a)
         (4a) edge [->,in=310, out=0,thick] (4)
+        (5) edge [in=90, out=45, thick] (5a)
+        (5a) edge [->,in=315, out=270,thick] (5)
         (start) [->, thick] edge node [] {$$} (1)
         (1) [->, thick] edge node [above, minimum size=0pt] {$a$} (2)
         (1) [->, thick] edge node [left, minimum size=0pt] {$b$} (3)
-        (3) [->, thick, bend right=10] edge node [below, minimum size=0pt] {$a$} (4)
-        (3) [<-, thick, bend left=10] edge node [below, minimum size=0pt] {$b$} (4)
+        (2) [->, thick, bend right=10] edge node [right, minimum size=0pt] {$a$} (4)
+        (2) [->, thick,bend right=0] edge node [right, minimum size=0pt] {$b$} (5)
+        (3) [->, thick,bend right=10] edge node [left, minimum size=0pt] {$a$} (4)
+        (4) [->, thick, bend right=10] edge node [right, minimum size=0pt] {$b$} (3)
+        (5) [->, thick, bend right=10] edge node [below, minimum size=0pt] {$a$} (4)
         ;
 \end{tikzpicture}
 \caption{DFA repræsentationen}
@@ -349,14 +331,14 @@ Altså er DFA minimeret og ser ud som følger
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
-    \node[single world] (1) {$1,5$};
+    \node[single world] (1) {$G1$ \\ $1,5$};
     \node[empty world] (start) [left = 0.5cm of 1] {$start$};
-    \node[single world] (2) [below = 5.4cm of 1] {$7$};
+    \node[single world] (2) [below = 5.4cm of 1] {$G5$ \\ $7$};
     \node[below = .1ex of 2, inner sep = 0pt, outer sep = 0pt, minimum size = 25pt] (2a) {$0$};
-    \node[single world] (3) [right = 5cm of 1] {$2,8$};
-    \node[double world] (4) [below = 2cm of 3] {$3$};
+    \node[single world] (3) [right = 5cm of 1] {$G3$ \\ $2,8$};
+    \node[double world] (4) [below = 2cm of 3] {$G2$ \\ $3$};
     \node[right = .1ex of 4, inner sep = 0pt, outer sep = 0pt, minimum size = 25pt] (4a) {$1$};
-    \node[single world] (5) [below = 2cm of 4] {$4,6$};
+    \node[single world] (5) [below = 2cm of 4] {$G4$ \\ $4,6$};
     \path[]
         (2) edge [in=180, out=230, thick] (2a)
         (2a) edge [->,in=310, out=0,thick] (2)
@@ -400,6 +382,17 @@ Altså er DFA minimeret og ser ud som følger
 // 5              the first '5' digit
 // $              till the end
 \end{lstlisting}
+
+
+\textbf{b)}\\
+
+
+\textbf{i)}\\
+Det er ikke muligt at have en regular expression der matcher præcis ethvert nummer med præcis antal af 1 eller 2 siden der findes uendelig mange numre og vi ikke har nogen variable til at blive ved meda t tælle antallet af karaktere
+
+\textbf{ii)}\\
+Antag at vi kun ønsker at matche ikke-negative numre, så er der kun et endelig mængde af numre, mellem 0 og 1.000.000 hvor forekomsten af 1 og 2 er det samme. Derfor kan man identificere alle disse numre og lave en match præcis med disse numre.
+
 
 \end{homeworkProblem}
 

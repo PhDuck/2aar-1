@@ -470,6 +470,55 @@ og dette vil være med 2 registre
 \]
 
 \end{homeworkProblem}
+ 
+\begin{homeworkProblem}
+  \section*{\textbf{a})}
+   \begin{lstlisting}
+    char *y = ( char *) malloc ((1 + (n - 1) / 4) * 4);
+    int y_len = 0;
+    int i = 0;
+    while (i < n){
+    if(p(x[i])){
+    y[ y_len ] = x[i];
+    y_len ++;
+    }
+    i++;
+    }
+    return y;
+  \end{lstlisting}
+  
+  \section*{\textbf{b})}
+  \begin{lstlisting}[mathescape=false]
+    lw R_len , 0( regx ) // Load number of elements
+    move regy , R_HP // Set start of result
+    array
+    sll R_tmp , R_len , 2
+    addi R_tmp , R_tmp , 4
+    add R_HP , R_HP , R_tmp // Set HP to after result
+    addi R_it_x , regx , 4 // Initialise x iterator
+    addi R_it_y , regy , 4 // Initialise y iterator
+    move R_i , $0 // Initialise logic
+    iterator
+    loop_beg :
+    sub R_tmp , R_i , R_len // While condition
+    bgez R_tmp , loop_end // End loop when i= length
+    lb R_tmp , 0( R_it_x ) // Get element
+    R_tmp2 = CALL f( R_tmp ) // Call function f on
+    argument R_tmp and put the result in R_tmp2
+    beq R_tmp2 , $0, continue // Skip if predicate
+    failed
+    sb R_tmp , 0( R_it_y ) // Save element in y
+    addi R_it_y , R_it_y , 1 // increment y
+    continue :
+    addi R_it_x , R_it_x , 1 // increment x
+    addi R_i , R_i , 1 // increment logic
+    iterator
+    j loop_beg
+    loob_end :
+  \end{lstlisting}
+  
+  
+\end{homeworkProblem}
 
 
 \end{document} 
