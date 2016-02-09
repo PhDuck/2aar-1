@@ -1,0 +1,374 @@
+%% start
+
+structure Compiler :> Compiler =
+struct
+
+  (* Use "raise Error (message,position)" for error messages *)
+  exception Error of string*(int*int)
+
+  (* Name generator.  Call with, e.g., t1 = "tmp"^newName () *)
+  val counter = ref 0
+
+  fun newName () = (counter := !counter + 1;
+                  "_" ^ Int.toString (!counter)^ "_")
+
+  (* Number to text with "normal" sign symbol *)
+  fun makeConst n = if n>=0 then Int.toString n
+                    else "-" ^ Int.toString (~n)
+
+  (* Table storing all string literals, with labels given to them *)
+  val stringTable = ref []
+  (* could also contain "\n", ",", "Index out of bounds in line ", but the
+     format is a bit different (length and dummy pointer come first) *)
+
+  (* Building a string in the heap, including initialisation code *)
+  fun buildString (label, str)
+    = let val data = [Mips.ALIGN "2"   (* means: word-align *)
+                     ,Mips.LABEL label (* pointer *)
+                     ,Mips.SPACE "8"   (* size(int) and data pointer (word) *)
+                     ,Mips.ASCII str]
+          val initR = label^ "_init"
+          val addrR = label^ "_addr"
+          val initcode = [ Mips.LA(addrR, label)
+                         , Mips.LI(initR, makeConst (String.size str))
+                         , Mips.SW(initR, addrR, makeConst 0 )
+                         , Mips.ADDI(initR, addrR, makeConst 8)
+                         , Mips.SW(initR, addrR, makeConst 4 )]
+      in (initcode, data)
+      end
+
+  (* link register *)
+  val RA = "31"
+  (* Register for stack pointer *)
+  val SP = "29"
+  (* Register for heap pointer *)
+  val HP = "28"
+
+  (* Suggested register division *)
+  val minReg = 2       (* lowest usable register *)
+  val maxCaller = 15   (* highest caller-saves register *)
+  val maxReg = 25      (* highest allocatable register *)
+
+  (* zipWith: did not find it so I implement it here *)
+  fun zipWith f (x::xs) (y::ys) = f(x,y) :: (zipWith f xs ys)
+    | zipWith _    _       _    = [];
+
+  fun getElSize(tp: Fasto.Type) : int = 
+        case tp of Fasto.Char(p) => 1 | Fasto.Bool(p) => 1 | otherwise => 4
+
+
+
+  (*********************************************************************)
+  (* TASK NUMBER 2:                                                    *)
+  (* generates the code to check that the array index is within bounds *)
+  (*********************************************************************)
+  fun check_bounds(arr_beg, ind_reg, (line,c)) = 
+        let val sz_reg  = "_size_reg_" ^newName()
+            val tmp_reg = "_tmp_reg_"  ^newName() 
+            val err_lab = "_error_lab_"^newName() 
+            val safe_lab= "_safe_lab_" ^newName()
+        in [ Mips.LW(sz_reg,arr_beg,"0"),      Mips.BGEZ(ind_reg, safe_lab),
+             Mips.LABEL(err_lab),              Mips.LI("5",makeConst line), 
+             Mips.J "_IllegalArrSizeError_",   Mips.LABEL(safe_lab), 
+             Mips.SUB(tmp_reg,ind_reg,sz_reg), Mips.BGEZ(tmp_reg, err_lab)
+           ]
+        end
+
+
+
+  (****************************************************************************************)
+  (* size_reg is the register that stores an int denoting the num of array elements       *)
+  (* place    is the register that will store the start address of array                  *)
+  (* the result array will have shape: [size,ptr_to_data[0],data[0],..,data[size-1]]      *)
+  (* char/bool element is 1 byte, int element is 4 bytes;                                 *)
+  (****************************************************************************************)
+  fun dynalloc(size_reg:string, place:string, tp:Fasto.Type) : Mips.MipsProg = 
+      let val tmp_reg = "_tmp_reg_"^newName()  
+          val is_char = case tp of Fasto.Char(p) => true | otherwise => false
+          val is_bool = case tp of Fasto.Bool(p) => true | otherwise => false
+
+          val code1   = case tp of 
+                            Fasto.Char _ => [Mips.ADDI(tmp_reg, size_reg, "9")]
+                          | Fasto.Bool _ => [Mips.ADDI(tmp_reg, size_reg, "8")]
+                          | other        => [Mips.SLL (tmp_reg, size_reg, "2"),
+                                             Mips.ADDI(tmp_reg, tmp_reg,  "8")]
+
+          val code2  = if(is_char orelse is_bool) (* align to 4 byte boundary *)
+                           then [Mips.ADDI(tmp_reg, tmp_reg, "3")
+                                ,Mips.SRA (tmp_reg, tmp_reg, "2")
+                                ,Mips.SLL (tmp_reg, tmp_reg, "2")]
+                           else []
+
+          val code3   =  [ Mips.MOVE(place,HP) ] @ code1 @ code2 @ 
+                         [ Mips.ADD (HP, HP, tmp_reg),
+                           Mips.SW(size_reg,place, "0"),
+                           Mips.ADDI(tmp_reg,place,"8"),
+                           Mips.SW(tmp_reg, place, "4") ]
+
+      in if(is_char) then code3 @ [ Mips.ADD(tmp_reg,size_reg,place), 
+                                    Mips.SB("0",tmp_reg,"8") ]
+                     else code3
+      end
+
+  (**********************************************************************)
+  (* Generates code for a do loop:                                      *)
+  (*     do i = 0, n-1                                                  *)
+  (*        arr[i] = f(i)                                               *)
+  (*     enddo                                                          *)
+  (* Where: el_sz is size of one element: one or four (bytes)           *)
+  (*        i_reg, n_reg, arr_reg, are the registers holding            *)
+  (*            i, n, and the array address, respectively.              *)
+  (*        addr_reg is initially arr_reg + 8, i.e., the start of       *)
+  (*            array-data segment, and is incremented by el_sz within  *)
+  (*            the loop in order to populate the array                 *)
+  (*        f(i_reg, res_reg) produces the code for computing f(i),     *)
+  (*            where the result is stored in res_reg                   *)
+  (**********************************************************************)
+  fun compileDoLoop( el_sz : int, n_reg : string, arr_reg : string, 
+                     f : string*string->Mips.MipsProg, pos ) : Mips.MipsProg = 
+        let val i_reg     = "_ind_var_" ^newName()
+            val res_reg   = "_res_i_reg"^newName()
+            val tmp_reg   = "_tmp_reg_" ^newName()
+            val loop_beg  = "_loop_beg_"^newName()
+            val loop_end  = "_loop_end_"^newName()
+            val addr_reg  = "_arr_loc_" ^newName() 
+            val header    = [ Mips.LW(addr_reg, arr_reg, "4"), Mips.MOVE(i_reg, "0"), 
+                              Mips.LABEL(loop_beg), Mips.SUB(tmp_reg, i_reg, n_reg), 
+                              Mips.BGEZ(tmp_reg, loop_end)
+                            ]
+            val code_fi   = f(i_reg, res_reg)
+            val code_assign  = 
+                  case el_sz of
+                    4 => [ Mips.SW(res_reg,addr_reg,"0"), Mips.ADDI(addr_reg,addr_reg,"4") ]
+                  | 1 => [ Mips.SB(res_reg,addr_reg,"0"), Mips.ADDI(addr_reg,addr_reg,"1") ] 
+                  | otherwise => raise Error("The Only Valid Element-Sizes Are 1 and 4. Error",pos)
+            val epilog = [ Mips.ADDI(i_reg,i_reg,"1"), Mips.J loop_beg, Mips.LABEL loop_end ]
+        in header @ code_fi @ code_assign @ epilog
+        end
+
+  (***********************************************************************)
+  (*** Generates Code to Call Function fid on the List of Registers args *)
+  (***********************************************************************)
+  fun ApplyRegs(fid: string, args: string list, place: string, pos) : Mips.MipsProg =
+    let val regs_num    = length args
+        val () = if (regs_num > maxCaller - minReg) 
+                 then raise Error("Num of args of "^fid^" exceeds number of caller registers!", pos)
+                 else ()
+        val caller_regs = map (makeConst o (fn x => x + minReg)) (List.tabulate(regs_num, fn x => x))
+        val move_code : Mips.mips list   = zipWith (fn (x : string, y : string) => Mips.MOVE(x, y)) caller_regs args
+    in  move_code @ [ Mips.JAL(fid,caller_regs), Mips.MOVE(place, "2") ]
+    end 
+
+
+    .
+    .
+    .
+    .
+    .
+
+
+(**************************************)
+(*** Second Order Functions (SOF)   ***)
+(***   iota, replicate, map, reduce ***)
+(**************************************)
+    | Fasto.Iota (e, (line,col)) =>
+        let val sz_reg  = "_size_reg_"^newName()
+            val code_sz = compileExp e vtable sz_reg
+
+            (******************************************)
+            (** code to check that array size, N > 0 **)
+            (**   if N-1 >= 0 then JumpTo safe_lab   **)
+            (**   JumpTo "_IllegalArrSizeError_"     **)
+            (**   safe_lab: ...                      **) 
+            (******************************************)
+            val safe_lab = "_safe_lab__"^newName()
+            val checksize = [ 
+                Mips.ADDI(sz_reg,sz_reg,"-1"),  Mips.BGEZ(sz_reg, safe_lab), 
+                Mips.LI("5",makeConst line),    Mips.J "_IllegalArrSizeError_",            
+                Mips.LABEL(safe_lab),           Mips.ADDI(sz_reg,sz_reg,"1")
+              ]
+        in  code_sz @ checksize @ dynalloc( sz_reg, place, Fasto.Int((line,col)) ) @ 
+            compileDoLoop( 4, sz_reg, place, ( fn(i,r) => [Mips.MOVE(r,i)] ), (line,col) )
+        end
+
+    | Fasto.Replicate (n, el, tp, (line,col)) => 
+        let val sz_reg  = "_size_reg_"^newName()
+            val el_reg  = "_el_reg_"  ^newName() 
+            val code_sz = compileExp n  vtable sz_reg
+            val code_el = compileExp el vtable el_reg
+
+            (******************************************)
+            (** code to check that array size, N > 0 **)
+            (** see implementation of iota           **)
+            (******************************************)
+            val safe_lab = "_safe_lab__"^newName()
+            val checksize = [ 
+                Mips.ADDI(sz_reg,sz_reg,"-1"),  Mips.BGEZ(sz_reg, safe_lab), 
+                Mips.LI("5",makeConst line),    Mips.J "_IllegalArrSizeError_",            
+                Mips.LABEL(safe_lab),           Mips.ADDI(sz_reg,sz_reg,"1")
+              ]
+        in code_sz @ checksize @ code_el @ dynalloc(sz_reg,place,tp) @ 
+           compileDoLoop( getElSize tp, sz_reg, place, ( fn(i, r) => [Mips.MOVE(r,el_reg)] ), (line,col) )
+        end
+
+    | Fasto.Map  (fid, lst, eltp, rtp, pos) => 
+        let val lst_reg = "_arr_reg_"  ^newName()
+            val inp_addr= "_arr_i_reg_"^newName() 
+            val sz_reg  = "_size_reg_" ^newName()
+            val lst_code  = compileExp lst vtable lst_reg
+
+            (************************************************************************)
+            (* i = loop count, r = the register that stores the computed f(i) value *)
+            (* How To Compute?                                                      *)
+            (*  1. load the value stored in lst(i) in inp_reg                       *)
+            (*  2. apply mapped f with register r as place, i.e.,                   *) 
+            (*       call ApplyRegs on fid and inp_reg                              *)
+            (************************************************************************)
+            fun loopfun(i, r) = if ( getElSize eltp = 1 )
+                                then Mips.LB(r, inp_addr, "0")
+                                     :: ApplyRegs(fid, [r], r, pos) 
+                                     @ [Mips.ADDI(inp_addr, inp_addr, "1")]
+                                else Mips.LW(r, inp_addr, "0")
+                                     :: ApplyRegs(fid, [r], r, pos)
+                                     @ [Mips.ADDI(inp_addr, inp_addr, "4")]
+
+        (* we use sz_reg to hold the size of the input/output array *)
+        in lst_code @ [ Mips.LW(sz_reg, lst_reg, "0")] @ dynalloc(sz_reg, place, rtp) @ 
+           [Mips.LW(inp_addr, lst_reg, "4")] @
+           compileDoLoop( getElSize rtp, sz_reg, place, loopfun, pos )
+        end
+
+    | Fasto.ZipWith  (fid, lst1, lst2, eltp1, eltp2, rtp, pos) => 
+        let val lst1_reg  = "_arr1_reg_"  ^newName()
+            val lst2_reg  = "_arr2_reg_"  ^newName()
+            val inp1_addr = "_arr1_i_reg_"^newName() 
+            val inp2_addr = "_arr2_i_reg_"^newName()
+            val sz_reg    = "_size_reg_" ^newName()
+
+            val tmp_r  = "_tmp_reg_"^newName()
+            val lab1   = "_label_"  ^newName()
+
+            val lst1_code = compileExp lst1 vtable lst1_reg
+            val lst2_code = compileExp lst2 vtable lst2_reg
+            val lst_code  = lst1_code @ lst2_code
+
+            val sz_code = [ Mips.LW(sz_reg, lst1_reg, "0"),  Mips.LW(tmp_r, lst2_reg, "0"),
+                            Mips.SUB(tmp_r, tmp_r, sz_reg),  Mips.BGEZ(tmp_r, lab1),
+                            Mips.ADD(sz_reg, sz_reg, tmp_r), Mips.LABEL(lab1)              ]
+
+            (************************************************************************)
+            (* i = loop count, r = the register that stores the f(a[i],b[i]) value  *)
+            (* How To Compute?                                                      *)
+            (*  1. load the value stored in lst(i) in inp_reg                       *)
+            (*  2. apply mapped f with register r as place, i.e.,                   *) 
+            (*       call ApplyRegs on fid and inp_reg                              *)
+            (************************************************************************)
+            fun loopfun(i, r) = let val header1 =   if ( getElSize eltp1 = 1 )
+                                                    then Mips.LB(r, inp1_addr, "0")
+                                                    else Mips.LW(r, inp1_addr, "0")
+                                    val header2 =   if ( getElSize eltp2 = 1 )
+                                                    then Mips.LB(tmp_r, inp2_addr, "0")
+                                                    else Mips.LW(tmp_r, inp2_addr, "0")
+
+                                    val call = ApplyRegs(fid, [r, tmp_r], r, pos)
+
+                                    val ender1  =   if ( getElSize eltp1 = 1 )
+                                                    then [Mips.ADDI(inp1_addr, inp1_addr, "1")]
+                                                    else [Mips.ADDI(inp1_addr, inp1_addr, "4")]
+                                    val ender2  =   if ( getElSize eltp2 = 1 )
+                                                    then [Mips.ADDI(inp2_addr, inp2_addr, "1")]
+                                                    else [Mips.ADDI(inp2_addr, inp2_addr, "4")]
+                                in header1 :: header2 :: call @ ender1 @ ender2
+                                end
+                                
+
+        (* we use sz_reg to hold the size of the input/output array *)
+        in lst_code @ sz_code @ dynalloc(sz_reg, place, rtp) @ 
+           [Mips.LW(inp1_addr, lst1_reg, "4"), Mips.LW(inp2_addr, lst2_reg, "4")] @
+           compileDoLoop( getElSize rtp, sz_reg, place, loopfun, pos )
+        end
+
+
+    (****************************************************)
+    (*** CompileDoLoop assumes the result is an array ***)
+    (***   so we cannot use it here, instead we write ***)
+    (***   the whole assembly and use (only) helper   ***)
+    (***   function  ApplyRegs that applies the binary***)
+    (***   operator of reduce on the accumulator      ***)
+    (***   register, i.e., place, and an element of   ***)
+    (***   input array, i.e., tmp_reg                 ***)
+    (*** lst_reg iterates over the array              ***)
+    (*** i_reg   holds the loop count (i)             ***)
+    (*** sz_reg  holds the length of the array        ***)
+    (****************************************************) 
+    | Fasto.Reduce  (bop,ne,lst,tp,pos) => 
+        let val lst_reg   = "_arr_reg_"  ^newName()
+            val sz_reg    = "_size_reg_" ^newName()
+            val tmp_reg   = "_tmp_reg_" ^newName()
+            val i_reg     = "_ind_var_" ^newName()
+            val loop_beg  = "_loop_beg_"^newName()
+            val loop_end  = "_loop_end_"^newName()
+            val is_1      = ((getElSize tp) = 1)
+ 
+            val lst_code  = compileExp lst vtable lst_reg
+            val  ne_code  = compileExp ne  vtable tmp_reg             
+            val header    = [ Mips.LW(lst_reg,lst_reg,"4"),   Mips.MOVE(i_reg,"0"), 
+                              Mips.MOVE(place,tmp_reg),       Mips.LABEL(loop_beg), 
+                              Mips.SUB(tmp_reg,i_reg,sz_reg), Mips.BGEZ(tmp_reg, loop_end) ] @
+                ( if ( is_1 ) then [ Mips.LB(tmp_reg,lst_reg,"0"), Mips.ADDI(lst_reg,lst_reg,"1") ] 
+                              else [ Mips.LW(tmp_reg,lst_reg,"0"), Mips.ADDI(lst_reg,lst_reg,"4") ] )
+
+        in lst_code @ [ Mips.LW(sz_reg,lst_reg,"0")] @ ne_code @ 
+           header   @ ApplyRegs(bop,[place,tmp_reg],place,pos) @ 
+           [ Mips.ADDI(i_reg,i_reg,"1"), Mips.J loop_beg, Mips.LABEL loop_end ]
+        end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        %%%%%%%   reduce shit
+
+
+        | Fasto.Reduce (f, n, arr, t, pos)
+        => let val (n_type, n_dec) = expType vs n
+               val (arr_type, arr_dec) = expType vs arr
+               val el_type 
+                 = case arr_type of
+                      Fasto.Array (t,_) => t
+                    | other => raise Error ("Reduce: Argument not an array",pos)
+               val f_arg_type 
+                 = case SymTab.lookup f (!functionTable) of
+                       NONE => raise Error ("Unknown identifier " ^ f, pos)
+                     | SOME ([a1,a2],res) 
+                       => if typesEqual (a1,a2) andalso typesEqual (a2,res)
+                          then res 
+                          else raise Error 
+                                  ("Reduce: incompatible function type of "
+                                   ^ f ^": " ^ showFunType ([a1,a2],res),pos)
+                     | SOME (args,r) 
+                       => raise Error ("Reduce: incompatible function type of " 
+                                       ^ f ^ ": " ^ showFunType (args,r),pos)
+               fun err (s,t) = Error ("Reduce: unexpected " ^ s ^ " type "
+                                      ^ Fasto.pp_type t ^ ", expected "
+                                      ^ Fasto.pp_type f_arg_type, pos)
+           in if typesEqual (el_type, f_arg_type) 
+              then if typesEqual (el_type, n_type)
+                   then (unifyTypes pos (t, el_type),
+                         Fasto.Reduce (f,n_dec, arr_dec, el_type, pos))
+                   else raise (err ("neutral element", n_type))
+              else raise err ("array element", el_type)
+           end
