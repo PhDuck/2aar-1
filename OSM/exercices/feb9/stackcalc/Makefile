@@ -12,5 +12,5 @@ stack.o: stack.c
 	$(CC) $(CFLAGS) -c stack.c
 
 clean:
-	rm *.o
-	rm calc
+	rm -f *.o
+	rm -f calc
