@@ -17,6 +17,7 @@
 }
 \title{
   \huge{Introduction to Compilers (OV)\\}
+  \Large{Report for Group Assignment}
 }
 
 
@@ -35,9 +36,8 @@
 
 %\overfullrule=2cm %Fjern til slut
 
-%%%---
-% Tekst her
-%%%---
+
+Note: It is possible that there is minor differences in the layout of the code presented in this report. This is due to limited horizontal space in the report. However the code has not functionally changed.
 
 \section{Struktur i kode}
 \subsection*{Implementation of boolean values}
@@ -104,6 +104,7 @@ As seen we use the predefined function \texttt{CheckBinOp()} which evaluates the
 \end{code}
 
 We fist evaluate the two expressions, which then allows us to implement error handling when division by zero. Then the SML function \texttt{Int.quot} is used, the main difference between SML normal divide and \texttt{Int.quot} is that it rounds towards zero. This is done to align the interpreter with the generated MIPS code from \texttt{CodeGen.sml}.
+\newpage
 
 \begin{code}[firstnumber=170]{Interpreter.sml}
 | evalExp ( Divide(e1, e2, pos), vtab, ftab ) =
@@ -284,15 +285,16 @@ The complexity with map also extends to the \texttt{TypeChecker.sml}. Where we n
 | In.Map (f, arr_exp, _, _, pos)
       =>
       let
-          val (arr_type, arr_dec) = checkExp ftab vtab arr_exp
-          val (fname, result_type, arg_types) = checkFunArg(f, vtab, ftab, pos)
-          val element_type = case arr_type of
-                                    Array (x) => x
-                                  | _ => raise Error ("Map: input not an array", pos)
+val (arr_type, arr_dec) = checkExp ftab vtab arr_exp
+val (fname, result_type, arg_types) = checkFunArg(f, vtab, ftab, pos)
+val element_type = case arr_type of
+                 Array (x) => x
+               | _ => raise Error ("Map: input not an array", pos)
       in
-          if element_type = hd arg_types
-          then (Array result_type, Out.Map(fname, arr_dec, element_type, result_type, pos))
-          else raise Error ("Map: wrong argument type " ^
+  if element_type = hd arg_types
+  then (Array result_type, Out.Map(fname,
+    arr_dec, element_type, result_type, pos))
+  else raise Error ("Map: wrong argument type " ^
                               ppType arr_type, pos)
       end
 \end{code}
@@ -307,8 +309,10 @@ In the interpreter we first get the return type and the extract the array from t
       val return_type = rtpFunArg(farg, ftab, pos)
       val evaluated_arr = case evalExp(arrexp, vtab, ftab) of
         ArrayVal(arr, _) => arr
-        | _ => raise Error("Map: Array expressions does not evaluate to ArrayVal", pos)
-      val map_result = map(fn x => evalFunArg(farg, vtab, ftab, pos, [x])) evaluated_arr
+        | _ => raise Error
+        ("Map: Array expressions does not evaluate to ArrayVal", pos)
+      val map_result =
+      map(fn x => evalFunArg(farg, vtab, ftab, pos, [x])) evaluated_arr
     in
       ArrayVal(map_result, return_type)
     end
@@ -363,6 +367,7 @@ Where makeConst (elemSizeToInt ...) refers to
 val elem_size = getElemSize elem_type
 val ret_size  = getElemSize ret_type
 \end{code}
+\newpage
 Which all adds up to
 \begin{code}[firstnumber=573]{CodeGen.sml}
 in addr_code
@@ -380,7 +385,8 @@ in addr_code
 Which allows us to call map on known functions, however for anonymous functions we can not call the \texttt{applyRegs()} function. Instead we have to extend our vtable with the parameters given in the anonymous function to be able to evaluate the body of the function.
 \begin{code}[firstnumber=612]{CodeGen.sml}
   val vtable' = case params of
-                  Param(Pname, Ptype)::[]   => SymTab.bind Pname tmp2_reg vtable
+                  Param(Pname, Ptype)::[]
+                    => SymTab.bind Pname tmp2_reg vtable
                 | _ => raise Error ("Error no paramater name",pos)
 
   val loop_map = compileExp body vtable' tmp3_reg
@@ -410,13 +416,16 @@ While reduce is slighter different than map, it is insignificantly for both the 
       =>
       let val (n_type, n_dec) = checkExp ftab vtab n_exp
           val (arr_type, arr_dec) = checkExp ftab vtab arr_exp
-          val (fname, result_type, arg_types) = checkFunArg(f, vtab, ftab, pos)
+          val (fname, result_type, arg_types) =
+          checkFunArg(f, vtab, ftab, pos)
           val arr_type = case arr_type of
                       Array(x) => x
-                    | _ => raise Error ("Reduce: wrong argument type",pos)
+                    | _ => raise Error
+                    ("Reduce: wrong argument type",pos)
       in
           if (n_type = arr_type andalso n_type = hd arg_types)
-          then (result_type, Out.Reduce(fname, n_dec, arr_dec, n_type, pos))
+          then (result_type,
+          Out.Reduce(fname, n_dec, arr_dec, n_type, pos))
           else raise Error ("Reduce: wrong argument type", pos)
       end
 \end{code}
@@ -429,21 +438,26 @@ In the \texttt{Interpreter.sml} is very similar to \texttt{map}, however to eval
       val eval_n = evalExp (ne, vtab, ftab)
       val eval_arr = case evalExp(arrexp, vtab, ftab) of
           ArrayVal (arr, _) => arr
-        | _ => raise Error("Reduce: array exp doesnot eval to ArrayVal", pos)
-      val reduce_result = foldl(fn (x,y) => evalFunArg(farg, vtab, ftab, pos, [x,y])) eval_n eval_arr
+        | _ => raise Error
+        ("Reduce: array exp doesnot eval to ArrayVal", pos)
+      val reduce_result =
+       foldl(fn (x,y) =>
+       evalFunArg(farg, vtab, ftab, pos, [x,y])) eval_n eval_arr
     in
       reduce_result
     end
 \end{code}
 
 The fact that it evaluates to a single value, can also be exploited in the \texttt{CodeGen.sml}. Which means we do not need to store after each iteration of our loop, we can instead carry the value over in a temp reg and only load the new value from the argument array. We just have to remember to move our result from the temporary register after the loop has completed.
+\newpage
 \begin{code}[firstnumber=662]{CodeGen.sml}
 val funArgCodeGen = case binop of
-              FunName f => applyRegs(f, [acc_reg, tmp2_reg], acc_reg, pos)
-            | Lambda (rettype, params, body, _) => (case params of
-                   (Param(xName, xType)::Param(yName, yType)::[]) =>
-                          compileExp body (SymTab.bind yName tmp2_reg (SymTab.bind xName acc_reg vtable)) acc_reg
-                 | _ => raise Error ("Error no paramater name",pos))
+      FunName f => applyRegs(f, [acc_reg, tmp2_reg], acc_reg, pos)
+    | Lambda (rettype, params, body, _) => (case params of
+           (Param(xName, xType)::Param(yName, yType)::[]) =>
+    compileExp body (SymTab.bind yName tmp2_reg
+      (SymTab.bind xName acc_reg vtable)) acc_reg
+         | _ => raise Error ("Error no paramater name",pos))
 
 val loop_reduce = [ mipsLoad elem_size (tmp2_reg, addr_reg, "0") ]
                   @ funArgCodeGen
@@ -451,12 +465,13 @@ val loop_reduce = [ mipsLoad elem_size (tmp2_reg, addr_reg, "0") ]
 
 This does leave one problem compared to map, when we have completed the iteration our value is saved in the wrong place, so we need to alter our loop\_footer.
 \begin{code}[firstnumber=672]{CodeGen.sml}
-        val loop_footer = [ Mips.ADDI (addr_reg, addr_reg, makeConst (elemSizeToInt elem_size))
-                            , Mips.ADDI (i_reg, i_reg, "1")
-                            , Mips.J loop_beg
-                            , Mips.LABEL loop_end
-                            , Mips.MOVE(place, acc_reg)
-                            ]
+val loop_footer =
+  [ Mips.ADDI (addr_reg, addr_reg, makeConst (elemSizeToInt elem_size))
+  , Mips.ADDI (i_reg, i_reg, "1")
+  , Mips.J loop_beg
+  , Mips.LABEL loop_end
+  , Mips.MOVE(place, acc_reg)
+  ]
 \end{code}
 Also worth noting is there is no result\_reg to increment since we keep updating acc\_reg. When the loop has terminated we simply move our value and the code terminates.
 \begin{code}[firstnumber=678]{CodeGen.sml}
@@ -474,6 +489,7 @@ Unlike \texttt{map} we only have a single \texttt{reduce} function, which means 
 
 Running the test \texttt{reduce.fo} we confirm it works for a known function, and for the anonymous functions we use anon\_reduce.fo to show the correctness.
 
+\newpage
 \subsection*{Constant Folding}
 In \texttt{Times} we made the following rules
 \begin{code}[firstnumber=43]{CopyConstPropFold.sml}
@@ -481,15 +497,20 @@ In \texttt{Times} we made the following rules
         let val e1' = copyConstPropFoldExp vtable e1
             val e2' = copyConstPropFoldExp vtable e2
         in case (e1', e2') of
-          (Constant (IntVal x, _), Constant (IntVal y, _)) => Constant (IntVal (x*y), pos)
+          (Constant (IntVal x, _),
+          Constant (IntVal y, _)) =>
+          Constant (IntVal (x*y), pos)
           | (Constant                 (IntVal 1, _), _)   =>
             e2' (* Multiplication by one x * 1 = x *)
           | (Constant (IntVal ~1, _), _)   =>
-            Negate(e2', pos)          (* Multiplication by minus one x * -1 = -x *)
+            Negate(e2', pos)
+            (* Multiplication by minus one x * -1 = -x *)
           | (_, Constant (IntVal 1, _))   =>
-            e1'                       (* Multiplication by one x * 1 = x *)
+            e1'
+            (* Multiplication by one x * 1 = x *)
           | (_, Constant (IntVal ~1, _))   =>
-            Negate(e1', pos)          (* Multiplication by minus one x * -1 = -x *)
+            Negate(e1', pos)
+            (* Multiplication by minus one x * -1 = -x *)
           | _                             =>
             Times(e1', e2', pos)
         end
@@ -515,6 +536,7 @@ In \texttt{AND} we wrote
 \end{code}
 Which in case of both expressions being BoolVals it reduces it to a single expression.
 
+\newpage
 In \texttt{Divide} we added
 \begin{code}[firstnumber=139]{CopyConstPropFold.sml}
       | Divide (e1, e2, pos) =>
