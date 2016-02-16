@@ -40,7 +40,7 @@ uintptr_t syscall_entry(uintptr_t syscall, uintptr_t arg0, uintptr_t arg1, uintp
       syscall_write(arg0, (void const*) arg1, arg2);
       break;
     case SYSCALL_READ:
-    //  syscall_read(arg0, arg1, arg2);
+      syscall_read(arg0, (void*) arg1, arg2);
       break;
     default:
       KERNEL_PANIC("Unhandled system call\n");
