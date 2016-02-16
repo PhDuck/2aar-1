@@ -1,6 +1,6 @@
 .PHONY: clean
 
-CC=gcc
+CC=gcc-5
 CFLAGS=-Werror -Wextra -pedantic -std=c11 -g
 
 all: calc
