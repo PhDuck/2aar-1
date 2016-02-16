@@ -1,0 +1,10 @@
+/.deps
+/Makefile
+*.o
+/yams
+/yamst
+/cfg-parser.c
+/cfg-lexer.c
+/hwcons-lex.c
+/hwcons.h
+/hwcons.c
