@@ -8,6 +8,7 @@
 #include "lib/libc.h"
 #include "kernel/assert.h"
 #include "vm/memory.h"
+#include "proc/readwrite.h"
 
 /**
  * Handle system calls. Interrupts are enabled when this function is
@@ -34,6 +35,12 @@ uintptr_t syscall_entry(uintptr_t syscall, uintptr_t arg0, uintptr_t arg1, uintp
     {
     case SYSCALL_HALT:
       halt_kernel();
+      break;
+    case SYSCALL_WRITE:
+      syscall_write(arg0, (void const*) arg1, arg2);
+      break;
+    case SYSCALL_READ:
+    //  syscall_read(arg0, arg1, arg2);
       break;
     default:
       KERNEL_PANIC("Unhandled system call\n");
