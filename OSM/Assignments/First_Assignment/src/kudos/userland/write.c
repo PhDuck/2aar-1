@@ -1,12 +1,16 @@
 /*
- * Halt the system from userland.
- */
+ * Print what is read from user input.
+*/
 
 #include "lib.h"
 
 int main(void) {
-  syscall_write(0, "Mizra\n", 10);
-  syscall_read(1, "testerino \n", 20);
+  char buffer[100];
+
+  syscall_read(0, &buffer, 100);
+  syscall_write(0, &buffer, 100);
   syscall_halt();
+
+
   return 0;
 }
