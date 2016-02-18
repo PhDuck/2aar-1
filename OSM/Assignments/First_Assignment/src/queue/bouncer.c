@@ -24,7 +24,7 @@ skip_until_space() {
 }
 
 void
-loop() {
+loop(struct queue *queue) {
   char op = 0;
   int pri = 0;
 
@@ -38,7 +38,7 @@ loop() {
       break;
 
     case 'p':
-      if (0) { queue_pop(&queue, &op);
+      if (0) { queue_pop(&queue, &pri);
         printf("!! Queue underflow.\n");
       } else {
         printf("=> %d\n", pri);
@@ -48,7 +48,7 @@ loop() {
     default:
       ungetc(op, stdin);
       if (scanf("%d", &pri) == 1) {
-        if (0) { // TODO: Try to insert the read priority into the queue.
+        if (0) { queue_push(&queue, pri);
           printf("!! Queue overflow.\n");
         }
       } else {
@@ -66,13 +66,13 @@ shutdown() {
 
 int
 main() {
-  queue_init(struct queue *queue);
+  struct queue *queue = NULL;
 
-  loop();
+  loop(queue);
 
   shutdown();
 
-  // TODO: Destroy the queue.
+
 
   return 0;
 }
