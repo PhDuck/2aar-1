@@ -6,6 +6,9 @@ struct queue {
   struct stack *tail;
 };
 
+#define STACK_UNDERFLOW   3
+#define STACK_OVERFLOW    4
+
 int queue_init(struct queue *queue);
 
 int queue_push(struct queue *queue, int pri);
