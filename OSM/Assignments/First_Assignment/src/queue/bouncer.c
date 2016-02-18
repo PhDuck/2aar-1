@@ -1,7 +1,6 @@
 #include <stdio.h>  // printf, scanf, stdin
 #include <ctype.h>  // isspace
-
-// TODO: Maybe include queue.h?
+#include "queue.h"
 
 
 static inline char
@@ -39,7 +38,7 @@ loop() {
       break;
 
     case 'p':
-      if (0) { // TODO: Try to pop an element off of the queue.
+      if (0) { queue_pop(&queue, &op);
         printf("!! Queue underflow.\n");
       } else {
         printf("=> %d\n", pri);
@@ -67,7 +66,7 @@ shutdown() {
 
 int
 main() {
-  // TODO: Initialize the queue.
+  queue_init(struct queue *queue);
 
   loop();
 

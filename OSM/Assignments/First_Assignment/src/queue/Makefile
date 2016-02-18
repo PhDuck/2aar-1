@@ -5,7 +5,10 @@ CFLAGS=-Werror -Wextra -pedantic -std=c11 -g
 
 all: bouncer
 
-bouncer: bouncer.c
+queue.o: queue.c queue.h
+	$(CC) $(CFLAGS) -c queue.c
+
+bouncer: queue.o bouncer.c
 	$(CC) $(CFLAGS) -o bouncer bouncer.c
 
 clean:
