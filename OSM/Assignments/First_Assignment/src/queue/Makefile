@@ -9,7 +9,7 @@ queue.o: queue.c queue.h
 	$(CC) $(CFLAGS) -c queue.c
 
 bouncer: queue.o bouncer.c
-	$(CC) $(CFLAGS) -o bouncer bouncer.c
+	$(CC) $(CFLAGS) -o bouncer bouncer.c queue.o
 
 clean:
 	rm -f *.o

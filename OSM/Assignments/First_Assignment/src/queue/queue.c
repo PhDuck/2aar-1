@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include "queue.h"
-#include "bouncer.c"
 
 
 int queue_init(struct queue *queue) {
@@ -10,19 +9,19 @@ int queue_init(struct queue *queue) {
 
 int queue_push(struct queue** queue, int pri) {
   struct queue* new_queue = (struct queue*) malloc(sizeof(struct queue));
-
+  int tmp;
 
   if (new_queue == NULL) {
   	return STACK_OVERFLOW;
   }
 
   new_queue -> value = pri;
-  new_queue-> tail = *queue;
+  new_queue -> tail = *queue;  //ny pointer
 
-  *queue = new_queue;
-
+  *queue = new_queue; //gammel pointer
   return 0;
 }
+
 
 int queue_pop(struct queue** queue, int *pri_ptr) {
   struct queue *old_queue;

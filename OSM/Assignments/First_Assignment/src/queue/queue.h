@@ -6,6 +6,8 @@ struct queue {
   struct queue* tail;
 };
 
+struct queue* SortedMerge(struct queue* a, struct queue* b);
+
 #define STACK_UNDERFLOW   3;
 #define STACK_OVERFLOW    4;
 
