@@ -1,0 +1,18 @@
+Task 1:
+
+Jeres rapport er virkelig underlig.  Hvorfor snakker I om at sortere?
+Hvorfor sorterer I?  Hvornår?  Hvad med hukommelsesallokering?
+
+Hvad værre er:  I har ikke fulgt den angivne API.  I opgaveformuleringen har vi:
+
+    int queue_push(struct queue *queue, int pri);
+
+Men I har defineret:
+
+    int queue_push(struct queue** queue, int pri);
+
+I skal løse den stillede opgave, og må ikke lave grænsefladen om.
+
+Task 2:
+
+Fint.
