@@ -13,6 +13,9 @@ Men I har defineret:
 
 I skal løse den stillede opgave, og må ikke lave grænsefladen om.
 
+
+
+
 Task 2:
 
 Fint.

@@ -113,7 +113,7 @@ loop(struct queue *queue) {
       if (0) { 
         printf("!! Queue underflow.\n");
       } else {
-        queue_pop(&queue, &pri);
+        queue_pop(queue, &pri);
         printf("=> %d\n", pri);
       }
       break;
@@ -121,7 +121,7 @@ loop(struct queue *queue) {
     default:
       ungetc(op, stdin);
       if (scanf("%d", &pri) == 1) {
-        queue_push(&queue, pri);
+        queue_push(queue, pri);
         MergeSort(&queue);
         if (0) { 
           printf("!! Queue overflow.\n");
