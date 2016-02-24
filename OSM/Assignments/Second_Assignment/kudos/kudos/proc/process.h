@@ -53,8 +53,12 @@ typedef struct {
 
 } process_control_block_t;
 
-void process_start(const char *executable, const char **argv);
+process_id_t process_spawn(const char *executable, const char **argv);
 
+void process_run_thread(uint32_t pid);
 
+int pid_to_index(process_id_t pid);
+
+process_id_t get_free_pid();
 
 #endif

@@ -181,35 +181,6 @@ int setup_new_process(TID_t thread,
   return 0;
 }
 
-void process_start(const char *executable, const char **argv)
-{
-  TID_t my_thread;
-  virtaddr_t entry_point;
-  int ret;
-  context_t user_context;
-  virtaddr_t stack_top;
-
-  my_thread = thread_get_current_thread();
-  ret = setup_new_process(my_thread, executable, argv,
-                          &entry_point, &stack_top);
-
-  if (ret != 0) {
-    return; /* Something went wrong. */
-  }
-
-  process_set_pagetable(thread_get_thread_entry(my_thread)->pagetable);
-
-  /* Initialize the user context. (Status register is handled by
-     thread_goto_userland) */
-  memoryset(&user_context, 0, sizeof(user_context));
-
-  _context_set_ip(&user_context, entry_point);
-  _context_set_sp(&user_context, stack_top);
-
-  thread_goto_userland(&user_context);
-}
-
-
 process_id_t get_free_pid()
 {
   for (int i = 0; i < PROCESS_MAX_PROCESSES; ++i)
@@ -267,18 +238,24 @@ process_id_t process_spawn(char const* executable, char const **argv)
 
   TID_t my_thread = thread_create(&process_run_thread, (uint32_t) pid);
 
+
   virtaddr_t entry_point;
   int ret;
   virtaddr_t stack_top;
 
-
-
   ret = setup_new_process(my_thread, executable, argv,
                           &entry_point, &stack_top);
+
+
+  kprintf("This is the pid: %d\n", pid);
 
   if (ret != 0) {
     return -31; /* Something went wrong. */
   }
+
+  thread_run(my_thread);
+
+  kprintf("WE MADE IT!\n");
 
   return pid;
 
