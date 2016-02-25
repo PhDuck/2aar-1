@@ -252,7 +252,7 @@ process_id_t process_spawn(char const* executable, char const **argv)
   if (ret != 0) {
     return -31; /* Something went wrong. */
   }
-
+  process_table[pid_to_index(pid)].state = PROCESS_RUNNING;
   thread_run(my_thread);
 
   kprintf("WE MADE IT!\n");
@@ -260,4 +260,19 @@ process_id_t process_spawn(char const* executable, char const **argv)
   return pid;
 
 }
+
+void process_exit (int retval)
+{
+
+TID_t thr = thread_get_current_thread();
+
+vm_destroy_pagetable(thr->pagetable);
+thr->pagetable = NULL;
+
+thread_finish();
+
+}
+
+
+
 
