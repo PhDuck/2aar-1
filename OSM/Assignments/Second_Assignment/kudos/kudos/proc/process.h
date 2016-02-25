@@ -17,6 +17,7 @@
 #define PROCESS_MAX_FILES      10
 #define NO_FREE_PROCESS       -3
 #define UNKNOWN_PID           -4
+#define NO_RUNNING_PROCESS    -5
 
 typedef int process_id_t;
 
@@ -60,5 +61,7 @@ void process_run_thread(uint32_t pid);
 int pid_to_index(process_id_t pid);
 
 process_id_t get_free_pid();
+
+void process_init(void)
 
 #endif

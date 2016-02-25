@@ -22,7 +22,9 @@
 
 extern void process_set_pagetable(pagetable_t*);
 
-process_control_block_t process_table[PROCESS_MAX_PROCESSES];
+/** Spinlock which must be held when manipulating the thread table */
+spinlock_t thread_table_slock;
+
 
 /* Return non-zero on error. */
 int setup_new_process(TID_t thread,
@@ -238,7 +240,6 @@ process_id_t process_spawn(char const* executable, char const **argv)
 
   TID_t my_thread = thread_create(&process_run_thread, (uint32_t) pid);
 
-
   virtaddr_t entry_point;
   int ret;
   virtaddr_t stack_top;
@@ -261,18 +262,72 @@ process_id_t process_spawn(char const* executable, char const **argv)
 
 }
 
-void process_exit (int retval)
+void process_exit (int retval) //retval negativ fail process, positiv succes process?
 {
+  TID_t thr = thread_get_current_thread();
 
-TID_t thr = thread_get_current_thread();
+  process_id_t pid = process_get_current_process();
 
-vm_destroy_pagetable(thr->pagetable);
-thr->pagetable = NULL;
+  _interrupt_disable();
 
-thread_finish();
+  spinlock_acquire(&thread_table_slock);
+  process_table[pid].state = PROCESS_ZOMBIE;
+  spinlock_release(&thread_table_slock);
 
+  vm_destroy_pagetable(thr->pagetable);
+  thr->pagetable = NULL;
+
+
+  _interrupt_enable();
+  _interrupt_yield();
+
+  thread_finish();
+}
+
+void process_init(void)
+{
+  process_control_block_t process_table[PROCESS_MAX_PROCESSES];
 }
 
 
 
+/* Return PID of current process. */
+process_id_t process_get_current_process(void)
+{
+  for (int i = 0; i < PROCESS_MAX_PROCESSES; ++i)
+  {
+    if (process_table[i].state == PROCESS_RUNNING)
+    {
+      return process_table[i].pid;
+    }
+  }
+  return NO_RUNNING_PROCESS;
+}
 
+
+/* Return PCB of current process. */
+process_control_block_t *process_get_current_process_entry(void);
+
+/* Wait for the given process to terminate, return its return value,
+   and mark the process-table entry as free */
+int process_join(process_id_t pid)
+{
+  interrupt_status_t intr_status;
+
+  intr_status = _interrupt_disable();
+
+  _interrupt_set_state(intr_status);
+
+  spinlock_acquire(&thread_table_slock);
+
+  while() {
+
+    sleepq_add(thread_get_current_thread());
+    spinlock_release(&thread_table_slock)
+    thread_switch();
+    spinlock_acquire()
+  }
+  process_spawn(child, arg);
+  spinlock_release()
+
+}
