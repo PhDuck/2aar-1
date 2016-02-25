@@ -44,6 +44,7 @@ typedef struct {
 
   //virtaddr_t
 
+  int retval;
   virtaddr_t stack_top;
   virtaddr_t entry_point;
 
