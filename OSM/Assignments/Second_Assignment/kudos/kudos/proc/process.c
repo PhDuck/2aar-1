@@ -279,7 +279,7 @@ void process_exit (int retval) //retval negativ fail process, positiv succes pro
   process_table[pid].state = PROCESS_ZOMBIE;
   process_table[pid].retval = retval;
 
-  sleepq_wake_all(&retval)
+  sleepq_wake_all(&retval);
 
   spinlock_release(&process_table_slock);
 
@@ -310,7 +310,7 @@ process_id_t process_get_current_process(void)
 /* Return PCB of current process. */
 process_control_block_t *process_get_current_process_entry(void)
 {
-  return &process_table[process_get_current_process()]
+  return &process_table[process_get_current_process()];
 }
 
 /* Wait for the given process to terminate, return its return value,
@@ -331,12 +331,18 @@ int process_join(process_id_t pid)
 
     sleepq_add(thread_get_current_thread());
 
-    spinlock_release(&process_table_slock)
+    spinlock_release(&process_table_slock);
+
     thread_switch();
 
-    spinlock_acquire()
+    spinlock_acquire(&process_table_slock);
   }
-  process_spawn(child, arg);
-  spinlock_release()
+  process_id_t pid = process_spawn(child, arg);
+
+  Status = _interrupt_enable();
+
+  _interrupt_set_state(Status);
+
+  spinlock_release();
 
 }
