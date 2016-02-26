@@ -247,16 +247,12 @@ process_id_t process_spawn(char const* executable, char const **argv)
   ret = setup_new_process(my_thread, executable, argv,
                           &entry_point, &stack_top);
 
-
-  kprintf("This is the pid: %d\n", pid);
-
   if (ret != 0) {
     return -31; /* Something went wrong. */
   }
   process_table[pid_to_index(pid)].state = PROCESS_RUNNING;
   thread_run(my_thread);
 
-  kprintf("WE MADE IT!\n");
 
   return pid;
 
@@ -264,7 +260,7 @@ process_id_t process_spawn(char const* executable, char const **argv)
 
 void process_exit (int retval) //retval negativ fail process, positiv succes process?
 {
-  TID_t thr = thread_get_current_thread();
+  thread_table_t* thr = thread_get_current_thread_entry();
 
   process_id_t pid = process_get_current_process();
 
@@ -287,7 +283,7 @@ void process_exit (int retval) //retval negativ fail process, positiv succes pro
 
   _interrupt_set_state(status);
 
-  vm_destroy_pagetable(thr->pagetable);
+  vm_destroy_pagetable(thr -> pagetable);
   thr->pagetable = NULL;
 
   thread_finish();
