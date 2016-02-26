@@ -25,7 +25,7 @@ extern void process_set_pagetable(pagetable_t*);
 /** Spinlock which must be held when manipulating the thread table */
 spinlock_t process_table_slock;
 
-
+process_control_block_t process_table[PROCESS_MAX_PROCESSES];
 /* Return non-zero on error. */
 int setup_new_process(TID_t thread,
                       const char *executable, const char **argv_src,
@@ -235,7 +235,7 @@ void process_run_thread(uint32_t pid) {
 process_id_t process_spawn(char const* executable, char const **argv)
 {
 
-
+  process_init();
   process_id_t pid = get_free_pid();
 
   TID_t my_thread = thread_create(&process_run_thread, (uint32_t) pid);
@@ -283,9 +283,9 @@ void process_exit (int retval) //retval negativ fail process, positiv succes pro
 
   spinlock_release(&process_table_slock);
 
-  Status = _interrupt_enable();
+  status = _interrupt_enable();
 
-  _interrupt_set_state(Status);
+  _interrupt_set_state(status);
 
   vm_destroy_pagetable(thr->pagetable);
   thr->pagetable = NULL;
@@ -293,10 +293,10 @@ void process_exit (int retval) //retval negativ fail process, positiv succes pro
   thread_finish();
 }
 
-void process_init(void)
-{
-  process_control_block_t process_table[PROCESS_MAX_PROCESSES];
-}
+//void process_init()
+//{
+//  process_control_block_t process_table[PROCESS_MAX_PROCESSES];
+//}
 
 
 
@@ -317,9 +317,7 @@ process_control_block_t *process_get_current_process_entry(void)
    and mark the process-table entry as free */
 int process_join(process_id_t pid)
 {
-  interrupt_status_t intr_status;
-
-  intr_status status;
+  interrupt_status_t status;
 
   status = _interrupt_disable();
 
@@ -337,12 +335,17 @@ int process_join(process_id_t pid)
 
     spinlock_acquire(&process_table_slock);
   }
-  process_id_t pid = process_spawn(child, arg);
+  process_id_t returnpid = process_spawn(child, arg);
 
-  Status = _interrupt_enable();
+  returnpid = returnpid; 
 
-  _interrupt_set_state(Status);
 
-  spinlock_release();
+  status = _interrupt_enable();
+
+  _interrupt_set_state(status);
+
+  spinlock_release(&process_table_slock);
+
+  return 0;
 
 }

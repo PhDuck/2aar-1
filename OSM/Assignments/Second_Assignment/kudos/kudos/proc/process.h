@@ -42,7 +42,7 @@ typedef struct {
     //ret = setup_new_process(my_thread, executable, argv,
     //                      &entry_point, &stack_top);
 
-  //virtaddr_t
+  //virtaddr_ts
 
   int retval;
   virtaddr_t stack_top;
@@ -63,6 +63,13 @@ int pid_to_index(process_id_t pid);
 
 process_id_t get_free_pid();
 
-void process_init(void)
+void process_init();
+
+int process_join(process_id_t pid);
+
+process_control_block_t *process_get_current_process_entry();
+
+process_id_t process_get_current_process();
+
 
 #endif
