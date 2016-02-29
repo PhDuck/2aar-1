@@ -1,0 +1,31 @@
+It looks like your implementation is on the right track. Next time, please
+include a report even if your implementation is not complete. The report should
+describe the ideas behind your implementation and any difficulties you have
+experienced. Without it, its very hard for me to give you the feedback you need.
+
+Why not just use the process table index as the pid of the process? Its simpler
+that maintaining a separate mapping between pids and process table indexes.
+
+You don't save entry_point and stack_top in the process table?
+
+You are not disabling interrupts correctly. _interupt_disable() returns the
+current interrupt mask and _interrupt_set_state(status) restores it to its
+previous value. Therefore, when you call the two functions right after each
+other you are in effect not disabling interrupts.
+
+In common.c you should use process_join to wait for the initial program to
+complete.
+
+You don't declare the process_table array anywhere? This causes some of the
+(many) errors I get when attempting to compile your implementation.
+
+You have a missing ; in process.h preventing thread.h from compiling.
+
+You shouldn't leave a blank line between every line of code. It makes your code
+hard to read. Rather, statements that logically belong together should be placed
+in groups separated by bank lines.
+
+
+For your resubmission, please complete your implementation and write a
+(preferably non-trivial) test case. Come to the exercise sessions if you're
+having problems or have additional questions.
