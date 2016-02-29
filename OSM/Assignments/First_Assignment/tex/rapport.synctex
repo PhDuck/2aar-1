@@ -1,8 +1,8 @@
 SyncTeX Version:1
-Input:1:C:/Users/Baby-/Google Drev/KU/Kode/2aar/OSM/Assignments/First_Assignment/tex/rapport.tex
+Input:1:C:/Users\Baby-\Google Drive\KU\Kode\2aar\OSM\Assignments\First_Assignment\tex\rapport.tex
 Input:2:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\report.cls
 Input:3:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\size11.clo
-Input:4:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\comment\comment.sty
+Input:4:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\comment\comment.sty
 Input:5:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\fontenc.sty
 Input:6:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1enc.def
 Input:7:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\inputenc.sty
@@ -10,21 +10,21 @@ Input:8:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\utf8.def
 Input:9:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1enc.dfu
 Input:10:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ot1enc.dfu
 Input:11:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omsenc.dfu
-Input:12:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fourier\fourier.sty
+Input:12:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fourier\fourier.sty
 Input:13:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\fontenc.sty
 Input:14:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1enc.def
 Input:15:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\textcomp.sty
 Input:16:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1enc.def
 Input:17:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1enc.dfu
-Input:18:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fourier\fourier-orns.sty
+Input:18:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fourier\fourier-orns.sty
 Input:19:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\babel\babel.sty
 Input:20:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\bblopts.cfg
-Input:21:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\babel-danish\danish.ldf
+Input:21:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\babel-danish\danish.ldf
 Input:22:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\babel\babel.def
-Input:23:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\microtype\microtype.sty
+Input:23:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\microtype\microtype.sty
 Input:24:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\keyval.sty
-Input:25:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\microtype\microtype-pdftex.def
-Input:26:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\microtype\microtype.cfg
+Input:25:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\microtype\microtype-pdftex.def
+Input:26:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\microtype\microtype.cfg
 Input:27:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty
 Input:28:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amstext.sty
 Input:29:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty
@@ -40,202 +40,203 @@ Input:38:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg
 Input:39:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def
 Input:40:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty
 Input:41:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty
-Input:42:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\xcolor\xcolor.sty
+Input:42:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty
 Input:43:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\color.cfg
-Input:44:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\colortbl\colortbl.sty
+Input:44:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\colortbl\colortbl.sty
 Input:45:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\array.sty
-Input:46:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\frontendlayer\tikz.sty
-Input:47:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\basiclayer\pgf.sty
-Input:48:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\utilities\pgfrcs.sty
-Input:49:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfutil-common.tex
-Input:50:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfutil-common-lists.tex
-Input:51:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfutil-latex.def
-Input:52:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\ms\everyshi.sty
-Input:53:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfrcs.code.tex
-Input:54:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\basiclayer\pgfcore.sty
-Input:55:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\systemlayer\pgfsys.sty
-Input:56:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgfsys.code.tex
-Input:57:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfkeys.code.tex
-Input:58:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfkeysfiltered.code.tex
-Input:59:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgf.cfg
-Input:60:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgfsys-pdftex.def
-Input:61:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgfsys-common-pdf.def
-Input:62:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgfsyssoftpath.code.tex
-Input:63:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgfsysprotocol.code.tex
-Input:64:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcore.code.tex
-Input:65:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmath.code.tex
-Input:66:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathcalc.code.tex
-Input:67:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathutil.code.tex
-Input:68:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathparser.code.tex
-Input:69:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunctions.code.tex
-Input:70:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunctions.basic.code.tex
-Input:71:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunctions.trigonometric.code.tex
-Input:72:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunctions.random.code.tex
-Input:73:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunctions.comparison.code.tex
-Input:74:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunctions.base.code.tex
-Input:75:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunctions.round.code.tex
-Input:76:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunctions.misc.code.tex
-Input:77:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunctions.integerarithmetics.code.tex
-Input:78:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfloat.code.tex
-Input:79:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcorepoints.code.tex
-Input:80:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcorepathconstruct.code.tex
-Input:81:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcorepathusage.code.tex
-Input:82:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcorescopes.code.tex
-Input:83:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcoregraphicstate.code.tex
-Input:84:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcoretransformations.code.tex
-Input:85:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcorequick.code.tex
-Input:86:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcoreobjects.code.tex
-Input:87:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcorepathprocessing.code.tex
-Input:88:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcorearrows.code.tex
-Input:89:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcoreshade.code.tex
-Input:90:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcoreimage.code.tex
-Input:91:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcoreexternal.code.tex
-Input:92:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcorelayers.code.tex
-Input:93:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcoretransparency.code.tex
-Input:94:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcorepatterns.code.tex
-Input:95:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\modules\pgfmoduleshapes.code.tex
-Input:96:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\modules\pgfmoduleplot.code.tex
-Input:97:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\compatibility\pgfcomp-version-0-65.sty
-Input:98:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\compatibility\pgfcomp-version-1-18.sty
-Input:99:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\utilities\pgffor.sty
-Input:100:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\utilities\pgfkeys.sty
-Input:101:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfkeys.code.tex
-Input:102:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\math\pgfmath.sty
-Input:103:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmath.code.tex
-Input:104:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgffor.code.tex
-Input:105:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmath.code.tex
-Input:106:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\tikz\tikz.code.tex
-Input:107:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\libraries\pgflibraryplothandlers.code.tex
-Input:108:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\modules\pgfmodulematrix.code.tex
-Input:109:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarytopaths.code.tex
-Input:110:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryarrows.code.tex
-Input:111:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\libraries\pgflibraryarrows.code.tex
-Input:112:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarypositioning.code.tex
+Input:46:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\frontendlayer\tikz.sty
+Input:47:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgf.sty
+Input:48:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\utilities\pgfrcs.sty
+Input:49:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common.tex
+Input:50:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common-lists.tex
+Input:51:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-latex.def
+Input:52:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\ms\everyshi.sty
+Input:53:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pgfrcs.code.tex
+Input:54:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgfcore.sty
+Input:55:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\systemlayer\pgfsys.sty
+Input:56:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsys.code.tex
+Input:57:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeys.code.tex
+Input:58:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeysfiltered.code.tex
+Input:59:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgf.cfg
+Input:60:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsys-pdftex.def
+Input:61:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsys-common-pdf.def
+Input:62:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsyssoftpath.code.tex
+Input:63:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsysprotocol.code.tex
+Input:64:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcore.code.tex
+Input:65:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath.code.tex
+Input:66:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmathcalc.code.tex
+Input:67:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmathutil.code.tex
+Input:68:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmathparser.code.tex
+Input:69:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.code.tex
+Input:70:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.basic.code.tex
+Input:71:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.trigonometric.code.tex
+Input:72:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.random.code.tex
+Input:73:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.comparison.code.tex
+Input:74:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.base.code.tex
+Input:75:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.round.code.tex
+Input:76:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.misc.code.tex
+Input:77:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.integerarithmetics.code.tex
+Input:78:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfloat.code.tex
+Input:79:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepoints.code.tex
+Input:80:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepathconstruct.code.tex
+Input:81:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepathusage.code.tex
+Input:82:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorescopes.code.tex
+Input:83:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoregraphicstate.code.tex
+Input:84:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoretransformations.code.tex
+Input:85:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorequick.code.tex
+Input:86:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreobjects.code.tex
+Input:87:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepathprocessing.code.tex
+Input:88:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorearrows.code.tex
+Input:89:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreshade.code.tex
+Input:90:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreimage.code.tex
+Input:91:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreexternal.code.tex
+Input:92:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorelayers.code.tex
+Input:93:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoretransparency.code.tex
+Input:94:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepatterns.code.tex
+Input:95:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\modules\pgfmoduleshapes.code.tex
+Input:96:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\modules\pgfmoduleplot.code.tex
+Input:97:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\compatibility\pgfcomp-version-0-65.sty
+Input:98:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\compatibility\pgfcomp-version-1-18.sty
+Input:99:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\utilities\pgffor.sty
+Input:100:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\utilities\pgfkeys.sty
+Input:101:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeys.code.tex
+Input:102:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pgf\math\pgfmath.sty
+Input:103:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath.code.tex
+Input:104:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\utilities\pgffor.code.tex
+Input:105:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\math\pgfmath.code.tex
+Input:106:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\tikz.code.tex
+Input:107:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryplothandlers.code.tex
+Input:108:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\modules\pgfmodulematrix.code.tex
+Input:109:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarytopaths.code.tex
+Input:110:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryarrows.code.tex
+Input:111:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryarrows.code.tex
+Input:112:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarypositioning.code.tex
 Input:113:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ltxmisc\parskip.sty
-Input:114:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\natbib\natbib.sty
+Input:114:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\natbib\natbib.sty
 Input:115:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\float\float.sty
-Input:116:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption.sty
-Input:117:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\caption\caption3.sty
-Input:118:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\pbox\pbox.sty
+Input:116:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\caption\caption.sty
+Input:117:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\caption\caption3.sty
+Input:118:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\pbox\pbox.sty
 Input:119:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\calc.sty
 Input:120:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ifthen.sty
-Input:121:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fixme\fixme.sty
+Input:121:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fixme\fixme.sty
 Input:122:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\verbatim.sty
 Input:123:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\xkeyval\xkeyval.sty
 Input:124:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex
-Input:125:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty
-Input:126:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty
-Input:127:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty
-Input:128:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty
-Input:129:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\auxhook.sty
-Input:130:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty
-Input:131:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def
-Input:132:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg
-Input:133:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\url\url.sty
-Input:134:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def
-Input:135:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty
-Input:136:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fancyhdr\fancyhdr.sty
-Input:137:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\lastpage\lastpage.sty
-Input:138:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fancyhdr\extramarks.sty
-Input:139:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings.sty
-Input:140:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstmisc.sty
-Input:141:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings.cfg
-Input:142:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\courier.sty
-Input:143:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\lipsum\lipsum.sty
-Input:144:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\geometry\geometry.sty
-Input:145:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\geometry\geometry.cfg
-Input:146:C:\Users\Baby-\Google Drev\KU\Kode\2aar\OSM\Assignments\First_Assignment\tex\rapport.aux
-Input:147:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fourier\fmlfutm.fd
-Input:148:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fourier\fmsfutm.fd
-Input:149:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fourier\fmxfutm.fd
-Input:150:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmr.fd
-Input:151:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\latex\fourier\t1futs.fd
-Input:152:C:\Users\Baby-\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
-Input:153:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty
-Input:154:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty
-Input:155:C:\Users\Baby-\Google Drev\KU\Kode\2aar\OSM\Assignments\First_Assignment\tex\rapport.out
-Input:156:C:\Users\Baby-\Google Drev\KU\Kode\2aar\OSM\Assignments\First_Assignment\tex\rapport.out
+Input:125:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\xkeyval\xkvutils.tex
+Input:126:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty
+Input:127:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty
+Input:128:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty
+Input:129:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty
+Input:130:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\auxhook.sty
+Input:131:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty
+Input:132:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def
+Input:133:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg
+Input:134:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\url\url.sty
+Input:135:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def
+Input:136:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty
+Input:137:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.sty
+Input:138:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lastpage\lastpage.sty
+Input:139:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fancyhdr\extramarks.sty
+Input:140:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\listings\listings.sty
+Input:141:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\listings\lstmisc.sty
+Input:142:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\listings\listings.cfg
+Input:143:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\courier.sty
+Input:144:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lipsum\lipsum.sty
+Input:145:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\geometry\geometry.sty
+Input:146:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\geometry\geometry.cfg
+Input:147:C:\Users\Baby-\Google Drive\KU\Kode\2aar\OSM\Assignments\First_Assignment\tex\rapport.aux
+Input:148:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fourier\fmlfutm.fd
+Input:149:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fourier\fmsfutm.fd
+Input:150:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fourier\fmxfutm.fd
+Input:151:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmr.fd
+Input:152:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fourier\t1futs.fd
+Input:153:C:\Users\Baby-\AppData\Local\Programs\MiKTeX 2.9\tex\context\base\supp-pdf.mkii
+Input:154:C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty
+Input:155:C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty
+Input:156:C:\Users\Baby-\Google Drive\KU\Kode\2aar\OSM\Assignments\First_Assignment\tex\rapport.out
+Input:157:C:\Users\Baby-\Google Drive\KU\Kode\2aar\OSM\Assignments\First_Assignment\tex\rapport.out
 Output:pdf
 Magnification:1000
 Unit:1
 X Offset:0
 Y Offset:0
 Content:
-!13612
+!14351
 {1
-[1,213:4736286,50912092:28501632,46175806,0
-h1,213:4736286,4736286:0,0,0
-h1,213:4736286,4736286:0,0,0
-[1,213:4736286,4736286:0,0,0
-(1,213:4736286,2245673:0,0,0
-k1,213:4736286,2245673:-1118291
+[1,215:4736286,50912092:28501632,46175806,0
+h1,215:4736286,4736286:0,0,0
+h1,215:4736286,4736286:0,0,0
+[1,215:4736286,4736286:0,0,0
+(1,215:4736286,2245673:0,0,0
+k1,215:4736286,2245673:-1118291
 )
 ]
-[1,213:4736286,50644703:28501632,45908417,267389
-[1,213:5920358,50644703:27317560,48333249,267389
-[1,213:5920358,3097886:27317560,786432,0
-(1,213:5920358,3097886:27317560,786432,0
-(1,213:5920358,3097886:27317560,786432,0
-(1,213:5920358,3097886:27317560,786432,0
-[1,213:5920358,3097886:27317560,786432,0
-(1,213:5920358,2935354:27317560,623900,267389
-(1,213:5920358,2935354:0,623900,267389
-[1,213:5920358,2935354:27317560,623900,267389
-(1,213:5920358,2935354:27317560,623900,267389
-h1,213:5920358,2935354:0,0,0
-x1,213:6543251,2935354
-x1,213:6984585,2935354
-x1,213:7828503,2935354
-g1,213:7977049,2935354
-x1,213:8599942,2935354
-x1,213:10389680,2935354
-x1,213:10558320,2935354
-g1,213:10706866,2935354
-x1,213:11329759,2935354
-x1,213:12349494,2935354
-r1,213:12349494,2935354:0,891289,267389
-k1,213:22793706,2935354:10444212
-k1,213:33237918,2935354:10444212
+[1,215:4736286,50644703:28501632,45908417,267389
+[1,215:5920358,50644703:27317560,48333249,267389
+[1,215:5920358,3097886:27317560,786432,0
+(1,215:5920358,3097886:27317560,786432,0
+(1,215:5920358,3097886:27317560,786432,0
+(1,215:5920358,3097886:27317560,786432,0
+[1,215:5920358,3097886:27317560,786432,0
+(1,215:5920358,2935354:27317560,623900,267389
+(1,215:5920358,2935354:0,623900,267389
+[1,215:5920358,2935354:27317560,623900,267389
+(1,215:5920358,2935354:27317560,623900,267389
+h1,215:5920358,2935354:0,0,0
+x1,215:6543251,2935354
+x1,215:6984585,2935354
+x1,215:7828503,2935354
+g1,215:7977049,2935354
+x1,215:8599942,2935354
+x1,215:10389680,2935354
+x1,215:10558320,2935354
+g1,215:10706866,2935354
+x1,215:11329759,2935354
+x1,215:12349494,2935354
+r1,215:12349494,2935354:0,891289,267389
+k1,215:22793706,2935354:10444212
+k1,215:33237918,2935354:10444212
 )
 ]
-k1,213:5920358,2935354:-27317560
+k1,215:5920358,2935354:-27317560
 )
-g1,213:5920358,2935354
-[1,213:5920358,2935354:27317560,623900,267389
-(1,213:5920358,2935354:27317560,623900,267389
-k1,213:16507541,2935354:10587183
-h1,213:16507541,2935354:0,0,0
-x1,213:17990859,2935354
-g1,213:18279724,2935354
-x1,213:21801793,2935354
-g1,213:21950339,2935354
-x1,213:22650735,2935354
-r1,213:22650735,2935354:0,891289,267389
-g1,213:22650735,2935354
-k1,213:33237918,2935354:10587183
-)
-]
-g1,213:33237918,2935354
-(1,213:33237918,2935354:0,623900,267389
-k1,213:5920358,2935354:-27317560
-[1,213:5920358,2935354:27317560,623900,267389
-(1,213:5920358,2935354:27317560,623900,267389
-k1,213:33237918,2935354:27317560
-h1,213:33237918,2935354:0,0,0
-r1,213:33237918,2935354:0,891289,267389
-g1,213:33237918,2935354
-g1,213:33237918,2935354
+g1,215:5920358,2935354
+[1,215:5920358,2935354:27317560,623900,267389
+(1,215:5920358,2935354:27317560,623900,267389
+k1,215:16507541,2935354:10587183
+h1,215:16507541,2935354:0,0,0
+x1,215:17990859,2935354
+g1,215:18279724,2935354
+x1,215:21801793,2935354
+g1,215:21950339,2935354
+x1,215:22650735,2935354
+r1,215:22650735,2935354:0,891289,267389
+g1,215:22650735,2935354
+k1,215:33237918,2935354:10587183
 )
 ]
-)
+g1,215:33237918,2935354
+(1,215:33237918,2935354:0,623900,267389
+k1,215:5920358,2935354:-27317560
+[1,215:5920358,2935354:27317560,623900,267389
+(1,215:5920358,2935354:27317560,623900,267389
+k1,215:33237918,2935354:27317560
+h1,215:33237918,2935354:0,0,0
+r1,215:33237918,2935354:0,891289,267389
+g1,215:33237918,2935354
+g1,215:33237918,2935354
 )
 ]
 )
-g1,213:33237918,3097886
+)
+]
+)
+g1,215:33237918,3097886
 )
 )
 ]
-[1,213:5920358,49460632:27317560,44724346,0
+[1,215:5920358,49460632:27317560,44724346,0
 (1,207:5920358,5457182:27317560,492286,162540
 h1,206:5920358,5457182:0,0,0
 x1,206:6433470,5457182
@@ -310,7 +311,7 @@ x1,206:31067107,6482160
 k1,207:33237918,6482160:2293323
 g1,207:33237918,6482160
 )
-(1,210:5920358,7952783:27317560,492286,162540
+(1,211:5920358,7952783:27317560,492286,162540
 h1,209:5920358,7952783:0,0,0
 x1,209:6439006,7952783
 x1,209:7035810,7952783
@@ -352,8 +353,8 @@ x1,209:32908687,7952783
 x1,209:33237918,7952783
 k1,209:33237918,7952783:0
 )
-(1,210:5920358,8977761:27317560,492286,162540
-x1,210:7533564,8977761
+(1,211:5920358,8977761:27317560,492286,162540
+x1,211:7533564,8977761
 k1,209:7681991,8977761:148427
 x1,209:8824439,8977761
 k1,209:8972867,8977761:148428
@@ -398,8 +399,8 @@ x1,209:32883416,8977761
 x1,209:33237918,8977761
 k1,209:33237918,8977761:0
 )
-(1,210:5920358,10002739:27317560,492286,162540
-x1,210:6503737,10002739
+(1,211:5920358,10002739:27317560,492286,162540
+x1,211:6503737,10002739
 k1,209:6680237,10002739:176500
 x1,209:7624478,10002739
 x1,209:8469070,10002739
@@ -440,84 +441,220 @@ k1,209:32654539,10002739:176500
 x1,209:33237918,10002739
 k1,209:33237918,10002739:0
 )
-(1,210:5920358,11027717:27317560,492286,147829
-x1,210:8878379,11027717
-x1,209:9204895,11027717
-g1,209:9353441,11027717
-x1,209:10101199,11027717
-g1,209:10249745,11027717
-x1,209:12661659,11027717
-x1,209:12893449,11027717
-g1,209:13041995,11027717
-x1,209:13645511,11027717
-g1,209:13794057,11027717
-x1,209:15659146,11027717
-g1,209:15807692,11027717
-x1,209:16874072,11027717
-k1,210:33237918,11027717:16486358
-g1,210:33237918,11027717
+(1,211:5920358,11027717:27317560,492286,162540
+x1,211:8902042,11027717
+x1,209:9231273,11027717
+k1,209:9378802,11027717:147529
+x1,209:10132542,11027717
+k1,209:10280071,11027717:147529
+x1,209:12711278,11027717
+x1,209:12944882,11027717
+k1,209:13092411,11027717:147529
+x1,209:13700755,11027717
+k1,209:13848284,11027717:147529
+x1,209:15728294,11027717
+k1,209:15875823,11027717:147529
+x1,209:16950734,11027717
+k1,209:17098270,11027717:147536
+x1,209:17458503,11027717
+k1,210:17098270,11027717:-12917
+x1,210:18791034,11027717
+k1,210:18938563,11027717:147529
+x1,210:19468062,11027717
+k1,210:19615591,11027717:147529
+x1,210:20272401,11027717
+x1,210:21627933,11027717
+k1,210:21775462,11027717:147529
+x1,210:23886946,11027717
+k1,210:24034475,11027717:147529
+x1,210:26548146,11027717
+x1,210:26718187,11027717
+k1,210:26865717,11027717:147530
+x1,210:27503719,11027717
+k1,210:27651248,11027717:147529
+x1,210:29249872,11027717
+x1,210:29869170,11027717
+k1,210:30016699,11027717:147529
+x1,210:32497095,11027717
+x1,210:33237918,11027717
+k1,210:33237918,11027717:0
+)
+(1,211:5920358,12052695:27317560,492286,162540
+x1,211:6662949,12052695
+k1,210:6812011,12052695:149062
+x1,210:7143321,12052695
+x1,210:7774504,12052695
+x1,210:8385649,12052695
+k1,210:8534711,12052695:149062
+x1,210:13295863,12052695
+k1,210:13444928,12052695:149065
+x1,210:13926898,12052695
+x1,210:14178931,12052695
+x1,210:16125402,12052695
+k1,210:16274464,12052695:149062
+x1,210:16874962,12052695
+k1,210:17024024,12052695:149062
+x1,210:17593105,12052695
+k1,210:17742166,12052695:149061
+x1,210:18264835,12052695
+k1,210:18413897,12052695:149062
+x1,210:19062236,12052695
+x1,210:20400352,12052695
+k1,210:20549414,12052695:149062
+x1,210:22633669,12052695
+k1,210:22782731,12052695:149062
+x1,210:24977657,12052695
+x1,210:25112411,12052695
+k1,210:25261474,12052695:149063
+x1,210:27424986,12052695
+k1,210:27574047,12052695:149061
+x1,210:28143128,12052695
+k1,210:28292190,12052695:149062
+x1,210:28814859,12052695
+k1,210:28963921,12052695:149062
+x1,210:30529787,12052695
+x1,210:30854606,12052695
+k1,210:31003668,12052695:149062
+x1,210:32001167,12052695
+k1,210:32150229,12052695:149062
+x1,210:33250548,12052695
+k1,210:33237918,12052695:0
+)
+(1,211:5920358,13077673:27317560,492286,147829
+x1,211:6666681,13077673
+g1,210:6815227,13077673
+x1,210:7957675,13077673
+g1,210:8106221,13077673
+x1,210:9109451,13077673
+x1,210:10071059,13077673
+x1,210:10242569,13077673
+x1,210:10457854,13077673
+g1,210:10606400,13077673
+x1,210:12105504,13077673
+g1,210:12254050,13077673
+x1,210:13928253,13077673
+k1,211:33237917,13077673:19432176
+g1,211:33237917,13077673
+)
+(1,213:5920358,14548296:27317560,492286,162540
+h1,212:5920358,14548296:0,0,0
+x1,212:6400875,14548296
+x1,212:6652138,14548296
+x1,212:8592755,14548296
+k1,212:8741199,14548296:148444
+x1,212:9339887,14548296
+k1,212:9488330,14548296:148443
+x1,212:10055696,14548296
+k1,212:10204140,14548296:148444
+x1,212:10725233,14548296
+k1,212:10873677,14548296:148444
+x1,212:11868170,14548296
+k1,212:12016613,14548296:148443
+x1,212:13866781,14548296
+k1,212:14015225,14548296:148444
+x1,212:15073074,14548296
+k1,212:15221518,14548296:148444
+x1,212:17378507,14548296
+k1,212:17526951,14548296:148444
+x1,212:18094317,14548296
+k1,212:18242760,14548296:148443
+x1,212:19195963,14548296
+k1,212:19344407,14548296:148444
+x1,212:19935977,14548296
+k1,212:20084421,14548296:148444
+x1,212:21695399,14548296
+x1,212:22244153,14548296
+k1,212:22392596,14548296:148443
+x1,212:23132949,14548296
+k1,212:23281393,14548296:148444
+x1,212:23611704,14548296
+x1,212:24240974,14548296
+x1,212:24850238,14548296
+k1,212:24998682,14548296:148444
+x1,212:25405164,14548296
+x1,212:25777842,14548296
+x1,212:25881144,14548296
+x1,212:26094127,14548296
+k1,212:26242571,14548296:148444
+x1,212:27417169,14548296
+k1,212:27565612,14548296:148443
+x1,212:29753210,14548296
+k1,212:29901654,14548296:148444
+x1,212:30619938,14548296
+k1,212:30768382,14548296:148444
+x1,212:31396258,14548296
+k1,212:31544701,14548296:148443
+x1,212:32136271,14548296
+k1,212:32284715,14548296:148444
+x1,212:33237918,14548296
+k1,212:33237918,14548296:0
+)
+(1,213:5920358,15573274:27317560,492286,3587
+x1,213:6930764,15573274
+k1,213:33237918,15573274:26307154
+g1,213:33237918,15573274
 )
 ]
-(1,213:5920358,50644703:27317560,623900,267389
-(1,213:5920358,50644703:27317560,623900,267389
-(1,213:5920358,50644703:27317560,623900,267389
-[1,213:5920358,50644703:27317560,623900,267389
-(1,213:5920358,50644703:27317560,623900,267389
-(1,213:5920358,50644703:0,623900,267389
-[1,213:5920358,50644703:27317560,623900,267389
-(1,213:5920358,50644703:27317560,623900,267389
-h1,213:5920358,50644703:0,0,0
-r1,213:5920358,50644703:0,891289,267389
-k1,213:19579138,50644703:13658780
-k1,213:33237918,50644703:13658780
+(1,215:5920358,50644703:27317560,623900,267389
+(1,215:5920358,50644703:27317560,623900,267389
+(1,215:5920358,50644703:27317560,623900,267389
+[1,215:5920358,50644703:27317560,623900,267389
+(1,215:5920358,50644703:27317560,623900,267389
+(1,215:5920358,50644703:0,623900,267389
+[1,215:5920358,50644703:27317560,623900,267389
+(1,215:5920358,50644703:27317560,623900,267389
+h1,215:5920358,50644703:0,0,0
+r1,215:5920358,50644703:0,891289,267389
+k1,215:19579138,50644703:13658780
+k1,215:33237918,50644703:13658780
 )
 ]
-k1,213:5920358,50644703:-27317560
+k1,215:5920358,50644703:-27317560
 )
-g1,213:5920358,50644703
-[1,213:5920358,50644703:27317560,0,0
-(1,213:5920358,50644703:27317560,0,0
-k1,213:19579138,50644703:13658780
-h1,213:19579138,50644703:0,0,0
-g1,213:19579138,50644703
-k1,213:33237918,50644703:13658780
-)
-]
-g1,213:33237918,50644703
-(1,213:33237918,50644703:0,623900,267389
-k1,213:5920358,50644703:-27317560
-[1,213:5920358,50644703:27317560,623900,267389
-(1,213:5920358,50644703:27317560,623900,267389
-k1,213:30100496,50644703:24180138
-h1,213:30100496,50644703:0,0,0
-x1,213:30496621,50644703
-x1,213:31500567,50644703
-g1,213:31649113,50644703
-x1,213:31999311,50644703
-g1,213:32147857,50644703
-x1,213:32739174,50644703
-g1,213:32887720,50644703
-x1,213:33237918,50644703
-r1,213:33237918,50644703:0,891289,267389
-g1,213:33237918,50644703
-g1,213:33237918,50644703
+g1,215:5920358,50644703
+[1,215:5920358,50644703:27317560,0,0
+(1,215:5920358,50644703:27317560,0,0
+k1,215:19579138,50644703:13658780
+h1,215:19579138,50644703:0,0,0
+g1,215:19579138,50644703
+k1,215:33237918,50644703:13658780
 )
 ]
-)
+g1,215:33237918,50644703
+(1,215:33237918,50644703:0,623900,267389
+k1,215:5920358,50644703:-27317560
+[1,215:5920358,50644703:27317560,623900,267389
+(1,215:5920358,50644703:27317560,623900,267389
+k1,215:30100496,50644703:24180138
+h1,215:30100496,50644703:0,0,0
+x1,215:30496621,50644703
+x1,215:31500567,50644703
+g1,215:31649113,50644703
+x1,215:31999311,50644703
+g1,215:32147857,50644703
+x1,215:32739174,50644703
+g1,215:32887720,50644703
+x1,215:33237918,50644703
+r1,215:33237918,50644703:0,891289,267389
+g1,215:33237918,50644703
+g1,215:33237918,50644703
 )
 ]
 )
-g1,213:33237918,50644703
+)
+]
+)
+g1,215:33237918,50644703
 )
 )
 ]
 ]
 ]
-!9086
+!12825
 }1
-Input:157:C:\Users\Baby-\Google Drev\KU\Kode\2aar\OSM\Assignments\First_Assignment\tex\rapport.aux
-!108
+Input:158:C:\Users\Baby-\Google Drive\KU\Kode\2aar\OSM\Assignments\First_Assignment\tex\rapport.aux
+!110
 Postamble:
-Count:205
+Count:267
 !26
 Post scriptum:
