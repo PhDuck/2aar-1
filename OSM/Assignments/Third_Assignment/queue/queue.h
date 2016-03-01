@@ -9,6 +9,7 @@ struct node {
 };
 
 struct queue {
+  pthread_mutex_t lock;
   struct node *root;
   struct node *next;
   size_t count;

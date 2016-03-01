@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <pthread.h>
 
 #include "queue.h"
 
@@ -57,7 +58,7 @@ queue_heap_down(struct node *array, size_t count, size_t i) {
 int
 queue_init(struct queue *q) {
   /* FIXME: Make this function also initialize the pthread objects. */
-
+  pthread_mutex_init(*q);
   q->root = (struct node *)malloc(
     sizeof(struct node) * INIT_SIZE);
   q->next = q->root;
@@ -101,6 +102,8 @@ queue_push(struct queue *q, int pri) {
 
   queue_heap_up(q->root, q->count);
   q->count++;
+
+
 
   return 0;
 }

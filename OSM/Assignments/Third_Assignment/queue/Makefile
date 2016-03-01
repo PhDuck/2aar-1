@@ -1,7 +1,7 @@
 .PHONY: all clean valgrind quickgrind debug
 
 CC=gcc
-CFLAGS=-Wall -Werror -Wextra -pedantic -std=c11 -g
+CFLAGS=-Wall -Werror -Wextra -pedantic -std=c11 -g -pthread
 
 all: bouncer
 
