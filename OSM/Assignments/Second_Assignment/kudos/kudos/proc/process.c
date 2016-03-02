@@ -189,14 +189,14 @@ process_id_t get_free_pid()
   {
     if (process_table[i].state == PROCESS_FREE)
     {
-      return process_table[i].pid;
+      return i;
     }
   }
   //
   return NO_FREE_PROCESS;
 };
 
-int pid_to_index(process_id_t pid)
+/*int pid_to_index(process_id_t pid)
 {
   for (int i = 0; i < PROCESS_MAX_PROCESSES; ++i)
   {
@@ -207,10 +207,10 @@ int pid_to_index(process_id_t pid)
   }
   return UNKNOWN_PID;
 }
-
+*/
 void process_run_thread(uint32_t pid) {
 
-  int process_block_index = pid_to_index(pid);
+  int process_block_index = pid;
 
   context_t user_context = process_table[process_block_index].user_context;
   virtaddr_t entry_point = process_table[process_block_index].entry_point;
@@ -250,7 +250,7 @@ process_id_t process_spawn(char const* executable, char const **argv)
   if (ret != 0) {
     return -31; /* Something went wrong. */
   }
-  process_table[pid_to_index(pid)].state = PROCESS_RUNNING;
+  process_table[pid].state = PROCESS_RUNNING;
   thread_run(my_thread);
 
 

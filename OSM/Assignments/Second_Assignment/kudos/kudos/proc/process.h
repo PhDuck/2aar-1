@@ -33,17 +33,6 @@ typedef enum {
 
 
 typedef struct {
-  /*Penis ID*/
-  process_id_t pid;
-
-  // Entry point of memory
-  //char *men;
-
-    //ret = setup_new_process(my_thread, executable, argv,
-    //                      &entry_point, &stack_top);
-
-  //virtaddr_ts
-
   int retval;
   virtaddr_t stack_top;
   virtaddr_t entry_point;
