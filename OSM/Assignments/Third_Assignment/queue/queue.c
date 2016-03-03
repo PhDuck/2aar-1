@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <pthread.h>
+#include <stdio.h>
 
 #include "queue.h"
 
@@ -61,13 +62,18 @@ queue_heap_down(struct node *array, size_t count, size_t i) {
 int
 queue_init(struct queue *q) {
   /* FIXME: Make this function also initialize the pthread objects. */
+  
+  pthread_mutex_init(&lock, NULL);
+  pthread_cond_init(&cond, NULL);
+
   q->root = (struct node *)malloc(
     sizeof(struct node) * INIT_SIZE);
   q->next = q->root;
   q->count = 0;
   q->size = INIT_SIZE;
-  pthread_mutex_init(&lock, NULL);
-  pthread_cond_init(&cond, NULL);
+
+  pthread_mutex_unlock(&lock);
+
   return 0;
 }
 
@@ -89,17 +95,19 @@ queue_grow(struct queue *q) {
   return 0;
 }
 
+
 int
 queue_push(struct queue *q, int pri) {
   /* FIXME: Make this function thread-safe. */
   pthread_mutex_lock(&lock);
   int retval;
 
+  //printf("Testing for PUSH\n");
+
   if (q->count >= q->size) {
     retval = queue_grow(q);
     if (retval != 0) 
       {
-        pthread_mutex_unlock(&lock);
         return retval;
       }
   }
@@ -132,6 +140,8 @@ queue_pop(struct queue *q, int *pri_ptr) {
   q->next--;
 
   exchange(q->root, q->next);
+
+  printf("Testing for POP\n");
   queue_heap_down(q->root, q->count, 0);
   return 0;
 }
@@ -140,5 +150,6 @@ int
 queue_destroy(struct queue *q) {
   free(q->root);
   pthread_mutex_destroy(&lock);
+  //pthread_cond_destroy(&lock);
   return 0;
 }

@@ -3,13 +3,16 @@
 CC=gcc
 CFLAGS=-Wall -Werror -Wextra -pedantic -std=c11 -g -pthread
 
-all: bouncer
+all: bouncer test
 
 bouncer: queue.o bouncer.c
 	$(CC) $(CFLAGS) -o bouncer queue.o bouncer.c
 
 queue.o: queue.c
 	$(CC) $(CFLAGS) -c queue.c
+
+test: queue.o
+	$(CC) $(CFLAGS) -o test queue.o test.c
 
 clean:
 	rm -f *.o
