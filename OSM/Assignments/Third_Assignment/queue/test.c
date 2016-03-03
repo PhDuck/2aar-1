@@ -7,7 +7,7 @@
 
 static struct queue queue;
 
-void *mythreadpush(void *arg) {
+void *pushing(void *arg) {
 
   printf("%s initialize \n", (char *) arg);
   queue_push(&queue, 2);
@@ -33,9 +33,9 @@ int main() {
   pthread_t threads[NUM_THREADS];
   
   
-  pthread_create(&threads[0], NULL, mythreadpush, "thread 0");
+  pthread_create(&threads[0], NULL, pushing, "thread 0");
   pthread_create(&threads[1], NULL, pooping, "thread 1"); 
-  pthread_create(&threads[2], NULL, mythreadpush, "thread 2");
+  pthread_create(&threads[2], NULL, pushing, "thread 2");
   pthread_create(&threads[3], NULL, pooping, "thread 3"); 
   // join waits for the threads to finish
   for (int i = 0; i < NUM_THREADS; i++) {
