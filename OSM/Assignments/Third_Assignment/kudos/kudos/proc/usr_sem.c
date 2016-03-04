@@ -1,17 +1,14 @@
-#include "thread_h"
 #include "usr_sem.h"
 
-static usr_sem_t* sem_table[MAX_SEM_TABLE];
+static usr_sem_t sem_table[MAX_SEM_TABLE];
 
 static spinlock_t sem_table_slock;
 
 void user_sem_init(void)
 {
-  int i;
-
   spinlock_reset(&sem_table_slock);
-  for(i = 0; i < MAX_SEM_TABLE; i++)
-    sem_table[i].thread = -1;
+  for(int i = 0; i < MAX_SEM_TABLE; i++)
+    sem_table[i].thread = 1;
 }
 
 
@@ -38,6 +35,10 @@ int find_index_from_name(const char* name) {
 }
 
 usr_sem_t* usr_sem_open(const char* name, int value) {
+	
+
+	spinlock_acquire(&sem_table_slock);
+
 	if (value >= 0)
 	{
 		for (int i = 0; i < MAX_SEM_TABLE; ++i)
@@ -47,17 +48,20 @@ usr_sem_t* usr_sem_open(const char* name, int value) {
 				return NULL;
 			}
 		}
-		index = find_empty_sem_slot(); 
+		int index = find_empty_sem_slot(); 
 
 		sem_table[index].name = name;
 		sem_table[index].value = value;
 		sem_table[index].thread = thread_get_current_thread();
+
+		spinlock_release(&sem_table_slock);
+
 		return &sem_table[index];
 	}
 
 	if (value < 0 ) 
 		{
-		for (int i = 0; i < MAX_SEM_TABLE; ++i)
+			for (int i = 0; i < MAX_SEM_TABLE; ++i)
 			{
 				if (sem_table[i].name == name) 
 				{
@@ -67,6 +71,8 @@ usr_sem_t* usr_sem_open(const char* name, int value) {
 			
 		return NULL;
 		}
+
+	return NULL;
 }
 
 int usr_sem_destory(usr_sem_t* sem) {
@@ -74,16 +80,16 @@ int usr_sem_destory(usr_sem_t* sem) {
 
 	intr_status = _interrupt_disable();
 	spinlock_acquire(&sem->slock);
-	if (sem.value < 0)
+	if (sem -> value < 0)
 	{
 		spinlock_release(&sem -> slock);	
 		_interrupt_set_state(intr_status);
 		return SEM_BLOCKED;
 	}
 	
-	sem.name = "";
-	sem.value = 0;
-	sem.thread = -1;	
+	sem -> name = "";
+	sem -> value = 0;
+	sem -> thread = -1;	
 	
 	spinlock_release(&sem -> slock);
 	_interrupt_set_state(intr_status);

@@ -3,17 +3,19 @@
 
 #include "kernel/spinlock.h"
 #include "kernel/thread.h"
+#include "kernel/interrupt.h"
+#include "kernel/sleepq.h"
 
-#define MAX_SEM_TABLE 15; // This might be wrong.
-#define ERROR_NO_EMPTY_IN_SEM_TABLE -101;
-#define ERROR_UNKNOWN_NAME -102;
-#define SEM_BLOCKED -103;
-#define ERROR_NEGATIVE_VALUE -104;
+#define MAX_SEM_TABLE 15 //This is a choice by us.
+#define ERROR_NO_EMPTY_IN_SEM_TABLE -101
+#define ERROR_UNKNOWN_NAME -102
+#define SEM_BLOCKED -103
+#define ERROR_NEGATIVE_VALUE -104
 
 typedef struct 
 {
 	spinlock_t slock;
-	char* name;
+	const char* name;
 	int value;
 	TID_t thread;
 } usr_sem_t;
