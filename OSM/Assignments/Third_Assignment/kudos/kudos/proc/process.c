@@ -254,7 +254,7 @@ process_spawn_silly(const char *executable, const char **argv)
 void
 process_exit_silly()
 {
-  kwrite("SYSCALL_EXIT not supported in this version of KUDOS.\n");
+  //kwrite("SYSCALL_EXIT not supported in this version of KUDOS.\n");
 
   thread_table_t *thread = thread_get_current_thread_entry();
   vm_destroy_pagetable(thread->pagetable);

@@ -17,7 +17,6 @@ typedef struct
 	spinlock_t slock;
 	const char* name;
 	int value;
-	TID_t thread;
 } usr_sem_t;
 
 
@@ -27,5 +26,6 @@ int usr_sem_destory(usr_sem_t* sem);
 int find_index_from_name(const char* name);
 int find_empty_sem_slot();
 int usr_sem_vacate(usr_sem_t* sem);
+int usr_sem_procure(usr_sem_t* sem);
 
 #endif /* USR_SEM_H */

@@ -8,14 +8,16 @@ void user_sem_init(void)
 {
   spinlock_reset(&sem_table_slock);
   for(int i = 0; i < MAX_SEM_TABLE; i++)
-    sem_table[i].thread = 1;
+  {
+  	stringcopy(sem_table[i].name, "");
+  }
 }
 
 
 int find_empty_sem_slot() {
 	for (int i = 0; i < MAX_SEM_TABLE; ++i)
 	{
-		if (sem_table[i].thread == -1)
+		if (stringcmp(sem_table[i].name, ""))
 		{
 			return i;
 		}
@@ -26,7 +28,7 @@ int find_empty_sem_slot() {
 int find_index_from_name(const char* name) {
 	for (int i = 0; i < MAX_SEM_TABLE; ++i)
 	{
-		if (sem_table[i].name == name)
+		if (stringcmp(sem_table[i].name, name))
 		{
 			return i;
 		}
@@ -43,16 +45,16 @@ usr_sem_t* usr_sem_open(const char* name, int value) {
 	{
 		for (int i = 0; i < MAX_SEM_TABLE; ++i)
 		{
-			if (sem_table[i].name == name) 
+			if (stringcmp(sem_table[i].name, name)) 
 			{
+				spinlock_release(&sem_table_slock);
 				return NULL;
 			}
 		}
 		int index = find_empty_sem_slot(); 
 
-		sem_table[index].name = name;
+		stringcopy(sem_table[index].name, name);
 		sem_table[index].value = value;
-		sem_table[index].thread = thread_get_current_thread();
 
 		spinlock_release(&sem_table_slock);
 
@@ -63,15 +65,18 @@ usr_sem_t* usr_sem_open(const char* name, int value) {
 		{
 			for (int i = 0; i < MAX_SEM_TABLE; ++i)
 			{
-				if (sem_table[i].name == name) 
+				if (stringcmp(sem_table[i].name, name)) 
 				{
+					spinlock_release(&sem_table_slock);
 					return &sem_table[i]; 
 				}
 			}
 			
+		spinlock_release(&sem_table_slock);
 		return NULL;
 		}
 
+	spinlock_release(&sem_table_slock);
 	return NULL;
 }
 
@@ -89,7 +94,6 @@ int usr_sem_destory(usr_sem_t* sem) {
 	
 	sem -> name = "";
 	sem -> value = 0;
-	sem -> thread = -1;	
 	
 	spinlock_release(&sem -> slock);
 	_interrupt_set_state(intr_status);
@@ -104,13 +108,14 @@ int usr_sem_procure(usr_sem_t* sem) {
   
   sem->value--;
 
-  if (sem->value < 0) {
+  while (sem->value < 0) {
     sleepq_add(sem);
     spinlock_release(&sem->slock);
     thread_switch();
-  } else {
-  	spinlock_release(&sem->slock);
+    spinlock_acquire(&sem->slock);
   }
+
+  spinlock_release(&sem->slock);
   _interrupt_set_state(intr_status);
   return 0;
 }
