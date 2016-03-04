@@ -4,12 +4,13 @@
 #define QUEUE_UNDERFLOW 1
 #define QUEUE_OVERFLOW  2
 
+#include <pthread.h>
+
 struct node {
   int pri;
 };
 
 struct queue {
-  pthread_mutex_t lock;
   struct node *root;
   struct node *next;
   size_t count;
