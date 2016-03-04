@@ -3,7 +3,7 @@
 #include <pthread.h>
 #include "queue.h"
 
-#define NUM_THREADS 4
+#define THREADS 4
 
 static struct queue queue;
 
@@ -30,15 +30,12 @@ void *pooping(void *arg) {
 
 int main() {
   queue_init(&queue);
-  pthread_t threads[NUM_THREADS];
-  
-  
+  pthread_t threads[THREADS];
   pthread_create(&threads[0], NULL, pushing, "thread 0");
   pthread_create(&threads[1], NULL, pooping, "thread 1"); 
   pthread_create(&threads[2], NULL, pushing, "thread 2");
   pthread_create(&threads[3], NULL, pooping, "thread 3"); 
-  // join waits for the threads to finish
-  for (int i = 0; i < NUM_THREADS; i++) {
+  for (int i = 0; i < THREADS; i++) {
     pthread_join(threads[i], NULL);
   }
   
