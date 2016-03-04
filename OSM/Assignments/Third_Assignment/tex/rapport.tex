@@ -1,0 +1,101 @@
+
+% Document class: article with font size 11pt
+% ---------------
+\documentclass[11pt,a4paper]{report}
+
+% Call packages
+% ---------------
+\usepackage{comment} %Possible to comment larger sections
+%http://get-software.net/macros/latex/contrib/comment/comment.pdf
+\usepackage[T1]{fontenc} %oriented to output, that is, what fonts to use for printing characters.
+\usepackage[utf8]{inputenc} %allows the user to input accented characters directly from the keyboard
+%Put fontenc before inputenc
+\usepackage{fourier} %Better typeface
+%http://mirrors.dotsrc.org/ctan/fonts/fourier-GUT/doc/latex/fourier/fourier-doc-en.pdf
+\usepackage[danish]{babel}														     % Danish
+\usepackage[protrusion=true,expansion=true]{microtype}				                 % Better typography
+%http://www.khirevich.com/latex/microtype/
+\usepackage{amsmath,amsfonts,amsthm, amssymb}							 % Math packages
+\usepackage[pdftex]{graphicx} %puts to pdf and graphic
+%http://www.kwasan.kyoto-u.ac.jp/solarb6/usinggraphicx.pdf
+\usepackage{xcolor,colortbl}
+%http://mirrors.dotsrc.org/ctan/macros/latex/contrib/xcolor/xcolor.pdf
+%http://texdoc.net/texmf-dist/doc/latex/colortbl/colortbl.pdf
+\usepackage{tikz} %documentation http://www.ctan.org/pkg/pgf
+\usetikzlibrary{arrows,positioning} %http://tex.stackexchange.com/questions/141842/tikz-self-loops-style-question
+\tikzset{
+    >=stealth,
+    %auto,
+    %node distance=3.5cm,
+    font=\scriptsize,
+    empty world/.style={align=center},
+    single world/.style={circle,draw,thick,align=center},
+    double world/.style={double,circle,draw,thick,align=center},
+    minimum size=40pt
+}
+
+%\usetikzlibrary{matrix}
+\usepackage{parskip} %http://www.ctan.org/pkg/parskip
+%http://tex.stackexchange.com/questions/51722/how-to-properly-code-a-tex-file-or-at-least-avoid-badness-10000
+%Never use \\ but instead press "enter" twice. See second website for more info
+\usepackage{natbib}
+%\usepackage{tablefootnote}
+%Brug H for figur lige HER!!
+\usepackage{float}
+%\caption{} til tabeller
+\usepackage{caption}
+
+\usepackage{pbox}
+
+%Skal ikke bruges i slut
+\usepackage[draft,danish]{fixme} %Danish latex book
+%\usepackage{showkeys} %Brug kun til at holde styr på labels
+
+%%--------------------------------
+%Til at vise links i pdf filen så man kan hoppe frem og tilbage
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={blue!35!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+
+\usepackage[top=1in, bottom=1.25in, left=1.25in, right=1.25in, footskip=0.25in]{geometry}
+
+\linespread{1.15} % Line spacing
+
+
+\usepackage{listings}
+\lstset{
+  frame=single,
+  numbers=left,
+  mathescape=false,
+  literate={->}{$\rightarrow$}{2}
+           {ε}{$\varepsilon$}{1}
+           {=>}{$\Rightarrow$}{2}
+}
+
+\begin{document}
+
+
+\subsection{task2}
+
+To make the it thread-safe we have taken advantage of the pthread library, to implement mutex locks, so multiple threads can access the same queue in an orderly fashion.
+
+Queue\_pop() was changed to block in case of an empty queue. This was implemented with pthread condition variables.
+
+This change required an addition to queue\_push(), that now has to signal the queue\_pop().
+We have included test.c, which runs successfully.
+
+
+
+\end{document}

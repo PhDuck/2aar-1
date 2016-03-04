@@ -11,8 +11,8 @@ void *pushing(void *arg) {
 
   printf("%s initialize \n", (char *) arg);
   queue_push(&queue, 2);
-  queue_push(&queue, 2);
-  queue_push(&queue, 2);
+  queue_push(&queue, 8);
+  queue_push(&queue, 12);
   printf("%s done \n", (char *) arg);
   return NULL;
 }

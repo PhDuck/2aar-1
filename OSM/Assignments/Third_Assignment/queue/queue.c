@@ -61,8 +61,6 @@ queue_heap_down(struct node *array, size_t count, size_t i) {
 
 int
 queue_init(struct queue *q) {
-  /* FIXME: Make this function also initialize the pthread objects. */
-  
   pthread_mutex_init(&lock, NULL);
   pthread_cond_init(&cond, NULL);
 
@@ -98,11 +96,8 @@ queue_grow(struct queue *q) {
 
 int
 queue_push(struct queue *q, int pri) {
-  /* FIXME: Make this function thread-safe. */
   pthread_mutex_lock(&lock);
   int retval;
-
-  //printf("Testing for PUSH\n");
 
   if (q->count >= q->size) {
     retval = queue_grow(q);
@@ -126,9 +121,8 @@ queue_push(struct queue *q, int pri) {
 
 int
 queue_pop(struct queue *q, int *pri_ptr) {
-  /* FIXME: Make this function thread-safe.  Also, if the queue is empty on pop,
-     block until something is pushed. */
   pthread_mutex_lock(&lock);
+
   while (q->count == 0) 
   {
     pthread_cond_wait(&cond, &lock);
@@ -141,15 +135,13 @@ queue_pop(struct queue *q, int *pri_ptr) {
 
   exchange(q->root, q->next);
 
-  printf("Testing for POP\n");
   queue_heap_down(q->root, q->count, 0);
   return 0;
 }
 
-int
-queue_destroy(struct queue *q) {
+int queue_destroy(struct queue *q) {
   free(q->root);
   pthread_mutex_destroy(&lock);
-  //pthread_cond_destroy(&lock);
+  pthread_cond_destroy(&cond);
   return 0;
 }
