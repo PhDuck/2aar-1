@@ -9,7 +9,7 @@ void user_sem_init(void)
   spinlock_reset(&sem_table_slock);
   for(int i = 0; i < MAX_SEM_TABLE; i++)
   {
-  	stringcopy(sem_table[i].name, "");
+  	sem_table[i].status = 0;
   }
 }
 
@@ -17,7 +17,7 @@ void user_sem_init(void)
 int find_empty_sem_slot() {
 	for (int i = 0; i < MAX_SEM_TABLE; ++i)
 	{
-		if (stringcmp(sem_table[i].name, ""))
+		if (sem_table[i].status == 0)
 		{
 			return i;
 		}
@@ -52,7 +52,8 @@ usr_sem_t* usr_sem_open(const char* name, int value) {
 			}
 		}
 		int index = find_empty_sem_slot(); 
-
+		sem_table[index].sem = semaphore_create(value);
+		sem_table[index].status = 1;
 		stringcopy(sem_table[index].name, name);
 		sem_table[index].value = value;
 
@@ -92,7 +93,8 @@ int usr_sem_destory(usr_sem_t* sem) {
 		return SEM_BLOCKED;
 	}
 	
-	sem -> name = "";
+	semaphore_destroy(sem);
+	sem -> status = 0;
 	sem -> value = 0;
 	
 	spinlock_release(&sem -> slock);
@@ -106,16 +108,26 @@ int usr_sem_procure(usr_sem_t* sem) {
   intr_status = _interrupt_disable();
   spinlock_acquire(&sem->slock);
   
-  sem->value--;
+  if(sem -> status == 0){
+  	return ERROR_SEM_NOT_IN_USE;
+  }
+
+  if(sem -> sem -> creator == -1){
+  	return ERROR_INVALID_POINTER;
+  }
+
+  semaphore_P(sem);
+  /*sem->value--;
 
   while (sem->value < 0) {
     sleepq_add(sem);
     spinlock_release(&sem->slock);
     thread_switch();
     spinlock_acquire(&sem->slock);
-  }
+  }*/
 
   spinlock_release(&sem->slock);
+
   _interrupt_set_state(intr_status);
   return 0;
 }
@@ -126,10 +138,20 @@ int usr_sem_vacate(usr_sem_t* sem) {
   intr_status = _interrupt_disable();
   spinlock_acquire(&sem->slock);
 
-  sem->value++;
+  if(sem -> status == 0){
+  	return ERROR_SEM_NOT_IN_USE;
+  }
+
+  if(sem -> sem -> creator == -1){
+  	return ERROR_INVALID_POINTER;
+  }
+
+  semaphore_V(sem);
+
+/*  sem->value++;
   if (sem->value <= 0) {
     sleepq_wake(sem);
-  }
+  }*/
 
   spinlock_release(&sem->slock);
   _interrupt_set_state(intr_status);

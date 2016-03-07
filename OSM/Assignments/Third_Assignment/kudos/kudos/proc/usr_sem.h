@@ -5,16 +5,21 @@
 #include "kernel/thread.h"
 #include "kernel/interrupt.h"
 #include "kernel/sleepq.h"
+#include "kernel/semaphore.h"
 
 #define MAX_SEM_TABLE 15 //This is a choice by us.
 #define ERROR_NO_EMPTY_IN_SEM_TABLE -101
 #define ERROR_UNKNOWN_NAME -102
 #define SEM_BLOCKED -103
 #define ERROR_NEGATIVE_VALUE -104
+#define ERROR_SEM_NOT_IN_USE -105
+#define ERROR_INVALID_POINTER -106
 
 typedef struct 
 {
 	spinlock_t slock;
+	semaphore_t* sem;
+	int status; // status 0: free, status 1: taken
 	const char* name;
 	int value;
 } usr_sem_t;
