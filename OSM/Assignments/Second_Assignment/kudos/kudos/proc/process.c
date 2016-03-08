@@ -207,24 +207,18 @@ process_id_t get_free_pid()
   return NO_FREE_PROCESS;
 };
 
-/*int pid_to_index(process_id_t pid)
-{
-  for (int i = 0; i < PROCESS_MAX_PROCESSES; ++i)
-  {
-    if (process_table[i].pid == pid)
-    {
-      return i;
-    }
-  }
-  return UNKNOWN_PID;
-}
-*/
 void process_run_thread(uint32_t pid) {
+  TID_t current_thread;
+  current_thread = thread_get_current_thread();
+  thread_table_t* current_thread_entry;  
+  current_thread_entry = thread_get_thread_entry(current_thread);
+  current_thread_entry -> process_id = pid;
+  
   context_t user_context = process_table[pid].user_context;
   virtaddr_t entry_point = process_table[pid].entry_point;
   virtaddr_t stack_top   = process_table[pid].stack_top;
-
-  process_set_pagetable(thread_get_thread_entry(thread_get_current_thread())->pagetable);
+  
+  process_set_pagetable(thread_get_thread_entry(current_thread)->pagetable);
   /* Initialize the user context. (Status register is handled by
      thread_goto_userland) */
   memoryset(&user_context, 0, sizeof(user_context));
@@ -251,10 +245,10 @@ process_id_t process_spawn(char const* executable, char const **argv)
     return -31; /* Something went wrong. */
   }
   process_table[pid].state = PROCESS_RUNNING;
-  thread_run(my_thread);
-
+  
   process_table[pid].entry_point = entry_point;
   process_table[pid].stack_top = stack_top;
+  thread_run(my_thread);
   return pid;
 
 }
@@ -262,28 +256,32 @@ process_id_t process_spawn(char const* executable, char const **argv)
 void process_exit(int retval) 
 //retval negativ fail process, positiv succes process?
 {
+  kprintf("process exit start\n" );
   interrupt_status_t status;
   status = _interrupt_disable();
   spinlock_acquire(&process_table_slock);
   
-  thread_table_t* thr = thread_get_current_thread_entry();
   process_id_t pid = process_get_current_process();
+  kprintf("1 exit pid %d\n",pid);
+
   process_table[pid].state = PROCESS_ZOMBIE;
   process_table[pid].retval = retval;
+  thread_table_t* thr = thread_get_current_thread_entry();
   vm_destroy_pagetable(thr -> pagetable);
   thr->pagetable = NULL;
 
-  sleepq_wake(&process_table[pid].state);
+  sleepq_wake_all(&process_table[pid].state);
   spinlock_release(&process_table_slock);
   _interrupt_set_state(status);
   
+  kprintf("process exit over\n" );
   thread_finish();
 }
 
 /* Return PID of current process. */
 process_id_t process_get_current_process(void)
 {
-  return thread_get_current_thread_entry()-> process_id;
+  return thread_get_current_thread_entry() -> process_id;
 }
 
 
@@ -297,18 +295,22 @@ process_control_block_t *process_get_current_process_entry(void)
    and mark the process-table entry as free */
 int process_join(process_id_t pid)
 {
+   kprintf("process join pre while\n" );
   int retval; 
   interrupt_status_t status;
   status = _interrupt_disable();
   spinlock_acquire(&process_table_slock);
-
+  kprintf("1 join pid %d\n",pid);
   while(process_table[pid].state != PROCESS_ZOMBIE)
   {
+    kprintf("process join while\n" );
+    kprintf("2 join pid %d\n",pid);
     sleepq_add(&process_table[pid].state);
     spinlock_release(&process_table_slock);
     thread_switch();
     spinlock_acquire(&process_table_slock);
   }
+   kprintf("process join post while\n" );
   process_table[pid].state = PROCESS_FREE;
   retval = process_table[pid].retval;
 

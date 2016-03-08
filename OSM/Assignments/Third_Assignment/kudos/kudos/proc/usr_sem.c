@@ -97,7 +97,8 @@ int usr_sem_destory(usr_sem_t* sem) {
 
 	sem -> status = 0;
 	sem -> value = 0;
-	
+	stringcopy(sem -> name, "", NAME_LENGTH);
+
 	spinlock_release(&sem -> slock);
 	_interrupt_set_state(intr_status);
 	return 0;
