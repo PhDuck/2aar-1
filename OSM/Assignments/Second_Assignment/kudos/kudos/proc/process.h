@@ -54,6 +54,8 @@ void process_init();
 
 int process_join(process_id_t pid);
 
+void process_exit(int retval);
+
 process_control_block_t *process_get_current_process_entry();
 
 process_id_t process_get_current_process();

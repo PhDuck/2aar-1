@@ -86,7 +86,6 @@ void init_startup_thread(uint32_t arg)
   /* Threads have arguments for functions they run, we don't
      need any. Silence the compiler warning by using the argument. */
   arg = arg;
-
   kprintf("Mounting filesystems\n");
   vfs_mount_all();
 
@@ -98,7 +97,7 @@ void init_startup_thread(uint32_t arg)
   kprintf("Starting initial program '%s'\n", bootargs_get("initprog"));
   process_init();
   process_spawn(bootargs_get("initprog"), NULL);
-
+  //process_join();
   /* The current process_start() should never return. */
   KERNEL_PANIC("Run out of initprog.\n");
 }

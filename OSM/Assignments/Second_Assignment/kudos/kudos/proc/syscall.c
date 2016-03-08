@@ -9,7 +9,7 @@
 #include "kernel/assert.h"
 #include "vm/memory.h"
 #include "drivers/polltty.h"
- #include "proc/process.h"
+#include "proc/process.h"
 
 int syscall_write(const char *buffer, int length) {
   /* Not a G1 solution! */
@@ -23,6 +23,18 @@ int syscall_read(char *buffer) {
   return 1;
 }
 
+int syscall_spawn(char const* filename, char const** argv){
+  process_id_t pid = process_spawn(filename, argv);
+  return pid;
+}
+void syscall_exit(int retval){
+  process_exit(retval);
+}
+
+int syscall_join(int pid){
+  int retval = process_join(pid);
+  return retval;
+}
 /**
  * Handle system calls. Interrupts are enabled when this function is
  * called.
@@ -53,11 +65,14 @@ uintptr_t syscall_entry(uintptr_t syscall,
     return syscall_write((const void*)arg1, (int)arg2);
     break;
   case SYSCALL_SPAWN:
-    return process_spawn((char const*)arg0, (void*) arg1);
-  //case SYSCALL_EXIT:
-  //  process_exit();
+    return syscall_spawn((char const*)arg0, (void*) arg1);
+    break;
+  case SYSCALL_EXIT:
+    syscall_exit((int)arg0);
+    break;
   case SYSCALL_JOIN:
-    return process_join(arg0);
+    return process_join((int)arg0);
+    break;
   default:
     KERNEL_PANIC("Unhandled system call\n");
   }

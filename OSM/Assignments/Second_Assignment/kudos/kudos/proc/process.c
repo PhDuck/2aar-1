@@ -259,7 +259,7 @@ process_id_t process_spawn(char const* executable, char const **argv)
 
 }
 
-void process_exit (int retval) 
+void process_exit(int retval) 
 //retval negativ fail process, positiv succes process?
 {
   interrupt_status_t status;
@@ -273,7 +273,7 @@ void process_exit (int retval)
   vm_destroy_pagetable(thr -> pagetable);
   thr->pagetable = NULL;
 
-  sleepq_wake_all(&retval);
+  sleepq_wake(&process_table[pid].state);
   spinlock_release(&process_table_slock);
   _interrupt_set_state(status);
   
@@ -302,7 +302,7 @@ int process_join(process_id_t pid)
   status = _interrupt_disable();
   spinlock_acquire(&process_table_slock);
 
-  while(process_table[process_get_current_process()].state == PROCESS_SLEEPING)
+  while(process_table[pid].state != PROCESS_ZOMBIE)
   {
     sleepq_add(&process_table[pid].state);
     spinlock_release(&process_table_slock);
