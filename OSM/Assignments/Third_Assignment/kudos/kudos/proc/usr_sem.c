@@ -54,7 +54,7 @@ usr_sem_t* usr_sem_open(const char* name, int value) {
 		int index = find_empty_sem_slot(); 
 		sem_table[index].sem = semaphore_create(value);
 		sem_table[index].status = 1;
-		stringcopy(sem_table[index].name, name);
+		stringcopy(sem_table[index].name, name, NAME_LENGTH);
 		sem_table[index].value = value;
 
 		spinlock_release(&sem_table_slock);
@@ -83,9 +83,9 @@ usr_sem_t* usr_sem_open(const char* name, int value) {
 
 int usr_sem_destory(usr_sem_t* sem) {
 	interrupt_status_t intr_status;
-
 	intr_status = _interrupt_disable();
 	spinlock_acquire(&sem->slock);
+
 	if (sem -> value < 0)
 	{
 		spinlock_release(&sem -> slock);	
@@ -93,7 +93,8 @@ int usr_sem_destory(usr_sem_t* sem) {
 		return SEM_BLOCKED;
 	}
 	
-	semaphore_destroy(sem);
+	semaphore_destroy(sem -> sem);
+
 	sem -> status = 0;
 	sem -> value = 0;
 	
@@ -116,7 +117,7 @@ int usr_sem_procure(usr_sem_t* sem) {
   	return ERROR_INVALID_POINTER;
   }
 
-  semaphore_P(sem);
+  semaphore_P(sem -> sem);
   /*sem->value--;
 
   while (sem->value < 0) {
@@ -146,7 +147,7 @@ int usr_sem_vacate(usr_sem_t* sem) {
   	return ERROR_INVALID_POINTER;
   }
 
-  semaphore_V(sem);
+  semaphore_V(sem -> sem);
 
 /*  sem->value++;
   if (sem->value <= 0) {
