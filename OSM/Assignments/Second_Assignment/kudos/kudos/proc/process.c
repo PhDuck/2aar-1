@@ -23,9 +23,20 @@
 extern void process_set_pagetable(pagetable_t*);
 
 /** Spinlock which must be held when manipulating the thread table */
-spinlock_t process_table_slock;
 
+spinlock_t process_table_slock;
 process_control_block_t process_table[PROCESS_MAX_PROCESSES];
+
+void process_init(void)
+{
+  spinlock_reset(&process_table_slock);
+  for(int i = 0; i < PROCESS_MAX_PROCESSES; i++)
+  {
+    process_table[i].state = PROCESS_FREE;
+    process_table[i].pid = i;
+  }
+}
+
 /* Return non-zero on error. */
 int setup_new_process(TID_t thread,
                       const char *executable, const char **argv_src,
@@ -189,7 +200,7 @@ process_id_t get_free_pid()
   {
     if (process_table[i].state == PROCESS_FREE)
     {
-      return i;
+      return process_table[i].pid;
     }
   }
   //
@@ -209,23 +220,16 @@ process_id_t get_free_pid()
 }
 */
 void process_run_thread(uint32_t pid) {
-
-  int process_block_index = pid;
-
-  context_t user_context = process_table[process_block_index].user_context;
-  virtaddr_t entry_point = process_table[process_block_index].entry_point;
-  virtaddr_t stack_top   = process_table[process_block_index].stack_top;
-
+  context_t user_context = process_table[pid].user_context;
+  virtaddr_t entry_point = process_table[pid].entry_point;
+  virtaddr_t stack_top   = process_table[pid].stack_top;
 
   process_set_pagetable(thread_get_thread_entry(thread_get_current_thread())->pagetable);
-
   /* Initialize the user context. (Status register is handled by
      thread_goto_userland) */
   memoryset(&user_context, 0, sizeof(user_context));
-
   _context_set_ip(&user_context, entry_point);
   _context_set_sp(&user_context, stack_top);
-
   thread_goto_userland(&user_context);
 
 }
@@ -234,16 +238,12 @@ void process_run_thread(uint32_t pid) {
    Argument: executable file name; Returns: process ID of the new process */
 process_id_t process_spawn(char const* executable, char const **argv)
 {
-
-  process_init();
   process_id_t pid = get_free_pid();
-
   TID_t my_thread = thread_create(&process_run_thread, (uint32_t) pid);
 
   virtaddr_t entry_point;
   int ret;
   virtaddr_t stack_top;
-
   ret = setup_new_process(my_thread, executable, argv,
                           &entry_point, &stack_top);
 
@@ -253,48 +253,32 @@ process_id_t process_spawn(char const* executable, char const **argv)
   process_table[pid].state = PROCESS_RUNNING;
   thread_run(my_thread);
 
-
+  process_table[pid].entry_point = entry_point;
+  process_table[pid].stack_top = stack_top;
   return pid;
 
 }
 
-void process_exit (int retval) //retval negativ fail process, positiv succes process?
+void process_exit (int retval) 
+//retval negativ fail process, positiv succes process?
 {
-  thread_table_t* thr = thread_get_current_thread_entry();
-
-  process_id_t pid = process_get_current_process();
-
-
   interrupt_status_t status;
   status = _interrupt_disable();
-
-  _interrupt_set_state(status);
-
   spinlock_acquire(&process_table_slock);
-
+  
+  thread_table_t* thr = thread_get_current_thread_entry();
+  process_id_t pid = process_get_current_process();
   process_table[pid].state = PROCESS_ZOMBIE;
   process_table[pid].retval = retval;
-
-  sleepq_wake_all(&retval);
-
-  spinlock_release(&process_table_slock);
-
-  status = _interrupt_enable();
-
-  _interrupt_set_state(status);
-
   vm_destroy_pagetable(thr -> pagetable);
   thr->pagetable = NULL;
 
+  sleepq_wake_all(&retval);
+  spinlock_release(&process_table_slock);
+  _interrupt_set_state(status);
+  
   thread_finish();
 }
-
-//void process_init()
-//{
-//  process_control_block_t process_table[PROCESS_MAX_PROCESSES];
-//}
-
-
 
 /* Return PID of current process. */
 process_id_t process_get_current_process(void)
@@ -313,35 +297,23 @@ process_control_block_t *process_get_current_process_entry(void)
    and mark the process-table entry as free */
 int process_join(process_id_t pid)
 {
+  int retval; 
   interrupt_status_t status;
-
   status = _interrupt_disable();
-
-  _interrupt_set_state(status); // Det her var ikke hos Susanne, men jeg tror det skal være her.
-
   spinlock_acquire(&process_table_slock);
 
-  while(process_table[process_get_current_process()].state == PROCESS_SLEEPING) {
-
-    sleepq_add(thread_get_current_thread());
-
+  while(process_table[process_get_current_process()].state == PROCESS_SLEEPING)
+  {
+    sleepq_add(&process_table[pid].state);
     spinlock_release(&process_table_slock);
-
     thread_switch();
-
     spinlock_acquire(&process_table_slock);
   }
-  process_id_t returnpid = process_spawn(child, arg);
-
-  returnpid = returnpid; 
-
-
-  status = _interrupt_enable();
-
-  _interrupt_set_state(status);
+  process_table[pid].state = PROCESS_FREE;
+  retval = process_table[pid].retval;
 
   spinlock_release(&process_table_slock);
-
-  return 0;
+  _interrupt_set_state(status);
+  return retval;
 
 }

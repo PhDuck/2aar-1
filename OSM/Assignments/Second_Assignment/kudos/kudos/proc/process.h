@@ -34,14 +34,12 @@ typedef enum {
 
 typedef struct {
   int retval;
+  process_id_t pid;
   virtaddr_t stack_top;
   virtaddr_t entry_point;
-
   context_t user_context;
-
   /* process state */
   process_state_t state;
-
 } process_control_block_t;
 
 process_id_t process_spawn(const char *executable, const char **argv);
