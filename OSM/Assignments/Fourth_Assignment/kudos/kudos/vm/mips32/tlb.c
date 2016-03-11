@@ -27,7 +27,13 @@ int find_matching_entry(pagetable_t* pagetable, int* entry_index)
 
 void tlb_modified_exception()
 {
-  KERNEL_PANIC("Unhandled TLB modified exception");
+
+  pagetable_t pagetable = thread_get_current_thread() -> pagetable;
+
+  if (pagetable.entries == NULL) {
+    KERNEL_PANIC("TLBL: Kernel Mode, we must panic.\n");
+  }
+  proccess_exit(7);
 }
 
 void tlb_load_exception(void)
