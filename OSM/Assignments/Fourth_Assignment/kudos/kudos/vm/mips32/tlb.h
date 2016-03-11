@@ -6,6 +6,7 @@
 #define KUDOS_VM_TLB_H
 
 #include "lib/libc.h"
+#include <pagetable.h>
 
 #define NO_PAGE_ENTRY_FOUND -2843
 
@@ -65,10 +66,6 @@ void tlb_modified_exception(void);
 void tlb_load_exception(void);
 void tlb_store_exception(void);
 
-/* Forward declare pagetable_t (== struct pagetable_struct_t) */
-struct pagetable_struct_t;
-void tlb_fill(struct pagetable_struct_t *pagetable);
-
 /* assembler function wrappers */
 void _tlb_get_exception_state(tlb_exception_state_t *state);
 void _tlb_set_asid(uint32_t asid);
@@ -80,6 +77,6 @@ int _tlb_write(tlb_entry_t *entries, uint32_t index, uint32_t num);
 void _tlb_write_random(tlb_entry_t *entry);
 
 
-int find_matching_entry(pagetable_t* pagetable, int* entry_index)
+//int find_matching_entry(pagetable_t* pagetable, int* entry_index);
 
 #endif /* KUDOS_VM_TLB_H */

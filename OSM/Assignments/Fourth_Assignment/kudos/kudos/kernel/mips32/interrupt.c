@@ -6,6 +6,7 @@
 #include "kernel/config.h"
 #include "kernel/stalloc.h"
 #include "kernel/panic.h"
+#include "kernel/assert.h" 
 #include "kernel/scheduler.h"
 #include "kernel/interrupt.h"
 #include "drivers/polltty.h"
@@ -165,7 +166,22 @@ void interrupt_handle(virtaddr_t cause) {
        you implement proper VM), you must manually call _tlb_set_asid
        here. See the implementation of tlb_fill on details how to do that.
     */
-    tlb_fill(thread_get_current_thread_entry()->pagetable);
+    pagetable_t* pagetable = thread_get_current_thread_entry()->pagetable;
+
+    if(pagetable == NULL)
+      return;
+
+    /* Check that the pagetable can fit into TLB. This is needed until
+       we have proper VM system, because the whole pagetable must fit
+       into TLB. */
+    KERNEL_ASSERT(pagetable->valid_count <= (_tlb_get_maxindex()+1));
+
+    _tlb_write(pagetable->entries, 0, pagetable->valid_count);
+
+    /* Set ASID field in Co-Processor 0 to match thread ID so that
+       only entries with the ASID of the current thread will match in
+       the TLB hardware. */
+    _tlb_set_asid(pagetable->ASID);
   }
 }
 
