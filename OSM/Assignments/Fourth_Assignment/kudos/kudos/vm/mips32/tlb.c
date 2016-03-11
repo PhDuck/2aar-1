@@ -12,7 +12,7 @@
 int find_matching_entry(pagetable_t* pagetable, int* entry_index)
 {
   tlb_exception_state_t* state;
-  _tlb_get_exception_state(&state);
+  _tlb_get_exception_state(state);
 
   for (int i = 0; i < PAGETABLE_ENTRIES; ++i)
   {
