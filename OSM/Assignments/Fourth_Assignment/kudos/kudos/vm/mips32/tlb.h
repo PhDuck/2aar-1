@@ -6,13 +6,16 @@
 #define KUDOS_VM_TLB_H
 
 #include "lib/libc.h"
+#include <pagetable.h>
+
+#define NO_PAGE_ENTRY_FOUND -2843
 
 /* TLB-entry. These fields match CP0 registers, which means
    they should not be modified. Any extensions should be made into
    a separate structure. */
 
 typedef struct {
-    /* Virtual page pair number. These are the upper 19 bits of a 
+    /* Virtual page pair number. These are the upper 19 bits of a
        virtual address. VPN2 describes which 2 page (8096 bytes)
        region of virtual address space this entry maps. */
     unsigned int VPN2:19    __attribute__ ((packed));
@@ -26,10 +29,10 @@ typedef struct {
     unsigned int PFN0:20    __attribute__ ((packed));
     /* Cache settings. Not used. */
     unsigned int C0:3       __attribute__ ((packed));
-    /* Dirty bit for even page. If this is 0, page is write protected. If 1 
+    /* Dirty bit for even page. If this is 0, page is write protected. If 1
        page can be written. */
     unsigned int D0:1       __attribute__ ((packed));
-    /* Valid bit for even page. */ 
+    /* Valid bit for even page. */
     unsigned int V0:1       __attribute__ ((packed));
     /* Global bit for even page. Can't be used without the global bit
        of odd page.*/
@@ -40,10 +43,10 @@ typedef struct {
     unsigned int PFN1:20    __attribute__ ((packed));
     /* Cache settings. Not used. */
     unsigned int C1:3       __attribute__ ((packed));
-    /* Dirty bit for odd page. If this is 0, page is write protected. If 1 
+    /* Dirty bit for odd page. If this is 0, page is write protected. If 1
        page can be written. */
     unsigned int D1:1       __attribute__ ((packed));
-    /* Valid bit for odd page. */ 
+    /* Valid bit for odd page. */
     unsigned int V1:1       __attribute__ ((packed));
     /* Global bit for odd page. Can't be used without the global bit
        of even page.*/
@@ -63,10 +66,6 @@ void tlb_modified_exception(void);
 void tlb_load_exception(void);
 void tlb_store_exception(void);
 
-/* Forward declare pagetable_t (== struct pagetable_struct_t) */
-struct pagetable_struct_t;
-void tlb_fill(struct pagetable_struct_t *pagetable);
-
 /* assembler function wrappers */
 void _tlb_get_exception_state(tlb_exception_state_t *state);
 void _tlb_set_asid(uint32_t asid);
@@ -77,5 +76,7 @@ int _tlb_read(tlb_entry_t *entries, uint32_t index, uint32_t num);
 int _tlb_write(tlb_entry_t *entries, uint32_t index, uint32_t num);
 void _tlb_write_random(tlb_entry_t *entry);
 
+
+//int find_matching_entry(pagetable_t* pagetable, int* entry_index);
 
 #endif /* KUDOS_VM_TLB_H */
