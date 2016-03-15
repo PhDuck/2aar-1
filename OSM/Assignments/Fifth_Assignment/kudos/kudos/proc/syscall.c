@@ -62,19 +62,23 @@ uintptr_t syscall_entry(uintptr_t syscall,
     return process_join((process_id_t) arg0);
     break;
   case SYSCALL_OPEN:
-
+    return vfs_open((char) *arg0);
     break;
   case SYSCALL_CLOSE:
+    return vfs_close((openfile_t) arg0);
     break;
   case SYSCALL_SEEK:
+    return vfs_seek((openfile_t) arg0, (int) arg1);
     break;
   case SYSCALL_READ:
     break;
   case SYSCALL_WRITE
     break;
   case SYSCALL_CREATE:
+    return vfs_create((openfile_t) arg0, (void) *arg1, (int) arg2);
     break;
   case SYSCALL_DELETE:
+    return vfs_remove((char) *arg0);
     break;
   case SYSCALL_FILECOUNT:
     break;
