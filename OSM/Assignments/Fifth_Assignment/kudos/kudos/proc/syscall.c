@@ -10,6 +10,15 @@
 #include "vm/memory.h"
 #include "drivers/polltty.h"
 #include "proc/process.h"
+#include "fs/vfs.h"
+
+typedef struct 
+{
+  openfile_t oid;
+} IDsMaaan;
+
+static IDsMaaan TableIdsMaaan[PROCESS_MAX_PROCESSES];
+
 
 int syscall_write(const char *buffer, int length) {
   /* Not a G1 solution! */
@@ -21,6 +30,15 @@ int syscall_read(char *buffer) {
   /* Not a G1 solution! */
   *buffer = polltty_getchar();
   return 1;
+}
+
+int syscall_open_helper(char* pathname) {
+  int vfsID;
+  process_id_t pid;
+  vfsID = vfs_open(pathname);
+  pid = process_get_current_process();
+  TableIdsMaaan[pid].oid = vfsID;
+  return vfsID;
 }
 
 /**
@@ -57,12 +75,13 @@ uintptr_t syscall_entry(uintptr_t syscall,
     break;
   case SYSCALL_EXIT:
     process_exit((process_id_t) arg0);
+    vfs_close(TableIdsMaaan[arg0].oid);
     break;
   case SYSCALL_JOIN:
     return process_join((process_id_t) arg0);
     break;
   case SYSCALL_OPEN:
-    return vfs_open((char) *arg0);
+    return syscall_open_helper((char*) arg0);
     break;
   case SYSCALL_CLOSE:
     return vfs_close((openfile_t) arg0);
@@ -70,15 +89,11 @@ uintptr_t syscall_entry(uintptr_t syscall,
   case SYSCALL_SEEK:
     return vfs_seek((openfile_t) arg0, (int) arg1);
     break;
-  case SYSCALL_READ:
-    break;
-  case SYSCALL_WRITE
-    break;
   case SYSCALL_CREATE:
-    return vfs_create((openfile_t) arg0, (void) *arg1, (int) arg2);
+    return vfs_create((char*) arg0, (int) arg1);
     break;
   case SYSCALL_DELETE:
-    return vfs_remove((char) *arg0);
+    return vfs_remove((char*) arg0);
     break;
   case SYSCALL_FILECOUNT:
     break;
