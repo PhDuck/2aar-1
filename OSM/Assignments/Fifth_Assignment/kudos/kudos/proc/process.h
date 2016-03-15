@@ -13,7 +13,7 @@
 
 #define PROCESS_MAX_FILELENGTH 256
 #define PROCESS_MAX_PROCESSES  128
-#define PROCESS_MAX_FILES      10
+#define PROCESS_MAX_FILES      50
 
 typedef int process_id_t;
 
@@ -38,6 +38,9 @@ typedef struct {
 /* Initial contents of some registers. */
   virtaddr_t entry_point;
   virtaddr_t stack_top;
+
+/*List of open files*/
+  openfile_table open_files;
 
 } process_control_block_t;
 
