@@ -61,6 +61,25 @@ uintptr_t syscall_entry(uintptr_t syscall,
   case SYSCALL_JOIN:
     return process_join((process_id_t) arg0);
     break;
+  case SYSCALL_OPEN:
+
+    break;
+  case SYSCALL_CLOSE:
+    break;
+  case SYSCALL_SEEK:
+    break;
+  case SYSCALL_READ:
+    break;
+  case SYSCALL_WRITE
+    break;
+  case SYSCALL_CREATE:
+    break;
+  case SYSCALL_DELETE:
+    break;
+  case SYSCALL_FILECOUNT:
+    break;
+  case SYSCALL_FILE:
+    break;
   default:
     KERNEL_PANIC("Unhandled system call\n");
   }

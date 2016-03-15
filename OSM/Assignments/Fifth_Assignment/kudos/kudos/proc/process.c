@@ -331,6 +331,14 @@ void process_exit(int retval)
   process_table[cur].state  = PROCESS_ZOMBIE;
   process_table[cur].retval = retval;
 
+  for (int i = 0; i < PROCESS_MAX_FILES; ++i)
+  {
+
+    cur_open_file = process_table[cur].open_files -> openfile.entry_t[i]
+    vfs_close(cur_open_file -> fileid)
+
+  }
+
   /* Remember to destroy the pagetable! */
   vm_destroy_pagetable(thread->pagetable);
   thread->pagetable = NULL;
