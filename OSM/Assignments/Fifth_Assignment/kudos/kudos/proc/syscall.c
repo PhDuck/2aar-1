@@ -12,7 +12,7 @@
 #include "proc/process.h"
 #include "fs/vfs.h"
 
-typedef struct 
+typedef struct
 {
   openfile_t oid;
 } IDsMaaan;
@@ -96,8 +96,10 @@ uintptr_t syscall_entry(uintptr_t syscall,
     return vfs_remove((char*) arg0);
     break;
   case SYSCALL_FILECOUNT:
+      return vfs_filecount((char*) arg0);
     break;
   case SYSCALL_FILE:
+      return vfs_file((char*) arg0, arg1, (char*) arg2)
     break;
   default:
     KERNEL_PANIC("Unhandled system call\n");
