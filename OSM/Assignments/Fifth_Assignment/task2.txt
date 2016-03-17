@@ -1,0 +1,26 @@
+G5
+Task2:
+1:	1 block size 512-byte = 2MB
+	4MB / 2MB = 2, requires 2 blocks
+	16MB / 2MB = 8, requires 8 blocks
+	512MB / 2MB = 256, requires 256 blocks
+	2gb / 2MB = 1024, requires 1024 blocks
+2:
+It is not possible to utilize the entire 2MB tfs volume.
+Given that there is a maximum of 20 files, which each have a max size of 127 blocks, we can only use 3175 blocks for files.
+This results in 3+25+3175 = 3203 blocks, or 1.55MB, leaving 0.45MB wasted.
+
+3:
+If we dont want to waste any space, the ideal number of blocks are 3203.
+
+
+4:
+Given that the last word of a file header block is a pointer to a single indirect block,
+the first block can support a file size of 512/4-1-1 = 126 blocks, the pointer then gives us a single indirect block,
+resulting in the total size of 126+128 = 254 blocks, which is the equivalent to 130kb.
+
+5:
+Following the same pattern as before we get 125+128, for the first block and the single indirect block.
+However the double indirect block increases the space with 128*128, as the last pointer points to a block off 128 pointers,
+that points to a block of 128.
+Resulting in 125+128+128*128 = 16637 blocks, equivalent to 8.12 MB
