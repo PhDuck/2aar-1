@@ -1,0 +1,36 @@
+Task 3:
+1:
+Turnaround
+FIFO:
+(200 + 400 + 600) / 3 = 400
+SJF:
+(200 + 400 + 600) / 3 = 400
+
+Response
+FIFO:
+(0 + 200 + 400) / 3 = 200
+SJF:
+(0 + 200 + 400) / 3 = 200
+
+2:
+Since the task does not tell which job arrives first there are multiple answers for the FIFO schedueler, to illustrate the difference
+we have chosen to let the longest arrive first.
+Turnaround
+FIFO:
+(300 + 500 + 600) / 3 = 466.66
+SJF:
+(100 + 300 + 600) / 3 = 333.33
+
+Response
+FIFO:
+(0 + 300 + 500) / 3 = 266.66
+SJF:
+(0 + 200 + 400) / 3 = 200
+
+3:
+RR will have the same response time as the time-slice, in this case 1. (1+2+3) / 3 = 1
+Turnaround
+(300 + 500 + 600) / 3 = 466.66
+
+4:
+If all jobs have the same running length SJF and FIFO have the same turnaround, or the case where the jobs arrives in order of increasing running time.
