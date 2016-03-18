@@ -13,6 +13,7 @@
 
 #define PROCESS_MAX_FILELENGTH 256
 #define PROCESS_MAX_PROCESSES  128
+#define PROCESS_MAX_FILES      10
 
 typedef int process_id_t;
 
@@ -38,8 +39,6 @@ typedef struct {
   virtaddr_t entry_point;
   virtaddr_t stack_top;
 
-  int filehandle;
-
 } process_control_block_t;
 
 
@@ -64,5 +63,9 @@ process_id_t process_get_current_process(void);
 
 /* Return PCB of current process. */
 process_control_block_t *process_get_current_process_entry(void);
+
+int process_read(int filehandle, void *buffer, int length);
+
+int process_write(int filehandle, const void *buffer, int length);
 
 #endif
