@@ -30,7 +30,7 @@ int syscall_write(int filehandler, const char *buffer, int length) {
     for (int i = 0; i < length; i++, *buffer++) polltty_putchar(*buffer);
     return length;
   else
-    retval = vfs_write(filehandler, (void*) buffer, length);
+    retval = vfs_write(filehandler - 3, (void*) buffer, length);
 
   return retval;
 
@@ -46,7 +46,7 @@ int syscall_read(char *buffer) {
   if (filehandler == FILEHANDLE_STDOUT)
     *buffer = polltty_getchar();
   else
-    retval = vfs_read(filehandler, (void* ) buffer, length);
+    retval = vfs_read(filehandler - 3, (void* ) buffer, length);
 
 
   return retval;
@@ -58,7 +58,7 @@ int syscall_open_helper(char* pathname) {
   vfsID = vfs_open(pathname);
   pid = process_get_current_process();
   TableIdsMaaan[pid].oid = vfsID;
-  return vfsID;
+  return vfsID + 3;
 }
 
 /**
