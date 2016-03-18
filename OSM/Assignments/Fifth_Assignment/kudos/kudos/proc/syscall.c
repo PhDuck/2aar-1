@@ -20,16 +20,36 @@ typedef struct
 static IDsMaaan TableIdsMaaan[PROCESS_MAX_PROCESSES];
 
 
-int syscall_write(const char *buffer, int length) {
-  /* Not a G1 solution! */
-  for (int i = 0; i < length; i++, *buffer++) polltty_putchar(*buffer);
-  return length;
+int syscall_write(int filehandler, const char *buffer, int length) {
+  int retval = 0;
+
+  if (length < 0)
+    return IO_LESSER_THAN_ZERO_LENGTH;
+
+  if filehandler == FILEHANDLE_STDIN
+    for (int i = 0; i < length; i++, *buffer++) polltty_putchar(*buffer);
+    return length;
+  else
+    retval = vfs_write(filehandler, (void*) buffer, length);
+
+  return retval;
+
 }
 
 int syscall_read(char *buffer) {
   /* Not a G1 solution! */
-  *buffer = polltty_getchar();
-  return 1;
+  int retval = 0;
+
+  if (length < 0)
+    return IO_LESSER_THAN_ZERO_LENGTH;
+
+  if (filehandler == FILEHANDLE_STDOUT)
+    *buffer = polltty_getchar();
+  else
+    retval = vfs_read(filehandler, (void* ) buffer, length);
+
+
+  return retval;
 }
 
 int syscall_open_helper(char* pathname) {
@@ -65,7 +85,7 @@ uintptr_t syscall_entry(uintptr_t syscall,
     halt_kernel();
     break;
   case SYSCALL_READ:
-    return syscall_read((void*)arg1);
+    return syscall_read(arg0, (void*)arg1, arg2);
     break;
   case SYSCALL_WRITE:
     return syscall_write((const void*)arg1, (int)arg2);

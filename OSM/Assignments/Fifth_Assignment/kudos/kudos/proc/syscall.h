@@ -33,4 +33,6 @@
 #define FILEHANDLE_STDOUT 1
 #define FILEHANDLE_STDERR 2
 
+#define IO_LESSER_THAN_ZERO_LENGTH -12;
+
 #endif
