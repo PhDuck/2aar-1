@@ -383,7 +383,7 @@ int process_read(int filehandle, void *buffer, int length) {
             || filehandle == FILEHANDLE_STDERR) {
     retval = IO_INVALID_HANDLE;
   } else {
-    retval = vfs_read(filehandler - 3, (void*) buffer, length);
+    retval = vfs_read(filehandle - 3, (void*) buffer, length);
   }
 
   return retval;
@@ -402,7 +402,7 @@ int process_write(int filehandle, const void *buffer, int length) {
             || filehandle == FILEHANDLE_STDERR) {
     retval = tty_write(buffer, length);
   } else {
-    retval = vfs_write(filehandler - 3, (void*) buffer, length);
+    retval = vfs_write(filehandle - 3, (void*) buffer, length);
   }
 
   return retval;

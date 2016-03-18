@@ -72,10 +72,10 @@ uintptr_t syscall_entry(uintptr_t syscall,
     return syscall_open_helper((char*) arg0);
     break;
   case SYSCALL_CLOSE:
-    return vfs_close((openfile_t) arg0);
+    return vfs_close((openfile_t) arg0 -3);
     break;
   case SYSCALL_SEEK:
-    return vfs_seek((openfile_t) arg0, (int) arg1);
+    return vfs_seek((openfile_t) arg0 -3, (int) arg1);
     break;
   case SYSCALL_CREATE:
     return vfs_create((char*) arg0, (int) arg1);
