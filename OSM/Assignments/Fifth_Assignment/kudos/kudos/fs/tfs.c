@@ -806,7 +806,7 @@ int tfs_filecount(fs_t *fs, char *dirname)
   int r;
   int count = 0;
 
-  if (stringcmp(dirname, "") != 0)
+  if (stringcmp(dirname, "\") != 0)
     return VFS_NOT_FOUND;
 
   semaphore_P(tfs->lock);
@@ -842,7 +842,7 @@ int tfs_file(fs_t *fs, char *dirname, int idx, char *buffer)
   int count = 0;
   gbd_request_t req;
 
-  if (stringcmp(dirname, "") != 0 || idx < 0)
+  if (stringcmp(dirname, "\") != 0 || idx < 0)
     return VFS_ERROR;
 
   semaphore_P(tfs->lock);
